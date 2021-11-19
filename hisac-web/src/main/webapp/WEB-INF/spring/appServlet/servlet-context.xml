@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:task="http://www.springframework.org/schema/task"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="
+    http://www.springframework.org/schema/beans 
+    http://www.springframework.org/schema/beans/spring-beans-4.3.xsd 
+    http://www.springframework.org/schema/context 
+    http://www.springframework.org/schema/context/spring-context-4.3.xsd
+    http://www.springframework.org/schema/mvc
+    http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
+    http://www.springframework.org/schema/task
+    http://www.springframework.org/schema/task/spring-task-4.3.xsd
+    http://www.springframework.org/schema/tx
+    http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
+	<bean id="mailService" class="tw.gov.mohw.hisac.web.service.MailService" />
+	<task:annotation-driven executor="asyncExecutor" />
+	<task:executor id="asyncExecutor" pool-size="100" />
+	<mvc:resources mapping="/resources/**" location="/resources/"
+		cache-period="3600" />
+	<mvc:annotation-driven />
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/public/api/login" />
+			<mvc:mapping path="/*" />
+			<mvc:mapping path="/alt/**" />
+			<mvc:mapping path="/cyb/**" />
+			<mvc:mapping path="/not/**" />
+			<mvc:mapping path="/pub/**" />
+			<mvc:mapping path="/inc/**" />
+			<mvc:mapping path="/sys/**" />
+			<mvc:mapping path="/mtp/**" />
+			<mvc:mapping path="/kin/**" />
+			<bean id="baseInterceptor" class="tw.gov.mohw.hisac.web.BaseInterceptor" />
+		</mvc:interceptor>
+	</mvc:interceptors>
+	<bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<beans:property name="prefix" value="/WEB-INF/views/" />
+		<beans:property name="suffix" value=".jsp" />
+	</bean>
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<beans:property name="defaultEncoding" value="utf-8" />
+		<beans:property name="maxUploadSize" value="10485760000" />
+		<beans:property name="maxInMemorySize" value="40960" />
+	</bean>
+	<context:component-scan base-package="tw.gov.mohw.hisac.web.controller" />
+	<context:component-scan base-package="tw.gov.mohw.hisac.web.controller.api" />
+	<context:component-scan base-package="tw.gov.mohw.hisac.web.controller.open.api" />
+	<context:component-scan base-package="tw.gov.mohw.hisac.web.service" />
+	<context:component-scan base-package="tw.gov.mohw.hisac.schedule" />
+</beans>

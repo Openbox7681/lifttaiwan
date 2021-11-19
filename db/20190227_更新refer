@@ -1,0 +1,3 @@
+--update information_exchange set reference=REPLACE(reference, 'https://secbuzzer.cyber00rn.org/dashboard/cve/', 'https://secbuzzer.co/vulnerability/');
+
+select top 10 * from information_exchange where sourcecode='sec';

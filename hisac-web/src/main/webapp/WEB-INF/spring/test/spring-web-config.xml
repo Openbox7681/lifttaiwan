@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="
+	http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/util
+    http://www.springframework.org/schema/util/spring-util.xsd
+    http://www.springframework.org/schema/tx
+    http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
+	<bean class="tw.gov.mohw.hisac.web.WebProperty">
+		<property name="fileEncoding" value="UTF-8" />
+		<property name="location">
+			<value>/WEB-INF/test.properties</value>
+		</property>
+	</bean>
+	<bean id="webSetting" class="tw.gov.mohw.hisac.web.WebConfig">
+		<property name="WEB_SITE_URL" value="${webSiteUrl}" />
+		<property name="MAX_ERROR_TIMES" value="${maxErrorTimes}" />
+		<property name="LOCK_MINUTES" value="${lockMinutes}" />
+		<property name="BEFORE_SESSION_TIMEOUT_MINUTES" value="${beforeSessionTimeoutMinutes}" />
+		<property name="OTP_SURVIVAL_TIME" value="${otpSurvivalTime}" />
+		<property name="FORGOT_EXPIRE_MINUTES" value="${forgotExpireMinutes}" />
+		<property name="HISTORY_TIMES" value="${historyTimes}" />
+		<property name="HISTORY_DAYS" value="${historyDays}" />
+		<property name="DEVELOPMENT_MODE" value="${developmentMode}" />
+		<property name="DEBUG_MODE" value="${debugMode}" />
+		<property name="ENABLE_SMS" value="${enableSMS}" />
+		<property name="ENABLE_SENDMAIL" value="${enableSendMail}" />
+		<property name="PDF_FONT" value="${pdfFont}" />
+		<property name="ENABLE_DIGITAL_SIGNATURE" value="${enableDigitalSignature}" />
+		<property name="PFX_FILENAME" value="${pfxFileName}" />
+		<property name="PFX_CODE" value="${pfxCode}" />
+		<property name="MAIL_USERNAME" value="${mail_username}" />
+		<property name="MAIL_CODE" value="${mail_code}" />
+		<property name="MAIL_SMTP_HOST" value="${mail_smtp_host}" />
+		<property name="MAIL_SMTP_PORT" value="${mail_smtp_port}" />
+		<property name="MAIL_SMTP_AUTH" value="${mail_auth}" />
+		<property name="MAIL_SMTP_STARTTLS_ENABLE" value="${mail_starttls_enable}" />
+		<property name="ENABLE_GOOGLE_RECAPTCHA" value="${enable_google_recaptcha}" />
+		<property name="GOOGLE_RECAPTCHA_SITE_KEY" value="${google_recaptcha_site_key}" />
+		<property name="GOOGLE_RECAPTCHA_SECURITY_KEY" value="${google_recaptcha_security_key}" />
+		<property name="NISAC_KEY_STORE" value="${nisac_key_store}" />
+		<property name="NISAC_KEY_STORE_P" value="${nisac_key_store_p}" />
+		<property name="NISAC_TRUST_STORE" value="${nisac_trust_store}" />
+		<property name="NISAC_TRUST_STORE_P" value="${nisac_trust_store_p}" />
+		<property name="NISAC_URL" value="${nisac_url}" />
+		<property name="NISAC_MEMBER_ID" value="${nisac_member_id}" />
+		<property name="NISAC_MEMBER_P" value="${nisac_member_p}" />
+		<property name="NISAC_MEMBER_DCN" value="${nisac_member_dcn}" />
+		<property name="NCERT_KEY_STORE" value="${ncert_key_store}" />
+		<property name="NCERT_KEY_STORE_P" value="${ncert_key_store_p}" />
+		<property name="NCERT_TRUST_STORE" value="${ncert_trust_store}" />
+		<property name="NCERT_TRUST_STORE_P" value="${ncert_trust_store_p}" />
+		<property name="NCERT_URL" value="${ncert_url}" />
+		<property name="NCERT_MEMBER_ID" value="${ncert_member_id}" />
+		<property name="NCERT_MEMBER_P" value="${ncert_member_p}" />
+		<property name="NCERT_MEMBER_DCN" value="${ncert_member_dcn}" />
+		<property name="UPLOAD_URL" value="${upload_url}" />
+		<property name="SEARCH_URL" value="${search_url}" />
+	</bean>
+	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="com.microsoft.sqlserver.jdbc.SQLServerDriver" />
+		<property name="url"
+			value="jdbc:sqlserver://${sqlserver_ip}:${sqlserver_port};databaseName=${sqlserver_database}" />
+		<property name="username" value="${sqlserver_username}" />
+		<property name="password" value="${sqlserver_code}" />
+	</bean>
+	<util:properties id="hibernateProperties">
+		<prop key="hibernate.dialect">
+			org.hibernate.dialect.SQLServer2012Dialect
+		</prop>
+		<prop key="hibernate.show_sql">false</prop>
+	</util:properties>
+	<tx:annotation-driven />
+</beans>

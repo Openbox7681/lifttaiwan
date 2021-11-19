@@ -1,0 +1,81 @@
+/* For Star Rating Start*/
+.rating {
+    float: left;
+}
+
+/* :not(:checked) is a filter, so that browsers that don’t support :checked don’t 
+    follow these rules. Every browser that supports :checked also supports :not(), so
+    it doesn’t make the test unnecessarily selective */
+.rating:not(:checked)>input {
+    position: absolute;
+    top: -9999px;
+    clip: rect(0, 0, 0, 0);
+}
+
+.rating:not(:checked)>label {
+    float: right;
+    width: 1em;
+    overflow: hidden;
+    white-space: nowrap;
+    cursor: pointer;
+    font-size: 300%;
+    color: #ddd;
+}
+
+.rating:not(:checked)>label:before {
+    content: '★ ';
+}
+
+.rating>input:checked~label {
+    color: orange;
+}
+
+.rating:not(:checked)>label:hover,
+.rating:not(:checked)>label:hover~label {
+    color: orange;
+}
+
+.rating>input:checked+label:hover,
+.rating>input:checked+label:hover~label,
+.rating>input:checked~label:hover,
+.rating>input:checked~label:hover~label,
+.rating>label:hover~input:checked~label {
+    color: orange;
+}
+
+.rating>label:active {
+    position: relative;
+    top: 2px;
+    left: 2px;
+}
+
+.pointRating:before{
+    content: '★ ';
+    background: orange;
+}
+/* For Star Rating End*/
+
+/* For Avgerage Stars Start */
+.star{
+    position:relative;
+    display: inline-block;
+    color: black;
+}
+.star:last-child {
+    margin-right: 0;
+}
+.star:before {
+    content:'★';
+}
+.star.on{
+    color: orange;
+}
+.star.half:after {
+    content:'★';
+    color: orange;
+    position: absolute;
+    margin-left: -100%;
+    width: 50%;
+    overflow: hidden;
+}
+/* For Avgerage Stars End */

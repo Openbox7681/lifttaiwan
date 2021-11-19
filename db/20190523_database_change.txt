@@ -1,0 +1,23 @@
+notification 新增欄位
+AffectOther1	bit	Checked // 水資源
+AffectOther2	bit	Checked // 能源
+AffectOther3	bit	Checked // 通訊傳播
+AffectOther4	bit	Checked // 交通
+AffectOther5	bit	Checked // 銀行與金融
+AffectOther6	bit	Checked // 緊急救援與醫院
+AffectOther7	bit	Checked // 重要政府機關
+AffectOther8	bit	Checked // 高科技園區
+
+EventSourceOther	nvarchar(256)	Checked //其他情資來源
+
+IsRes1LogOpt5	bit	Checked //已保存網站日誌檔
+Res1LogOpt5Other	nvarchar(MAX)	Checked //保留資料-保存網站日誌檔,1: 1個月,2: 1-6個月,3: 6個月以上,4: 其他,IsRes1LogOpt5為1，此欄位必填
+Res1LogOpt5	tinyint	Checked //保留資料-保存網站日誌檔-其他,Res1LogOpt5選擇4,此欄位必填
+
+ResDescription	nvarchar(MAX)	Checked //損害控制或復原之執執行情況
+ResControlTime	date	Checked //完成損害控制或復原時間
+ResResult	tinyint	Checked //1:已完成損害控制，未有擴大損害情形: ,2: 已完成損害控制並復原，恢復資安事件造成的損害
+
+Res1EvaOpt6Remark	nvarchar(MAX)	Checked //發現資料外洩情況描述
+
+Finish1ReasonToDo	nvarchar(MAX)	Checked //事件處理情況
