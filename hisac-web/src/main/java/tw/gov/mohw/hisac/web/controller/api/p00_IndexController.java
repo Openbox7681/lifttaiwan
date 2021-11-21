@@ -41,7 +41,6 @@ import tw.gov.mohw.hisac.web.service.NewsManagementService;
 import tw.gov.mohw.hisac.web.service.NotificationService;
 import tw.gov.mohw.hisac.web.service.OrgService;
 import tw.gov.mohw.hisac.web.service.SpDashboardService;
-import tw.gov.mohw.hisac.web.service.ActivityManagementService;
 import tw.gov.mohw.hisac.web.service.AnaManagementService;
 import tw.gov.mohw.hisac.web.service.MalwareManagementService;
 
@@ -51,7 +50,6 @@ import tw.gov.mohw.hisac.web.service.IncidentService;
 import tw.gov.mohw.hisac.web.service.MemberSignApplyService;
 import tw.gov.mohw.hisac.web.service.MessageService;
 import tw.gov.mohw.hisac.web.service.LinksService;
-import tw.gov.mohw.hisac.web.service.MaintainPlanMemberService;
 import tw.gov.mohw.hisac.web.service.LinksPicService;
 import tw.gov.mohw.hisac.web.service.SystemLogService;
 
@@ -65,8 +63,7 @@ public class p00_IndexController extends BaseController {
 	@Autowired
 	private NewsManagementService newsManagementService;
 
-	@Autowired
-	private ActivityManagementService activityManagementService;
+	
 
 	@Autowired
 	private AnaManagementService anaManagementService;
@@ -110,8 +107,7 @@ public class p00_IndexController extends BaseController {
 	@Autowired
 	private SystemLogService systemLogService;
 	
-	@Autowired
-	private MaintainPlanMemberService maintainPlanMemberService;	
+	
 	
 	private String targetControllerName = "pub";
 	private String targetActionName = "index";
@@ -197,17 +193,8 @@ public class p00_IndexController extends BaseController {
 				obj.put("Status", "4");
 				obj.put("sort", "sort");
 				json = obj.toString();
-				List<ViewActivityManagementMember> activityManagements = activityManagementService.getSpList(json);
-				if (activityManagements != null) {
-					for (ViewActivityManagementMember activityManagement : activityManagements) {
-						JSONObject sn_json = new JSONObject();
-						sn_json.put("Id", activityManagement.getId());
-						sn_json.put("Date", WebDatetime.toString(activityManagement.getPostDateTime(), "yyyy-MM-dd"));
-						sn_json.put("Title", activityManagement.getTitle());
-						sn_array.put(sn_json);
-					}
-				}
-				listjson.put("total", activityManagementService.getSpListSize(json));
+				
+				listjson.put("total", 0);
 				listjson.put("datatable", sn_array);
 				systemLogService.insert(baseControllerName, baseActionName, json, SystemLogVariable.Action.Read, SystemLogVariable.Status.Success, getBaseIpAddress(), getBaseMemberAccount());
 				model.addAttribute("json", listjson.toString());
@@ -260,7 +247,7 @@ public class p00_IndexController extends BaseController {
 						sn_array.put(sn_json);
 					}
 				}
-				listjson.put("total", activityManagementService.getSpListSize(json));
+				listjson.put("total", 0);
 				listjson.put("datatable", sn_array);
 				systemLogService.insert(baseControllerName, baseActionName, json, SystemLogVariable.Action.Read, SystemLogVariable.Status.Success, getBaseIpAddress(), getBaseMemberAccount());
 				model.addAttribute("json", listjson.toString());
@@ -689,7 +676,7 @@ public class p00_IndexController extends BaseController {
 		obj.put("MemberId", getBaseMemberId());
 		json = obj.toString();
 
-		countJson.put("count", activityManagementService.getSpFormCount(json));
+		countJson.put("count", 0);
 		model.addAttribute("json", countJson.toString());
 		return "msg";
 	}
@@ -855,16 +842,7 @@ public class p00_IndexController extends BaseController {
 		JSONObject countJson = new JSONObject();
 		JSONObject obj = new JSONObject();		
 		long num = 0;
-		if (baseMemberRole.IsMemberContact == true || baseMemberRole.IsMemberAdmin == true) {
-			obj.put("Status", "2");
-			num = num + maintainPlanMemberService.getListSize(getBaseOrgId(), obj.toString());
-			obj.put("Status", "31");
-			num = num + maintainPlanMemberService.getListSize(getBaseOrgId(), obj.toString());
-			obj.put("Status", "5");
-			num = num + maintainPlanMemberService.getListSize(getBaseOrgId(), obj.toString());
-			obj.put("Status", "8");			
-			num = num + maintainPlanMemberService.getListSize(getBaseOrgId(), obj.toString());
-		}				
+					
 
 		countJson.put("count", num);
 		model.addAttribute("json", countJson.toString());

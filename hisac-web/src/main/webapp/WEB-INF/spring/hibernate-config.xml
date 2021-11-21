@@ -103,16 +103,7 @@
 	<bean id="newsManagementPicDAO" class="tw.gov.mohw.hisac.web.dao.NewsManagementPicDAOImpl">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
-	<bean id="activityManagementDAO" class="tw.gov.mohw.hisac.web.dao.ActivityManagementDAOImpl">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
-	<bean id="activityManagementAttachDAO"
-		class="tw.gov.mohw.hisac.web.dao.ActivityManagementAttachDAOImpl">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
-	<bean id="activityManagementPicDAO" class="tw.gov.mohw.hisac.web.dao.ActivityManagementPicDAOImpl">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
+	
 	<bean id="informationSourceDAO" class="tw.gov.mohw.hisac.web.dao.InformationSourceDAOImpl">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
@@ -272,9 +263,7 @@
 	<bean id="maintainPlanDAO" class="tw.gov.mohw.hisac.web.dao.MaintainPlanDAOImpl">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>	
-	<bean id="maintainPlanMemberDAO" class="tw.gov.mohw.hisac.web.dao.MaintainPlanMemberDAOImpl">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>	
+	
 	<bean id="maintainPlanItemDAO" class="tw.gov.mohw.hisac.web.dao.MaintainPlanItemDAOImpl">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
@@ -345,12 +334,7 @@
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 	
-	<bean id="maintainInspectCommitteeDAO" class="tw.gov.mohw.hisac.web.dao.MaintainInspectCommitteeDAOImpl">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
-	<bean id="maintainInspectHospitalUploadDAO" class="tw.gov.mohw.hisac.web.dao.MaintainInspectHospitalUploadDAOImpl">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
+	
 	<bean id="maintainPlanSelfEvaluationAttachDAO" class="tw.gov.mohw.hisac.web.dao.MaintainPlanSelfEvaluationAttachDAOImpl">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
@@ -360,12 +344,7 @@
 	<bean id="maintainPlanSelfEvaluationSampleAttachDAO" class="tw.gov.mohw.hisac.web.dao.MaintainPlanSelfEvaluationSampleAttachDAOImpl">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
-	<bean id="maintainInspectDAO" class="tw.gov.mohw.hisac.web.dao.MaintainInspectDAOImpl">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
-	<bean id="maintainInspectMemberDAO" class="tw.gov.mohw.hisac.web.dao.MaintainInspectMemberDAOImpl">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
+	
 	<bean id="maintainPlanReviewOpinionAttachDAO" class="tw.gov.mohw.hisac.web.dao.MaintainPlanReviewOpinionAttachDAOImpl">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>

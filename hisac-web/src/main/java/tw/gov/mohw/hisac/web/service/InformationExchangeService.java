@@ -27,7 +27,6 @@ import tw.gov.mohw.hisac.web.domain.Member;
 import tw.gov.mohw.hisac.web.domain.Message;
 import tw.gov.mohw.hisac.web.domain.NewsManagement;
 import tw.gov.mohw.hisac.web.domain.NewsManagementAttach;
-import tw.gov.mohw.hisac.web.domain.SpActivityManagementReport;
 import tw.gov.mohw.hisac.web.domain.SpButtonCount;
 import tw.gov.mohw.hisac.web.domain.SpInformationExchange2Report;
 import tw.gov.mohw.hisac.web.domain.ViewInformationExchangeSecbuzzerTitle;

@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import tw.gov.mohw.hisac.web.WebDatetime;
 import tw.gov.mohw.hisac.web.controller.BaseController;
-import tw.gov.mohw.hisac.web.service.ActivityManagementService;
 import tw.gov.mohw.hisac.web.service.AnaManagementService;
 import tw.gov.mohw.hisac.web.service.InformationExchangeService;
 import tw.gov.mohw.hisac.web.service.NewsManagementService;
@@ -35,8 +34,7 @@ public class s00_ClickHistoryController extends BaseController {
 	private ReportService reportService;
 	@Autowired
 	private NewsManagementService newsManagementService;	
-	@Autowired
-	private ActivityManagementService activityManagementService;	
+	
 	@Autowired
 	private AnaManagementService anaManagementService;
 	@Autowired
@@ -118,10 +116,7 @@ public class s00_ClickHistoryController extends BaseController {
 						sn_json.put("Name", newsManagementService.get(urlObj.getLong("Id")).getTitle());
 						sn_json.put("Url", urlObj.getLong("Id"));	
 						break;
-					case "p02_Activity":
-						sn_json.put("Name", activityManagementService.get(urlObj.getLong("Id")).getTitle());
-						sn_json.put("Url", urlObj.getLong("Id"));	
-						break;
+					
 					case "p04_Ana":
 						sn_json.put("Name", anaManagementService.getByDetail(urlObj.getLong("Id")).getIncidentTitle());
 						sn_json.put("Url", urlObj.getLong("Id"));	

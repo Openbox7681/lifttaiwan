@@ -26,14 +26,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import tw.gov.mohw.hisac.web.WebDatetime;
 import tw.gov.mohw.hisac.web.controller.BaseController;
 import tw.gov.mohw.hisac.web.dao.SystemLogVariable;
-import tw.gov.mohw.hisac.web.domain.ActivityManagement;
-import tw.gov.mohw.hisac.web.domain.ActivityManagementAttach;
-import tw.gov.mohw.hisac.web.domain.ActivityManagementPic;
+
 import tw.gov.mohw.hisac.web.domain.ViewActivityManagementAttachMember;
 import tw.gov.mohw.hisac.web.domain.ViewActivityManagementMember;
-import tw.gov.mohw.hisac.web.service.ActivityManagementService;
-import tw.gov.mohw.hisac.web.service.ActivityManagementAttachService;
-import tw.gov.mohw.hisac.web.service.ActivityManagementPicService;
+
 
 /**
  * 活動訊息控制器
@@ -42,14 +38,7 @@ import tw.gov.mohw.hisac.web.service.ActivityManagementPicService;
 @RequestMapping(value = "/public/api", produces = "application/json; charset=utf-8")
 public class PublicActivityController extends BaseController {
 
-	@Autowired
-	private ActivityManagementService activityManagementService;
-
-	@Autowired
-	private ActivityManagementAttachService activityManagementAttachService;
-
-	@Autowired
-	private ActivityManagementPicService activityManagementPicService;
+	
 
 	/**
 	 * 取得活動訊息資料API
@@ -75,19 +64,8 @@ public class PublicActivityController extends BaseController {
 		obj.put("Status", "4");
 		obj.put("sort", "sort");
 		json = obj.toString();
-		List<ViewActivityManagementMember> activityManagements = activityManagementService.getList(json);
-		if (activityManagements != null) {
-			for (ViewActivityManagementMember activityManagement : activityManagements) {
-				JSONObject sn_json = new JSONObject();
-				sn_json.put("Id", activityManagement.getId());
-				sn_json.put("Date", WebDatetime.toString(activityManagement.getPostDateTime(), "yyyy-MM-dd"));
-				sn_json.put("StartDateTime", WebDatetime.toString(activityManagement.getStartDateTime(), "yyyy-MM-dd"));
-				sn_json.put("EndDateTime", WebDatetime.toString(activityManagement.getEndDateTime(), "yyyy-MM-dd"));
-				sn_json.put("Title", activityManagement.getTitle());
-				sn_array.put(sn_json);
-			}
-		}
-		listjson.put("total", activityManagementService.getListSize(json));
+		
+		listjson.put("total", 0);
 		listjson.put("datatable", sn_array);
 		systemLogService.insert(baseControllerName, baseActionName, json, SystemLogVariable.Action.Read, SystemLogVariable.Status.Success, getBaseIpAddress(), getBaseMemberAccount());
 		model.addAttribute("json", listjson.toString());
@@ -113,32 +91,7 @@ public class PublicActivityController extends BaseController {
 		JSONArray sn_array = new JSONArray();
 		JSONObject obj = new JSONObject(json);
 		long id = obj.isNull("Id") == true ? 0 : obj.getLong("Id");
-		ActivityManagement activityManagement = activityManagementService.get(id);
-		if (activityManagement.getIsEnable() == true && activityManagement.getIsPublic() == true && activityManagement.getStatus() == 4) {
-			JSONObject sn_json = new JSONObject();
-			sn_json.put("Id", activityManagement.getId());
-			sn_json.put("PostType", activityManagement.getPostType());
-			sn_json.put("PostDateTime", WebDatetime.toString(activityManagement.getPostDateTime(), "yyyy-MM-dd"));
-			sn_json.put("Title", activityManagement.getTitle());
-			sn_json.put("SourceName", activityManagement.getSourceName());
-			sn_json.put("SourceLink", activityManagement.getSourceLink());
-			sn_json.put("ContentType", activityManagement.getContentType());
-			sn_json.put("Content", activityManagement.getContent().replace("./api/p02/pic/download/", "./public/api/activity/pic/download/"));
-			sn_json.put("ExternalLink", activityManagement.getExternalLink());
-			sn_json.put("IsBreakLine", activityManagement.getIsBreakLine());
-			sn_json.put("StartDateTime", WebDatetime.toString(activityManagement.getStartDateTime(), "yyyy-MM-dd"));
-			sn_json.put("EndDateTime", WebDatetime.toString(activityManagement.getEndDateTime(), "yyyy-MM-dd"));
-			sn_json.put("IsEnable", activityManagement.getIsEnable());
-			sn_json.put("CreateId", activityManagement.getCreateId());
-			sn_json.put("CreateTime", WebDatetime.toString(activityManagement.getCreateTime(), "yyyy-MM-dd HH:mm:ss"));
-			sn_json.put("ModifyId", activityManagement.getModifyId());
-			sn_json.put("ModifyTime", WebDatetime.toString(activityManagement.getModifyTime(), "yyyy-MM-dd HH:mm:ss"));
-			sn_json.put("Status", activityManagement.getStatus());
-			sn_array.put(sn_json);
-			systemLogService.insert(baseControllerName, baseActionName, json, SystemLogVariable.Action.Read, SystemLogVariable.Status.Success, getBaseIpAddress(), getBaseMemberAccount());
-		} else {
-			systemLogService.insert(baseControllerName, baseActionName, json, SystemLogVariable.Action.Read, SystemLogVariable.Status.Fail, getBaseIpAddress(), getBaseMemberAccount());
-		}
+		
 		model.addAttribute("json", sn_array.toString());
 		return "msg";
 	}
@@ -163,31 +116,7 @@ public class PublicActivityController extends BaseController {
 		sn_json.put("ActivityManagementId", activityManagementId);
 		sn_json.put("Id", id);
 		String json = sn_json.toString();
-		if (!activityManagementPicService.isExist(id)) {
-			systemLogService.insert(baseControllerName, baseActionName, json, SystemLogVariable.Action.Read, SystemLogVariable.Status.Fail, getBaseIpAddress(), getBaseMemberAccount());
-			try {
-				response.sendError(HttpServletResponse.SC_NOT_FOUND);
-			} catch (IOException ex) {
-				//ex.printStackTrace();
-			}
-		} else {
-			response.reset();
-			ActivityManagementPic activityManagementPic = activityManagementPicService.getById(id);
-			try {
-				byte[] buffer = activityManagementPic.getFileContent();
-				response.addHeader("Content-Disposition", "attachment;filename=" + URLEncoder.encode(activityManagementPic.getFileName(), StandardCharsets.UTF_8.toString()));
-				response.addHeader("Content-Length", "" + buffer.length);
-				OutputStream toClient = new BufferedOutputStream(response.getOutputStream());
-				response.setContentType(activityManagementPic.getFileType());
-				toClient.write(buffer);
-				toClient.flush();
-				toClient.close();
-				systemLogService.insert(baseControllerName, baseActionName, json, SystemLogVariable.Action.Read, SystemLogVariable.Status.Success, getBaseIpAddress(), getBaseMemberAccount());
-			} catch (IOException ex) {
-				//ex.printStackTrace();
-				systemLogService.insert(baseControllerName, baseActionName, json, SystemLogVariable.Action.Read, SystemLogVariable.Status.Fail, getBaseIpAddress(), getBaseMemberAccount());
-			}
-		}
+		
 	}
 
 	/**
@@ -209,34 +138,7 @@ public class PublicActivityController extends BaseController {
 		JSONArray sn_array = new JSONArray();
 		JSONObject obj = new JSONObject(json);
 		long activityManagementId = obj.isNull("ActivityManagementId") == true ? 0 : obj.getLong("ActivityManagementId");
-		List<ViewActivityManagementAttachMember> activityManagementAttachs = activityManagementAttachService.getAllByActivityManagementId(activityManagementId);
-		if (activityManagementAttachs != null) {
-			for (ViewActivityManagementAttachMember activityManagementAttach : activityManagementAttachs) {
-				long size = activityManagementAttach.getFileSize();
-				if (size <= 0)
-					return "0";
-				final String[] units = new String[]{"B", "KB", "MB", "GB", "TB"};
-				int digitGroups = (int) (Math.log10(size) / Math.log10(1024));
-				String fileSize = new DecimalFormat("#,##0.#").format(size / Math.pow(1024, digitGroups)) + " " + units[digitGroups];
-				JSONObject sn_json = new JSONObject();
-				sn_json.put("ActivityManagementId", activityManagementAttach.getActivityManagementId());
-				sn_json.put("Id", activityManagementAttach.getId());
-				sn_json.put("FileName", activityManagementAttach.getFileName());
-				sn_json.put("FileType", activityManagementAttach.getFileType());
-				sn_json.put("FileSize", fileSize);
-				sn_json.put("FileHash", activityManagementAttach.getFileHash());
-				sn_json.put("FileDesc", activityManagementAttach.getFileDesc());
-				sn_json.put("CreateId", activityManagementAttach.getCreateId());
-				sn_json.put("CreateName", activityManagementAttach.getCreateName());
-				sn_json.put("CreateTime", WebDatetime.toString(activityManagementAttach.getCreateTime()));
-				sn_json.put("ModifyId", activityManagementAttach.getModifyId());
-				sn_json.put("ModifyName", activityManagementAttach.getModifyName());
-				sn_json.put("ModifyTime", WebDatetime.toString(activityManagementAttach.getModifyTime()));
-				sn_array.put(sn_json);
-			}
-			listjson.put("datatable", sn_array);
-			systemLogService.insert(baseControllerName, baseActionName, json, SystemLogVariable.Action.Read, SystemLogVariable.Status.Success, getBaseIpAddress(), getBaseMemberAccount());
-		}
+		
 		model.addAttribute("json", listjson.toString());
 		return "msg";
 	}
@@ -261,37 +163,6 @@ public class PublicActivityController extends BaseController {
 		sn_json.put("ActivityManagementId", activityManagementId);
 		sn_json.put("Id", id);
 		String json = sn_json.toString();
-		if (!activityManagementService.isExist(activityManagementId)) {
-			systemLogService.insert(baseControllerName, baseActionName, json, SystemLogVariable.Action.Read, SystemLogVariable.Status.Fail, getBaseIpAddress(), getBaseMemberAccount());
-			try {
-				response.sendError(HttpServletResponse.SC_NOT_FOUND);
-			} catch (IOException ex) {
-				//ex.printStackTrace();
-			}
-		} else if (!activityManagementAttachService.isExist(id)) {
-			systemLogService.insert(baseControllerName, baseActionName, json, SystemLogVariable.Action.Read, SystemLogVariable.Status.Fail, getBaseIpAddress(), getBaseMemberAccount());
-			try {
-				response.sendError(HttpServletResponse.SC_NOT_FOUND);
-			} catch (IOException ex) {
-				//ex.printStackTrace();
-			}
-		} else {
-			response.reset();
-			ActivityManagementAttach activityManagementAttach = activityManagementAttachService.getById(id);
-			try {
-				byte[] buffer = activityManagementAttach.getFileContent();
-				response.addHeader("Content-Disposition", "attachment;filename=" + URLEncoder.encode(activityManagementAttach.getFileName(), StandardCharsets.UTF_8.toString()));
-				response.addHeader("Content-Length", "" + buffer.length);
-				OutputStream toClient = new BufferedOutputStream(response.getOutputStream());
-				response.setContentType("application/octet-stream");
-				toClient.write(buffer);
-				toClient.flush();
-				toClient.close();
-				systemLogService.insert(baseControllerName, baseActionName, json, SystemLogVariable.Action.Read, SystemLogVariable.Status.Success, getBaseIpAddress(), getBaseMemberAccount());
-			} catch (IOException ex) {
-				//ex.printStackTrace();
-				systemLogService.insert(baseControllerName, baseActionName, json, SystemLogVariable.Action.Read, SystemLogVariable.Status.Fail, getBaseIpAddress(), getBaseMemberAccount());
-			}
-		}
+		
 	}
 }
