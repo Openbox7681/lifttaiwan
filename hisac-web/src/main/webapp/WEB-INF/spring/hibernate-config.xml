@@ -260,62 +260,7 @@
 	<bean id="malwareReportDAO" class="tw.gov.mohw.hisac.web.dao.MalwareReportDAOImpl">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>	
-	<bean id="maintainPlanDAO" class="tw.gov.mohw.hisac.web.dao.MaintainPlanDAOImpl">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>	
 	
-	<bean id="maintainPlanItemDAO" class="tw.gov.mohw.hisac.web.dao.MaintainPlanItemDAOImpl">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
-	<bean id="maintainPlanAttachDAO" class="tw.gov.mohw.hisac.web.dao.MaintainPlanAttachDAOImpl">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
-	
-	<bean id="maintainPlanSuggestAttachDAO" class="tw.gov.mohw.hisac.web.dao.MaintainPlanSuggestAttachDAOImpl">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
-	
-	<bean id="maintainPlanSuggestReadDAO" class="tw.gov.mohw.hisac.web.dao.MaintainPlanSuggestReadDAOImpl">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
-	
-	<bean id="maintainPlanQuestionnaireAttachDAO" class="tw.gov.mohw.hisac.web.dao.MaintainPlanQuestionnaireAttachDAOImpl">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
-	<bean id="maintainPlanQuestionnaireSampleAttachDAO" class="tw.gov.mohw.hisac.web.dao.MaintainPlanQuestionnaireSampleAttachDAOImpl">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
-	<bean id="maintainPlanCheckListAttachDAO" class="tw.gov.mohw.hisac.web.dao.MaintainPlanCheckListAttachDAOImpl">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
-	<bean id="maintainPlanCheckListSampleAttachDAO" class="tw.gov.mohw.hisac.web.dao.MaintainPlanCheckListSampleAttachDAOImpl">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
-	<bean id="maintainPlanScoreAttachDAO" class="tw.gov.mohw.hisac.web.dao.MaintainPlanScoreAttachDAOImpl">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
-	<bean id="maintainPlanResultAttachDAO" class="tw.gov.mohw.hisac.web.dao.MaintainPlanResultAttachDAOImpl">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
-	
-	<bean id="maintainPlanImprovementAttachDAO" class="tw.gov.mohw.hisac.web.dao.MaintainPlanImprovementAttachDAOImpl">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
-	
-	<bean id="maintainPlanImplementAttachDAO" class="tw.gov.mohw.hisac.web.dao.MaintainPlanImplementAttachDAOImpl">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
-	
-	
-	<bean id="maintainPlanContentDAO" class="tw.gov.mohw.hisac.web.dao.MaintainPlanContentDAOImpl">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>	
-	<bean id="maintainPlanGroupDAO" class="tw.gov.mohw.hisac.web.dao.MaintainPlanGroupDAOImpl">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
-	<bean id="maintainPlanGroupOrgDAO" class="tw.gov.mohw.hisac.web.dao.MaintainPlanGroupOrgDAOImpl">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
 	<bean id="handleInformationDAO" class="tw.gov.mohw.hisac.web.dao.HandleInformationDAOImpl">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
@@ -335,19 +280,7 @@
 	</bean>
 	
 	
-	<bean id="maintainPlanSelfEvaluationAttachDAO" class="tw.gov.mohw.hisac.web.dao.MaintainPlanSelfEvaluationAttachDAOImpl">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
-	<bean id="maintainPlanOtherAttachDAO" class="tw.gov.mohw.hisac.web.dao.MaintainPlanOtherAttachDAOImpl">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
-	<bean id="maintainPlanSelfEvaluationSampleAttachDAO" class="tw.gov.mohw.hisac.web.dao.MaintainPlanSelfEvaluationSampleAttachDAOImpl">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
 	
-	<bean id="maintainPlanReviewOpinionAttachDAO" class="tw.gov.mohw.hisac.web.dao.MaintainPlanReviewOpinionAttachDAOImpl">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
 	<tx:annotation-driven transaction-manager="transactionManager"
 		proxy-target-class="true" />
 </beans>
