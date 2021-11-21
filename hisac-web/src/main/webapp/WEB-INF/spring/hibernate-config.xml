@@ -196,12 +196,7 @@
 	<bean id="anaManagementAttachDAO" class="tw.gov.mohw.hisac.web.dao.AnaManagementAttachDAOImpl">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
-	<bean id="weaknessManagementDAO" class="tw.gov.mohw.hisac.web.dao.WeaknessManagementDAOImpl">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
-	<bean id="weaknessManagementAttachDAO" class="tw.gov.mohw.hisac.web.dao.WeaknessManagementAttachDAOImpl">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
+	
 	<bean id="linksDAO" class="tw.gov.mohw.hisac.web.dao.LinksDAOImpl">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>

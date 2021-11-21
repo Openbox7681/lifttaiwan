@@ -54,8 +54,7 @@ public class InformationExchangeService {
 	private MailService mailService;
 	@Autowired
 	MemberRoleService memberRoleService;
-	@Autowired
-	WeaknessManagementService weaknessManagementService;
+	
 	@Autowired
 	AnaManagementService anaManagementService;
 	@Autowired
@@ -70,8 +69,7 @@ public class InformationExchangeService {
 	InformationExchangeAttachService informationExchangeAttachService;
 	@Autowired
 	AnaManagementAttachService anaManagementAttachService;
-	@Autowired
-	WeaknessManagementAttachService weaknessManagementAttachService;
+	
 	@Autowired
 	NewsManagementAttachService newsManagementAttachService;
 	/**

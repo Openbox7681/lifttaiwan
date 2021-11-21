@@ -35,7 +35,6 @@ import tw.gov.mohw.hisac.web.domain.ViewActivityManagementMember;
 import tw.gov.mohw.hisac.web.domain.ViewAnaManagementMember;
 import tw.gov.mohw.hisac.web.domain.ViewMalwareManagementMember;
 import tw.gov.mohw.hisac.web.domain.ViewInformationExchangeSecbuzzerTitle;
-import tw.gov.mohw.hisac.web.domain.ViewWeaknessManagementMember;
 import tw.gov.mohw.hisac.web.domain.ViewLinksMember;
 import tw.gov.mohw.hisac.web.domain.ViewLinksPicMember;
 import tw.gov.mohw.hisac.web.service.NewsManagementService;
@@ -48,7 +47,6 @@ import tw.gov.mohw.hisac.web.service.MalwareManagementService;
 
 import tw.gov.mohw.hisac.web.service.InformationExchangeService;
 import tw.gov.mohw.hisac.web.service.InformationManagementService;
-import tw.gov.mohw.hisac.web.service.WeaknessManagementService;
 import tw.gov.mohw.hisac.web.service.IncidentService;
 import tw.gov.mohw.hisac.web.service.MemberSignApplyService;
 import tw.gov.mohw.hisac.web.service.MessageService;
@@ -73,8 +71,7 @@ public class p00_IndexController extends BaseController {
 	@Autowired
 	private AnaManagementService anaManagementService;
 
-	@Autowired
-	private WeaknessManagementService weaknessManagementService;
+	
 	
 	@Autowired
 	private InformationManagementService informationManagementService;
@@ -357,17 +354,8 @@ public class p00_IndexController extends BaseController {
 				obj.put("StartDateTime", WebDatetime.toString(new Date(), "yyyy-MM-dd"));
 				obj.put("Status", "4");
 				json = obj.toString();
-				List<ViewWeaknessManagementMember> weaknessManagements = weaknessManagementService.getList(json);
-				if (weaknessManagements != null) {
-					for (ViewWeaknessManagementMember weaknessManagement : weaknessManagements) {
-						JSONObject sn_json = new JSONObject();
-						sn_json.put("Id", weaknessManagement.getId());
-						sn_json.put("Date", WebDatetime.toString(weaknessManagement.getIncidentReportedTime(), "yyyy-MM-dd"));
-						sn_json.put("Title", weaknessManagement.getIncidentTitle());
-						sn_array.put(sn_json);
-					}
-				}
-				listjson.put("total", weaknessManagementService.getListSize(json));
+				
+				listjson.put("total", 0);
 				listjson.put("datatable", sn_array);
 				systemLogService.insert(baseControllerName, baseActionName, json, SystemLogVariable.Action.Read, SystemLogVariable.Status.Success, getBaseIpAddress(), getBaseMemberAccount());
 				model.addAttribute("json", listjson.toString());
@@ -753,7 +741,7 @@ public class p00_IndexController extends BaseController {
 		obj.put("MemberId", getBaseMemberId());
 		json = obj.toString();
 
-		countJson.put("count", weaknessManagementService.getSpFormCount(json));
+		countJson.put("count",0);
 		model.addAttribute("json", countJson.toString());
 		return "msg";
 	}
