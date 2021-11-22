@@ -87,16 +87,11 @@ import tw.gov.mohw.hisac.web.domain.MemberRole;
 import tw.gov.mohw.hisac.web.domain.Org;
 import tw.gov.mohw.hisac.web.domain.OrgSign;
 import tw.gov.mohw.hisac.web.domain.VerifyEmail;
-import tw.gov.mohw.hisac.web.domain.ViewActivityManagementMember;
-import tw.gov.mohw.hisac.web.domain.ViewMalwareManagementMember;
-import tw.gov.mohw.hisac.web.domain.ViewNewsManagementMember;
 import tw.gov.mohw.hisac.web.domain.ViewParentOrg;
 import tw.gov.mohw.hisac.web.domain.ViewQAManagementGroup;
 import tw.gov.mohw.hisac.web.service.HealthLevelService;
 import tw.gov.mohw.hisac.web.service.HealthcareService;
 import tw.gov.mohw.hisac.web.service.MailService;
-import tw.gov.mohw.hisac.web.service.MalwareManagementService;
-import tw.gov.mohw.hisac.web.service.NewsManagementService;
 import tw.gov.mohw.hisac.web.service.OrgService;
 import tw.gov.mohw.hisac.web.service.QAManagementService;
 
@@ -127,8 +122,7 @@ public class PublicController extends BaseController {
 	@Autowired
 	private OrgSignDAO orgSignDAO;
 
-	@Autowired
-	private NewsManagementService newsManagementService;
+	
 
 	
 
@@ -138,8 +132,7 @@ public class PublicController extends BaseController {
 	@Autowired
 	private HealthLevelService healthLevelService;
 	
-	@Autowired
-	private MalwareManagementService malwareManagementService;
+	
 	
 	/**
 	 * 重新設定Session Timeout
@@ -1601,17 +1594,8 @@ public class PublicController extends BaseController {
 		obj.put("Status", "4");
 		obj.put("sort", "sort");
 		json = obj.toString();
-		List<ViewNewsManagementMember> newsManagements = newsManagementService.getSpList(json);
-		if (newsManagements != null) {
-			for (ViewNewsManagementMember newsManagement : newsManagements) {
-				JSONObject sn_json = new JSONObject();
-				sn_json.put("Id", newsManagement.getId());
-				sn_json.put("Date", WebDatetime.toString(newsManagement.getPostDateTime(), "yyyy-MM-dd"));
-				sn_json.put("Title", newsManagement.getTitle());
-				sn_array.put(sn_json);
-			}
-		}
-		listjson.put("total", newsManagementService.getSpListSize(json));
+		
+		listjson.put("total",0);
 		listjson.put("datatable", sn_array);
 		systemLogService.insert(baseControllerName, baseActionName, json, SystemLogVariable.Action.Read, SystemLogVariable.Status.Success, getBaseIpAddress(), getBaseMemberAccount());
 		model.addAttribute("json", listjson.toString());

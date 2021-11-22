@@ -15,7 +15,6 @@ import tw.gov.mohw.hisac.web.dao.TicketQueueDAO;
 import tw.gov.mohw.hisac.web.domain.AnaManagement;
 import tw.gov.mohw.hisac.web.domain.EventType;
 import tw.gov.mohw.hisac.web.domain.Member;
-import tw.gov.mohw.hisac.web.domain.NewsManagementGroup;
 import tw.gov.mohw.hisac.web.domain.SpAnaManagementReport;
 import tw.gov.mohw.hisac.web.domain.SpButtonCount;
 import tw.gov.mohw.hisac.web.domain.ViewAnaManagementMember;

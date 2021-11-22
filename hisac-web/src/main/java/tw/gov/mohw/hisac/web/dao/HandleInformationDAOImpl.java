@@ -11,7 +11,6 @@ import org.hibernate.criterion.Restrictions;
 import org.json.JSONObject;
 
 import tw.gov.mohw.hisac.web.domain.HandleInformation;
-import tw.gov.mohw.hisac.web.domain.NewsManagement;
 
 public class HandleInformationDAOImpl extends BaseSessionFactory implements HandleInformationDAO {
 

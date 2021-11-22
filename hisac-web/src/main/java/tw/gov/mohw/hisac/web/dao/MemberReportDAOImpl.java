@@ -15,7 +15,6 @@ import org.json.JSONObject;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import tw.gov.mohw.hisac.web.domain.CommonPostPic;
 import tw.gov.mohw.hisac.web.domain.MemberReport;
 import tw.gov.mohw.hisac.web.domain.OrgReport;
 import tw.gov.mohw.hisac.web.WebDatetime;

@@ -26,19 +26,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import tw.gov.mohw.hisac.web.WebDatetime;
 import tw.gov.mohw.hisac.web.controller.BaseController;
 import tw.gov.mohw.hisac.web.dao.SystemLogVariable;
-import tw.gov.mohw.hisac.web.domain.NewsManagement;
-import tw.gov.mohw.hisac.web.domain.NewsManagementAttach;
-import tw.gov.mohw.hisac.web.domain.NewsManagementPic;
 import tw.gov.mohw.hisac.web.domain.QAManagement;
 import tw.gov.mohw.hisac.web.domain.QAManagementAttach;
-import tw.gov.mohw.hisac.web.domain.ViewNewsManagementAttachMember;
-import tw.gov.mohw.hisac.web.domain.ViewNewsManagementMember;
 import tw.gov.mohw.hisac.web.domain.ViewQAManagementGroup;
-import tw.gov.mohw.hisac.web.service.NewsManagementService;
 import tw.gov.mohw.hisac.web.service.QAManagementAttachService;
 import tw.gov.mohw.hisac.web.service.QAManagementService;
-import tw.gov.mohw.hisac.web.service.NewsManagementAttachService;
-import tw.gov.mohw.hisac.web.service.NewsManagementPicService;
+
 
 /**
  * 最新消息控制器

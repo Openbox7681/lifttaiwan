@@ -25,30 +25,21 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import tw.gov.mohw.hisac.web.WebDatetime;
 import tw.gov.mohw.hisac.web.controller.BaseController;
 import tw.gov.mohw.hisac.web.dao.SystemLogVariable;
-import tw.gov.mohw.hisac.web.domain.ViewNewsManagementMember;
-import tw.gov.mohw.hisac.web.domain.InformationManagement;
 import tw.gov.mohw.hisac.web.domain.LinksPic;
 import tw.gov.mohw.hisac.web.domain.SpContactCountDashboard;
 import tw.gov.mohw.hisac.web.domain.SpDashboard;
 import tw.gov.mohw.hisac.web.domain.SpManagerCountDashboard;
-import tw.gov.mohw.hisac.web.domain.ViewActivityManagementMember;
 import tw.gov.mohw.hisac.web.domain.ViewAnaManagementMember;
-import tw.gov.mohw.hisac.web.domain.ViewMalwareManagementMember;
-import tw.gov.mohw.hisac.web.domain.ViewInformationExchangeSecbuzzerTitle;
 import tw.gov.mohw.hisac.web.domain.ViewLinksMember;
 import tw.gov.mohw.hisac.web.domain.ViewLinksPicMember;
-import tw.gov.mohw.hisac.web.service.NewsManagementService;
 import tw.gov.mohw.hisac.web.service.NotificationService;
 import tw.gov.mohw.hisac.web.service.OrgService;
 import tw.gov.mohw.hisac.web.service.SpDashboardService;
 import tw.gov.mohw.hisac.web.service.AnaManagementService;
-import tw.gov.mohw.hisac.web.service.MalwareManagementService;
 
-import tw.gov.mohw.hisac.web.service.InformationExchangeService;
-import tw.gov.mohw.hisac.web.service.InformationManagementService;
+
 import tw.gov.mohw.hisac.web.service.IncidentService;
 import tw.gov.mohw.hisac.web.service.MemberSignApplyService;
-import tw.gov.mohw.hisac.web.service.MessageService;
 import tw.gov.mohw.hisac.web.service.LinksService;
 import tw.gov.mohw.hisac.web.service.LinksPicService;
 import tw.gov.mohw.hisac.web.service.SystemLogService;
@@ -60,8 +51,7 @@ import tw.gov.mohw.hisac.web.service.SystemLogService;
 @RequestMapping(value = "/pub/api", produces = "application/json; charset=utf-8")
 public class p00_IndexController extends BaseController {
 
-	@Autowired
-	private NewsManagementService newsManagementService;
+	
 
 	
 
@@ -69,9 +59,6 @@ public class p00_IndexController extends BaseController {
 	private AnaManagementService anaManagementService;
 
 	
-	
-	@Autowired
-	private InformationManagementService informationManagementService;
 
 	@Autowired
 	private IncidentService incidentService;
@@ -79,12 +66,6 @@ public class p00_IndexController extends BaseController {
 	@Autowired
 	private MemberSignApplyService memberSignApplyService;
 	
-	@Autowired
-	private MalwareManagementService malwareManagementService;
-
-
-	@Autowired
-	private MessageService messageService;
 
 	@Autowired
 	private NotificationService notificationService;
@@ -95,9 +76,7 @@ public class p00_IndexController extends BaseController {
 	@Autowired
 	private LinksPicService linksPicService;
 
-	@Autowired
-	private InformationExchangeService informationExchangeService;
-
+	
 	@Autowired
 	private SpDashboardService spDashboardService;
 
@@ -138,19 +117,8 @@ public class p00_IndexController extends BaseController {
 				obj.put("Status", "4");
 				obj.put("sort", "sort");
 				json = obj.toString();
-				List<ViewNewsManagementMember> newsManagements = newsManagementService.getSpList(json); // 改用
-																										// store
-																										// procedure
-				if (newsManagements != null) {
-					for (ViewNewsManagementMember newsManagement : newsManagements) {
-						JSONObject sn_json = new JSONObject();
-						sn_json.put("Id", newsManagement.getId());
-						sn_json.put("Date", WebDatetime.toString(newsManagement.getPostDateTime(), "yyyy-MM-dd"));
-						sn_json.put("Title", newsManagement.getTitle());
-						sn_array.put(sn_json);
-					}
-				}
-				listjson.put("total", newsManagementService.getSpListSize(json)); // 改用
+				
+				listjson.put("total", 0); // 改用
 																					// store
 																					// procedure
 				listjson.put("datatable", sn_array);
@@ -237,16 +205,7 @@ public class p00_IndexController extends BaseController {
 				obj.put("Status", "4");
 				obj.put("sort", "sort");
 				json = obj.toString();
-				List<ViewMalwareManagementMember> malwareManagements = malwareManagementService.getSpList(json);
-				if (malwareManagements != null) {
-					for (ViewMalwareManagementMember malwareManagement : malwareManagements) {
-						JSONObject sn_json = new JSONObject();
-						sn_json.put("Id", malwareManagement.getId());
-						sn_json.put("Date", WebDatetime.toString(malwareManagement.getPostDateTime(), "yyyy-MM-dd"));
-						sn_json.put("Title", malwareManagement.getTitle());
-						sn_array.put(sn_json);
-					}
-				}
+				
 				listjson.put("total", 0);
 				listjson.put("datatable", sn_array);
 				systemLogService.insert(baseControllerName, baseActionName, json, SystemLogVariable.Action.Read, SystemLogVariable.Status.Success, getBaseIpAddress(), getBaseMemberAccount());
@@ -382,18 +341,8 @@ public class p00_IndexController extends BaseController {
 			obj.put("dir", true);
 			obj.put("sort", "sort");			
 			json = obj.toString();
-			List<ViewInformationExchangeSecbuzzerTitle> informationExchanges = informationExchangeService.getSecBuzzerList(json);
-			if (informationExchanges != null) {
-				for (ViewInformationExchangeSecbuzzerTitle informationExchange : informationExchanges) {
-					JSONObject sn_json = new JSONObject();
-					sn_json.put("Id", informationExchange.getId());
-					sn_json.put("Cve", "(" + informationExchange.getIncidentId() + ")");
-					sn_json.put("Date", WebDatetime.toString(informationExchange.getIncidentReportedTime(), "yyyy-MM-dd"));
-					sn_json.put("Title", informationExchange.getIncidentTitle());
-					sn_array.put(sn_json);
-				}
-			}
-			listjson.put("total", informationExchangeService.getSecBuzzerListSize(json));
+			
+			listjson.put("total", 0);
 			listjson.put("datatable", sn_array);
 			systemLogService.insert(baseControllerName, baseActionName, json, SystemLogVariable.Action.Read, SystemLogVariable.Status.Success, getBaseIpAddress(), getBaseMemberAccount());
 			model.addAttribute("json", listjson.toString());
@@ -427,18 +376,8 @@ public class p00_IndexController extends BaseController {
 				obj.put("IsEnable", true);			
 				obj.put("Status", 4);
 				json = obj.toString();
-				List<InformationManagement> informationManagements = informationManagementService.getList(json);
-				if (informationManagements != null) {
-					for (InformationManagement informationManagement : informationManagements) {
-						JSONObject sn_json = new JSONObject();
-						sn_json.put("Id", informationManagement.getId());					
-						sn_json.put("Date", WebDatetime.toString(informationManagement.getPostDateTime(), "yyyy-MM-dd"));
-						sn_json.put("Title", informationManagement.getTitle());
-						
-						sn_array.put(sn_json);
-					}
-				}
-				listjson.put("total", informationManagementService.getListSize(json)); // 改用
+				
+				listjson.put("total", 0); // 改用
 																					// store
 																					// procedure
 				listjson.put("datatable", sn_array);
@@ -562,7 +501,7 @@ public class p00_IndexController extends BaseController {
 		obj.put("MemberId", getBaseMemberId());
 		json = obj.toString();
 
-		countJson.put("count", messageService.getSpFormCount(json));
+		countJson.put("count", 0);
 		model.addAttribute("json", countJson.toString());
 		return "msg";
 	}
@@ -624,7 +563,7 @@ public class p00_IndexController extends BaseController {
 		obj.put("MemberId", getBaseMemberId());
 		json = obj.toString();
 
-		countJson.put("count", informationExchangeService.getSpFormCount(json));
+		countJson.put("count", 0);
 		model.addAttribute("json", countJson.toString());
 		return "msg";
 	}
@@ -650,7 +589,7 @@ public class p00_IndexController extends BaseController {
 		obj.put("MemberId", getBaseMemberId());
 		json = obj.toString();
 
-		countJson.put("count", newsManagementService.getSpFormCount(json));
+		countJson.put("count", 0);
 		model.addAttribute("json", countJson.toString());
 		return "msg";
 	}
@@ -752,7 +691,7 @@ public class p00_IndexController extends BaseController {
 		obj.put("MemberId", getBaseMemberId());
 		json = obj.toString();
 
-		countJson.put("count", informationManagementService.getSpFormCount(json));
+		countJson.put("count", 0);
 		model.addAttribute("json", countJson.toString());
 		return "msg";
 	}

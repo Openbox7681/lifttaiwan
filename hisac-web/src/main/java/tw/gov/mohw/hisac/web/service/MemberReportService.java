@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import tw.gov.mohw.hisac.web.dao.MemberReportDAO;
-import tw.gov.mohw.hisac.web.domain.CommonPostPic;
 import tw.gov.mohw.hisac.web.domain.MemberReport;;
 
 

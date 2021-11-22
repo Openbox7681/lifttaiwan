@@ -58,30 +58,14 @@
 	<bean id="viewMenuLimitDAO" class="tw.gov.mohw.hisac.web.dao.ViewMenuLimitDAOImpl">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
-	<bean id="notGroupDAO" class="tw.gov.mohw.hisac.web.dao.MessageGroupDAOImpl">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
-	<bean id="notGroupMemberDAO" class="tw.gov.mohw.hisac.web.dao.MessageGroupOrgDAOImpl">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
-	<bean id="notDAO" class="tw.gov.mohw.hisac.web.dao.MessageDAOImpl">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
+	
 	<bean id="eventTypeDAO" class="tw.gov.mohw.hisac.web.dao.EventTypeDAOImpl">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 	<bean id="roleFormDAO" class="tw.gov.mohw.hisac.web.dao.RoleFormDAOImpl">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
-	<bean id="commonPostDAO" class="tw.gov.mohw.hisac.web.dao.CommonPostDAOImpl">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
-	<bean id="commonPostAttachDAO" class="tw.gov.mohw.hisac.web.dao.CommonPostAttachDAOImpl">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
-	<bean id="commonPostPicDAO" class="tw.gov.mohw.hisac.web.dao.CommonPostPicDAOImpl">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
+	
 	<bean id="forgotTempDAO" class="tw.gov.mohw.hisac.web.dao.ForgotTempDAOImpl">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
@@ -91,31 +75,10 @@
 	<bean id="ssoDAO" class="tw.gov.mohw.hisac.web.dao.SsoDAOImpl">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
-	<bean id="newsManagementGroupDAO" class="tw.gov.mohw.hisac.web.dao.NewsManagementGroupDAOImpl">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
-	<bean id="newsManagementDAO" class="tw.gov.mohw.hisac.web.dao.NewsManagementDAOImpl">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
-	<bean id="newsManagementAttachDAO" class="tw.gov.mohw.hisac.web.dao.NewsManagementAttachDAOImpl">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
-	<bean id="newsManagementPicDAO" class="tw.gov.mohw.hisac.web.dao.NewsManagementPicDAOImpl">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
 	
-	<bean id="informationSourceDAO" class="tw.gov.mohw.hisac.web.dao.InformationSourceDAOImpl">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
-	<bean id="messageMonthReportDAO" class="tw.gov.mohw.hisac.web.dao.MessageWeekReportDAOImpl">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
-	<bean id="messageWeekReportDAO" class="tw.gov.mohw.hisac.web.dao.MessageMonthReportDAOImpl">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
-	<bean id="informationExchangeDAO" class="tw.gov.mohw.hisac.web.dao.InformationExchangeDAOImpl">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
+	
+	
+	
 	<bean id="memberRoleDAO" class="tw.gov.mohw.hisac.web.dao.MemberRoleDAOImpl">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
@@ -125,13 +88,8 @@
 	<bean id="healthcareDAODAO" class="tw.gov.mohw.hisac.web.dao.HealthcareDAOImpl">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
-	<bean id="messagePostDAO" class="tw.gov.mohw.hisac.web.dao.MessagePostDAOImpl">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
-	<bean id="informationExchangeReportDAO"
-		class="tw.gov.mohw.hisac.web.dao.InformationExchangeReportDAOImpl">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
+	
+	
 	<bean id="notificationDAO" class="tw.gov.mohw.hisac.web.dao.NotificationDAOImpl">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
@@ -144,9 +102,7 @@
 	<bean id="resourceMessageDAO" class="tw.gov.mohw.hisac.web.dao.ResourceMessageDAOImpl">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
-	<bean id="messagePostAttachDAO" class="tw.gov.mohw.hisac.web.dao.MessagePostAttachDAOImpl">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
+	
 	<bean id="qaManagementGroupDAO" class="tw.gov.mohw.hisac.web.dao.QAManagementGroupDAOImpl">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
@@ -156,9 +112,7 @@
 	<bean id="processLogDAO" class="tw.gov.mohw.hisac.web.dao.ProcessLogDAOImpl">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
-	<bean id="messagePostReleaseDAO" class="tw.gov.mohw.hisac.web.dao.MessagePostReleaseDAOImpl">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
+	
 	<bean id="surveyDAO" class="tw.gov.mohw.hisac.web.dao.SurveyDAOImpl">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
@@ -167,18 +121,7 @@
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 	
-	<bean id="malwareManagementDAO" class="tw.gov.mohw.hisac.web.dao.MalwareManagementDAOImpl">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
 	
-	
-	<bean id="malwareManagementAttachDAO" class="tw.gov.mohw.hisac.web.dao.MalwareManagementAttachDAOImpl">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
-	
-	<bean id="malwareManagementPicDAO" class="tw.gov.mohw.hisac.web.dao.MalwareManagementPicDAOImpl">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
 	
 	
 	<bean id="anaManagementDAO" class="tw.gov.mohw.hisac.web.dao.AnaManagementDAOImpl">
@@ -194,9 +137,7 @@
 	<bean id="linksPicDAO" class="tw.gov.mohw.hisac.web.dao.LinksPicDAOImpl">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
-	<bean id="informationExchangeAttachDAO" class="tw.gov.mohw.hisac.web.dao.InformationExchangeAttachDAOImpl">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
+	
 	<bean id="spDashboardDAO" class="tw.gov.mohw.hisac.web.dao.SpDashboardDAOImpl">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
@@ -216,18 +157,8 @@
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 	
-	<bean id="commentDAO" class="tw.gov.mohw.hisac.web.dao.CommentDAOImpl">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
-	<bean id="informationManagementDAO" class="tw.gov.mohw.hisac.web.dao.InformationManagementDAOImpl">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
-	<bean id="informationManagementAttachDAO" class="tw.gov.mohw.hisac.web.dao.InformationManagementAttachDAOImpl">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
-	<bean id="informationManagementPicDAO" class="tw.gov.mohw.hisac.web.dao.InformationManagementPicDAOImpl">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>		
+	
+		
 	<bean id="reportDAO" class="tw.gov.mohw.hisac.web.dao.ReportDAOImpl">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
@@ -257,16 +188,12 @@
 	<bean id="memberReportDAO" class="tw.gov.mohw.hisac.web.dao.MemberReportDAOImpl">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
-	<bean id="malwareReportDAO" class="tw.gov.mohw.hisac.web.dao.MalwareReportDAOImpl">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>	
+
 	
 	<bean id="handleInformationDAO" class="tw.gov.mohw.hisac.web.dao.HandleInformationDAOImpl">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
-	<bean id="messageRecipientDAO" class="tw.gov.mohw.hisac.web.dao.MessageRecipientDAOImpl">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
+	
 	<bean id="notificationLogDAO" class="tw.gov.mohw.hisac.web.dao.NotificationLogDAOImpl">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>

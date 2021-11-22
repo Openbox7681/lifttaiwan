@@ -22,7 +22,6 @@ import tw.gov.mohw.hisac.web.WebDatetime;
 import tw.gov.mohw.hisac.web.domain.MemberReport;
 import tw.gov.mohw.hisac.web.domain.OrgReport;
 import tw.gov.mohw.hisac.web.domain.OrgReportSchedule;
-import tw.gov.mohw.hisac.web.domain.SpMessageWeekReport;
 import tw.gov.mohw.hisac.web.domain.SpOrgReportResult;
 
 

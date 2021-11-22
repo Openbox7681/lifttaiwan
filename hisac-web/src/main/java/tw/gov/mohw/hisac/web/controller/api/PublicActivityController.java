@@ -27,8 +27,6 @@ import tw.gov.mohw.hisac.web.WebDatetime;
 import tw.gov.mohw.hisac.web.controller.BaseController;
 import tw.gov.mohw.hisac.web.dao.SystemLogVariable;
 
-import tw.gov.mohw.hisac.web.domain.ViewActivityManagementAttachMember;
-import tw.gov.mohw.hisac.web.domain.ViewActivityManagementMember;
 
 
 /**

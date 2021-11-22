@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.json.JSONObject;
 
-import tw.gov.mohw.hisac.web.domain.CommonPostPic;
 import tw.gov.mohw.hisac.web.domain.MemberReport;
 
 
