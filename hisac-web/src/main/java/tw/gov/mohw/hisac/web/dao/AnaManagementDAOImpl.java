@@ -21,7 +21,6 @@ import tw.gov.mohw.hisac.web.domain.AnaManagement;
 import tw.gov.mohw.hisac.web.domain.SpAnaManagementReport;
 import tw.gov.mohw.hisac.web.domain.SpButtonCount;
 import tw.gov.mohw.hisac.web.domain.ViewAnaManagementMember;
-import tw.gov.mohw.hisac.web.domain.ViewMessageAlertEvent;
 
 /**
  * 資安資訊情報管理
@@ -229,9 +228,7 @@ public class AnaManagementDAOImpl extends BaseSessionFactory implements AnaManag
 		return total;
 	}
 
-	public ViewMessageAlertEvent getById(String id) {
-		return getSessionFactory().getCurrentSession().get(ViewMessageAlertEvent.class, id);
-	}
+	
 
 	@SuppressWarnings("unchecked")
 	public List<ViewAnaManagementMember> getSpList(JSONObject obj) {

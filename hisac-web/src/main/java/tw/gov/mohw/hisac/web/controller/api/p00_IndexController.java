@@ -38,7 +38,6 @@ import tw.gov.mohw.hisac.web.service.SpDashboardService;
 import tw.gov.mohw.hisac.web.service.AnaManagementService;
 
 
-import tw.gov.mohw.hisac.web.service.IncidentService;
 import tw.gov.mohw.hisac.web.service.MemberSignApplyService;
 import tw.gov.mohw.hisac.web.service.LinksService;
 import tw.gov.mohw.hisac.web.service.LinksPicService;
@@ -60,8 +59,7 @@ public class p00_IndexController extends BaseController {
 
 	
 
-	@Autowired
-	private IncidentService incidentService;
+	
 
 	@Autowired
 	private MemberSignApplyService memberSignApplyService;
@@ -766,7 +764,7 @@ public class p00_IndexController extends BaseController {
 		
 		json = obj.toString();
 
-		countJson.put("count", incidentService.getSpFormCount(json));
+		countJson.put("count", 0);
 		model.addAttribute("json", countJson.toString());
 
 		// debug

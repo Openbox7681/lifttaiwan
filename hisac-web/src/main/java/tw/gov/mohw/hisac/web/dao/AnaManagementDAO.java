@@ -8,7 +8,6 @@ import tw.gov.mohw.hisac.web.domain.AnaManagement;
 import tw.gov.mohw.hisac.web.domain.SpAnaManagementReport;
 import tw.gov.mohw.hisac.web.domain.SpButtonCount;
 import tw.gov.mohw.hisac.web.domain.ViewAnaManagementMember;
-import tw.gov.mohw.hisac.web.domain.ViewMessageAlertEvent;
 
 public interface AnaManagementDAO {
 	public void insert(AnaManagement entity);
@@ -23,8 +22,7 @@ public interface AnaManagementDAO {
 	public List<SpAnaManagementReport> getReport(JSONObject obj);
 	public long getListSize(JSONObject obj);
 	
-	// 流程紀錄用 - 開始
-	public ViewMessageAlertEvent getById(String id);
+	
 	// 給 MSSQL 預存程序 xp_ana_management 用
 	public List<ViewAnaManagementMember> getSpList(JSONObject obj);
 	public long getSpListSize(JSONObject obj);

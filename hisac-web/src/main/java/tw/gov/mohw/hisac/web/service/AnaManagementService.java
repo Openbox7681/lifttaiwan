@@ -18,7 +18,6 @@ import tw.gov.mohw.hisac.web.domain.Member;
 import tw.gov.mohw.hisac.web.domain.SpAnaManagementReport;
 import tw.gov.mohw.hisac.web.domain.SpButtonCount;
 import tw.gov.mohw.hisac.web.domain.ViewAnaManagementMember;
-import tw.gov.mohw.hisac.web.domain.ViewMessageAlertEvent;
 import tw.gov.mohw.hisac.web.domain.ViewSubscribeMember;
 
 /**
@@ -503,17 +502,7 @@ public class AnaManagementService {
 		}
 	}
 
-	/**
-	 * 取得資安訊息情報資料
-	 * 
-	 * @param id
-	 *            資安訊息情報資料Id
-	 * @return 資安訊息情報資料
-	 */
-	public ViewMessageAlertEvent getById(String id) {
-		return anaManagementDAO.getById(id);
-	}
-
+	
 	/**
 	 * 取得資安訊息情報資料
 	 * 

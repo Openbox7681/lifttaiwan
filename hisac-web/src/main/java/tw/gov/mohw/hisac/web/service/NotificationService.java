@@ -14,8 +14,7 @@ import tw.gov.mohw.hisac.web.WebCrypto;
 import tw.gov.mohw.hisac.web.WebDatetime;
 import tw.gov.mohw.hisac.web.dao.NotificationDAO;
 import tw.gov.mohw.hisac.web.dao.TicketQueueDAO;
-import tw.gov.mohw.hisac.web.dao.IncidentDAO;
-import tw.gov.mohw.hisac.web.domain.Incident;
+
 import tw.gov.mohw.hisac.web.domain.Member;
 import tw.gov.mohw.hisac.web.domain.Notification;
 import tw.gov.mohw.hisac.web.domain.Org;
@@ -29,8 +28,7 @@ import tw.gov.mohw.hisac.web.domain.ViewMemberRoleMember;
  */
 @Service
 public class NotificationService {
-	@Autowired
-	IncidentDAO incidentDAO;
+	
 	@Autowired
 	NotificationDAO notificationDAO;
 	@Autowired
@@ -51,8 +49,7 @@ public class NotificationService {
 	protected OrgSignService orgSignService;
 	@Autowired
 	private SmsService smsService;
-	@Autowired
-	private IncidentService incidentService;	
+	
 
 	/**
 	 * 取得所有通報資料
@@ -2708,85 +2705,12 @@ public class NotificationService {
 								String mailBodyToIncident = MessageFormat.format(resourceMessageService.getMessageValue("mailIncidentNotifyTo1BodyCCIsHCERTContentSign"), subMember.getName(), incidentPostId);
 								mailService.Send(this.getClass().getSimpleName() + " - " + Thread.currentThread().getStackTrace()[1].getMethodName(), subMember.getEmail(), subMember.getSpareEmail(), null, mailSubjectToIncident, mailBodyToIncident, null);
 								
-								// debug
-//								System.out.println("NotificationService.java → examine() → incidentPostId = " + incidentPostId);
-								
-								
-								Incident incidentEntity = new Incident();
-								Date incidentNow = new Date();
-								
-								// incident step
-								// step 1
-								incidentEntity.setPostDateTime(incidentNow); // 發布時間
-								incidentEntity.setPostId(incidentPostId); // 事故單編號
-								incidentEntity.setReporterName(entity.getContactorUnit()); // 會員機構
-								incidentEntity.setContactorId(entity.getContactorId()); // 通報人→會員機構聯絡人
-//								incidentEntity.setContactorTel(entity.getContactorTel()); // 會員機構聯絡人-電話
-//								incidentEntity.setContactorFax(entity.getContactorFax()); // 會員機構聯絡人-傳真
-//								incidentEntity.setContactorEmail(entity.getContactorEmail()); // 會員機構聯絡人-Email
-
-								// step2
-								incidentEntity.setIncidentDiscoveryTime(entity.getEventDateTime()); // 發現時間
-								incidentEntity.setEventType(entity.getEventType()); // 事件分類與異常狀況
-								incidentEntity.setIsEventType1Opt1(entity.getIsEventType1Opt1()); // 事件分類與異常狀況-選項1-1
-								incidentEntity.setIsEventType1Opt2(entity.getIsEventType1Opt2()); // 事件分類與異常狀況-選項1-2
-								incidentEntity.setIsEventType1Opt3(entity.getIsEventType1Opt3()); // 事件分類與異常狀況-選項1-3
-								incidentEntity.setIsEventType1Opt4(entity.getIsEventType1Opt4()); // 事件分類與異常狀況-選項1-4
-								incidentEntity.setIsEventType1Opt5(entity.getIsEventType1Opt5()); // 事件分類與異常狀況-選項1-5
-								incidentEntity.setIsEventType1Opt6(entity.getIsEventType1Opt6()); // 事件分類與異常狀況-選項1-6
-								incidentEntity.setIsEventType2Opt1(entity.getIsEventType2Opt1()); // 事件分類與異常狀況-選項2-1
-								incidentEntity.setIsEventType2Opt2(entity.getIsEventType2Opt2()); // 事件分類與異常狀況-選項2-2
-								incidentEntity.setIsEventType2Opt3(entity.getIsEventType2Opt3()); // 事件分類與異常狀況-選項2-3
-								incidentEntity.setIsEventType2Opt4(entity.getIsEventType2Opt4()); // 事件分類與異常狀況-選項2-4
-								incidentEntity.setIsEventType2Opt5(entity.getIsEventType2Opt5()); // 事件分類與異常狀況-選項2-5
-								incidentEntity.setIsEventType3Opt1(entity.getIsEventType3Opt1()); // 事件分類與異常狀況-選項3-1
-								incidentEntity.setIsEventType3Opt2(entity.getIsEventType3Opt2()); // 事件分類與異常狀況-選項3-2
-								incidentEntity.setIsEventType4Opt1(entity.getIsEventType4Opt1()); // 事件分類與異常狀況-選項4-1
-								incidentEntity.setIsEventType4Opt2(entity.getIsEventType4Opt2()); // 事件分類與異常狀況-選項4-2
-								incidentEntity.setIsEventType4Opt3(entity.getIsEventType4Opt3()); // 事件分類與異常狀況-選項4-3
-								incidentEntity.setIsEventType4Opt4(entity.getIsEventType4Opt4()); // 事件分類與異常狀況-選項4-4
-								incidentEntity.setEventType5Other(entity.getEventType5Other()); // 事件分類與異常狀況-選項5
-								incidentEntity.setEventRemark(entity.getEventRemark()); // 事件說明
-								
-								// otehr fields
-								incidentEntity.setCreateId(memberRole.getMemberId());
-								incidentEntity.setCreateTime(incidentNow);
-								incidentEntity.setModifyId(memberRole.getMemberId());
-								incidentEntity.setModifyTime(incidentNow);
-								incidentEntity.setStatus(Long.valueOf(1));
-								incidentEntity.setNotificationId(entity.getId()); // 事件通報單 notification.Id
-								incidentEntity.setNotificationMainUnit1(entity.getMainUnit1()); // 權責機關(上級機關),org.Id
-								incidentEntity.setNotificationMainUnit2(entity.getMainUnit2()); // 權責機關(業務管理機關),org.Id
-								incidentEntity.setNotificationIsCC3(entity.getIsCC3()); // 是否需要支援 (True／False)
-
-								// debug
-//								System.out.println("NotificationService.java → examine() → incidentEntity(新增前) = " + incidentEntity.toString());
-								
-								if (incidentService.getByNotificationId(entity.getId()) != null)
-									incidentDAO.insert(incidentEntity);								
-
-								// debug
-//								System.out.println("NotificationService.java → examine() → incidentEntity(新增後) = " + incidentEntity.toString());
-								
-								processLogService.insert(memberRole.getMemberId(), "", String.valueOf(incidentEntity.getId()));
-
-								// debug
-//								System.out.println("NotificationService.java → examine() → 寫入 Log");
-								
-
-								// 3.將IncidentId欄位值寫回Notification table對應欄位中
-
-								// debug
-//								System.out.println("NotificationService.java → examine() → incidentEntity.getId() = " + incidentEntity.getId().toString());
-//								System.out.println("NotificationService.java → examine() → memberRole.getMemberId() = " + memberRole.getMemberId().toString());
-								
 								Notification notificationEntity = notificationDAO.get(id);
 								Date notificationNow = new Date();
 
 								//notificationEntity.setModifyId(incidentEntity.getId());
 								notificationEntity.setModifyId(memberRole.getMemberId());
 								notificationEntity.setModifyTime(notificationNow);
-								notificationEntity.setIncidentId(incidentEntity.getId()); // 事件處理單 Incident.Id
 								
 								// debug
 //								System.out.println("NotificationService.java → examine() → notificationEntity(更新前) = " + notificationEntity.toString());

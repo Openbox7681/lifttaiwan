@@ -150,12 +150,6 @@
 	<bean id="ccDAO" class="tw.gov.mohw.hisac.web.dao.CCDAOImpl">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
-	<bean id="incidentDAO" class="tw.gov.mohw.hisac.web.dao.IncidentDAOImpl">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
-	<bean id="incidentAttachDAO" class="tw.gov.mohw.hisac.web.dao.IncidentAttachDAOImpl">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
 	
 	
 		
