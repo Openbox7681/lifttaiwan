@@ -59,7 +59,6 @@ import tw.gov.mohw.hisac.web.service.OrgService;
 import tw.gov.mohw.hisac.web.service.OrgSignService;
 import tw.gov.mohw.hisac.web.service.MessageService;
 import tw.gov.mohw.hisac.web.service.NotificationAssetService;
-import tw.gov.mohw.hisac.web.service.NotificationExchangeNcertService;
 import tw.gov.mohw.hisac.web.service.NotificationLogService;
 import tw.gov.mohw.hisac.web.service.MessagePostAttachService;
 import tw.gov.mohw.hisac.web.service.HandleInformationManagementService;
@@ -89,8 +88,7 @@ public class a01_NotificationController extends BaseController {
 	private MessagePostAttachService messagePostAttachService;
 	@Autowired
 	private InformationExchangeService informationExchangeService;
-	@Autowired
-	private NotificationExchangeNcertService notificationExchangeNcertService;
+	
 	@Autowired
 	private HandleInformationManagementService handleInformationService;	
 	@Autowired
@@ -1399,19 +1397,7 @@ public class a01_NotificationController extends BaseController {
 				// 與 HCERT 串接				
 				// 事故影響等級 0: 無需通報
 				
-				if (effectLevel > 0) {
-					if (status == 4) {
-						// 初報
-						notificationExchangeNcertService.exportToNcertStep1(id, opinion);
-					} 
-					
-					if (status == 6) {
-						// 續報
-						notificationExchangeNcertService.exportToNcertStep3(id, status);
-						// 1、2級或3、4級結報
-						notificationExchangeNcertService.exportToNcertStep4And5(id);
-					}
-				}
+				
 				//通報單等級加入保留記錄功能
 				JSONObject level_json = new JSONObject();
 				level_json.put("CeffectLevel", ceffectLevel);

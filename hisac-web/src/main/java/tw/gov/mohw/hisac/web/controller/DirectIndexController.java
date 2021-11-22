@@ -18,8 +18,6 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import tw.gov.mohw.hisac.web.service.NotificationExchangeNcertService;
-import tw.gov.mohw.hisac.web.service.NotificationExchangeNcertService.NCert;
 import tw.gov.mohw.hisac.web.service.SmsService;
 
 @Controller
@@ -27,8 +25,7 @@ import tw.gov.mohw.hisac.web.service.SmsService;
 public class DirectIndexController extends BaseController {
 	@Autowired
 	SmsService smsService;
-	@Autowired
-	NotificationExchangeNcertService notificationExchangeNcertService;
+	
 
 	/**
 	 * 首頁登入

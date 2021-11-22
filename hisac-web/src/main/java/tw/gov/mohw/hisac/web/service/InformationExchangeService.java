@@ -33,7 +33,6 @@ import tw.gov.mohw.hisac.web.domain.ViewInformationExchangeSecbuzzerTitle;
 import tw.gov.mohw.hisac.web.domain.ViewMemberRoleMember;
 import tw.gov.mohw.hisac.web.service.MailService;
 import tw.gov.mohw.hisac.web.service.MemberService;
-import tw.gov.mohw.hisac.web.service.InformationExchangeNisacService;
 
 /**
  * 情資管理(N-ISAC)服務
@@ -60,8 +59,7 @@ public class InformationExchangeService {
 	NewsManagementService newsManagementService;
 	@Autowired
 	MessageService messageService;
-	@Autowired
-	InformationExchangeNisacService informationExchangeNisacService;
+	
 	@Autowired
 	MessagePostAttachService messagePostAttachService;
 	@Autowired
@@ -1091,23 +1089,7 @@ public String  getCategoryName(String category) {
 					} else
 						return null;
 				}
-				if (status == 6) {
-					String nisac_json = informationExchangeNisacService.exportToNisac(id);
-					if (!nisac_json.equals("")) {
-						JSONObject obj = new JSONObject(nisac_json);
-						String incidentId = obj.isNull("IncidentId") == true ? null : obj.getString("IncidentId");
-						String sourceContentXML = obj.isNull("SourceContentXML") == true ? null : obj.getString("SourceContentXML");
-
-						if (incidentId != null && !incidentId.equals("")) {
-							entity.setNisacIncidentId(incidentId);
-						if (sourceContentXML != null)
-							entity.setNisacSourceContentXML(sourceContentXML.getBytes());
-						}
-						else
-							return null;
-					} else
-						return null;
-				}
+				
 			}
 			if (status == 2) {
 				String mailSubject = MessageFormat.format(resourceMessageService.getMessageValue("mailInformation3To2Subject"), entity.getPostId());

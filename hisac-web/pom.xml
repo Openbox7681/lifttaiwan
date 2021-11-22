@@ -244,23 +244,7 @@
 		    <version>1.2.0</version>
 		</dependency>
 		
-		<dependency>
-			<groupId>nccst.nisac</groupId>
-			<artifactId>nisacclient</artifactId>
-			<version>1.0.0</version>
-			<!--<scope>system</scope>
-			<systemPath>${basedir}/src/main/resources/nisac/nisacclient.jar</systemPath>-->
-        </dependency>
-        
-        
-        		
-		<dependency>
-			<groupId>nccst.ncert</groupId>
-			<artifactId>ncertclient</artifactId>
-			<version>1.0.0</version>
-			<!--<scope>system</scope>
-			<systemPath>${basedir}/src/main/resources/nisac/nisacclient.jar</systemPath>-->
-        </dependency>
+		
         
         <dependency>
    			<groupId>org.apache.poi</groupId>

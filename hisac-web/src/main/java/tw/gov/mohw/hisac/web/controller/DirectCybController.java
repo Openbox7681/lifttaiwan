@@ -8,14 +8,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import tw.gov.mohw.hisac.web.service.InformationExchangeNisacService;
 
 @Controller
 @RequestMapping(value = "/cyb", produces = "application/json; charset=utf-8")
 public class DirectCybController extends BaseController {
 
-	@Autowired
-	InformationExchangeNisacService informationExchangeNisacService;
+	
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String index(Locale locale, Model model) {
@@ -141,7 +139,6 @@ public class DirectCybController extends BaseController {
 	 */
 	@RequestMapping(value = "/c02", method = RequestMethod.GET)
 	public String c02(Locale locale, Model model) {
-		informationExchangeNisacService.importFromNisac();
 		return "/cyb/c02";
 	}
 }
