@@ -25,19 +25,15 @@ import tw.gov.mohw.hisac.web.WebDatetime;
 import tw.gov.mohw.hisac.web.WebMessage;
 import tw.gov.mohw.hisac.web.controller.BaseController;
 import tw.gov.mohw.hisac.web.dao.SystemLogVariable;
-import tw.gov.mohw.hisac.web.domain.HealthLevel;
 import tw.gov.mohw.hisac.web.domain.Member;
 import tw.gov.mohw.hisac.web.domain.Org;
 import tw.gov.mohw.hisac.web.domain.SpMemberRoleName;
-import tw.gov.mohw.hisac.web.domain.Subscribe;
-import tw.gov.mohw.hisac.web.domain.SubscribeMember;
+
 import tw.gov.mohw.hisac.web.domain.ViewMember;
-import tw.gov.mohw.hisac.web.service.HealthLevelService;
 import tw.gov.mohw.hisac.web.service.MailService;
 import tw.gov.mohw.hisac.web.service.MemberRoleService;
 import tw.gov.mohw.hisac.web.service.OrgService;
-import tw.gov.mohw.hisac.web.service.SubscribeMemberService;
-import tw.gov.mohw.hisac.web.service.SubscribeService;
+
 import tw.gov.mohw.hisac.web.service.IresApiService;
 
 
@@ -57,15 +53,6 @@ public class s05_MemberController extends BaseController {
 	@Autowired
 	private MailService mailService;
 
-	@Autowired
-	private SubscribeService subscribeService;
-	
-	@Autowired
-	private SubscribeMemberService subscribeMemberService;
-	
-	@Autowired
-	private HealthLevelService healthLevelService;
-	
 	@Autowired
 	private IresApiService iresApiService;
 
@@ -192,53 +179,7 @@ public class s05_MemberController extends BaseController {
 
 	}
 	
-	/**
-	 * 取得醫院層級資料
-	 * 
-	 * @param locale
-	 *            Locale
-	 * @param request
-	 *            HttpServletRequest
-	 * @param model
-	 *            Model
-	 * @param q
-	 *            String
-	 * @param per_page
-	 *            Integer
-	 * @return JSON Format String
-	 */
 	
-	@RequestMapping(value = "/s05/getHealthLevels", method = RequestMethod.POST)
-	public String getHealthLevels(Locale locale, HttpServletRequest request, Model model, @RequestBody String json) {
-		
-		JSONObject responseJson = new JSONObject();
-		JSONArray jsonArray = new JSONArray();
-		
-		try {
-			List<HealthLevel> healthLevels = healthLevelService.getAll();
-			
-			if( healthLevels!= null) {
-				for (HealthLevel healthLevel : healthLevels) {
-					JSONObject jsonObject = new JSONObject();
-					jsonObject.put("id", healthLevel.getId());
-					jsonObject.put("name", healthLevel.getName());
-					jsonArray.put(jsonObject);
-				}	
-			}
-			responseJson.put("success", true);
-			responseJson.put("msg", WebMessage.getMessage("globalReadDataSuccess", null, locale));
-			responseJson.put("datatable", jsonArray);
-			
-			
-		} catch (Exception e) {
-			responseJson.put("success", false);
-			responseJson.put("msg", WebMessage.getMessage("globalReadDataFail", null, locale));
-			responseJson.put("datatable", jsonArray);
-		}
-		// return responseJson.toString();
-		model.addAttribute("json", responseJson.toString());
-		return "msg";
-	}
 
 	/**
 	 * 取得人員基本資料資料API
@@ -333,18 +274,7 @@ public class s05_MemberController extends BaseController {
 				if (member != null) {
 					JSONArray json_array = obj.getJSONArray("MemberRoleData");					
 					JSONArray subscribeData_array = obj.getJSONArray("SubscribeData");
-					for (int i = 0; i < subscribeData_array.length(); i++) {
-						JSONObject obj_member_subscribe = subscribeData_array.getJSONObject(i);												
-						boolean flag = obj_member_subscribe.isNull("Flag") == true ? false : obj_member_subscribe.getBoolean("Flag");
-						if (flag && (org.getCiLevel().equals("1") || org.getCiLevel().equals("2")))
-							if (subscribeMemberService.insert(getBaseMemberId(), member.getId(), obj_member_subscribe.toString())==null) {
-								responseJson.put("msg", WebMessage.getMessage("globalUpdateDataFail", null, locale));
-								responseJson.put("success", false);
-								systemLogService.insert(baseControllerName, baseActionName, json, SystemLogVariable.Action.Update, SystemLogVariable.Status.Fail, getBaseIpAddress(), getBaseMemberAccount());
-								return responseJson.toString();
-							}
-								
-					}
+					
 					if (baseMemberRole.IsAdmin || baseMemberRole.IsHisac) {
 						for (int i = 0; i < json_array.length(); i++) {
 							JSONObject obj_member_role = json_array.getJSONObject(i);
@@ -422,30 +352,9 @@ public class s05_MemberController extends BaseController {
 				Member member = memberService.update(getBaseMemberId(), json);
 				if (member != null) {
 					JSONArray json_array = obj.getJSONArray("MemberRoleData");
-					List<SubscribeMember> subscribeMembers = subscribeMemberService.getByMemberId(member.getId());
-					if (subscribeMembers!= null)
-						for (SubscribeMember subscribeMember :subscribeMembers) {
-							if (!subscribeMemberService.delete(subscribeMember.getId())) {
-								responseJson.put("msg", WebMessage.getMessage("globalUpdateDataFail", null, locale));
-								responseJson.put("success", false);
-								systemLogService.insert(baseControllerName, baseActionName, json, SystemLogVariable.Action.Update, SystemLogVariable.Status.Fail, getBaseIpAddress(), getBaseMemberAccount());
-								return responseJson.toString();
-							}
-								
-						}
+					
 					JSONArray subscribeData_array = obj.getJSONArray("SubscribeData");
-					for (int i = 0; i < subscribeData_array.length(); i++) {
-						JSONObject obj_member_subscribe = subscribeData_array.getJSONObject(i);												
-						boolean flag = obj_member_subscribe.isNull("Flag") == true ? false : obj_member_subscribe.getBoolean("Flag");
-						if (flag)
-							if (subscribeMemberService.insert(getBaseMemberId(), member.getId(), obj_member_subscribe.toString())==null) {
-								responseJson.put("msg", WebMessage.getMessage("globalUpdateDataFail", null, locale));
-								responseJson.put("success", false);
-								systemLogService.insert(baseControllerName, baseActionName, json, SystemLogVariable.Action.Update, SystemLogVariable.Status.Fail, getBaseIpAddress(), getBaseMemberAccount());
-								return responseJson.toString();
-							}
-								
-					}
+					
 					for (int i = 0; i < json_array.length(); i++) {
 						JSONObject obj_member_role = json_array.getJSONObject(i);
 						long member_role_id = obj_member_role.isNull("Id") == true ? 0 : obj_member_role.getLong("Id");
@@ -790,42 +699,7 @@ public class s05_MemberController extends BaseController {
 
 		JSONObject listjson = new JSONObject();
 		if (menuService.getReadPermission(getBaseMemberId(), targetControllerName, targetActionName)) {
-			JSONArray sn_array = new JSONArray();
-			List<Subscribe> subscribes = subscribeService.getAll();		
-			JSONObject obj = new JSONObject(json);
-			long id = obj.isNull("Id") == true ? 0 : obj.getLong("Id");
-			if (id == 0 && subscribes!=null) {
-				for (Subscribe subscribe: subscribes) {					
-					JSONObject sn_json = new JSONObject();	
-					sn_json.put("SubscribeId", subscribe.getId());
-					sn_json.put("Name", subscribe.getName());
-					sn_json.put("Flag", true);					
-					sn_array.put(sn_json);
-					listjson.put("datatable", sn_array);
-				}
-			}			
-			else if (subscribes!=null) {
-				List<SubscribeMember> subscribeMembers = subscribeMemberService.getByMemberId(id);			
-				for (Subscribe subscribe: subscribes) {
-					boolean flag = false;
-					JSONObject sn_json = new JSONObject();	
-					sn_json.put("SubscribeId", subscribe.getId());
-					sn_json.put("Name", subscribe.getName());
-					if (subscribeMembers != null)
-					for (SubscribeMember subscribeMember : subscribeMembers) {
-						if (subscribeMember.getSubscribeId().equals(subscribe.getId())) {
-							sn_json.put("Flag", true);
-							flag = true;
-							break;
-						}
-					}
-					if (!flag)
-						sn_json.put("Flag", false);
-					sn_array.put(sn_json);
-				}
-			}
-			listjson.put("datatable", sn_array);
-			systemLogService.insert(baseControllerName, baseActionName, json, SystemLogVariable.Action.Read, SystemLogVariable.Status.Success, getBaseIpAddress(), getBaseMemberAccount());
+			
 		} else {
 			systemLogService.insert(baseControllerName, baseActionName, json, SystemLogVariable.Action.Read, SystemLogVariable.Status.Deny, getBaseIpAddress(), getBaseMemberAccount());
 		}

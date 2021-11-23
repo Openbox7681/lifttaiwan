@@ -22,21 +22,14 @@ import tw.gov.mohw.hisac.web.WebCrypto;
 import tw.gov.mohw.hisac.web.WebMessage;
 import tw.gov.mohw.hisac.web.controller.BaseController;
 import tw.gov.mohw.hisac.web.dao.SystemLogVariable;
-import tw.gov.mohw.hisac.web.domain.HealthLevel;
 import tw.gov.mohw.hisac.web.domain.Org;
 import tw.gov.mohw.hisac.web.domain.SpOrgSign;
-import tw.gov.mohw.hisac.web.domain.CiLevelLog;
-import tw.gov.mohw.hisac.web.domain.SecurityLevelLog;
+
 
 
 import tw.gov.mohw.hisac.web.domain.ViewParentOrg;
-import tw.gov.mohw.hisac.web.service.HealthLevelService;
 import tw.gov.mohw.hisac.web.service.OrgService;
 import tw.gov.mohw.hisac.web.service.OrgSignService;
-
-import tw.gov.mohw.hisac.web.service.CiLevelLogService;
-import tw.gov.mohw.hisac.web.service.SecurityLevelLogService;
-
 
 
 import tw.gov.mohw.hisac.web.dao.OrgVariable.AuthType;
@@ -54,15 +47,6 @@ public class s06_OrgController extends BaseController {
 	
 	@Autowired
 	private OrgSignService orgSignService;
-	
-	@Autowired
-	private HealthLevelService healthLevelService;
-	
-	@Autowired
-	private SecurityLevelLogService securityLevelLogService;
-	
-	@Autowired 
-	private CiLevelLogService ciLevelLogService;
 	
 	
 
@@ -198,43 +182,18 @@ public class s06_OrgController extends BaseController {
 			
 			JSONObject org_json =  new JSONObject();
 			org_json.put("orgId", org.getId());
-			List<SecurityLevelLog> securityLevelLogs = securityLevelLogService.getList(org_json.toString());
 			
-			List<CiLevelLog> ciLevelLogs = ciLevelLogService.getList(org_json.toString());
-
 			JSONArray snLog_array = new JSONArray();
 
 
-			if (securityLevelLogs != null) {
-				for (SecurityLevelLog securityLevelLog : securityLevelLogs) {
-					JSONObject snLog_json = new JSONObject();
-					snLog_json.put("Id", securityLevelLog.getId());
-					snLog_json.put("OrgId", securityLevelLog.getOrgId());
-					snLog_json.put("SecurityLevel", securityLevelLog.getSecurityLevel() == null ? 0 : securityLevelLog.getSecurityLevel());
-					snLog_json.put("Year", securityLevelLog.getYear());
-					snLog_json.put("CreateTime", securityLevelLog.getCreateTime());	
-					snLog_array.put(snLog_json);
-				}
-			}
+			
 			
 			sn_json.put("SecurityLevelLogs", snLog_array);
 
 			JSONArray snCiLog_array = new JSONArray();
 
 			
-			if (ciLevelLogs != null) {
-
-				for (CiLevelLog ciLevelLog : ciLevelLogs) {
-					JSONObject snLog_json = new JSONObject();
-					snLog_json.put("Id", ciLevelLog.getId());
-					snLog_json.put("OrgId", ciLevelLog.getOrgId());
-					snLog_json.put("CiLevel", ciLevelLog.getCiLevel() == null ? 0 : ciLevelLog.getCiLevel());
-					snLog_json.put("Year", ciLevelLog.getYear());
-					snLog_json.put("CreateTime", ciLevelLog.getCreateTime());	
-					snCiLog_array.put(snLog_json);
-				}
-
-			}
+			
 			
 			sn_json.put("CiLevelLogs", snCiLog_array);
 
@@ -351,46 +310,8 @@ public class s06_OrgController extends BaseController {
 					orgSignService.save(getBaseMemberId(), orgsign_obj.toString());
 				}
 				
-				//針對ci 資料與 資通安全責任等級進行歷次資料更新 START
 				
-				if (org.getCiLevel() != null) {
-					String cilevel = org.getCiLevel() == null ? "0" : org.getCiLevel();
-					
-					CiLevelLog ciLevelLog = ciLevelLogService.getDataByOrgId(orgId);
-					
-					
-					if (ciLevelLog.getCiLevel() != null) {
-						if (!cilevel.equals(ciLevelLog.getCiLevel())) {
-							
-							JSONObject ciLevelLog_obj = new JSONObject();
-							Date now = new Date();
-							ciLevelLog_obj.put("CiLevel", cilevel);
-							ciLevelLog_obj.put("OrgId", orgId);
-							
-							ciLevelLog_obj.put("Year", String.valueOf(now.getYear() + 1900));
-
-							ciLevelLogService.insertData(getBaseMemberId(), ciLevelLog_obj.toString());
-						}
-					}
-					
-				}
-				if(org.getSecurityLevel() != null) {
-					Long securityLevel = org.getSecurityLevel();
-					
-					SecurityLevelLog securityLevelLog = securityLevelLogService.getDataByOrgId(orgId);
-					if (securityLevelLog.getSecurityLevel() !=null) {
-						if ( !securityLevel.equals(securityLevelLog.getSecurityLevel())) {
-							
-							JSONObject securityLevelLog_obj = new JSONObject();
-							Date now = new Date();
-							securityLevelLog_obj.put("SecurityLevel", securityLevel);
-							securityLevelLog_obj.put("OrgId", orgId);
-							securityLevelLog_obj.put("Year", String.valueOf(now.getYear()+ 1900));
-							securityLevelLogService.insertData(getBaseMemberId(), securityLevelLog_obj.toString());
-										
-						}	
-					}
-				}
+				
 				
 				//針對ci 資料與 資通安全責任等級進行歷次資料更新 END
 				if (org != null) {
@@ -479,27 +400,7 @@ public class s06_OrgController extends BaseController {
 		JSONObject responseJson = new JSONObject();
 		JSONArray jsonArray = new JSONArray();
 		
-		try {
-			List<HealthLevel> healthLevels = healthLevelService.getAll();
-			
-			if( healthLevels!= null) {
-				for (HealthLevel healthLevel : healthLevels) {
-					JSONObject jsonObject = new JSONObject();
-					jsonObject.put("id", healthLevel.getId());
-					jsonObject.put("name", healthLevel.getName());
-					jsonArray.put(jsonObject);
-				}	
-			}
-			responseJson.put("success", true);
-			responseJson.put("msg", WebMessage.getMessage("globalReadDataSuccess", null, locale));
-			responseJson.put("datatable", jsonArray);
-			
-			
-		} catch (Exception e) {
-			responseJson.put("success", false);
-			responseJson.put("msg", WebMessage.getMessage("globalReadDataFail", null, locale) + "錯誤訊息為" + e.getStackTrace());
-			responseJson.put("datatable", jsonArray);
-		}
+		
 		// return responseJson.toString();
 		model.addAttribute("json", responseJson.toString());
 		return "msg";
@@ -572,27 +473,7 @@ public class s06_OrgController extends BaseController {
 	public String QuerySecurityLevelLogById(Locale locale, HttpServletRequest request, Model model, @RequestBody String json) {
 		JSONObject listjson = new JSONObject();
 		
-		if (menuService.getReadPermission(getBaseMemberId(), targetControllerName, targetActionName)) {
-			json = WebCrypto.getSafe(json);
-			List<SecurityLevelLog> securityLevelLogs = securityLevelLogService.getList(json);
-			listjson.put("total", securityLevelLogService.getListSize(json));
-			JSONArray sn_array = new JSONArray();
-			if (securityLevelLogs != null) {
-				for (SecurityLevelLog securityLevelLog : securityLevelLogs) {
-					JSONObject sn_json = new JSONObject();
-					sn_json.put("Id", securityLevelLog.getId());
-					sn_json.put("OrgId", securityLevelLog.getOrgId());
-					sn_json.put("SecurityLevel", securityLevelLog.getSecurityLevel() == null ? 0 :   securityLevelLog.getSecurityLevel());
-					sn_json.put("Year", securityLevelLog.getYear());
-					sn_json.put("CreateTime", securityLevelLog.getCreateTime());	
-					sn_array.put(sn_json);
-				}
-				listjson.put("datatable", sn_array);
-				systemLogService.insert(baseControllerName, baseActionName, json, SystemLogVariable.Action.Read, SystemLogVariable.Status.Success, getBaseIpAddress(), getBaseMemberAccount());
-			}
-		} else {
-			systemLogService.insert(baseControllerName, baseActionName, json, SystemLogVariable.Action.Read, SystemLogVariable.Status.Deny, getBaseIpAddress(), getBaseMemberAccount());
-		}
+		
 		model.addAttribute("json", listjson.toString());
 		return "msg";
 	}
@@ -613,27 +494,7 @@ public class s06_OrgController extends BaseController {
 	@RequestMapping(value = "/s06/queryCiLevelLog/id", method = RequestMethod.POST)
 	public String QueryCiLevelLog(Locale locale, HttpServletRequest request, Model model, @RequestBody String json) {
 		JSONObject listjson = new JSONObject();
-		if (menuService.getReadPermission(getBaseMemberId(), targetControllerName, targetActionName)) {
-			json = WebCrypto.getSafe(json);
-			List<CiLevelLog> ciLevelLogs = ciLevelLogService.getList(json);
-			listjson.put("total", ciLevelLogService.getListSize(json));
-			JSONArray sn_array = new JSONArray();
-			if (ciLevelLogs != null) {
-				for (CiLevelLog ciLevelLog : ciLevelLogs) {
-					JSONObject sn_json = new JSONObject();
-					sn_json.put("Id", ciLevelLog.getId());
-					sn_json.put("OrgId", ciLevelLog.getOrgId());
-					sn_json.put("CiLevel", ciLevelLog.getCiLevel());
-					sn_json.put("Year", ciLevelLog.getYear());
-					sn_json.put("CreateTime", ciLevelLog.getCreateTime());	
-					sn_array.put(sn_json);
-				}
-				listjson.put("datatable", sn_array);
-				systemLogService.insert(baseControllerName, baseActionName, json, SystemLogVariable.Action.Read, SystemLogVariable.Status.Success, getBaseIpAddress(), getBaseMemberAccount());
-			}
-		} else {
-			systemLogService.insert(baseControllerName, baseActionName, json, SystemLogVariable.Action.Read, SystemLogVariable.Status.Deny, getBaseIpAddress(), getBaseMemberAccount());
-		}
+		
 		model.addAttribute("json", listjson.toString());
 		return "msg";
 	}

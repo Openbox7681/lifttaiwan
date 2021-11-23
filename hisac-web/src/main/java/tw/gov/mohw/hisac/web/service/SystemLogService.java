@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 
 import tw.gov.mohw.hisac.web.dao.SystemLogDAO;
 import tw.gov.mohw.hisac.web.dao.SystemLogVariable;
-import tw.gov.mohw.hisac.web.domain.SpOrgReport;
 import tw.gov.mohw.hisac.web.domain.SpSigninCountTop10;
 import tw.gov.mohw.hisac.web.domain.SpSystemLogByOrgTop5;
 import tw.gov.mohw.hisac.web.domain.SpWebSiteLoad;
@@ -203,12 +202,5 @@ public class SystemLogService {
 		}
 	}
 	
-	public List<SpOrgReport> getOrgReport(String json) {
-		try {
-			JSONObject obj = new JSONObject(json);
-			return systemLogDAO.getOrgReport(obj);
-		} catch (Exception e) {
-			return null;
-		}
-	}
+	
 }

@@ -16,7 +16,6 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import tw.gov.mohw.hisac.web.domain.MemberReport;
-import tw.gov.mohw.hisac.web.domain.OrgReport;
 import tw.gov.mohw.hisac.web.WebDatetime;
 
 
@@ -125,27 +124,7 @@ public class MemberReportDAOImpl extends BaseSessionFactory implements MemberRep
 	}
 
 
-	@SuppressWarnings({"unchecked", "deprecation"})
-	public boolean isMemberReportExistByReportDate(String reportCreateTime) {
-		
-		Criteria cr = getSessionFactory().getCurrentSession().createCriteria(MemberReport.class);		
-		try {
-		cr.add(Restrictions.eq("reportCreateTime", new SimpleDateFormat("yyyy-MM-dd").parse(reportCreateTime)));
-		}catch (ParseException e) {
-			e.printStackTrace();
-		}
-		
-		List<OrgReport> list = cr.list();
-
-
-		if (list.size() > 0) {
-			return true;
-		} else {
-			return false;
-		}
-	}
-
-
+	
 	
 	
 	

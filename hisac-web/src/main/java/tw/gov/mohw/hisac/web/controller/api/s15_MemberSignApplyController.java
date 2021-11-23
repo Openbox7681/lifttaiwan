@@ -28,15 +28,13 @@ import tw.gov.mohw.hisac.web.dao.SystemLogVariable;
 import tw.gov.mohw.hisac.web.domain.Member;
 import tw.gov.mohw.hisac.web.domain.MemberHistory;
 import tw.gov.mohw.hisac.web.domain.Org;
-import tw.gov.mohw.hisac.web.domain.Subscribe;
 import tw.gov.mohw.hisac.web.domain.ViewMemberSignApply;
 import tw.gov.mohw.hisac.web.domain.ViewParentOrg;
 import tw.gov.mohw.hisac.web.service.MailService;
 import tw.gov.mohw.hisac.web.service.MemberRoleService;
 import tw.gov.mohw.hisac.web.service.MemberSignApplyService;
 import tw.gov.mohw.hisac.web.service.OrgService;
-import tw.gov.mohw.hisac.web.service.SubscribeMemberService;
-import tw.gov.mohw.hisac.web.service.SubscribeService;
+
 
 /**
  * 會員審查控制器
@@ -57,11 +55,7 @@ public class s15_MemberSignApplyController extends BaseController {
 	@Autowired
 	private MemberRoleService memberRoleService;
 	
-	@Autowired
-	private SubscribeService subscribeService;	
 	
-	@Autowired
-	private SubscribeMemberService subscribeMemberService;	
 
 	private String targetControllerName = "sys";
 	private String targetActionName = "s15";
@@ -200,13 +194,7 @@ public class s15_MemberSignApplyController extends BaseController {
 					memberService.updateForgotTemp(code, memberId, expireTime);
 					memberRoleService.insert(getBaseMemberId(), member.getId(), (long) 10); //自動新增會員聯絡人角色
 					memberRoleService.insert(getBaseMemberId(), member.getId(), (long) 11); //自動新增會員管理者角色
-					//全部訂閱
-					List<Subscribe> subscribes = subscribeService.getAll();
-					for (Subscribe subscribe: subscribes) {
-						JSONObject subscribeId = new JSONObject();
-						subscribeId.put("SubscribeId", subscribe.getId());
-						subscribeMemberService.insert(getBaseMemberId(), member.getId(), subscribeId.toString());						
-					}
+					
 					String mailSubject = resourceMessageService.getMessageValue("mailSignApplyAdminSetPasswordSubject");
 					String mailBody = MessageFormat.format(resourceMessageService.getMessageValue("mailSignApplyAdminSetPasswordBody"), org.getName(), WebConfig.WEB_SITE_URL + "reset?" + code, WebConfig.WEB_SITE_URL);
 					mailService.Send(this.getClass().getSimpleName() + " - " + Thread.currentThread().getStackTrace()[1].getMethodName(), member.getEmail(), null, null, mailSubject, mailBody, null);

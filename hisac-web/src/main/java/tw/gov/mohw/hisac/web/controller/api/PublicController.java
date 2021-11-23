@@ -79,8 +79,6 @@ import tw.gov.mohw.hisac.web.dao.OrgVariable.AuthType;
 import tw.gov.mohw.hisac.web.dao.OrgVariable.OrgType;
 import tw.gov.mohw.hisac.web.dao.SystemLogVariable;
 import tw.gov.mohw.hisac.web.domain.ForgotTemp;
-import tw.gov.mohw.hisac.web.domain.HealthLevel;
-import tw.gov.mohw.hisac.web.domain.Healthcare;
 import tw.gov.mohw.hisac.web.domain.Member;
 import tw.gov.mohw.hisac.web.domain.MemberHistory;
 import tw.gov.mohw.hisac.web.domain.MemberRole;
@@ -88,12 +86,8 @@ import tw.gov.mohw.hisac.web.domain.Org;
 import tw.gov.mohw.hisac.web.domain.OrgSign;
 import tw.gov.mohw.hisac.web.domain.VerifyEmail;
 import tw.gov.mohw.hisac.web.domain.ViewParentOrg;
-import tw.gov.mohw.hisac.web.domain.ViewQAManagementGroup;
-import tw.gov.mohw.hisac.web.service.HealthLevelService;
-import tw.gov.mohw.hisac.web.service.HealthcareService;
 import tw.gov.mohw.hisac.web.service.MailService;
 import tw.gov.mohw.hisac.web.service.OrgService;
-import tw.gov.mohw.hisac.web.service.QAManagementService;
 
 
 /**
@@ -111,9 +105,6 @@ public class PublicController extends BaseController {
 	private OrgService orgService;
 
 	@Autowired
-	private HealthcareService healthcareService;
-
-	@Autowired
 	private MemberDAO memberDAO;
 
 	@Autowired
@@ -122,16 +113,6 @@ public class PublicController extends BaseController {
 	@Autowired
 	private OrgSignDAO orgSignDAO;
 
-	
-
-	
-
-	@Autowired
-	private QAManagementService qaManagementService;
-	
-	@Autowired
-	private HealthLevelService healthLevelService;
-	
 	
 	
 	/**
@@ -411,27 +392,7 @@ public class PublicController extends BaseController {
 		JSONObject responseJson = new JSONObject();
 		JSONArray jsonArray = new JSONArray();
 		
-		try {
-			List<HealthLevel> healthLevels = healthLevelService.getAll();
-			
-			if( healthLevels!= null) {
-				for (HealthLevel healthLevel : healthLevels) {
-					JSONObject jsonObject = new JSONObject();
-					jsonObject.put("id", healthLevel.getId());
-					jsonObject.put("name", healthLevel.getName());
-					jsonArray.put(jsonObject);
-				}	
-			}
-			responseJson.put("success", true);
-			responseJson.put("msg", WebMessage.getMessage("globalReadDataSuccess", null, locale));
-			responseJson.put("datatable", jsonArray);
-			
-			
-		} catch (Exception e) {
-			responseJson.put("success", false);
-			responseJson.put("msg", WebMessage.getMessage("globalReadDataFail", null, locale));
-			responseJson.put("datatable", jsonArray);
-		}
+	
 		// return responseJson.toString();
 		model.addAttribute("json", responseJson.toString());
 		return "msg";
@@ -473,33 +434,7 @@ public class PublicController extends BaseController {
 		} catch (Exception e) {
 			perPage = 5;
 		}
-		try {
-			queryString = myFilter.stripXSS(queryString);
-			List<Healthcare> healthcares = healthcareService.getList(queryString, perPage);
-			if (healthcares != null) {
-				for (Healthcare healthcare : healthcares) {
-					JSONObject jsonObject = new JSONObject();
-					jsonObject.put("id", healthcare.getCode());
-					jsonObject.put("name", healthcare.getName());
-					jsonObject.put("city", healthcare.getCity());
-					jsonObject.put("town", healthcare.getTown());
-					jsonObject.put("address", healthcare.getAddress());
-					jsonObject.put("parentOrgId", healthcare.getParentOrgId());
-					jsonObject.put("isCI", healthcare.getIsCI() == null ? false : healthcare.getIsCI());
-					jsonObject.put("healthLevelId", healthcare.getHealthLevelId() == null ? 0 : healthcare.getHealthLevelId()  );
-					jsonObject.put("isPublic", healthcare.getIsPublic() == null ? false : healthcare.getIsPublic());
-					jsonObject.put("securityLevel", healthcare.getSecurityLevel() == null ? 0 : healthcare.getSecurityLevel());
-					jsonArray.put(jsonObject);
-				}
-			}
-			responseJson.put("success", true);
-			responseJson.put("msg", WebMessage.getMessage("globalReadDataSuccess", null, locale));
-			responseJson.put("items", jsonArray);
-		} catch (Exception e) {
-			responseJson.put("success", false);
-			responseJson.put("msg", WebMessage.getMessage("globalReadDataFail", null, locale));
-			responseJson.put("items", jsonArray);
-		}
+		
 		// String strResultJson = "";
 		// try {
 		// byte[] _byteResultJson =
@@ -917,17 +852,8 @@ public class PublicController extends BaseController {
 				Org org = orgService.findByCode(orgCode);
 				if (org == null) {
 					// Create Org Info
-					Healthcare healthcare = healthcareService.getByCode(orgCode);
 					String ciLevel = "0";
-					if (healthcare != null) {
-						if (healthcare.getIsCI() != null) {
-							if (healthcare.getIsCI()) {
-								ciLevel = "2";
-							} else {
-								ciLevel = "0";
-							}
-						}
-					}
+					
 					org = new Org();
 					org.setCode(orgCode);
 					org.setOrgType(OrgType.Member.getValue());
@@ -1721,17 +1647,8 @@ public class PublicController extends BaseController {
 		JSONObject obj = new JSONObject(json);
 		obj.put("IsEnable", true);
 		obj.put("IsPublic", true);
-		List<ViewQAManagementGroup> qaManagements = qaManagementService.getList(obj.toString());
-		if (qaManagements != null) {
-			for (ViewQAManagementGroup qaManagement : qaManagements) {
-				JSONObject sn_json = new JSONObject();
-				sn_json.put("Id", qaManagement.getId());
-				sn_json.put("QAMgName", qaManagement.getQAMgName());
-				sn_json.put("QName", qaManagement.getQName());
-				sn_array.put(sn_json);
-			}
-		}
-		listjson.put("total", qaManagementService.getListSize(obj.toString()));
+		
+		listjson.put("total", 0);
 		listjson.put("datatable", sn_array);
 		systemLogService.insert(baseControllerName, baseActionName, json, SystemLogVariable.Action.Read, SystemLogVariable.Status.Success,  getBaseIpAddress(), getBaseMemberAccount());
 		model.addAttribute("json", listjson.toString());		

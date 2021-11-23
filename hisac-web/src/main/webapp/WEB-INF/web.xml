@@ -84,7 +84,7 @@ xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns
   
   <!-- 設定session timeout時間, 單位是分鐘 -->
   <session-config>
-    <session-timeout>30</session-timeout>
+    <session-timeout>300</session-timeout>
     <cookie-config>       
         <http-only>true</http-only>
         <!--<secure>true</secure>-->

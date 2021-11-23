@@ -29,18 +29,13 @@ import tw.gov.mohw.hisac.web.domain.LinksPic;
 import tw.gov.mohw.hisac.web.domain.SpContactCountDashboard;
 import tw.gov.mohw.hisac.web.domain.SpDashboard;
 import tw.gov.mohw.hisac.web.domain.SpManagerCountDashboard;
-import tw.gov.mohw.hisac.web.domain.ViewAnaManagementMember;
-import tw.gov.mohw.hisac.web.domain.ViewLinksMember;
-import tw.gov.mohw.hisac.web.domain.ViewLinksPicMember;
-import tw.gov.mohw.hisac.web.service.NotificationService;
+
 import tw.gov.mohw.hisac.web.service.OrgService;
 import tw.gov.mohw.hisac.web.service.SpDashboardService;
-import tw.gov.mohw.hisac.web.service.AnaManagementService;
 
 
 import tw.gov.mohw.hisac.web.service.MemberSignApplyService;
-import tw.gov.mohw.hisac.web.service.LinksService;
-import tw.gov.mohw.hisac.web.service.LinksPicService;
+
 import tw.gov.mohw.hisac.web.service.SystemLogService;
 
 /**
@@ -49,31 +44,11 @@ import tw.gov.mohw.hisac.web.service.SystemLogService;
 @Controller
 @RequestMapping(value = "/pub/api", produces = "application/json; charset=utf-8")
 public class p00_IndexController extends BaseController {
-
-	
-
-	
-
-	@Autowired
-	private AnaManagementService anaManagementService;
-
-	
-
 	
 
 	@Autowired
 	private MemberSignApplyService memberSignApplyService;
 	
-
-	@Autowired
-	private NotificationService notificationService;
-
-	@Autowired
-	private LinksService linksService;
-
-	@Autowired
-	private LinksPicService linksPicService;
-
 	
 	@Autowired
 	private SpDashboardService spDashboardService;
@@ -248,17 +223,8 @@ public class p00_IndexController extends BaseController {
 				obj.put("Status", "4");
 				obj.put("sort", "sort");
 				json = obj.toString();
-				List<ViewAnaManagementMember> anaManagements = anaManagementService.getSpList(json);
-				if (anaManagements != null) {
-					for (ViewAnaManagementMember anaManagement : anaManagements) {
-						JSONObject sn_json = new JSONObject();
-						sn_json.put("Id", anaManagement.getId());
-						sn_json.put("Date", WebDatetime.toString(anaManagement.getIncidentReportedTime(), "yyyy-MM-dd"));
-						sn_json.put("Title", anaManagement.getIncidentTitle());
-						sn_array.put(sn_json);
-					}
-				}
-				listjson.put("total", anaManagementService.getSpListSize(json));
+				
+				listjson.put("total", 0);
 				listjson.put("datatable", sn_array);
 				systemLogService.insert(baseControllerName, baseActionName, json, SystemLogVariable.Action.Read, SystemLogVariable.Status.Success, getBaseIpAddress(), getBaseMemberAccount());
 				model.addAttribute("json", listjson.toString());
@@ -410,49 +376,12 @@ public class p00_IndexController extends BaseController {
 	public String QueryLinks(Locale locale, HttpServletRequest request, Model model, @RequestBody String json) {
 		JSONObject listjson = new JSONObject();
 		if (menuService.getReadPermission(getBaseMemberId(), targetControllerName, targetActionName)) {
-			if (linksService.getGlobalData() == null) {
 				JSONArray sn_array = new JSONArray();
-				JSONObject obj = new JSONObject(json);
-				obj.put("IsEnable", true);
-				// obj.put("StartShowDateTime", WebDatetime.toString(new Date(),
-				// "yyyy-MM-dd"));
-				// obj.put("Status", "4");
-				json = obj.toString();
-				List<ViewLinksMember> links = linksService.getList(json);
-				if (links != null) {
-					for (ViewLinksMember link : links) {
-						JSONObject sn_json = new JSONObject();
-						sn_json.put("Id", link.getId());
-						sn_json.put("Date", WebDatetime.toString(link.getStartDateTime(), "yyyy-MM-dd"));
-						// sn_json.put("SourceLink", "<a
-						// href=\""+link.getSourceLink()+"\"
-						// target=\"_outer\">");
-						sn_json.put("SourceLink", link.getSourceLink());
-						// sn_json.put("SourceLinkEnd", "</a>");
-
-						List<ViewLinksPicMember> linksPics = linksPicService.getAllByLinksId(link.getId());
-						if (linksPics != null) {
-							for (ViewLinksPicMember linksPic : linksPics) {
-								// sn_json.put("ImageLink", "<img
-								// src=\"./sys/api/s41/pic/download/"+link.getId()+"/"+linksPic.getId()+"\"
-								// class=\"img-responsive\" />");
-								sn_json.put("ImageLink", "./pub/api/p00/pic/download/" + link.getId() + "/" + linksPic.getId());
-								sn_json.put("ImageTitle", linksPic.getFileDesc());
-								// break;
-							}
-						}
-						sn_array.put(sn_json);
-					}
-				}
-				listjson.put("total", linksService.getListSize(json));
+				listjson.put("total", 0);
 				listjson.put("datatable", sn_array);
 				systemLogService.insert(baseControllerName, baseActionName, json, SystemLogVariable.Action.Read, SystemLogVariable.Status.Success, getBaseIpAddress(), getBaseMemberAccount());
 				model.addAttribute("json", listjson.toString());
-				linksService.setGlobalData(listjson.toString());
-			} else {
-				systemLogService.insert(baseControllerName, baseActionName, json, SystemLogVariable.Action.Read, SystemLogVariable.Status.Success, getBaseIpAddress(), getBaseMemberAccount());
-				model.addAttribute("json", linksService.getGlobalData());
-			}
+			
 		} else {
 			systemLogService.insert(baseControllerName, baseActionName, json, SystemLogVariable.Action.Read, SystemLogVariable.Status.Deny, getBaseIpAddress(), getBaseMemberAccount());
 			model.addAttribute("json", listjson.toString());
@@ -530,7 +459,7 @@ public class p00_IndexController extends BaseController {
 		obj.put("MemberId", getBaseMemberId());
 		json = obj.toString();
 
-		countJson.put("count", notificationService.getSpFormCount(json));
+		countJson.put("count",0);
 		model.addAttribute("json", countJson.toString());
 		return "msg";
 	}
@@ -639,7 +568,7 @@ public class p00_IndexController extends BaseController {
 		obj.put("MemberId", getBaseMemberId());
 		json = obj.toString();
 
-		countJson.put("count", anaManagementService.getSpFormCount(json));
+		countJson.put("count", 0);
 		model.addAttribute("json", countJson.toString());
 		return "msg";
 	}
@@ -807,38 +736,7 @@ public class p00_IndexController extends BaseController {
 		sn_json.put("Id", id);
 		String json = sn_json.toString();
 		if (menuService.getReadPermission(getBaseMemberId(), targetControllerName, targetActionName)) {
-			if (!linksService.isExist(linksId)) {
-				systemLogService.insert(baseControllerName, baseActionName, json, SystemLogVariable.Action.Read, SystemLogVariable.Status.Fail, getBaseIpAddress(), getBaseMemberAccount());
-				try {
-					response.sendError(HttpServletResponse.SC_NOT_FOUND);
-				} catch (IOException ex) {
-					//ex.printStackTrace();
-				}
-			} else if (!linksPicService.isExist(id)) {
-				systemLogService.insert(baseControllerName, baseActionName, json, SystemLogVariable.Action.Read, SystemLogVariable.Status.Fail, getBaseIpAddress(), getBaseMemberAccount());
-				try {
-					response.sendError(HttpServletResponse.SC_NOT_FOUND);
-				} catch (IOException ex) {
-					//ex.printStackTrace();
-				}
-			} else {
-				response.reset();
-				LinksPic linksPic = linksPicService.getById(id);
-				try {
-					byte[] buffer = linksPic.getFileContent();
-					response.addHeader("Content-Disposition", "attachment;filename=" + URLEncoder.encode(linksPic.getFileName(), StandardCharsets.UTF_8.toString()));
-					response.addHeader("Content-Length", "" + buffer.length);
-					OutputStream toClient = new BufferedOutputStream(response.getOutputStream());
-					response.setContentType(linksPic.getFileType());
-					toClient.write(buffer);
-					toClient.flush();
-					toClient.close();
-					systemLogService.insert(baseControllerName, baseActionName, json, SystemLogVariable.Action.Read, SystemLogVariable.Status.Success, getBaseIpAddress(), getBaseMemberAccount());
-				} catch (IOException ex) {
-					//ex.printStackTrace();
-					systemLogService.insert(baseControllerName, baseActionName, json, SystemLogVariable.Action.Read, SystemLogVariable.Status.Fail, getBaseIpAddress(), getBaseMemberAccount());
-				}
-			}
+			
 		} else {
 			systemLogService.insert(baseControllerName, baseActionName, json, SystemLogVariable.Action.Read, SystemLogVariable.Status.Deny, getBaseIpAddress(), getBaseMemberAccount());
 		}

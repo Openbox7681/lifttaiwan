@@ -26,11 +26,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import tw.gov.mohw.hisac.web.WebDatetime;
 import tw.gov.mohw.hisac.web.controller.BaseController;
 import tw.gov.mohw.hisac.web.dao.SystemLogVariable;
-import tw.gov.mohw.hisac.web.domain.QAManagement;
-import tw.gov.mohw.hisac.web.domain.QAManagementAttach;
-import tw.gov.mohw.hisac.web.domain.ViewQAManagementGroup;
-import tw.gov.mohw.hisac.web.service.QAManagementAttachService;
-import tw.gov.mohw.hisac.web.service.QAManagementService;
+
 
 
 /**
@@ -40,10 +36,7 @@ import tw.gov.mohw.hisac.web.service.QAManagementService;
 @RequestMapping(value = "/public/api", produces = "application/json; charset=utf-8")
 public class PublicQAController extends BaseController {
 
-	@Autowired
-	private QAManagementService qaManagementService;
-	@Autowired
-	private QAManagementAttachService qaManagementAttachService;	
+	
 
 	/**
 	 * 取得常見問題資料API
@@ -65,19 +58,8 @@ public class PublicQAController extends BaseController {
 			JSONObject obj = new JSONObject(json);
 			obj.put("IsEnable", true);
 			obj.put("IsPublic", true);
-			List<ViewQAManagementGroup> qaManagements = qaManagementService.getList(obj.toString());
-			if (qaManagements != null) {
-				for (ViewQAManagementGroup qaManagement : qaManagements) {
-					JSONObject sn_json = new JSONObject();
-					sn_json.put("Id", qaManagement.getId());
-					sn_json.put("QAMgName", qaManagement.getQAMgName());
-					sn_json.put("QName", qaManagement.getQName());
-					sn_json.put("AName", qaManagement.getAName());
-					// sn_json.put("IsEnable", qaManagement.getIsEnable());
-					sn_array.put(sn_json);
-				}
-			}
-			listjson.put("total", qaManagementService.getListSize(obj.toString()));
+			
+			listjson.put("total", 0);
 			listjson.put("datatable", sn_array);
 			systemLogService.insert(baseControllerName, baseActionName, json, SystemLogVariable.Action.Read, SystemLogVariable.Status.Success, getBaseIpAddress(), getBaseMemberAccount());
 		
@@ -105,15 +87,7 @@ public class PublicQAController extends BaseController {
 		long id = obj.isNull("Id") == true ? 0 : obj.getLong("Id");
 		JSONObject sn_json = new JSONObject();
 		JSONArray sn_array = new JSONArray();		
-			QAManagement qaManagement = qaManagementService.getDataById(id);
-			if (qaManagement.getIsPublic()) {
-				sn_json.put("Id", qaManagement.getId());
-				sn_json.put("QAManagementGroupId", qaManagement.getQAMgId());
-				sn_json.put("QName", qaManagement.getQName());
-				sn_json.put("AName", qaManagement.getAName());
-				sn_json.put("IsEnable", qaManagement.getIsEnable());
-			}
-
+			
 			sn_array.put(sn_json);
 
 			systemLogService.insert(baseControllerName, baseActionName, json, SystemLogVariable.Action.Read, SystemLogVariable.Status.Success, getBaseIpAddress(), getBaseMemberAccount());		
@@ -188,32 +162,7 @@ public class PublicQAController extends BaseController {
 			JSONArray sn_array = new JSONArray();
 			JSONObject obj = new JSONObject(json);
 			long qaManagementId = obj.isNull("QAManagementId") == true ? 0 : obj.getLong("QAManagementId");
-			List<QAManagementAttach> qaManagementAttachs = qaManagementAttachService.getAllByQAManagementId(qaManagementId);
-			if (qaManagementAttachs != null) {
-				for (QAManagementAttach qaManagementAttach : qaManagementAttachs) {
-					long size = qaManagementAttach.getFileSize();
-					if (size <= 0)
-						return "0";
-					final String[] units = new String[]{"B", "KB", "MB", "GB", "TB"};
-					int digitGroups = (int) (Math.log10(size) / Math.log10(1024));
-					String fileSize = new DecimalFormat("#,##0.#").format(size / Math.pow(1024, digitGroups)) + " " + units[digitGroups];
-					JSONObject sn_json = new JSONObject();
-					sn_json.put("QAManagementId", qaManagementAttach.getManagementId());
-					sn_json.put("Id", qaManagementAttach.getId());
-					sn_json.put("FileName", qaManagementAttach.getFileName());
-					sn_json.put("FileType", qaManagementAttach.getFileType());
-					sn_json.put("FileSize", fileSize);
-					sn_json.put("FileHash", qaManagementAttach.getFileHash());
-					sn_json.put("FileDesc", qaManagementAttach.getFileDesc());
-					sn_json.put("CreateId", qaManagementAttach.getCreateId());					
-					sn_json.put("CreateTime", WebDatetime.toString(qaManagementAttach.getCreateTime()));
-					sn_json.put("ModifyId", qaManagementAttach.getModifyId());					
-					sn_json.put("ModifyTime", WebDatetime.toString(qaManagementAttach.getModifyTime()));
-					sn_array.put(sn_json);
-				}
-				listjson.put("datatable", sn_array);
-				systemLogService.insert(baseControllerName, baseActionName, json, SystemLogVariable.Action.Read, SystemLogVariable.Status.Success, getBaseIpAddress(), getBaseMemberAccount());
-			}		
+			
 		model.addAttribute("json", listjson.toString());
 		return "msg";
 	}
@@ -239,37 +188,6 @@ public class PublicQAController extends BaseController {
 		sn_json.put("QAManagementId", qaManagementId);
 		sn_json.put("Id", id);
 		String json = sn_json.toString();		
-			if (!qaManagementService.isExist(qaManagementId)) {
-				systemLogService.insert(baseControllerName, baseActionName, json, SystemLogVariable.Action.Read, SystemLogVariable.Status.Fail, getBaseIpAddress(), getBaseMemberAccount());
-				try {
-					response.sendError(HttpServletResponse.SC_NOT_FOUND);
-				} catch (IOException ex) {
-					//ex.printStackTrace();
-				}
-			} else if (!qaManagementAttachService.isExist(id)) {
-				systemLogService.insert(baseControllerName, baseActionName, json, SystemLogVariable.Action.Read, SystemLogVariable.Status.Fail, getBaseIpAddress(), getBaseMemberAccount());
-				try {
-					response.sendError(HttpServletResponse.SC_NOT_FOUND);
-				} catch (IOException ex) {
-					//ex.printStackTrace();
-				}
-			} else {
-				response.reset();
-				QAManagementAttach qaManagementAttach = qaManagementAttachService.getById(id);
-				try {
-					byte[] buffer = qaManagementAttach.getFileContent();
-					response.addHeader("Content-Disposition", "attachment;filename=" + URLEncoder.encode(qaManagementAttach.getFileName(), StandardCharsets.UTF_8.toString()));
-					response.addHeader("Content-Length", "" + buffer.length);
-					OutputStream toClient = new BufferedOutputStream(response.getOutputStream());
-					response.setContentType("application/octet-stream");
-					toClient.write(buffer);
-					toClient.flush();
-					toClient.close();
-					systemLogService.insert(baseControllerName, baseActionName, json, SystemLogVariable.Action.Read, SystemLogVariable.Status.Success, getBaseIpAddress(), getBaseMemberAccount());
-				} catch (IOException ex) {
-					//ex.printStackTrace();
-					systemLogService.insert(baseControllerName, baseActionName, json, SystemLogVariable.Action.Read, SystemLogVariable.Status.Fail, getBaseIpAddress(), getBaseMemberAccount());
-				}
-			}		
+	
 	}
 }

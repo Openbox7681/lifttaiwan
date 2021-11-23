@@ -21,17 +21,8 @@
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 	
-	<bean id="healthLevelDAO" class="tw.gov.mohw.hisac.web.dao.HealthLevelDAOImpl">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
 	
-	<bean id="ciLevelLogDAO" class="tw.gov.mohw.hisac.web.dao.CiLevelLogDAOImpl">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
 	
-	<bean id="securityLevelLogDAO" class="tw.gov.mohw.hisac.web.dao.SecurityLevelLogDAOImpl">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
 	
 	
 	<bean id="systemLogDAO" class="tw.gov.mohw.hisac.web.dao.SystemLogDAOImpl">
@@ -85,14 +76,9 @@
 	<bean id="orgSignDAO" class="tw.gov.mohw.hisac.web.dao.OrgSignDAOImpl">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
-	<bean id="healthcareDAODAO" class="tw.gov.mohw.hisac.web.dao.HealthcareDAOImpl">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
 	
 	
-	<bean id="notificationDAO" class="tw.gov.mohw.hisac.web.dao.NotificationDAOImpl">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
+	
 	<bean id="ticketQueueDAO" class="tw.gov.mohw.hisac.web.dao.TicketQueueDAOImpl">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
@@ -103,12 +89,7 @@
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 	
-	<bean id="qaManagementGroupDAO" class="tw.gov.mohw.hisac.web.dao.QAManagementGroupDAOImpl">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
-	<bean id="qaManagementDAO" class="tw.gov.mohw.hisac.web.dao.QAManagementDAOImpl">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
+	
 	<bean id="processLogDAO" class="tw.gov.mohw.hisac.web.dao.ProcessLogDAOImpl">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
@@ -124,29 +105,11 @@
 	
 	
 	
-	<bean id="anaManagementDAO" class="tw.gov.mohw.hisac.web.dao.AnaManagementDAOImpl">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
-	<bean id="anaManagementAttachDAO" class="tw.gov.mohw.hisac.web.dao.AnaManagementAttachDAOImpl">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
-	
-	<bean id="linksDAO" class="tw.gov.mohw.hisac.web.dao.LinksDAOImpl">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
-	<bean id="linksPicDAO" class="tw.gov.mohw.hisac.web.dao.LinksPicDAOImpl">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
 	
 	<bean id="spDashboardDAO" class="tw.gov.mohw.hisac.web.dao.SpDashboardDAOImpl">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
-	<bean id="subscribeDAO" class="tw.gov.mohw.hisac.web.dao.SubscribeDAOImpl">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
-	<bean id="subscribeMemberDAO" class="tw.gov.mohw.hisac.web.dao.SubscribeMemberDAOImpl">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
+	
 	<bean id="ccDAO" class="tw.gov.mohw.hisac.web.dao.CCDAOImpl">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
@@ -161,20 +124,6 @@
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 	
-	<bean id="OrgReportScheduleDAO" class="tw.gov.mohw.hisac.web.dao.OrgReportScheduleDAOImpl">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
-	
-	
-	
-	<bean id="orgReportDAO" class="tw.gov.mohw.hisac.web.dao.OrgReportDAOImpl">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
-	
-	
-	<bean id="orgReportMemberLogDAO" class="tw.gov.mohw.hisac.web.dao.OrgReportMemberLogDAOImpl">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
 	
 	
 	
@@ -188,17 +137,9 @@
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 	
-	<bean id="notificationLogDAO" class="tw.gov.mohw.hisac.web.dao.NotificationLogDAOImpl">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
 	
-	<bean id="notificationAssetDAO" class="tw.gov.mohw.hisac.web.dao.NotificationAssetDAOImpl">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
 	
-	<bean id="qaManagementAttachDAO" class="tw.gov.mohw.hisac.web.dao.QAManagementAttachDAOImpl">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
+	
 	
 	
 	

@@ -11,7 +11,6 @@ public interface MemberReportDAO {
 	public JSONObject schedule(JSONObject obj);	
 	public List<MemberReport> getList(JSONObject obj);
 	public long getListSize(JSONObject obj);
-	public boolean isMemberReportExistByReportDate(String reportCreateTime);
 	public MemberReport get(Long id);
 	public void delete(MemberReport entity);
 

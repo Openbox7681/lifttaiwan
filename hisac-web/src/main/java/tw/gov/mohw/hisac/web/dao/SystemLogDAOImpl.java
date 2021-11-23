@@ -20,7 +20,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import tw.gov.mohw.hisac.web.WebCrypto;
 import tw.gov.mohw.hisac.web.WebDatetime;
-import tw.gov.mohw.hisac.web.domain.SpOrgReport;
 import tw.gov.mohw.hisac.web.domain.SpSigninCountTop10;
 import tw.gov.mohw.hisac.web.domain.SpSystemLogByOrgTop5;
 import tw.gov.mohw.hisac.web.domain.SpWebSiteLoad;
@@ -446,34 +445,5 @@ public class SystemLogDAOImpl extends BaseSessionFactory implements SystemLogDAO
 	}
 	
 	
-	@SuppressWarnings("unchecked")
-	public List<SpOrgReport> getOrgReport(JSONObject obj) {
-		String querySdate = obj.isNull("QuerySdate") == true ? null : obj.getString("QuerySdate");
-		String queryEdate = obj.isNull("QueryEdate") == true ? null : obj.getString("QueryEdate");						
-
-		ProcedureCall call = getSessionFactory().getCurrentSession().createStoredProcedureCall("xp_org_report", SpOrgReport.class);
-			
-		try {
-			if (querySdate != null)
-				call.registerParameter("QuerySdate", Date.class, ParameterMode.IN).bindValue(new SimpleDateFormat("yyyy-MM-dd").parse(querySdate));
-			else
-				call.registerParameter("QuerySdate", Date.class, ParameterMode.IN).enablePassingNulls(true);
-			if (queryEdate != null)
-				call.registerParameter("QueryEdate", Date.class, ParameterMode.IN).bindValue(new SimpleDateFormat("yyyy-MM-dd").parse(queryEdate));
-			else
-				call.registerParameter("QueryEdate", Date.class, ParameterMode.IN).enablePassingNulls(true);			
-		}	catch (ParseException e) {
-				//e.printStackTrace();
-		}
-
-		ProcedureOutputs procedureOutputs = call.getOutputs();
-		ResultSetOutput resultSetOutput = (ResultSetOutput) procedureOutputs.getCurrent();
-		List<SpOrgReport> list = resultSetOutput.getResultList();
-
-		if (list.size() > 0) {
-			return list;
-		} else {
-			return null;
-		}
-	}
+	
 }

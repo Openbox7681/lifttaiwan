@@ -29,11 +29,7 @@ import tw.gov.mohw.hisac.web.controller.BaseController;
 import tw.gov.mohw.hisac.web.dao.SystemLogVariable;
 import tw.gov.mohw.hisac.web.domain.Member;
 import tw.gov.mohw.hisac.web.domain.Org;
-import tw.gov.mohw.hisac.web.domain.Subscribe;
-import tw.gov.mohw.hisac.web.domain.SubscribeMember;
 import tw.gov.mohw.hisac.web.service.OrgService;
-import tw.gov.mohw.hisac.web.service.SubscribeService;
-import tw.gov.mohw.hisac.web.service.SubscribeMemberService;
 
 /**
  * 設置會員個人資料控制器
@@ -45,10 +41,7 @@ public class s00_MemberProfileController extends BaseController {
 
 	@Autowired
 	private OrgService orgService;
-	@Autowired
-	private SubscribeService subscribeService;
-	@Autowired
-	private SubscribeMemberService subscribeMemberService;
+	
 
 	// private String targetControllerName = "sys";
 	// private String targetActionName = "s00";
@@ -171,26 +164,7 @@ public class s00_MemberProfileController extends BaseController {
 		// JSONObject obj = new JSONObject(json);
 		
 		Member member = memberService.get(getBaseMemberId());
-		List<Subscribe> subscribes = subscribeService.getAll();		
-		List<SubscribeMember> subscribeMembers = subscribeMemberService.getByMemberId(getBaseMemberId());
-		if (subscribes!=null)
-			for (Subscribe subscribe: subscribes) {
-				boolean flag = false;
-				JSONObject sn_json = new JSONObject();	
-				sn_json.put("SubscribeId", subscribe.getId());
-				sn_json.put("Name", subscribe.getName());
-				if (subscribeMembers != null)
-				for (SubscribeMember subscribeMember : subscribeMembers) {
-					if (subscribeMember.getSubscribeId().equals(subscribe.getId())) {
-						sn_json.put("Flag", true);
-						flag = true;
-						break;
-					}
-				}
-				if (!flag)
-					sn_json.put("Flag", false);
-				subscribe_array.put(sn_json);
-			}
+		
 		
 		JSONObject sn_json = new JSONObject();
 		sn_json.put("Name", member.getName());
@@ -209,72 +183,7 @@ public class s00_MemberProfileController extends BaseController {
 		return "msg";
 	}
 
-	/**
-	 * 重設個人資料
-	 * 
-	 * @param locale
-	 *            Locale
-	 * @param request
-	 *            HttpServletRequest
-	 * @param json
-	 *            個人資料
-	 * @return JSON Format String
-	 */
-	@RequestMapping(value = "/profile/update", method = RequestMethod.POST)
-	public @ResponseBody String UpdateMember(Locale locale, HttpServletRequest request, @RequestBody String json) {
-		JSONObject responseJson = new JSONObject();
-		CsrfToken token = new HttpSessionCsrfTokenRepository().loadToken(request);
-		if (token == null || token.getToken().equals(""))
-			return responseJson.toString();
-
-		try {
-			if (memberService.isExist(getBaseMemberId())) {
-				if (memberService.updateProfile(getBaseMemberId(), json) != null) {
-					List<SubscribeMember> subscribeMembers = subscribeMemberService.getByMemberId(getBaseMemberId());
-					if (subscribeMembers!= null)
-						for (SubscribeMember subscribeMember :subscribeMembers) {
-							if (!subscribeMemberService.delete(subscribeMember.getId())) {
-								responseJson.put("msg", WebMessage.getMessage("globalUpdateDataFail", null, locale));
-								responseJson.put("success", false);
-								systemLogService.insert(baseControllerName, baseActionName, json, SystemLogVariable.Action.Update, SystemLogVariable.Status.Fail, getBaseIpAddress(), getBaseMemberAccount());
-								return responseJson.toString();
-							}
-								
-						}
-					JSONObject obj = new JSONObject(json);
-					JSONArray json_array = obj.getJSONArray("SubscribeData");
-					for (int i = 0; i < json_array.length(); i++) {
-						JSONObject obj_member_subscribe = json_array.getJSONObject(i);												
-						boolean flag = obj_member_subscribe.isNull("Flag") == true ? false : obj_member_subscribe.getBoolean("Flag");
-						if (flag)
-							if (subscribeMemberService.insert(getBaseMemberId(), getBaseMemberId(), obj_member_subscribe.toString())==null) {
-								responseJson.put("msg", WebMessage.getMessage("globalUpdateDataFail", null, locale));
-								responseJson.put("success", false);
-								systemLogService.insert(baseControllerName, baseActionName, json, SystemLogVariable.Action.Update, SystemLogVariable.Status.Fail, getBaseIpAddress(), getBaseMemberAccount());
-								return responseJson.toString();
-							}
-								
-					}
-					responseJson.put("msg", WebMessage.getMessage("globalUpdateDataSuccess", null, locale));
-					responseJson.put("success", true);
-					systemLogService.insert(baseControllerName, baseActionName, json, SystemLogVariable.Action.Update, SystemLogVariable.Status.Success, getBaseIpAddress(), getBaseMemberAccount());
-				} else {
-					responseJson.put("msg", WebMessage.getMessage("globalUpdateDataFail", null, locale));
-					responseJson.put("success", false);
-					systemLogService.insert(baseControllerName, baseActionName, json, SystemLogVariable.Action.Update, SystemLogVariable.Status.Fail, getBaseIpAddress(), getBaseMemberAccount());
-				}
-			} else {
-				responseJson.put("msg", WebMessage.getMessage("globalUpdateDataFail", null, locale));
-				responseJson.put("success", false);
-				systemLogService.insert(baseControllerName, baseActionName, json, SystemLogVariable.Action.Update, SystemLogVariable.Status.Fail, getBaseIpAddress(), getBaseMemberAccount());
-			}
-		} catch (Exception e) {
-			responseJson.put("msg", WebMessage.getMessage("globalUpdateDataFail", null, locale));
-			responseJson.put("success", false);
-			systemLogService.insert(baseControllerName, baseActionName, json, SystemLogVariable.Action.Update, SystemLogVariable.Status.Fail, getBaseIpAddress(), getBaseMemberAccount());
-		}
-		return responseJson.toString();
-	}
+	
 
 	/**
 	 * 重設密碼

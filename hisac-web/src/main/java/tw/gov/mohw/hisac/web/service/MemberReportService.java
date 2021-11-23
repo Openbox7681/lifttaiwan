@@ -90,21 +90,6 @@ public class MemberReportService {
 		}
 	}
 	
-	/**
-	 * 利用報告產生時間判斷報表是否存在
-	 * 
-	 * @param reportCreateTime
-	 *            報表產生時間
-	 * @return 是否存在
-	 */
-	
-	public boolean isMemberReportExistByCreateReportTime(String reportCreateTime){
-		return memberReportDAO.isMemberReportExistByReportDate(reportCreateTime);
-		
-		
-	}
-	
-	
 	
 	
 
