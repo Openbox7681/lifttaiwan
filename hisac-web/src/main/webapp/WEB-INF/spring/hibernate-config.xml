@@ -120,17 +120,7 @@
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 	
-	<bean id="MemberReportScheduleDAO" class="tw.gov.mohw.hisac.web.dao.MemberReportScheduleDAOImpl">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
 	
-	
-	
-	
-	
-	<bean id="memberReportDAO" class="tw.gov.mohw.hisac.web.dao.MemberReportDAOImpl">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
 
 	
 	<bean id="handleInformationDAO" class="tw.gov.mohw.hisac.web.dao.HandleInformationDAOImpl">

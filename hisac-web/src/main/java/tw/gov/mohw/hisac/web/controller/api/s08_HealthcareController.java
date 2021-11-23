@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import tw.gov.mohw.hisac.web.WebMessage;
 import tw.gov.mohw.hisac.web.controller.BaseController;
 import tw.gov.mohw.hisac.web.dao.SystemLogVariable;
-import tw.gov.mohw.hisac.web.domain.ViewHealthcare;
 
 /**
  * 醫事機構代碼資料維護控制器
