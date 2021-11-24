@@ -74,6 +74,10 @@
 	src="<c:out value="${pageContext.request.contextPath}" />/resources/plugins/paging.js"></script>
 <script
 	src="<c:out value="${pageContext.request.contextPath}" />/resources/plugins/FileSaver.js"></script>
+	
+	
+
+
 <!--[if lt IE 10]>
 <script
 	src="<c:out value="${pageContext.request.contextPath}" />/resources/plugins/jsencrypt.js"></script>

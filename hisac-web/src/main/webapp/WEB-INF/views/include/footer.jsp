@@ -1,11 +1,11 @@
 <%@ page language="java" pageEncoding="UTF8"%>
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<footer id="footer" class="footer">
+<footer id="footer">
 	<div class="container">
         <div class="row">
           <div class="col-lg-3 col-md-4 middlecenter">
-            <div class="footer_logo"><img src="../img/logo_most.svg"></div>
+            <div class="footer_logo"><img src="<c:out value="${pageContext.request.contextPath}" />/resources/img/logo_most.svg"></div>
           </div>
           <div class="col-lg-9 col-md-8">
             <div class="footer_content" id="acolor2">

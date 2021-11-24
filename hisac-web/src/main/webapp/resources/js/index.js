@@ -144,11 +144,22 @@ function getAppController($scope, $http, $window, $timeout) {
 	
 	$scope.login = function() {
 		var grecaptcha = $("#g-recaptcha-response").val();
-		if (grecaptcha == '' && $scope.showTwoFactor) return;
+//		if (grecaptcha == '' && $scope.showTwoFactor) return;
+//		bootbox.dialog({
+//            closeButton: false,
+//            message: '<i class="fas fa-fw fa-circle-notch fa-spin"></i>' + loginLogin
+//        });
+		
+		
+		console.log("testtt")
+		
 		bootbox.dialog({
-            closeButton: false,
-            message: '<i class="fas fa-fw fa-circle-notch fa-spin"></i>' + loginLogin
-        });
+			closeButton: false,
+			message : '<i class="fas fa-fw fa-circle-notch fa-spin"></i>' + dataLoading 
+		});
+		
+		
+		
 		var request = 'account=' + $scope.userName + '&code=' + btoa($scope.userCode) + '&otp=' + $scope.otpCode + '&gtp=' + grecaptcha;
 		$http
 			.post('./public/api/login', request, csrf_config)
