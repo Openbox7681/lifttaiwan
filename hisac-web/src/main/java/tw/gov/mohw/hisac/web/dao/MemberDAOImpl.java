@@ -21,7 +21,6 @@ import org.springframework.transaction.annotation.Transactional;
 import tw.gov.mohw.hisac.web.WebCrypto;
 import tw.gov.mohw.hisac.web.WebDatetime;
 import tw.gov.mohw.hisac.web.domain.Member;
-import tw.gov.mohw.hisac.web.domain.SpMemberReport;
 import tw.gov.mohw.hisac.web.domain.ViewMember;
 
 @Repository
@@ -339,34 +338,5 @@ public class MemberDAOImpl extends BaseSessionFactory implements MemberDAO {
 		}
 	}
 	
-	@SuppressWarnings("unchecked")
-	public List<SpMemberReport> getReport(JSONObject obj) {
-		String querySdate = obj.isNull("QuerySdate") == true ? null : obj.getString("QuerySdate");
-		String queryEdate = obj.isNull("QueryEdate") == true ? null : obj.getString("QueryEdate");				
-
-		ProcedureCall call = getSessionFactory().getCurrentSession().createStoredProcedureCall("xp_member_report", SpMemberReport.class);
-			
-		try {
-			if (querySdate != null)
-				call.registerParameter("QuerySdate", Date.class, ParameterMode.IN).bindValue(new SimpleDateFormat("yyyy-MM-dd").parse(querySdate));
-			else
-				call.registerParameter("QuerySdate", Date.class, ParameterMode.IN).enablePassingNulls(true);
-			if (queryEdate != null)
-				call.registerParameter("QueryEdate", Date.class, ParameterMode.IN).bindValue(new SimpleDateFormat("yyyy-MM-dd").parse(queryEdate));
-			else
-				call.registerParameter("QueryEdate", Date.class, ParameterMode.IN).enablePassingNulls(true);
-		}	catch (ParseException e) {
-				//e.printStackTrace();
-		}
-
-		ProcedureOutputs procedureOutputs = call.getOutputs();
-		ResultSetOutput resultSetOutput = (ResultSetOutput) procedureOutputs.getCurrent();
-		List<SpMemberReport> list = resultSetOutput.getResultList();
-
-		if (list.size() > 0) {
-			return list;
-		} else {
-			return null;
-		}
-	}
+	
 }

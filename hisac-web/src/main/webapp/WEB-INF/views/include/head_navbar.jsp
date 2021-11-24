@@ -10,7 +10,7 @@
 					title="<s:message code="globalSiteName" />" class="img-responsive" />
 				</a>
 			</div>
-			<div>
+			<%-- <div>
 				<ul class="nav navbar-right navbar_right hidden-xs">
 					<li class="dropdown"><a id="btnLogin" href="#"
 						onclick="toggleLogin()" class="dropdown-toggle"
@@ -23,9 +23,9 @@
 							class="fas fa-fw fa-home"></i> <s:message
 								code="globalGoToHomepage" /></a></li>
 				</ul>
-			</div>
+			</div> --%>
 		</div>
-		<div class="navbar-header">
+		<%-- <div class="navbar-header">
 			<a id="btnLogin2" href="#" onclick="toggleLogin()"><button
 					type="button" class="navbar-toggle collapsed"
 					data-toggle="collapse" data-target="#menu">
@@ -36,7 +36,7 @@
 					data-toggle="collapse" data-target="#menu">
 					<i class="fas fa-lg fa-home"></i>
 				</button> </a>
-		</div>
+		</div> --%>
 		<div class="collapse navbar-collapse" id="menu"></div>
 	</div>
 </nav>

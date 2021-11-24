@@ -34,7 +34,6 @@ import tw.gov.mohw.hisac.web.domain.ForgotTemp;
 import tw.gov.mohw.hisac.web.domain.Member;
 import tw.gov.mohw.hisac.web.domain.MemberHistory;
 import tw.gov.mohw.hisac.web.domain.MemberRole;
-import tw.gov.mohw.hisac.web.domain.SpMemberReport;
 import tw.gov.mohw.hisac.web.domain.Sso;
 import tw.gov.mohw.hisac.web.domain.VerifyEmail;
 import tw.gov.mohw.hisac.web.domain.ViewMember;
@@ -854,20 +853,4 @@ public class MemberService {
 	}
 	
 	
-	/**
-	 * 取得會員報表資料
-	 * 
-	 * @param json
-	 *            查詢條件
-	 * @return 會員報表資料
-	 */
-
-	public List<SpMemberReport> getReport(String json) {
-		try {
-			JSONObject obj = new JSONObject(json);
-			return memberDAO.getReport(obj);
-		} catch (Exception e) {
-			return null;
-		}
-	}
 }

@@ -5,7 +5,6 @@ import java.util.List;
 import org.json.JSONObject;
 
 import tw.gov.mohw.hisac.web.domain.Member;
-import tw.gov.mohw.hisac.web.domain.SpMemberReport;
 import tw.gov.mohw.hisac.web.domain.ViewMember;
 
 public interface MemberDAO {
@@ -20,5 +19,4 @@ public interface MemberDAO {
 	public List<Member> getByOrgId(Long orgId);
 	public List<Member> getByOrgIds(Long[] orgIds);
 	public List<Member> getByIds(Long[] ids);
-	public List<SpMemberReport> getReport(JSONObject obj);
 }

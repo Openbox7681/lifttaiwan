@@ -52,6 +52,129 @@
 
 			</div>
 			<br />
+			<div id="divIndex" style="display: none;">
+				<div class="row">
+					<div class="col-xs-12 col-sm-6 no_padding no_padding_col_fix">
+						<h4 class="form_heading form_heading_blue">
+							<img
+								src="<c:out value="${pageContext.request.contextPath}" />/resources/img/icon-news.svg" />
+							<b><s:message code="globalTitleNews" /></b>
+						</h4>
+						<a href="<c:out value="${pageContext.request.contextPath}" />/news"
+							class="btn btn-sm btn_more form_heading_more pull-right"><i
+							class="fas fa-fw fa-play"></i> <s:message code="btnMore" /></a>
+						<div style="position: relative">
+							<table
+								class="table table-striped table-hover table_public table_gray">
+								<tbody>
+									<tr ng-repeat="item in news">
+										<td>{{item.Date}}</td>
+										<td class="ellipsis" style="max-width: 100px;"><a
+											ng-href="<c:out value="${pageContext.request.contextPath}" />/news?{{item.Id}}">{{item.Title}}</a></td>
+									</tr>
+								</tbody>
+							</table>
+							<div id="loadingNews" class="public_loading">
+								<h4>
+									<i class="fas fa-circle-notch fa-spin"></i>
+									<s:message code="dataLoading" />
+								</h4>
+							</div>
+						</div>
+					</div>
+					<div class="col-xs-12 col-sm-6 no_padding no_padding_col_fix">
+						<h4 class="form_heading form_heading_green">
+							<img style = "max-width : 25px;"
+								src="<c:out value="${pageContext.request.contextPath}" />/resources/img/malware.svg" />
+							<b>勒索軟體專區</b>
+							<img style = "max-width : 25px;"
+								src="<c:out value="${pageContext.request.contextPath}" />/resources/img/promotional.svg" />
+						</h4>
+						<a href="<c:out value="${pageContext.request.contextPath}" />/malware"
+							class="btn btn-sm btn_more form_heading_more pull-right"><i
+							class="fas fa-fw fa-play"></i> <s:message code="btnMore" /></a>
+						<div style="position: relative">
+							<table
+								class="table table-striped table-hover table_public table_gray">
+								<tbody>
+									<tr ng-repeat="item in malware">
+										<td>{{item.Date}}</td>
+										<td class="ellipsis" style="max-width: 100px;"><a
+											ng-href="<c:out value="${pageContext.request.contextPath}" />/malware?{{item.Id}}">{{item.Title}}</a></td>
+									</tr>
+								</tbody>
+							</table>
+							
+							<div id="loadingMalwares" class="public_loading">
+								<h4>
+									<i class="fas fa-circle-notch fa-spin"></i>
+									<s:message code="dataLoading" />
+								</h4>
+							</div> 
+							
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-12 col-sm-6 no_padding no_padding_col_fix">
+						<h4 class="form_heading form_heading_blue">
+							<img
+								src="<c:out value="${pageContext.request.contextPath}" />/resources/img/icon-aboutus.svg" />
+							<b>常見問題</b>
+						</h4>
+						<a href="<c:out value="${pageContext.request.contextPath}" />/qa"
+							class="btn btn-sm btn_more form_heading_more pull-right"><i
+							class="fas fa-fw fa-play"></i> <s:message code="btnMore" /></a>
+						<div style="position: relative">
+							<table
+								class="table table-striped table-hover table_public table_gray">
+								<tbody>
+									<tr ng-repeat="item in qa">
+										<td>{{item.QAMgName}}</td>
+										<td class="ellipsis" style="max-width: 100px;"><a
+											ng-href="<c:out value="${pageContext.request.contextPath}" />/qa?{{item.Id}}">{{item.QName}}</a></td>
+									</tr>
+								</tbody>
+							</table>
+							<div id="loadingQA" class="public_loading">
+								<h4>
+									<i class="fas fa-circle-notch fa-spin"></i>
+									<s:message code="dataLoading" />
+								</h4>
+							</div>
+						</div>
+					</div>
+					
+					<div class="col-xs-12 col-sm-6 no_padding no_padding_col_fix">
+						<h4 class="form_heading form_heading_orange">
+							<img
+								src="<c:out value="${pageContext.request.contextPath}" />/resources/img/icon-events.svg" />
+							<b><s:message code="globalTitleActivity" /></b>
+						</h4>
+						<a href="<c:out value="${pageContext.request.contextPath}" />/activity"
+							class="btn btn-sm btn_more form_heading_more pull-right"><i
+							class="fas fa-fw fa-play"></i> <s:message code="btnMore" /></a>
+						<div style="position: relative">
+							<table
+								class="table table-striped table-hover table_public table_gray">
+								<tbody>
+									<tr ng-repeat="item in activity">
+										<td>{{item.Date}}</td>
+										<td class="ellipsis" style="max-width: 100px;"><a
+											ng-href="<c:out value="${pageContext.request.contextPath}" />/activity?{{item.Id}}">{{item.Title}}</a></td>
+									</tr>
+								</tbody>
+							</table>
+							<div id="loadingActivity" class="public_loading">
+								<h4>
+									<i class="fas fa-circle-notch fa-spin"></i>
+									<s:message code="dataLoading" />
+								</h4>
+							</div>
+						</div>
+					</div>
+				</div>			
+			</div>
 			<div id="divLogin" class="row">
 				<div class="col-sm-offset-3 col-sm-6 shadow_board">
 					<h4 class="form_heading form_heading_gray">

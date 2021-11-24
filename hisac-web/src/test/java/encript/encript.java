@@ -13,7 +13,7 @@ public class encript {
 	@Test
 	public void test1() {
 		
-		String code = "K9+g4nZcYUNHpIJt1b9JAQ==";
+		String code = "6L4MKKolI17feAgmeiGAHQ==";
 		System.out.println("test");
 		
 //		System.out.println(WebCrypto.getRandomCode(8));
@@ -23,6 +23,18 @@ public class encript {
 		System.out.println(WebCrypto.aesDecrypt(CodeParameter, IvParameter, code));
 		
 //		WebCrypto.aesDecrypt(CodeParameter, IvParameter, code);
+		
+		String plainText = "123";
+
+		
+		
+		WebCrypto.aesEncrypt(CodeParameter, IvParameter, plainText);
+		
+//		System.out.println(WebCrypto.aesDecrypt(CodeParameter, IvParameter, code));
+		
+		System.out.println(WebCrypto.aesEncrypt(CodeParameter, IvParameter, plainText));
+
+
 
 	}
 

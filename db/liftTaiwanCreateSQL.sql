@@ -23,6 +23,8 @@ CREATE TABLE [dbo].[cc](
     PRIMARY KEY (Id)
 )
 
+-- done
+
 CREATE TABLE [dbo].[event_type](
 	[Id] [bigint] IDENTITY(1,1) NOT NULL,
 	[AlertCode] [varchar](8) NOT NULL,
@@ -38,12 +40,17 @@ CREATE TABLE [dbo].[event_type](
     PRIMARY KEY (Id)
 )
 
+-- done
+
 CREATE TABLE [dbo].[forgot_temp](
 	[MemberId] [bigint] NOT NULL,
 	[ExpireTime] [datetime] NOT NULL,
 	[Code] [varchar](128) NOT NULL,
-        PRIMARY KEY (Id)
+        PRIMARY KEY (MemberId)
 )
+
+-- done
+
 
 CREATE TABLE [dbo].[form](
 	[Id] [bigint] IDENTITY(1,1) NOT NULL,
@@ -62,6 +69,9 @@ CREATE TABLE [dbo].[form](
 	[ModifyTime] [datetime] NOT NULL,
     PRIMARY KEY (Id)
 )
+
+-- done
+
 
 CREATE TABLE [dbo].[handle_information](
 	[Id] [bigint] IDENTITY(1,1) NOT NULL,
@@ -83,6 +93,11 @@ CREATE TABLE [dbo].[handle_information](
 	[Remark] [nvarchar](max) NULL,
     PRIMARY KEY (Id)
 )
+
+-- done
+
+
+-- done
 
 CREATE TABLE [dbo].[links](
 	[Id] [bigint] IDENTITY(1,1) NOT NULL,
@@ -118,6 +133,9 @@ CREATE TABLE [dbo].[links_pic](
 	[ModifyTime] [datetime] NOT NULL,
     PRIMARY KEY (Id)
 )
+
+-- done
+
 
 CREATE TABLE [dbo].[member](
 	[Id] [bigint] IDENTITY(1,1) NOT NULL,
@@ -199,6 +217,8 @@ CREATE TABLE [dbo].[org](
     PRIMARY KEY (Id)
 )
 
+-- done
+
 CREATE TABLE [dbo].[org_sign](
 	[Id] [bigint] IDENTITY(1,1) NOT NULL,
 	[OrgId] [bigint] NOT NULL,
@@ -213,6 +233,11 @@ CREATE TABLE [dbo].[org_sign](
     PRIMARY KEY (Id)
 )
 
+-- done
+
+-- done
+
+
 CREATE TABLE [dbo].[process_log](
 	[Id] [bigint] IDENTITY(1,1) NOT NULL,
 	[PostId] [varchar](32) NOT NULL,
@@ -225,6 +250,9 @@ CREATE TABLE [dbo].[process_log](
 	[Opinion] [nvarchar](max) NULL,
     PRIMARY KEY (Id)
 )
+
+-- done
+
 
 CREATE TABLE [dbo].[report](
 	[Id] [bigint] IDENTITY(1,1) NOT NULL,
@@ -240,6 +268,9 @@ CREATE TABLE [dbo].[report](
     PRIMARY KEY (Id)
 )
 
+-- done
+
+
 CREATE TABLE [dbo].[resource_message](
 	[Id] [bigint] IDENTITY(1,1) NOT NULL,
 	[MessageKey] [varchar](128) NOT NULL,
@@ -250,6 +281,10 @@ CREATE TABLE [dbo].[resource_message](
 	[ModifyTime] [datetime] NOT NULL,
     PRIMARY KEY (Id)
 )
+
+
+-- done
+
 CREATE TABLE [dbo].[role](
 	[Id] [bigint] IDENTITY(1,1) NOT NULL,
 	[Name] [nvarchar](max) NOT NULL,
@@ -478,6 +513,29 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
+CREATE VIEW [dbo].[v_menu]
+AS
+SELECT          TOP (100) PERCENT CAST(dbo.subsystem.Id AS Varchar(MAX)) + '_' + CAST(dbo.form.Id AS Varchar(MAX)) AS Id, 
+                            dbo.subsystem.Id AS SubsytemId, dbo.subsystem.IconStyle, dbo.subsystem.Name AS SubsystemName, 
+                            dbo.form.Id AS FormId, dbo.form.Code AS FormCode, dbo.form.Name AS FormName, dbo.form.ControllerName, 
+                            dbo.form.ActionName, dbo.form.IsExternalLink, dbo.member.Id AS MemberId, dbo.role_form.ActionCreate, 
+                            dbo.role_form.ActionUpdate, dbo.role_form.ActionDelete, dbo.role_form.ActionRead, dbo.role_form.ActionSign, 
+                            dbo.subsystem.Sort AS SubsystemSort, dbo.form.Sort AS FormSort, dbo.subsystem.Code AS SubsystemCode, dbo.subsystem.IsShow AS SubsystemIsShow, dbo.form.IsShow AS FormIsShow
+FROM              dbo.subsystem INNER JOIN
+                            dbo.form LEFT OUTER JOIN
+                            dbo.role_form ON dbo.form.Id = dbo.role_form.FormId LEFT OUTER JOIN
+                            dbo.role ON dbo.role_form.RoleId = dbo.role.Id AND dbo.role.IsEnable = 1 LEFT OUTER JOIN
+                            dbo.member_role ON dbo.role.Id = dbo.member_role.RoleId AND dbo.member_role.IsEnable = 1 LEFT OUTER JOIN
+                            dbo.member ON dbo.member_role.MemberId = dbo.member.Id ON dbo.subsystem.Id = dbo.form.SubsystemId
+WHERE              dbo.form.isEnable = 1 AND dbo.subsystem.isEnable = 1
+GO
+
+
+
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
 CREATE VIEW [dbo].[v_menu_limit]
 AS
 SELECT          TOP (100) PERCENT SubsystemName, SubsystemCode, FormId, FormCode, FormName, ControllerName, ActionName, IsExternalLink, 
@@ -505,6 +563,7 @@ FROM              dbo.org INNER JOIN
 GO
 
 
+
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -520,6 +579,10 @@ FROM             (dbo.process_log AS a INNER JOIN
 GO
 
 
+
+
+-- done
+
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -532,4 +595,419 @@ FROM              dbo.subsystem AS a INNER JOIN
                             dbo.member AS b ON a.CreateId = b.Id INNER JOIN
                             dbo.member AS c ON a.ModifyId = c.Id
 GO
+
+-- done
+
+
+
+
+
+
+
+
+
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[xp_contact_count_dashboard] 
+	
+AS 
+BEGIN
+	
+SELECT count(*) as Count,Name='ContactCount' from member where Id in (select memberId from member_role where roleId=10 EXCEPT select memberId from member_role where roleId=11) and orgId in (SELECT Id from Org where orgType='3')
+union
+SELECT count(*) as Count,Name='ContactExamine' from v_member where Id in (select memberId from member_role where roleId=10 EXCEPT select memberId from member_role where roleId=11) and orgId in (SELECT Id from Org where orgType='3')
+and ErrorCount is null
+union
+SELECT count(*) as Count,Name='ContactDisable' from member where Id in (select memberId from member_role where roleId=10 EXCEPT select memberId from member_role where roleId=11) and orgId in (SELECT Id from Org where orgType='3')
+and isEnable = 0
+union
+SELECT count(*) as Count,Name='ContactWait' from v_member where Id in (select memberId from member_role where roleId=10 EXCEPT select memberId from member_role where roleId=11) and orgId in (SELECT Id from Org where orgType='3')
+and ErrorCount = -1
+END
+SET ANSI_NULLS ON
+GO
+
+
+
+
+
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[xp_information_exchange_dashboard]
+	@Sdate datetime =NULL, 
+	@Edate datetime =NULL 
+AS
+
+BEGIN
+
+SET NOCOUNT ON;
+
+	
+	select ISNULL(a.SourceCode, '') as Name, count(a.SourceCode) as count
+	from information_exchange a
+	where
+	   ( a.CreateTime >= ISNULL(@Sdate,a.CreateTime) or @Sdate is null) 
+	  and ( a.CreateTime <= ISNULL(@Edate,a.CreateTime) or @Edate is null) 
+	  --and (a.Status = 4 or a.Status = 5 or a.Status = 6)
+	group by a.SourceCode
+
+END
+GO
+
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+CREATE PROCEDURE [dbo].[xp_public_dashboard]
+	@Sdate datetime =NULL, 
+	@Edate datetime =NULL 
+AS
+
+BEGIN
+
+SET NOCOUNT ON;
+	(select 'News' as Name, count(a.Id) as count
+	from news_management a
+	where
+	   ( a.PostDateTime >= ISNULL(@Sdate,a.PostDateTime) or @Sdate is null) 
+	  and ( a.PostDateTime <= ISNULL(@Edate,a.PostDateTime) or @Edate is null) 
+	  and a.Status = 4
+	  and a.IsEnable = 1
+	  ) union (select 'Activity' as Name, count(b.Id) as count
+	from activity_management b
+	where
+	   ( b.PostDateTime >= ISNULL(@Sdate,b.PostDateTime) or @Sdate is null) 
+	  and ( b.PostDateTime <= ISNULL(@Edate,b.PostDateTime) or @Edate is null) 
+	  and b.Status = 4
+	  and b.IsEnable = 1
+	  ) union (select 'Ana' as Name, count(c.Id) as count
+	from ana_management c
+	where
+	   ( c.IncidentReportedTime >= ISNULL(@Sdate,c.IncidentReportedTime) or @Sdate is null) 
+	  and ( c.IncidentReportedTime <= ISNULL(@Edate,c.IncidentReportedTime) or @Edate is null) 
+	  and c.Status = 4
+	  and c.IsEnable = 1
+	  ) union (select 'Weakness' as Name, count(d.Id) as count
+	from weakness_management d
+	where
+	   ( d.IncidentReportedTime >= ISNULL(@Sdate,d.IncidentReportedTime) or @Sdate is null) 
+	  and ( d.IncidentReportedTime <= ISNULL(@Edate,d.IncidentReportedTime) or @Edate is null) 
+	  and d.Status = 4
+	  and d.IsEnable = 1
+	  )
+END
+GO
+
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[xp_message_dashboard]
+	@Sdate datetime =NULL, 
+	@Edate datetime =NULL,
+	@OrgId  bigint, 
+	@OrgType varchar(1) ='0' 
+	
+AS
+
+BEGIN
+
+SET NOCOUNT ON;
+
+IF @OrgType= '0' or @OrgType= '1'
+	
+	select a.AlertCode as Name, count(a.AlertCode) as count
+	from message a
+	where a.AlertCode is not null
+	  and ( a.PostDateTime >= ISNULL(@Sdate,a.PostDateTime) or @Sdate is null) 
+      and ( a.PostDateTime <= ISNULL(@Edate,a.PostDateTime) or @Edate is null)
+       and (a.IsTest = 0)
+	  and (a.Status = 5 or a.Status = 7 or a.Status = 8)
+	group by a.AlertCode
+	
+ELSE IF @OrgType= '2'
+	
+	select a.AlertCode as Name, count(a.AlertCode) as count
+	from message a
+	where a.AlertCode is not null
+	  and ( a.PostDateTime >= ISNULL(@Sdate,a.PostDateTime) or @Sdate is null) 
+      and ( a.PostDateTime <= ISNULL(@Edate,a.PostDateTime) or @Edate is null) 
+	  and (a.Status = 5 or a.Status = 7)
+	  and (a.IsTest = 0)
+	  and (a.Id in
+           		(
+           			Select message_post_release.MessageId
+           			from message_post_release
+           			where (((message_post_release.OrgId in 
+           			(
+           					Select org_sign.OrgId
+							from org_sign
+							where org_sign.ParentOrgId = @OrgId 
+							and org_sign.ParentOrgId in 
+						(
+							Select org.Id
+							from org
+							where org.AuthType = '1'
+							and org.IsEnable = 1
+						)
+           			))
+           			)
+           			or ((message_post_release.Iscc = 1 or message_post_release.IsReview = 1)
+						and (message_post_release.OrgId in   
+						 (
+            					Select org_sign.OrgId
+							from org_sign
+							where org_sign.ParentOrgId = @OrgId 
+							and org_sign.ParentOrgId in 
+						(
+							Select org.Id
+							from org
+							where org.AuthType = '2'
+							and org.IsEnable = 1
+						)
+						))
+						)))
+						or (a.Id in
+           		(
+            					Select message_post_release.MessageId
+							from message_post_release
+							where message_post_release.OrgId = @OrgId
+           		))
+						)
+	group by a.AlertCode
+	
+ELSE IF @OrgType= '3'
+select a.AlertCode as Name, count(a.AlertCode) as count
+	from message a
+	where a.AlertCode is not null
+	  and ( a.PostDateTime >= ISNULL(@Sdate,a.PostDateTime) or @Sdate is null) 
+      and ( a.PostDateTime <= ISNULL(@Edate,a.PostDateTime) or @Edate is null) 
+	  and (a.Status = 5 or a.Status = 7 or a.Status = 8)
+	  and (a.IsTest = 0)
+	  and (a.Id in
+           		(
+            					Select message_post_release.MessageId
+							from message_post_release
+							where message_post_release.OrgId = @OrgId
+           		))
+	group by a.AlertCode
+	
+END
+GO
+
+
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[xp_notification_dashboard]
+	@Sdate datetime =NULL, 
+	@Edate datetime =NULL 
+AS
+
+BEGIN
+
+SET NOCOUNT ON;
+
+	
+	select a.EventType as Name, count(a.EventType) as count
+	from notification a
+	where a.EventType is not null
+	   and (a.ApplyDateTime >= ISNULL(@Sdate,a.ApplyDateTime) or @Sdate is null)
+       and (a.ApplyDateTime <= ISNULL(@Edate,a.ApplyDateTime) or @Edate is null)
+	   and (a.Status = 6)
+	   and (a.IsTest = 0)
+	group by a.EventType
+
+END
+GO
+
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[xp_manager_count_dashboard] 
+	
+AS 
+BEGIN
+	
+SELECT count(*) as Count,Name='ManagerCount' from member where Id in (select memberId from member_role where roleId=11) and orgId in (SELECT Id from Org where orgType='3')
+union
+SELECT count(*) as Count,Name='ManagerExamine' from v_member where Id in (select memberId from member_role where roleId=11) and orgId in (SELECT Id from Org where orgType='3')
+and ErrorCount is null
+union
+SELECT count(*) as Count,Name='ManagerDisable' from member where Id in (select memberId from member_role where roleId=11) and orgId in (SELECT Id from Org where orgType='3')
+and isEnable = 0
+union
+SELECT count(*) as Count,Name='ManagerWait' from v_member where Id in (select memberId from member_role where roleId=11) and orgId in (SELECT Id from Org where orgType='3')
+and ErrorCount = -1
+END
+SET ANSI_NULLS ON
+GO
+
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[xp_contact_count_dashboard] 
+	
+AS 
+BEGIN
+	
+SELECT count(*) as Count,Name='ContactCount' from member where Id in (select memberId from member_role where roleId=10 EXCEPT select memberId from member_role where roleId=11) and orgId in (SELECT Id from Org where orgType='3')
+union
+SELECT count(*) as Count,Name='ContactExamine' from v_member where Id in (select memberId from member_role where roleId=10 EXCEPT select memberId from member_role where roleId=11) and orgId in (SELECT Id from Org where orgType='3')
+and ErrorCount is null
+union
+SELECT count(*) as Count,Name='ContactDisable' from member where Id in (select memberId from member_role where roleId=10 EXCEPT select memberId from member_role where roleId=11) and orgId in (SELECT Id from Org where orgType='3')
+and isEnable = 0
+union
+SELECT count(*) as Count,Name='ContactWait' from v_member where Id in (select memberId from member_role where roleId=10 EXCEPT select memberId from member_role where roleId=11) and orgId in (SELECT Id from Org where orgType='3')
+and ErrorCount = -1
+END
+SET ANSI_NULLS ON
+GO
+
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[xp_information_dashboard]
+	@Sdate datetime =NULL, 
+	@Edate datetime =NULL
+	
+AS
+
+BEGIN
+
+SET NOCOUNT ON;
+	select b.Name, count(b.Name) as count from information_exchange a INNER JOIN information_source b ON a.SourceCode = b.Code 
+	where a.SourceCode is not null
+	and ( a.CreateTime >= ISNULL(@Sdate,a.CreateTime) or @Sdate is null) 
+	and ( a.CreateTime <= ISNULL(@Edate,a.CreateTime) or @Edate is null) 
+	group by b.Name
+	
+END
+GO
+
+
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROCEDURE [dbo].[xp_member_role_name]
+ @MemberId bigint
+AS
+
+
+BEGIN
+
+ SET NOCOUNT ON;
+
+	select *
+	from 
+	(
+
+	select b.Id,b.RoleId as RoleId,c.Name as Name ,'1' as Flag 
+	from member_role b, role c 
+	where b.RoleId=c.Id and b.MemberId=@MemberId
+	union 
+
+	select '0' as Id, a.Id as RoleId,a.Name as Name,'0' as Flag 
+	from role a 
+	where  a.Id not in (select RoleId from member_role  where  MemberId=@MemberId)
+
+	)  d order by RoleId
+END
+GO
+
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROCEDURE [dbo].[xp_org_sign]
+ @OrgId bigint
+AS
+
+
+BEGIN
+
+ SET NOCOUNT ON;
+
+	select *
+	from 
+	(
+
+	select '0' as Id,a.Id as OrgId,a.Name as Name,'0' as Flag ,'0' as WarningIsExamine,'0' as NotificationIsExamine,'0' as NotificationClosingIsExamine
+	from org a 
+	where a.OrgType='2' and a.IsEnable='1' and a.Id not in (select ParentOrgId from org_sign  where  OrgId=@OrgId)
+	
+	union 
+	
+	select b.Id,b.ParentOrgId as OrgId,d.Name as Name ,'1' as Flag ,b.WarningIsExamine,b.NotificationIsExamine,b.NotificationClosingIsExamine
+	from org_sign b, org c ,org d
+	where b.Orgid=c.Id and c.IsEnable='1' and b.OrgId=@OrgId and b.ParentOrgId=d.Id
+
+	)  d order by d.Flag desc, d.Name
+END
+
+GO
+
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[xp_signin_count_top10]
+	@QuerySdate datetime =NULL, 
+	@QueryEdate datetime =NULL	
+AS
+
+BEGIN
+
+select top(10) OrgName,count(OrgName) as Count from report a INNER JOIN v_member_org b on a.inputValue = b.Account 
+where 
+(FuncName = 'Login')
+AND (ActionName = 'Login')
+AND Status='Success' 
+AND ( CreateTime >= ISNULL(@QuerySdate, CreateTime) or @QuerySdate is null) 
+AND ( CreateTime <= ISNULL(@QueryEdate, CreateTime) or @QueryEdate is null) 
+GROUP by OrgName order by Count desc
+END
+GO
+
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[xp_systemlog_byorg_top5]
+	@QuerySdate datetime =NULL, 
+	@QueryEdate datetime =NULL,	
+	@AppName varchar(64) =NULL,
+	@FuncName varchar(64) =NULL,
+	@ActionName varchar(16) =NULL
+AS
+
+BEGIN
+
+select top(10) OrgName,count(OrgName) as Count from report a INNER JOIN v_member_org b on a.CreateAccount = b.Account 
+where (AppName = ISNULL( @AppName,AppName) or @AppName is null)
+AND (FuncName = ISNULL( @FuncName,FuncName) or @FuncName is null)
+AND (ActionName = ISNULL( @ActionName,ActionName) or @ActionName is null)
+AND Status='Success' 
+AND ( CreateTime >= ISNULL(@QuerySdate, CreateTime) or @QuerySdate is null) 
+AND ( CreateTime <= ISNULL(@QueryEdate, CreateTime) or @QueryEdate is null) 
+and CreateAccount in (select Account from member where Id in (select memberId from member_role where roleId=10 or roleId=11) and OrgId in (SELECT Id from Org where orgType='3'))
+GROUP by OrgName order by Count desc
+END
+GO
+
+
 
