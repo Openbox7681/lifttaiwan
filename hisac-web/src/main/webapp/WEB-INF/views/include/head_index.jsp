@@ -33,6 +33,12 @@
 	href="<c:out value="${pageContext.request.contextPath}" />/resources/css/default.css">
 <link rel="stylesheet"
 	href="<c:out value="${pageContext.request.contextPath}" />/resources/plugins/fontawesome/css/fontawesome-all.min.css">
+<link rel="stylesheet"
+	href="<c:out value="${pageContext.request.contextPath}" />/resources/css/basicstyle.css">
+<link rel="stylesheet"
+	href="<c:out value="${pageContext.request.contextPath}" />/resources/css/mainstyle.css">
+<link rel="stylesheet"
+	href="<c:out value="${pageContext.request.contextPath}" />/resources/css/responsive.css">
 <script
 	src="<c:out value="${pageContext.request.contextPath}" />/resources/plugins/html5shiv.min.js"></script>
 <script

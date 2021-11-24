@@ -1,15 +1,19 @@
 <%@ page language="java" pageEncoding="UTF8"%>
 <nav class="navbar navbar_customer">
 	<div class="container">
-		<div class="index_title">
-			<div>
+		<div class="row">
+			<div "col-lg-12">
 				<a href="<c:out value="${pageContext.request.contextPath}" />/"
-					class="logo logo_fix pull-left"> <img
+					class="login_logo"> <img
 					src="<c:out value="${pageContext.request.contextPath}" />/resources/img/hisac-logo.png"
 					alt="<s:message code="globalSiteName" />"
-					title="<s:message code="globalSiteName" />" class="img-responsive" />
+					title="<s:message code="globalSiteName" />" />
 				</a>
+				<div class="line1"></div>
 			</div>
+			</div>
+			
+			
 			<%-- <div>
 				<ul class="nav navbar-right navbar_right hidden-xs">
 					<li class="dropdown"><a id="btnLogin" href="#"
@@ -24,7 +28,6 @@
 								code="globalGoToHomepage" /></a></li>
 				</ul>
 			</div> --%>
-		</div>
 		<%-- <div class="navbar-header">
 			<a id="btnLogin2" href="#" onclick="toggleLogin()"><button
 					type="button" class="navbar-toggle collapsed"

@@ -30,6 +30,14 @@
 	href="<c:out value="${pageContext.request.contextPath}" />/resources/plugins/bootstrap/css/bootstrap-theme-cosmo.min.css" />
 <link rel="stylesheet"
 	href="<c:out value="${pageContext.request.contextPath}" />/resources/css/default.css">
+	
+<link rel="stylesheet"
+	href="<c:out value="${pageContext.request.contextPath}" />/resources/css/basicstyle.css">
+<link rel="stylesheet"
+	href="<c:out value="${pageContext.request.contextPath}" />/resources/css/mainstyle.css">
+<link rel="stylesheet"
+	href="<c:out value="${pageContext.request.contextPath}" />/resources/css/responsive.css">
+	
 <link rel="stylesheet"
 	href="<c:out value="${pageContext.request.contextPath}" />/resources/plugins/fontawesome/css/fontawesome-all.min.css">
 <link rel="stylesheet"

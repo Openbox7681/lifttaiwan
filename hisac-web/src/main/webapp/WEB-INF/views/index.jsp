@@ -9,49 +9,22 @@
 	var btnClose = '<s:message code="btnClose" />';
 </script>
 <script src="<c:out value="${pageContext.request.contextPath}" />/resources/js/index.js"></script>
-<body ng-app="myApp">
-	<!--[if lt IE 9]>
-	<div class="container">
-		<div class="row">
-			<div class="col-xs-12">
-				<h1 class="text-danger"><s:message code="loginNotSupportIE9" /></h1>
-			</div>
-			<div class="col-xs-12">
-				<h3 class="text-warning"><s:message code="loginSupportBrowsers" /></h3>
-			</div>
-			<h5>&nbsp;</h5>
-			<p class="col-xs-12 col-sm-6 col-md-3 text-center">
-				<a href="https://www.google.com/chrome/"
-					class="btn btn-primary btn-lg col-xs-12"> <s:message code="loginDownloadBrowser" /> Chrome</a>
-			</p>
-			<p class="col-xs-12 col-sm-6 col-md-3 text-center">
-				<a href="https://www.mozilla.org/"
-					class="btn btn-primary btn-lg btn-lg col-xs-12"> <s:message code="loginDownloadBrowser" /> Mozilla
-					Firefox</a>
-			</p>
-			<p class="col-xs-12 col-sm-6 col-md-3 text-center">
-				<a href="https://www.apple.com/tw/safari/"
-					class="btn btn-primary btn-lg btn-lg col-xs-12"> <s:message code="loginDownloadBrowser" /> Safari for Mac</a>
-			</p>
-			<p class="col-xs-12 col-sm-6 col-md-3 text-center">
-				<a
-					href="https://support.microsoft.com/zh-tw/help/17621/internet-explorer-downloads"
-					class="btn btn-primary btn-lg btn-lg col-xs-12"> <s:message code="loginDownloadBrowser" /> IE for Windows</a>
-			</p>
-		</div>
-	</div>
-	<![endif]-->
-	<!--[if gte IE 9]><!-->
-	<%@ include file="./include/head_navbar.jsp"%>
+<body ng-app="myApp" class="logincolor">
 	<div ng-controller="getAppController" class="container">
-		<div class="container">
-			<div class="row ad">
-				<img
-					src="<c:out value="${pageContext.request.contextPath}" />/resources/img/index-ad.jpg"
-					class="img-responsive">
-
-			</div>
-			<br />
+		<div class="container">			
+	<section id="login_logo">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12"><a class="login_logo" href="../index.html">
+          <img src=   "<c:out value="${pageContext.request.contextPath}" />/resources/img/logo_lightup.svg"
+           alt=""></a>
+            <div class="line1"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+			
+			
 			<div id="divLogin" class="row">
 				<div class="col-sm-offset-3 col-sm-6 shadow_board">
 					<h4 class="form_heading form_heading_gray">
