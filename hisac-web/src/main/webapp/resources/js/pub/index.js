@@ -41,9 +41,22 @@ function getAppController($scope, $http, $window) {
     $scope.activity = items;
     $scope.ana = ana_items;
     $scope.malwares = items;
-    //$scope.weakness = items;
     $scope.secbuzzer = items;
     $scope.inf = items;
+    
+    
+    $scope.solar_employment = function(){
+    	
+    	
+    	
+    	
+    	
+    }
+    ;
+    
+    
+    
+    
 
     $scope.queryNews = function() {    	
         var request = {
@@ -337,289 +350,11 @@ function getAppController($scope, $http, $window) {
             var myChart1 = new Chart(ctx1, config1);
             document.getElementById('myLegend1').innerHTML = myChart1.generateLegend();
         }).catch(function() {
-// bootbox.alert({
-// message: globalReadDataFail,
-// buttons: {
-// ok: {
-// label: '<i class="fas fa-fw fa-times"></i>' + btnClose,
-// className: 'btn-danger',
-// }
-// },
-// callback: function() {}
-// });
+
         }).finally(function() { });
     };
-    //$scope.queryInfoDashboard();
 
-    $scope.queryPublicDashboard2week = function() {
-        var request = {};
-        $http.post('./api/p00/query/public/dashboard2week', request, csrf_config).then(function(response) {
-            $scope.allitems_message = response.data.datatable;
-            var data = [];
-            data.push($scope.getCount($scope.allitems_message, "News"));
-            data.push($scope.getCount($scope.allitems_message, "Activity"));
-            data.push($scope.getCount($scope.allitems_message, "Ana"));
-            var count = 0;
-            for (i = 0; i < data.length; i++)
-                count += data[i];
-            if(count < 10)
-            	count = " " + count + " ";
-            var config1 = {
-                type: 'doughnut',
-                data: {
-                    labels: [
-                        "最新消息",
-                        "活動訊息",
-                        "資安訊息情報"
-                    ],
-                    datasets: [{
-                        data: data,
-                        backgroundColor: [
-                            "#E2ACEF",
-                            "#36A2EB",
-                            "#FFCE56"
-                        ],
-                        hoverBackgroundColor: [
-                            "#E2ACEF",
-                            "#36A2EB",
-                            "#FFCE56"
-                        ]
-                    }]
-                },
-                options: {
-                	title: {
-                		display: true,
-                		text: '近兩週',
-                		fontFamily: "'Noto Sans TC', 'Source Sans Pro', Calibri, Candara, Arial, sans-serif",
-                		fontSize: 15,
-                		fontColor: '#369',
-                		position: 'bottom'
-                	},
-                	legend: {
-                		display: false,
-                		position: 'bottom',
-                		fullWidth: true,
-                		reverse: false
-                	},
-                    pieceLabel: {
-                        render: 'value',
-                        fontSize: 16,
-                        fontStyle: 'bold',
-                        fontColor: '#666',
-                        fontFamily: 'Arial'
-                    },
-                    elements: {
-                        center: {
-                            text: count,
-                            color: '#FF6384',
-                            fontStyle: 'Arial',
-                            sidePadding: 50
-                        }
-                    }
-                }
-            };
-            var ctx1 = document.getElementById("myChart1").getContext("2d");
-            var myChart1 = new Chart(ctx1, config1);
-            document.getElementById('myLegend1').innerHTML = myChart1.generateLegend();
-        }).catch(function() {
-// bootbox.alert({
-// message: globalReadDataFail,
-// buttons: {
-// ok: {
-// label: '<i class="fas fa-fw fa-times"></i>' + btnClose,
-// className: 'btn-danger',
-// }
-// },
-// callback: function() {}
-// });
-        }).finally(function() {});
-
-    };
-    $scope.queryPublicDashboard2week();
-    
-    $scope.queryPublicDashboard = function() {
-        var request = {};
-        $http.post('./api/p00/query/public/dashboard', request, csrf_config).then(function(response) {
-            $scope.allitems_message = response.data.datatable;
-            var data = [];
-            data.push($scope.getCount($scope.allitems_message, "News"));
-            data.push($scope.getCount($scope.allitems_message, "Activity"));
-            data.push($scope.getCount($scope.allitems_message, "Ana"));
-            var count = 0;
-            for (i = 0; i < data.length; i++)
-                count += data[i];
-            if(count < 10)
-            	count = " " + count + " ";
-            var config2 = {
-                type: 'doughnut',
-                data: {
-                    labels: [
-                        "最新消息",
-                        "活動訊息",
-                        "資安訊息情報"
-                    ],
-                    datasets: [{
-                        data: data,
-                        backgroundColor: [
-                            "#E2ACEF",
-                            "#36A2EB",
-                            "#FFCE56"
-                        ],
-                        hoverBackgroundColor: [
-                            "#E2ACEF",
-                            "#36A2EB",
-                            "#FFCE56"
-                        ]
-                    }]
-                },
-                options: {
-                	title: {
-                		display: true,
-                		text: '總計',
-                		fontFamily: "'Noto Sans TC', 'Source Sans Pro', Calibri, Candara, Arial, sans-serif",
-                		fontSize: 15,
-                		fontColor: '#369',
-                		position: 'bottom'
-                	},
-                	legend: {
-                		display: false,
-                		position: 'bottom',
-                		fullWidth: true,
-                		reverse: false
-                	},
-                    pieceLabel: {
-                        render: 'value',
-                        fontSize: 16,
-                        fontStyle: 'bold',
-                        fontColor: '#666',
-                        fontFamily: 'Arial'
-                    },
-                    elements: {
-                        center: {
-                            text: count,
-                            color: '#FF6384',
-                            fontStyle: 'Arial',
-                            sidePadding: 50
-                        }
-                    }
-                }
-            };
-            var ctx2 = document.getElementById("myChart2").getContext("2d");
-            var myChart2 = new Chart(ctx2, config2);
-            document.getElementById('myLegend2').innerHTML = myChart2.generateLegend();
-        }).catch(function() {
-// bootbox.alert({
-// message: globalReadDataFail,
-// buttons: {
-// ok: {
-// label: '<i class="fas fa-fw fa-times"></i>' + btnClose,
-// className: 'btn-danger',
-// }
-// },
-// callback: function() {}
-// });
-        }).finally(function() {});
-
-    };
-    $scope.queryPublicDashboard();
-    
-    $scope.queryMessageDashboard2Week = function() {
-        var request = {};
-        $http.post('./api/p00/query/message/dashboard2week', request, csrf_config).then(function(response) {
-            $scope.allitems_message = response.data.datatable;
-            var data = [];
-            data.push($scope.getCount($scope.allitems_message, "ANA"));
-            data.push($scope.getCount($scope.allitems_message, "DEF"));
-            data.push($scope.getCount($scope.allitems_message, "INT"));
-            data.push($scope.getCount($scope.allitems_message, "EWA"));
-            data.push($scope.getCount($scope.allitems_message, "FBI"));
-            data.push($scope.getCount($scope.allitems_message, "OTH"));
-            var count = 0;
-            for (i = 0; i < data.length; i++)
-                count += data[i];
-            if(count < 10)
-            	count = " " + count + " ";
-            var config3 = {
-                type: 'doughnut',
-                data: {
-                    labels: [
-                        "ANA",
-                        "DEF",
-                        "INT",
-                        "EWA",
-                        "FBI",
-                        "OTH"
-                    ],
-                    datasets: [{
-                        data: data,
-                        backgroundColor: [
-                            "#E2ACEF",
-                            "#36A2EB",
-                            "#FFCE56",
-                            "#00cc66",
-                            "#ff6633",
-                            "#660000"
-                        ],
-                        hoverBackgroundColor: [
-                            "#E2ACEF",
-                            "#36A2EB",
-                            "#FFCE56",
-                            "#00cc66",
-                            "#ff6633",
-                            "#660000"
-                        ]
-                    }]
-                },
-                options: {
-                	title: {
-                		display: true,
-                		text: '近兩週',
-                		fontFamily: "'Noto Sans TC', 'Source Sans Pro', Calibri, Candara, Arial, sans-serif",
-                		fontSize: 15,
-                		fontColor: '#369',
-                		position: 'bottom'
-                	},
-                	legend: {
-                		display: false,
-                		position: 'bottom',
-                		fullWidth: true,
-                		reverse: false
-                	},
-                    pieceLabel: {
-                        render: 'value',
-                        fontSize: 16,
-                        fontStyle: 'bold',
-                        fontColor: '#666',
-                        fontFamily: 'Arial'
-                    },
-                    elements: {
-                        center: {
-                            text: count,
-                            color: '#FF6384',
-                            fontStyle: 'Arial',
-                            sidePadding: 50
-                        }
-                    }
-                }
-            };
-            var ctx3 = document.getElementById("myChart3").getContext("2d");
-            var myChart3 = new Chart(ctx3, config3);
-            document.getElementById('myLegend3').innerHTML = myChart3.generateLegend();
-        }).catch(function() {
-// bootbox.alert({
-// message: globalReadDataFail,
-// buttons: {
-// ok: {
-// label: '<i class="fas fa-fw fa-times"></i>' + btnClose,
-// className: 'btn-danger',
-// }
-// },
-// callback: function() {}
-// });
-        }).finally(function() {});
-
-    };
-    $scope.queryMessageDashboard2Week();
+   
 
     $scope.queryMessageDashboard = function() {
         var request = {};

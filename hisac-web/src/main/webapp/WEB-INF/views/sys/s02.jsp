@@ -4,14 +4,52 @@
 <%@ include file="../include/head.jsp"%>
 <script src="<c:out value="${pageContext.request.contextPath}" />/resources/js/sys/s02.js"></script>
 <body class="no-skin" ng-controller="getAppController" id="body">
-	<%@ include file="../include/navbar.jsp"%>
-	<div id="divQuery" class="container">
+	<%@ include file="../include/f_navbar.jsp"%>
+	<section id="main_content">
+	<div class="container">
+	<div class="row">
+	
+	<%@ include file="../include/slidebar.jsp"%>
+
+	<div id="divQuery" class="col-lg-9">
 		<div class="row">
 			<h4 class="form_heading form_heading_fix form_heading_gray">
 				<img src="<c:out value="${pageContext.request.contextPath}" />/resources/img/icon-setting.svg" />
 				<b><c:out value="${appName}" /></b>
 			</h4>
-			<div class="col-xs-12 shadow_board">
+			
+			<div class="col-lg-12">
+                <div id="filiter">
+                  <div class="filiter_line subsystem_data_color">
+                    <h6>角色名稱</h6>
+                    <div class="choose_item">
+                      <div class="input-group mb-2">
+                        <input class="form-control" type="text" placeholder="標題關鍵字" aria-label="標題關鍵字" aria-describedby="basic-addon2">
+                      </div>
+                    </div>
+                    <h6>是否啟用</h6>
+                    <div class="choose_item">
+                      <select class="form-select" aria-label="Default select example">
+                        <option selected="">全部</option>
+                        <option value="1">是</option>
+                        <option value="2">否</option>
+                      </select>
+                    </div>
+                    <div class="search_btn hcenter">
+                      <div class="button_fill_orange btn_m">
+                        <p>查詢</p>
+                      </div>
+                      <div class="button_fill_gray btn_m"><i class="fas fa-undo-alt"></i>
+                        <p>清空</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+			
+			
+			
+			<div class="col-lg-12 shadow_board">
 				<form name="queryForm">
 					<div>
 						<div class="form_group">
@@ -145,8 +183,11 @@
 			</div>
 		</div>
 	</div>
-
-	<div id="divEdit" class="container" ng-show="btnIns || btnUpd">
+	
+	
+	 <!-- div 角色資料新增         -->
+	 
+	 <div id="divEdit" class="col-lg-9 container" ng-show="btnIns || btnUpd">
 		<div class="row">
 			<h4 class="form_heading form_heading_fix form_heading_gray"
 				ng-show="btnIns">
@@ -237,6 +278,18 @@
 			</div>
 		</div>
 	</div>
+	
+	
+	
+	
+	
+	</div>
+	
+	</div>
+	
+	</section>
+
+	
 	<div class="footer_space"></div>
 	<%@ include file="../include/footer.jsp"%>
 </body>

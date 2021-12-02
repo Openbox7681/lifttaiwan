@@ -26,20 +26,32 @@
 <link rel="shortcut icon"
 	href="<c:out value="${pageContext.request.contextPath}" />/resources/favicon.ico"
 	type="image/vnd.microsoft.icon" />
-<link rel="stylesheet"
-	href="<c:out value="${pageContext.request.contextPath}" />/resources/plugins/bootstrap/css/bootstrap-theme-cosmo.min.css" />
+<%-- <link rel="stylesheet"
+	href="<c:out value="${pageContext.request.contextPath}" />/resources/plugins/bootstrap/css/bootstrap-theme-cosmo.min.css" /> --%>
 <link rel="stylesheet"
 	href="<c:out value="${pageContext.request.contextPath}" />/resources/css/default.css">
 	
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/css/bootstrap.min.css">
+
+
+	
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri&amp;family=Noto+Sans+TC&amp;display=swap" rel="stylesheet">
+
+
 <link rel="stylesheet"
-	href="<c:out value="${pageContext.request.contextPath}" />/resources/css/basicstyle.css">
-<link rel="stylesheet"
-	href="<c:out value="${pageContext.request.contextPath}" />/resources/css/mainstyle.css">
+	href="<c:out value="${pageContext.request.contextPath}" />/resources/css/style.css">
+
 <link rel="stylesheet"
 	href="<c:out value="${pageContext.request.contextPath}" />/resources/css/responsive.css">
 	
-<link rel="stylesheet"
-	href="<c:out value="${pageContext.request.contextPath}" />/resources/plugins/fontawesome/css/fontawesome-all.min.css">
+<%-- <link rel="stylesheet"
+	href="<c:out value="${pageContext.request.contextPath}" />/resources/plugins/fontawesome/css/fontawesome-all.min.css"> --%>
 <link rel="stylesheet"
 	href="<c:out value="${pageContext.request.contextPath}" />/resources/css/bootstrap-datetimepicker.min.css">
 <script
@@ -75,6 +87,10 @@
 <script
 	src="<c:out value="${pageContext.request.contextPath}" />/resources/plugins/FileSaver.js"></script>
 	
+	
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.min.js"></script>
 	
 
 

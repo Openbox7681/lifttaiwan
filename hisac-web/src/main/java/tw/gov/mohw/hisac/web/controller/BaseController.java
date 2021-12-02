@@ -323,6 +323,7 @@ public class BaseController {
 				}
 				session.setAttribute("menuJson", myFilter.stripXSS(strMenuJson));
 				model.addAttribute("menuJson", myFilter.stripXSS(strMenuJson));
+				System.out.println(myFilter.stripXSS(strMenuJson));
 			} else {
 				model.addAttribute("menuJson", myFilter.stripXSS(session.getAttribute("menuJson").toString()));
 			}

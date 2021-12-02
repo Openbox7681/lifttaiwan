@@ -294,8 +294,9 @@
 		</div>
 		<div class="collapse navbar-collapse" id="menu">
 			<ul class="nav navbar-nav" id="menuLeft">
+			
 			</ul>
-			<ul class="nav navbar-nav visible-xs">
+			<ul class="nav navbar-nav ">
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
 					data-toggle="dropdown" role="button" aria-haspopup="true"
 					aria-expanded="false"><i class="fas fa-fw fa-user"></i> <c:out
@@ -319,8 +320,8 @@
 									code="globalLogout" /></a></li>
 					</ul></li>
 			</ul>
-			<ul ng-if="<c:out value="${developmentMode}" />"
-				class="menu_bar_toggle nav navbar-nav visible-xs">
+			<ul
+				class="menu_bar_toggle nav navbar-nav">
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
 					data-toggle="dropdown" role="button" aria-haspopup="true"
 					aria-expanded="false"><i class="fas fa-fw fa-cog"></i>Dev Mode<i
