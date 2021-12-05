@@ -1,5 +1,11 @@
 <%@ page language="java" pageEncoding="UTF8"%>
+<script>
+   
+function test(){
+    bootbox.alert("This is the default alert!");
 
+}
+    </script>
 
 
 <!-- partial:index.partial.html-->
@@ -12,7 +18,7 @@
             <span href="#" onclick="logout();"> <s:message code="globalLogout" /></span>
             </div>
             
-              <div class="button_fill_orange btn_s"><span>回到前台</span></div>
+              <div class="button_fill_orange btn_s" onclick="test()" ><span>回到前台</span></div>
               <div class="user"><span>Admin000</span></div>
  
             </div>

@@ -164,10 +164,7 @@ function getAppController($rootScope, $scope, $http, $cookieStore, $anchorScroll
 	
 	// Switch to Edit(Update) Mode Start
 	$scope.editData = function(id) {
-		bootbox.dialog({
-			closeButton: false,
-			message : '<i class="fas fa-fw fa-circle-notch fa-spin"></i>' + dataLoading 
-		});
+		
 		var request = {
 			Id : id
 		};
@@ -187,19 +184,8 @@ function getAppController($rootScope, $scope, $http, $cookieStore, $anchorScroll
 			$scope.IsExternalLink = response.data[0].IsExternalLink;
 			$scope.IsEnable = response.data[0].IsEnable;
 			$scope.IsShow = response.data[0].IsShow;
-			bootbox.hideAll();
 		}).catch(function() {
-			bootbox.hideAll();
-			bootbox.alert({
-				message : globalReadDataFail,
-				buttons : {
-					ok : {
-						label : '<i class="fas fa-fw fa-times"></i>' + btnClose,
-						className : 'btn-danger'
-					}
-				},
-				callback: function() { }
-			});
+			
 		}).finally(function() { });
 	}
 	// Switch to Edit(Update) Mode End

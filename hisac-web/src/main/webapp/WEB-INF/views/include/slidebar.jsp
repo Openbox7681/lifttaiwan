@@ -59,7 +59,9 @@
                 </div>
               </div>
               <div class="mhr"></div><a class="button_line_gray" href="pages/subsystem_data.html">               <span>子系統資料維護</span></a>
-              <div class="mhr"></div><a class="button_line_gray" href="pages/form_data.html"><span>表單資料維護</span></a>
+              <div class="mhr"></div>
+              <a class="button_line_gray" href="<c:out value="${pageContext.request.contextPath}" />/sys/s11">
+              <span>表單資料維護</span></a>
               <div class="mhr"></div><a class="button_line_gray" href="pages/record.html">             <span>操作記錄</span></a>
 
 

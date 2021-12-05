@@ -1,11 +1,20 @@
 <%@ page language="java" contentType="text/html;charset=UTF-8"%>
 <!DOCTYPE html>
 <html ng-app="myApp">
-<%@ include file="../include/head_back.jsp"%>
+<%@ include file="../include/head.jsp"%>
 <script src="<c:out value="${pageContext.request.contextPath}" />/resources/js/sys/s11.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.min.js"></script>
+
 <body class="no-skin" ng-controller="getAppController" id="body">
-	<%@ include file="../include/navbar.jsp"%>
-	<div id="divQuery" class="container">
+	<%@ include file="../include/f_navbar.jsp"%>
+	
+	<section id="main_content">
+	<div class="container">
+	<div class="row">
+				
+	<%@ include file="../include/slidebar.jsp"%>
+					
+		<div id="divQuery" class="col-lg-9 container">
 		<div class="row">
 			<h4 class="form_heading form_heading_fix form_heading_gray">
 				<img src="<c:out value="${pageContext.request.contextPath}" />/resources/img/icon-setting.svg" />
@@ -259,6 +268,24 @@
 			</div>
 		</div>
 	</div>
+				
+				
+				
+				
+				
+				</div>
+			
+			</div>
+	</section>
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	<div id="divEdit" class="container" ng-show="btnIns || btnUpd">
 		<div class="row">
 			<h4 class="form_heading form_heading_fix form_heading_gray"
