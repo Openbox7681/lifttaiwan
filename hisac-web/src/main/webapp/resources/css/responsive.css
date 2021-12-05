@@ -37,20 +37,28 @@
   .container{
     max-width: 900px;
   }
-  .hamshow{
-    display: inline-block;
-    
-  }
-  .info_button{
-    display: block;
-    
-  }
-  .filiter_button{
-    display: block;
-  }
+
   .none{
-    display: none !important;   
+    display: none;   
   }
+  #user_managebtn .outer{
+    display: none; 
+  }
+  #nonbtn{
+    display: block !important;
+
+  }
+
+  .sidebar_button{
+    display: block;
+  }
+  .statistics_type .statistics_line span{
+    font-size: 1.6rem;
+  }
+  /* .sidebar span, .button span{
+    font-size: 1rem;
+  }
+    */
 
   h1{
     font-size: 1.8rem
@@ -64,46 +72,23 @@
   h4{
     font-size: 1.3rem
   }
-/*  h5{
-    font-size: 1.2rem
+  h5{
+    font-size: 1.1rem
   }
   h6{
-    font-size: 1.2rem*/
- /* }*/
+    font-size: 0.9rem
+  }
   p{
-    font-size: 1rem
+    font-size: 0.875rem
   }
 
-  #nav-icon3{
-    max-width: 50px;
 
-  }
-  #nav-icon3 span:nth-child(2),#nav-icon3 span:nth-child(3){
-    top: 14px;
-  }
-
-  #nav-icon3 span:nth-child(4){
-    top: 28px;
-  }
-  #nav-icon3 span{
-    height: 6px;
-  }
-  .cube_outer p{
-    font-size: 1.3rem;
-  }
-  .cube_outer h2{
-    font-size: 1.8rem;
-  }
 
 }
 
 
 /* ---- End of max-width 992px CSS ---- */
-@media all and (min-width: 769px) {
-
-
-
-}
+@media all and (min-width: 769px) {}
 @media all and (min-width: 481px) {}
 
 
@@ -115,12 +100,15 @@
   .footer_logo img{
     width: 80%;
   }
-
+  .popinfo{
+    position: absolute;
+    bottom: 10%;
+    left: 50%;
+  }
   .icon_talents,.icon_subsidy_paper,.icon_grb,.icon_interplan,.icon_plan,.icon_inbound,.icon_sixarea,.icon_mechanism,.icon_issue,.icon_subsidy_suggest{
     width: 120%;
     height: 120%;
   }
-
 
 }
 /* ---- End of min-width 480px and max-width 768px CSS ---- */
@@ -128,25 +116,6 @@
 
 /* ---- Start of max-width 767px CSS ---- */
 @media all and (max-width: 767px) {
-
-  #videoinfo_content .wordadjust2{
-    padding: 0;
-  }
-  .wordad{
-    padding: 0rem 2rem;
-  }
-  #videoinfo_content .col-md-2{
-    padding-bottom: 2rem;
-  }
-  #videoinfo_content .wordadjust{
-    padding-bottom: 0;
-  }
-  .cube_outer p{
-    font-size: 1.6rem;
-  }
-  .cube_outer h2{
-    font-size: 2rem;
-  }
 
 
 }
@@ -160,19 +129,10 @@
   .modal-dialog{
     max-width: 760px;
   }
-  .wordaad{
-    padding: 0 !important;
-  }
-
-
 
 }
 @media all and (max-width: 576px){
-  #banner_content .banner{
-    padding-top: 20%;
-    padding-bottom: 20%;
 
-  }
 
 }
 

@@ -151,70 +151,104 @@ function getAppController($rootScope, $scope, $http, $cookieStore, $anchorScroll
 	}
 	// Switch to Edit(Update) Mode End
 	
-	// Delete Item Start
-	$scope.deleteData = function(id) {
-		bootbox.confirm({
-			message: globalSureDeleteItem,
-			buttons: {
-				confirm: {
-					label : '<i class="fas fa-fw fa-check"></i>' + btnSure,
-					className : 'btn-success'
-				},
-				cancel: {
-					label : '<i class="fas fa-fw fa-times"></i>' + btnClose,
-					className : 'btn-default'
+	$scope.deleteData = function(id){
+		console.log('delete')
+		
+		var request = {
+				Id: id
+			};
+			$http.post('./api/s02/delete', request, csrf_config).then(function(response) {
+				if (response.data.success) {
+					
+					alert("刪除成功");
+					if ($scope.pageRows == 1 && $scope.currentPage > 1) {
+						$scope.currentPage = $scope.currentPage - 1;
+					}
+					$scope.queryData($scope.currentPage);
+					
+					
+				} else {
+					
 				}
-			},
-			callback: function(result) {
-				if (result) {
-					var request = {
-						Id: id
-					};
-					$http.post('./api/s02/delete', request, csrf_config).then(function(response) {
-						if (response.data.success) {
-							bootbox.alert({
-								message : response.data.msg,
-								buttons : {
-									ok : {
-										label : '<i class="fas fa-fw fa-times"></i>' + btnClose,
-										className : 'btn-success',
-									}
-								},
-								callback: function() {
-									if ($scope.pageRows == 1 && $scope.currentPage > 1) {
-										$scope.currentPage = $scope.currentPage - 1;
-									}
-									$scope.queryData($scope.currentPage);
-								}
-							});
-						} else {
-							bootbox.alert({
-								message : response.data.msg,
-								buttons : {
-									ok : {
-										label : '<i class="fas fa-fw fa-times"></i>' + btnClose,
-										className : 'btn-danger',
-									}
-								},
-								callback: function() { }
-							});
-						}
-					}).catch(function() {
-						bootbox.alert({
-							message : globalDeleteDataFail,
-							buttons : {
-								ok : {
-									label : '<i class="fas fa-fw fa-times"></i>' + btnClose,
-									className : 'btn-danger',
-								}
-							},
-							callback: function() { }
-						});
-					}).finally(function() { });
-				}
-			}
-		});
+			}).catch(function() {
+				
+			}).finally(function() { });
+		
+		
+		
+		
+		
 	}
+	
+	// Delete Item Start
+//	$scope.deleteData = function(id) {
+//		bootbox.confirm({
+//			message: globalSureDeleteItem,
+//			buttons: {
+//				confirm: {
+//					label : '<i class="fas fa-fw fa-check"></i>' + btnSure,
+//					className : 'btn-success'
+//				},
+//				cancel: {
+//					label : '<i class="fas fa-fw fa-times"></i>' + btnClose,
+//					className : 'btn-default'
+//				}
+//			},
+//			callback: function(result) {
+//				if (result) {
+//					var request = {
+//						Id: id
+//					};
+//					$http.post('./api/s02/delete', request, csrf_config).then(function(response) {
+//						if (response.data.success) {
+//							bootbox.alert({
+//								message : response.data.msg,
+//								buttons : {
+//									ok : {
+//										label : '<i class="fas fa-fw fa-times"></i>' + btnClose,
+//										className : 'btn-success',
+//									}
+//								},
+//								callback: function() {
+//									if ($scope.pageRows == 1 && $scope.currentPage > 1) {
+//										$scope.currentPage = $scope.currentPage - 1;
+//									}
+//									$scope.queryData($scope.currentPage);
+//								}
+//							});
+//						} else {
+//							bootbox.alert({
+//								message : response.data.msg,
+//								buttons : {
+//									ok : {
+//										label : '<i class="fas fa-fw fa-times"></i>' + btnClose,
+//										className : 'btn-danger',
+//									}
+//								},
+//								callback: function() { }
+//							});
+//						}
+//					}).catch(function() {
+//						bootbox.alert({
+//							message : globalDeleteDataFail,
+//							buttons : {
+//								ok : {
+//									label : '<i class="fas fa-fw fa-times"></i>' + btnClose,
+//									className : 'btn-danger',
+//								}
+//							},
+//							callback: function() { }
+//						});
+//					}).finally(function() { });
+//					
+//					
+//					
+//				}
+//				
+//				
+//			}
+//		});
+//	}
 	/* Delete Item End */
 	
 	/* Insert Item Start */

@@ -21,6 +21,9 @@
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 	
+	<bean id="topaf50DAO" class="tw.gov.mohw.hisac.web.dao.Topaf50DAOImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
 	
 	
 	

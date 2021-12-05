@@ -18,7 +18,7 @@
 				<b><c:out value="${appName}" /></b>
 			</h4>
 			
-			<div class="col-lg-12">
+			<!-- <div class="col-lg-12">
                 <div id="filiter">
                   <div class="filiter_line subsystem_data_color">
                     <h6>角色名稱</h6>
@@ -46,7 +46,7 @@
                   </div>
                 </div>
               </div>
-			
+			 -->
 			
 			
 			<div class="col-lg-12 shadow_board">

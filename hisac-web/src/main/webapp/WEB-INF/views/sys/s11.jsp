@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html;charset=UTF-8"%>
 <!DOCTYPE html>
 <html ng-app="myApp">
-<%@ include file="../include/head.jsp"%>
+<%@ include file="../include/head_back.jsp"%>
 <script src="<c:out value="${pageContext.request.contextPath}" />/resources/js/sys/s11.js"></script>
 <body class="no-skin" ng-controller="getAppController" id="body">
 	<%@ include file="../include/navbar.jsp"%>

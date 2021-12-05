@@ -1,14 +1,14 @@
 var myApp = angular.module('myApp', []).controller('getAppController',
     getAppController);
 
-angular.element(document).ready(function() {
-    angular.element(window).keydown(function() {
-        if (event.keyCode == 13) {
-            event.preventDefault();
-            return false;
-        }
-    });
-});
+//angular.element(document).ready(function() {
+//    angular.element(window).keydown(function() {
+//        if (event.keyCode == 13) {
+//            event.preventDefault();
+//            return false;
+//        }
+//    });
+//});
 
 function getAppController($scope, $http, $window) {
     var items = [];
@@ -19,6 +19,7 @@ function getAppController($scope, $http, $window) {
             Id: ""
         });
     }
+    
     var ana_items=[];
     /*
     for (var i = 0; i < 12; i++) {
@@ -32,11 +33,39 @@ function getAppController($scope, $http, $window) {
 
     for (var i = 0; i < 5; i++) {
         ana_items.push({
-        Date: "　",
+        Date: "test",
         Title: "",
-        Id: ""
+        Id: "1"
     });
+        
 }
+    console.log(ana_items);
+    
+    var my_json = [{
+    	    name : 'Canada',
+    	    value1 : 42,
+    	    value2 : 17
+    	},
+    	{
+    	    name : 'Chile',
+    	    value1 : 0,
+    	    value2 : 11
+    	}
+    
+    ]
+    
+    for (var i =0 ; i <my_json.length ; i ++){
+    	my_json[i]["trend"] = my_json[i]["value1"] + my_json[i]["value2"];
+    }
+    
+
+   
+    
+    
+
+    
+    
+    
     $scope.news = items;
     $scope.activity = items;
     $scope.ana = ana_items;
@@ -45,7 +74,554 @@ function getAppController($scope, $http, $window) {
     $scope.inf = items;
     
     
-    $scope.solar_employment = function(){
+    $scope.maxima = function(){
+        var dom = document.getElementById("maxima");
+        var myChart = echarts.init(dom);
+        var app = {};
+
+        var option;
+
+        const data = [
+        [
+            [0.44235026836395264, 1.0833333730697632, 3562, '晶圓代工', '資訊及數位相關產業'],
+            [0.36915940046310425, 1, 4801, '晶圓封測', '資訊及數位相關產業'],
+            [0.3624591827392578, 0.7777777910232544, 1461, '智慧運輸', '資訊及數位相關產業'],
+        ],
+        [
+            [0.1439911276102066, 1.1111111640930176, 3788, '智慧醫材', '臺灣精準健康戰略產業'],
+            [0.1413225680589676, 1.1111111640930176, 3869, '智慧醫療', '臺灣精準健康戰略產業'],
+            [0.16367989778518677, 0.8999999761581421, 3869, '照護管理', '臺灣精準健康戰略產業'],
+
+            
+        ]
+        
+        
+        
+        ];
+        option = {
+            backgroundColor: new echarts.graphic.RadialGradient(0.3, 0.3, 0.8, [
+                {
+                    offset: 0,
+                    color: '#f7f8fa'
+                },
+                {
+                    offset: 1,
+                    color: '#cdd0d5'
+                }
+            ]),
+            title: {
+                text: '',
+                left: '5%',
+                top: '3%'
+            },
+            legend: {
+                right: '10%',
+                top: '3%',
+                data: ['資訊及數位相關產業' , '臺灣精準健康戰略產業']
+            },
+            grid: {
+                left: '8%',
+                top: '10%'
+            },
+            xAxis: {
+                splitLine: {
+                    lineStyle: {
+                        type: 'dashed'
+                    }
+                }
+            },
+            yAxis: {
+                splitLine: {
+                    lineStyle: {
+                        type: 'dashed'
+                    }
+                },
+                scale: true
+            },
+            series: [
+                {
+                    name: '資訊及數位相關產業',
+                    data: data[0],
+                    type: 'scatter',
+                    symbolSize: function (data) {
+                        return Math.sqrt(data[2]) / 2;
+                    },
+                    emphasis: {
+                        focus: 'series',
+                        label: {
+                            show: true,
+                            formatter: function (param) {
+                                return param.data[3] +"\n" + "數量 : " + param.data[2];
+                            },
+                            position: 'top'
+                        }
+                    },
+                    itemStyle: {
+                        shadowBlur: 10,
+                        shadowColor: 'rgba(120, 36, 50, 0.5)',
+                        shadowOffsetY: 5,
+                        color: new echarts.graphic.RadialGradient(0.4, 0.3, 1, [
+                            {
+                                offset: 0,
+                                color: 'rgb(251, 118, 123)'
+                            },
+                            {
+                                offset: 1,
+                                color: 'rgb(204, 46, 72)'
+                            }
+                        ])
+                    }
+                }
+                ,
+                {
+                    name: '臺灣精準健康戰略產業',
+                    data: data[1],
+                    type: 'scatter',
+                    symbolSize: function (data) {
+                        return Math.sqrt(data[2]) / 2;
+                    },
+                    emphasis: {
+                        focus: 'series',
+                        label: {
+                            show: true,
+                            formatter: function (param) {
+                                return param.data[3] +"\n" + "數量 : " + param.data[2];
+                            },
+                            position: 'top'
+                        }
+                    },
+                    itemStyle: {
+                        shadowBlur: 10,
+                        shadowColor: 'rgba(25, 100, 150, 0.5)',
+                        shadowOffsetY: 5,
+                        color: new echarts.graphic.RadialGradient(0.4, 0.3, 1, [
+                            {
+                                offset: 0,
+                                color: 'rgb(129, 227, 238)'
+                            },
+                            {
+                                offset: 1,
+                                color: 'rgb(25, 183, 207)'
+                            }
+                        ])
+                    }
+                }
+            ]
+        };
+
+        if (option && typeof option === 'object') {
+            myChart.setOption(option);
+        }
+    }
+    
+    $scope.maxima()
+
+    
+    
+    
+    $scope.overseas_institutions = function(){
+        var dom = document.getElementById("overseas_institutions");
+        var myChart = echarts.init(dom);
+        var app = {};
+
+        var option;
+
+        option = {
+            tooltip: {
+                trigger: 'item'
+            },
+            legend: {
+                top: '5%',
+                left: 'center'
+            },
+            series: [
+                {
+                    name: 'Access From',
+                    type: 'pie',
+                    radius: ['40%', '70%'],
+                    avoidLabelOverlap: false,
+                    label: {
+                        show: false,
+                        position: 'center'
+                    },
+                    emphasis: {
+                        label: {
+                            show: true,
+                            fontSize: '40',
+                            fontWeight: 'bold'
+                        }
+                    },
+                    labelLine: {
+                        show: false
+                    },
+                    data: [
+                        { value: 1048, name: 'Search Engine' },
+                        { value: 735, name: 'Direct' },
+                        { value: 580, name: 'Email' },
+                        { value: 484, name: 'Union Ads' },
+                        { value: 300, name: 'Video Ads' }
+                    ]
+                }
+            ]
+        };
+
+        if (option && typeof option === 'object') {
+            myChart.setOption(option);
+        }
+
+    }
+    
+    $scope.overseas_institutions()
+    
+    
+    $scope.mountNode = function(){
+    	
+    	/* 		console.log( ${pageContext.request.contextPath} );
+    	 */        
+    	 		const countryContinentData = `
+    	        Afghanistan	亚洲
+    	        Angola	非洲
+    	        Albania	欧洲
+    	        United Arab Emirates	亚洲
+    	        Argentina	南美洲
+    	        Armenia	亚洲
+    	        French Southern and Antarctic Lands	欧洲
+    	        Australia	大洋洲 
+    	        Austria	欧洲
+    	        Azerbaijan	亚洲
+    	        Burundi	非洲
+    	        Belgium	欧洲
+    	        Benin	非洲
+    	        Burkina Faso	非洲
+    	        Bangladesh	亚洲
+    	        Bulgaria	欧洲
+    	        The Bahamas	北美
+    	        Bosnia and Herzegovina	欧洲
+    	        Belarus	欧洲
+    	        Belize	北美
+    	        Bermuda	南美洲
+    	        Bolivia	南美洲
+    	        Brazil	南美洲
+    	        Brunei	亚洲
+    	        Bhutan	亚洲
+    	        Botswana	非洲
+    	        Central African Republic	非洲
+    	        Canada	北美
+    	        Switzerland	欧洲
+    	        Chile	南美洲
+    	        China	亚洲
+    	        Ivory Coast	非洲
+    	        Cameroon	非洲
+    	        Democratic Republic of the Congo	非洲
+    	        Republic of the Congo	非洲
+    	        Colombia	南美洲
+    	        Costa Rica	北美
+    	        Cuba	南美洲
+    	        Northern Cyprus	非洲
+    	        Cyprus	亚洲
+    	        Czech Republic	欧洲
+    	        Germany	欧洲
+    	        Djibouti	非洲
+    	        Denmark	欧洲
+    	        Dominican Republic	南美洲
+    	        Algeria	非洲
+    	        Ecuador	南美洲
+    	        Egypt	非洲
+    	        Eritrea	非洲
+    	        Spain	欧洲
+    	        Estonia	欧洲
+    	        Ethiopia	非洲
+    	        Finland	欧洲
+    	        Fiji	大洋洲 
+    	        Falkland Islands	南美洲
+    	        France	欧洲
+    	        Gabon	非洲
+    	        United Kingdom	欧洲
+    	        Georgia	亚洲
+    	        Ghana	非洲
+    	        Guinea	非洲
+    	        Gambia	非洲
+    	        Guinea Bissau	非洲
+    	        Equatorial Guinea	非洲
+    	        Greece	欧洲
+    	        Greenland	北美
+    	        Guatemala	北美
+    	        French Guiana	南美洲
+    	        Guyana	南美洲
+    	        Honduras	北美
+    	        Croatia	欧洲
+    	        Haiti	南美洲
+    	        Hungary	欧洲
+    	        Indonesia	亚洲
+    	        India	亚洲
+    	        Ireland	欧洲
+    	        Iran	亚洲
+    	        Iraq	亚洲
+    	        Iceland	欧洲
+    	        Israel	亚洲
+    	        Italy	欧洲
+    	        Jamaica	南美洲
+    	        Jordan	亚洲
+    	        Japan	亚洲
+    	        Kazakhstan	亚洲
+    	        Kenya	非洲
+    	        Kyrgyzstan	亚洲
+    	        Cambodia	亚洲
+    	        South Korea	亚洲
+    	        Kosovo	#N/A
+    	        Kuwait	亚洲
+    	        Laos	亚洲
+    	        Lebanon	亚洲
+    	        Liberia	非洲
+    	        Libya	非洲
+    	        Sri Lanka	亚洲
+    	        Lesotho	非洲
+    	        Lithuania	欧洲
+    	        Luxembourg	欧洲
+    	        Latvia	欧洲
+    	        Morocco	非洲
+    	        Moldova	欧洲
+    	        Madagascar	非洲
+    	        Mexico	北美
+    	        Macedonia	欧洲
+    	        Mali	非洲
+    	        Myanmar	亚洲
+    	        Montenegro	欧洲
+    	        Mongolia	亚洲
+    	        Mozambique	非洲
+    	        Mauritania	非洲
+    	        Malawi	非洲
+    	        Malaysia	亚洲
+    	        Namibia	非洲
+    	        New Caledonia	大洋洲 
+    	        Niger	非洲
+    	        Nigeria	非洲
+    	        Nicaragua	北美
+    	        Netherlands	欧洲
+    	        Norway	欧洲
+    	        Nepal	亚洲
+    	        New Zealand	大洋洲 
+    	        Oman	亚洲
+    	        Pakistan	亚洲
+    	        Panama	北美
+    	        Peru	南美洲
+    	        Philippines	亚洲
+    	        Papua New Guinea	大洋洲 
+    	        Poland	欧洲
+    	        Puerto Rico	南美洲
+    	        North Korea	亚洲
+    	        Portugal	欧洲
+    	        Paraguay	南美洲
+    	        Qatar	亚洲
+    	        Romania	欧洲
+    	        Russia	欧洲
+    	        Rwanda	非洲
+    	        Western Sahara	非洲
+    	        Saudi Arabia	亚洲
+    	        Sudan	非洲
+    	        South Sudan	非洲
+    	        Senegal	非洲
+    	        Solomon Islands	大洋洲 
+    	        Sierra Leone	非洲
+    	        El Salvador	北美
+    	        Somaliland	非洲
+    	        Somalia	非洲
+    	        Republic of Serbia	欧洲
+    	        Suriname	南美洲
+    	        Slovakia	欧洲
+    	        Slovenia	欧洲
+    	        Sweden	欧洲
+    	        Swaziland	非洲
+    	        Syria	非洲
+    	        Chad	非洲
+    	        Togo	非洲
+    	        Thailand	亚洲
+    	        Tajikistan	亚洲
+    	        Turkmenistan	亚洲
+    	        East Timor	亚洲
+    	        Trinidad and Tobago	南美洲
+    	        Tunisia	非洲
+    	        Turkey	亚洲
+    	        United Republic of Tanzania	非洲
+    	        Uganda	非洲
+    	        Ukraine	欧洲
+    	        Uruguay	南美洲
+    	        United States of America	北美
+    	        Uzbekistan	亚洲
+    	        Venezuela	南美洲
+    	        Vietnam	亚洲
+    	        Vanuatu	大洋洲 
+    	        West Bank	非洲
+    	        Yemen	亚洲
+    	        South Africa	非洲
+    	        Zambia	非洲
+    	        Zimbabwe	非洲
+    	        `
+    	        const stageData = `
+    	        亚洲	3916
+    	        欧洲	9033
+    	        北美	14198
+    	        大洋洲	2853
+    	        非洲	432
+    	        南美	450
+    	        `
+    	        	
+    	   
+    	        	
+    	     
+    	        const countryContinentMap = Object.fromEntries(countryContinentData
+    	          .split('\n')
+    	          .filter(i => !!i.trim())
+    	          .map(i => i.split('\t')))
+    	        
+    	        const stageDataMap =  Object.fromEntries(stageData
+    	          .split('\n')
+    	          .filter(i => !!i.trim())
+    	          .map(i => i.split('\t')));
+    	        
+    	        var userData = [
+    	          {
+    	            name: 'Russia',
+    	            trend: 3916,
+    	            value1:1,
+    	            value2:2,
+    	            value3:3,
+    	            value4:4,
+    	            value5:5,
+    	            value6:6,
+    	          },
+    	          {
+    	            name: 'China',
+    	            trend: 10000,
+    	            value1:1,
+    	            value4:1000,
+    	            value5:5,
+    	            value6:6,
+    	          },
+    	          
+    	          {
+    	              name: 'Taiwan',
+    	              trend: 90330,
+    	              value1:1,
+    	              value2:1,
+    	              value3:1,
+    	              value4:100,
+    	              value5:5,
+    	              value6:6,
+    	            },
+    	          {
+    	            name: 'Poland',
+    	            trend: 30000,
+    	            value1:1,
+    	            value2:2,
+    	            value3:3,
+    	            value4:4,
+    	            value5:5,
+    	            value6:6,
+    	          }
+    	        ];
+    	        
+    	        userData = my_json;
+    	        
+    	        $.getJSON('../resources/js/world.geo.json', function(mapData) {
+    	          var chart = new G2.Chart({
+    	            container: 'mountNode',
+    	            forceFit: true,
+    	            width: 1000,
+    	            height: 500,
+    	            padding: [0, 0]
+    	          })
+    	          chart.tooltip({
+    	            showTitle: false
+    	          })
+    	          // 同步度量
+    	          chart.scale({
+    	            longitude: {
+    	              sync: true
+    	            },
+    	            latitude: {
+    	              sync: true
+    	            }
+    	          })
+    	          chart.axis(true)
+    	          chart.legend('trend', {
+    	            position: 'left'
+    	          });
+    	        
+    	          // 绘制世界地图背景
+    	          var ds = new DataSet()
+    	          var worldMap = ds.createView('back').source(mapData, {
+    	            type: 'GeoJSON'
+    	          })
+    	          var worldMapView = chart.view()
+    	          worldMapView.source(worldMap)
+    	          worldMapView.tooltip(false)
+    	          worldMapView
+    	            .polygon()
+    	            .position('longitude*latitude')
+    	            .style({
+    	              fill: '#fff',
+    	              stroke: '#ccc',
+    	              lineWidth: 1
+    	            })
+    	        
+    	          // 可视化用户数据
+    	        
+    	          var userDv = ds
+    	            .createView()
+    	            .source(userData)
+    	            .transform({
+    	              geoDataView: worldMap,
+    	              field: 'name',
+    	              type: 'geo.region',
+    	              as: ['longitude', 'latitude']
+    	            })
+    	            .transform({
+    	              type: 'map',
+    	              callback: function callback(obj) {
+    	        
+    	                return obj
+    	              }
+    	            })
+    	          var userView = chart.view()
+    	          userView.source(userDv, {
+    	            name: {
+    	              alias: '國家'
+    	            },
+    	            trend: {
+    	              alias: '加總'
+    	            },
+    	            value1: {
+    	              alias: '資訊及數位相關產業'
+    	            },
+    	            value2: {
+    	              alias: '綠電及再生能源產業'
+    	            },
+    	            value3: {
+    	              alias: '台灣精準健康戰略產業'
+    	            },
+    	            value4: {
+    	              alias: '國防及戰略產業'
+    	            },
+    	            value5: {
+    	              alias: '民生及戰備產業'
+    	            },
+    	            value6: {
+    	              alias: '其他'
+    	            }
+    	          })
+    	          userView
+    	            .polygon()
+    	            .position('longitude*latitude')
+    	            .color('trend', ['#ffffff', '#fa7805'])
+    	            .tooltip('name*trend*value1*value2*value3*value4*value5*value6')
+    	            .animate({
+    	              leave: {
+    	                animation: 'fadeOut'
+    	              }
+    	            })
+    	          chart.render()
+    	        })
     	
     	
     	
@@ -53,6 +629,96 @@ function getAppController($scope, $http, $window) {
     	
     }
     ;
+    
+    $scope.mountNode();
+    
+    
+    
+    $scope.solar_employment = function(){
+    	
+    	var dom = document.getElementById("solar_employment");
+        var myChart = echarts.init(dom);
+        var app = {};
+
+        var option;
+
+        option = {
+            title: {
+                text: ''
+            },
+            tooltip: {
+                trigger: 'axis'
+            },
+            legend: {
+                data: ['Installation', 'Manufacturing', 'Sales & Distribution', 'Project Development', 'Other']
+            },
+            grid: {
+                left: '3%',
+                right: '4%',
+                bottom: '3%',
+                containLabel: true
+            },
+            toolbox: {
+                feature: {
+                    saveAsImage: {}
+                }
+            },
+            xAxis: {
+                type: 'category',
+                boundaryGap: false,
+                data: ['2010', '2012', '2014', '2016', '2017', '2018', '2019']
+            },
+            yAxis: {
+                type: 'value'
+            },
+            series: [
+                {
+                    name: 'Installation',
+                    type: 'line',
+                    stack: 'Total',
+                    data: [120, 132, 101, 134, 90, 230, 210]
+                },
+                {
+                    name: 'Manufacturing',
+                    type: 'line',
+                    stack: 'Total',
+                    data: [220, 182, 191, 234, 290, 330, 310]
+                },
+                {
+                    name: 'Sales & Distribution',
+                    type: 'line',
+                    stack: 'Total',
+                    data: [150, 232, 201, 154, 190, 330, 410]
+                },
+                {
+                    name: 'Project Development',
+                    type: 'line',
+                    stack: 'Total',
+                    data: [320, 332, 301, 334, 390, 330, 320]
+                },
+                {
+                    name: 'Other',
+                    type: 'line',
+                    stack: 'Total',
+                    data: [820, 932, 901, 934, 1290, 1330, 1320]
+                }
+            ]
+        };
+
+        if (option && typeof option === 'object') {
+            myChart.setOption(option);
+        }
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    }
+    
+    
+    $scope.solar_employment();
     
     
     
@@ -170,29 +836,6 @@ function getAppController($scope, $http, $window) {
         })
     }
 
-//    $scope.queryWeakness = function() {
-//        var request = {
-//            start: 0,
-//            maxRows: 5,
-//            sort: "incidentDiscoveryTime",
-//            dir: true
-//        };
-//        $http.post('./api/p00/query/weakness', request, csrf_config).then(function(response) {
-//            $scope.weakness = response.data.datatable;
-//            $scope.weaknessTotal = response.data.total;
-//            if ($scope.weaknessTotal < 5) {
-//                for (var i = 0; i < 5 - $scope.weaknessTotal; i++) {
-//                    $scope.weakness.push({
-//                        Date: "　",
-//                        Title: "",
-//                        Id: ""
-//                    });
-//                }
-//            }
-//        }).finally(function() {
-//            $("#loadingWeakness").fadeOut("slow");
-//        })
-//    }
 
     $scope.querySecBuzzer = function() {    	 
         var request = {
@@ -439,610 +1082,14 @@ function getAppController($scope, $http, $window) {
             var myChart4 = new Chart(ctx4, config4);
             document.getElementById('myLegend4').innerHTML = myChart4.generateLegend();
         }).catch(function() {
-// bootbox.alert({
-// message: globalReadDataFail,
-// buttons: {
-// ok: {
-// label: '<i class="fas fa-fw fa-times"></i>' + btnClose,
-// className: 'btn-danger',
-// }
-// },
-// callback: function() {}
-// });
+
         }).finally(function() {});
 
     };
     $scope.queryMessageDashboard();
 
-//     $scope.queryNotificationDashboard = function() {
-//         var request = {};
-//         $http.post('./api/p00/query/notification/dashboard', request, csrf_config).then(function(response) {
-//             //console.log("response=" + JSON.stringify(response.data));
-//             $scope.allitems_notification = response.data.datatable;
-//             var data = [];
-//             data.push($scope.getCount($scope.allitems_notification, "1"));
-//             data.push($scope.getCount($scope.allitems_notification, "2"));
-//             data.push($scope.getCount($scope.allitems_notification, "3"));
-//             data.push($scope.getCount($scope.allitems_notification, "4"));
-//             data.push($scope.getCount($scope.allitems_notification, "5"));
-//             var count = 0;
-//             for (i = 0; i < data.length; i++)
-//                 count += data[i];
-//             if(count < 10)
-//             	count = " " + count + " ";
-//             var config4 = {
-//                 type: 'doughnut',
-//                 data: {
-//                     labels: [
-//                         "網頁攻擊",
-//                         "非法入侵",
-//                         "阻斷服務",
-//                         "設備問題",
-//                         "其他"
-//                     ],
-//                     datasets: [{
-//                         data: data,
-//                         backgroundColor: [
-//                             "#E2ACEF",
-//                             "#36A2EB",
-//                             "#FFCE56",
-//                             "#00cc66",
-//                             "#ff6633"
-//                         ],
-//                         hoverBackgroundColor: [
-//                             "#E2ACEF",
-//                             "#36A2EB",
-//                             "#FFCE56",
-//                             "#00cc66",
-//                             "#ff6633"
-//                         ]
-//                     }]
-//                 },
-//                 options: {
-//                 	title: {
-//                 		display: true,
-//                 		text: '通報',
-//                 		fontFamily: "'Noto Sans TC', 'Source Sans Pro', Calibri, Candara, Arial, sans-serif",
-//                 		fontSize: 19,
-//                 		fontColor: '#369'
-//                 	},
-//                 	legend: {
-//                 		display: false,
-//                 		position: 'bottom',
-//                 		fullWidth: true,
-//                 		reverse: false
-//                 	},
-//                     pieceLabel: {
-//                         render: 'value',
-//                         fontSize: 16,
-//                         fontStyle: 'bold',
-//                         fontColor: '#666',
-//                         fontFamily: 'Arial'
-//                     },
-//                     elements: {
-//                         center: {
-//                             text: count,
-//                             color: '#FF6384',
-//                             fontStyle: 'Arial',
-//                             sidePadding: 50
-//                         }
-//                     }
-//                 }
-//             };
-//             var ctx4 = document.getElementById("myChart4").getContext("2d");
-//             var myChart4 = new Chart(ctx4, config4);
-//             document.getElementById('myLegend4').innerHTML = myChart4.generateLegend();
-//         }).catch(function() {
-// // bootbox.alert({
-// // message: globalReadDataFail,
-// // buttons: {
-// // ok: {
-// // label: '<i class="fas fa-fw fa-times"></i>' + btnClose,
-// // className: 'btn-danger',
-// // }
-// // },
-// // callback: function() {}
-// // });
-//         }).finally(function() {});
 
-//     };
-//     //$scope.queryNotificationDashboard();
-    
-    
-//     $scope.queryOrgCount = function() {
-//         var request = {IsEnable: true};
-//         $http.post('./api/p00/query/orgcount/dashboard', request, csrf_config).then(function(response) {
-//             $scope.allitems_org = response.data.datatable;
-//             var data = [];
-//             data.push($scope.getCount($scope.allitems_org, "CI會員"));
-//             data.push($scope.getCount($scope.allitems_org, "非CI會員"));          
-//             var count = 0;
-//             for (i = 0; i < data.length; i++)
-//                 count += data[i];
-//             if(count < 10)
-//             	count = " " + count + " ";
-//             var config5 = {
-//                 type: 'doughnut',
-//                 data: {
-//                     labels: [
-//                         "CI會員",
-//                         "非CI會員"                      
-//                     ],
-//                     datasets: [{
-//                         data: data,
-//                         backgroundColor: [
-//                             "#E2ACEF",
-//                             "#36A2EB"                           
-//                         ],
-//                         hoverBackgroundColor: [
-//                             "#E2ACEF",
-//                             "#36A2EB"                          
-//                         ]
-//                     }]
-//                 },
-//                 options: {
-//                 	title: {
-//                 		display: true,
-//                 		text: '總計',
-//                 		fontFamily: "'Noto Sans TC', 'Source Sans Pro', Calibri, Candara, Arial, sans-serif",
-//                 		fontSize: 15,
-//                 		fontColor: '#369',
-//                 		position: 'bottom'
-//                 	},
-//                 	legend: {
-//                 		display: false,
-//                 		position: 'bottom',
-//                 		fullWidth: true,
-//                 		reverse: false
-//                 	},
-//                     pieceLabel: {
-//                         render: 'value',
-//                         fontSize: 16,
-//                         fontStyle: 'bold',
-//                         fontColor: '#666',
-//                         fontFamily: 'Arial'
-//                     },
-//                     elements: {
-//                         center: {
-//                             text: count,
-//                             color: '#FF6384',
-//                             fontStyle: 'Arial',
-//                             sidePadding: 50
-//                         }
-//                     }
-//                 }
-//             };
-//             var ctx5 = document.getElementById("myChart5").getContext("2d");
-//             var myChart5 = new Chart(ctx5, config5);
-//             document.getElementById('myLegend5').innerHTML = myChart5.generateLegend();
-//         }).catch(function() {
-// // bootbox.alert({
-// // message: globalReadDataFail,
-// // buttons: {
-// // ok: {
-// // label: '<i class="fas fa-fw fa-times"></i>' + btnClose,
-// // className: 'btn-danger',
-// // }
-// // },
-// // callback: function() {}
-// // });
-//         }).finally(function() {});
 
-//     };
-//     $scope.queryOrgCount();
-    
-//     $scope.queryManagerCount = function() {
-//         var request = {};
-//         $http.post('./api/p00/query/managercount/dashboard', request, csrf_config).then(function(response) {
-//             $scope.allitems_manager = response.data.datatable;
-//             var data = [];
-//             data.push($scope.getCount($scope.allitems_manager, "審核中"));
-//             data.push($scope.getCount($scope.allitems_manager, "已停用"));          
-//             data.push($scope.getCount($scope.allitems_manager, "待啟用"));          
-//             data.push($scope.getCount($scope.allitems_manager, "使用中"));          
-//             var count = 0;
-//             for (i = 0; i < data.length; i++)
-//                 count += data[i];
-//             if(count < 10)
-//             	count = " " + count + " ";
-//             var config6 = {
-//                 type: 'doughnut',
-//                 data: {
-//                     labels: [
-//                         "審核中",
-//                         "已停用",           
-//                         "待啟用",           
-//                         "使用中"       
-//                     ],
-//                     datasets: [{
-//                         data: data,
-//                         backgroundColor: [
-//                         		"#E2ACEF",
-//                             "#36A2EB",
-//                             "#FFCE56",
-//                             "#00cc66"                         
-//                         ],
-//                         hoverBackgroundColor: [
-//                         		"#E2ACEF",
-//                             "#36A2EB",
-//                             "#FFCE56",
-//                             "#00cc66"                        
-//                         ]
-//                     }]
-//                 },
-//                 options: {
-//                 	title: {
-//                 		display: true,
-//                 		text: '總計',
-//                 		fontFamily: "'Noto Sans TC', 'Source Sans Pro', Calibri, Candara, Arial, sans-serif",
-//                 		fontSize: 15,
-//                 		fontColor: '#369',
-//                 		position: 'bottom'
-//                 	},
-//                 	legend: {
-//                 		display: false,
-//                 		position: 'bottom',
-//                 		fullWidth: true,
-//                 		reverse: false
-//                 	},
-//                     pieceLabel: {
-//                         render: 'value',
-//                         fontSize: 16,
-//                         fontStyle: 'bold',
-//                         fontColor: '#666',
-//                         fontFamily: 'Arial'
-//                     },
-//                     elements: {
-//                         center: {
-//                             text: count,
-//                             color: '#FF6384',
-//                             fontStyle: 'Arial',
-//                             sidePadding: 50
-//                         }
-//                     }
-//                 }
-//             };
-//             var ctx6 = document.getElementById("myChart6").getContext("2d");
-//             var myChart6 = new Chart(ctx6, config6);
-//             document.getElementById('myLegend6').innerHTML = myChart6.generateLegend();
-//         }).catch(function() {
-// // bootbox.alert({
-// // message: globalReadDataFail,
-// // buttons: {
-// // ok: {
-// // label: '<i class="fas fa-fw fa-times"></i>' + btnClose,
-// // className: 'btn-danger',
-// // }
-// // },
-// // callback: function() {}
-// // });
-//         }).finally(function() {});
-
-//     };
-//     $scope.queryManagerCount();
-    
-//     $scope.queryContactCount = function() {
-//         var request = {};
-//         $http.post('./api/p00/query/contactcount/dashboard', request, csrf_config).then(function(response) {
-//             $scope.allitems_contact = response.data.datatable;
-//             var data = [];
-//             data.push($scope.getCount($scope.allitems_contact, "審核中"));
-//             data.push($scope.getCount($scope.allitems_contact, "已停用"));          
-//             data.push($scope.getCount($scope.allitems_contact, "待啟用"));          
-//             data.push($scope.getCount($scope.allitems_contact, "使用中"));          
-//             var count = 0;
-//             for (i = 0; i < data.length; i++)
-//                 count += data[i];
-//             if(count < 10)
-//             	count = " " + count + " ";
-//             var config7 = {
-//                 type: 'doughnut',
-//                 data: {
-//                     labels: [
-//                         "審核中",
-//                         "已停用",           
-//                         "待啟用",           
-//                         "使用中"       
-//                     ],
-//                     datasets: [{
-//                         data: data,
-//                         backgroundColor: [
-//                         		"#E2ACEF",
-//                             "#36A2EB",
-//                             "#FFCE56",
-//                             "#00cc66"                         
-//                         ],
-//                         hoverBackgroundColor: [
-//                         		"#E2ACEF",
-//                             "#36A2EB",
-//                             "#FFCE56",
-//                             "#00cc66"                        
-//                         ]
-//                     }]
-//                 },
-//                 options: {
-//                 	title: {
-//                 		display: true,
-//                 		text: '總計',
-//                 		fontFamily: "'Noto Sans TC', 'Source Sans Pro', Calibri, Candara, Arial, sans-serif",
-//                 		fontSize: 15,
-//                 		fontColor: '#369',
-//                 		position: 'bottom'
-//                 	},
-//                 	legend: {
-//                 		display: false,
-//                 		position: 'bottom',
-//                 		fullWidth: true,
-//                 		reverse: false
-//                 	},
-//                     pieceLabel: {
-//                         render: 'value',
-//                         fontSize: 16,
-//                         fontStyle: 'bold',
-//                         fontColor: '#666',
-//                         fontFamily: 'Arial'
-//                     },
-//                     elements: {
-//                         center: {
-//                             text: count,
-//                             color: '#FF6384',
-//                             fontStyle: 'Arial',
-//                             sidePadding: 50
-//                         }
-//                     }
-//                 }
-//             };
-//             var ctx7 = document.getElementById("myChart7").getContext("2d");
-//             var myChart7 = new Chart(ctx7, config7);
-//             document.getElementById('myLegend7').innerHTML = myChart7.generateLegend();
-//         }).catch(function() {
-// // bootbox.alert({
-// // message: globalReadDataFail,
-// // buttons: {
-// // ok: {
-// // label: '<i class="fas fa-fw fa-times"></i>' + btnClose,
-// // className: 'btn-danger',
-// // }
-// // },
-// // callback: function() {}
-// // });
-//         }).finally(function() {});
-
-//     };
-//     $scope.queryContactCount();
-    
-    
-    // $scope.getSigninCountToday = function() {
-    // 		var request = {
-    // 				FuncName:"Login",
-    // 				ActionName:"Login",
-    // 				Status:"Success",
-    // 				Sdate:moment().subtract('days',1).format('YYYY-MM-DD 23:59:59'),
-    // 				Edate:moment().format('YYYY-MM-DD 23:59:59')
-    // 				};
-    //     $http.post('./api/p00/query/signincount/dashboard', request, csrf_config).then(function(response) {
-    //     		$scope.SigninCountToday = response.data.count;
-    //     });    		
-    // }
-    // $scope.getSigninCountToday()
-    
-    // $scope.getSigninCount2week = function() {
-    // 	var request = {
-    // 			FuncName:"Login",
-	// 		ActionName:"Login",
-	// 		Status:"Success",
-	// 		Sdate:moment().subtract('days',14).format('YYYY-MM-DD 23:59:59'),
-	// 		Edate:moment().format('YYYY-MM-DD 23:59:59')
-    // 	};
-    //     $http.post('./api/p00/query/signincount/dashboard', request, csrf_config).then(function(response) {
-    //     		$scope.SigninCount2week = response.data.count;
-    //     });      		
-    // }
-    // $scope.getSigninCount2week()
-    
-//      $scope.queryInformationDashboard2Week = function() {
-//         var request = {};
-//         $http.post('./api/p00/query/information/dashboard2week', request, csrf_config).then(function(response) {
-//             $scope.allitems_information = response.data.datatable;
-//             var data = [];
-//             data.push($scope.getCount($scope.allitems_information, "健保署SOC"));
-//             data.push($scope.getCount($scope.allitems_information, "衛生福利部SOC"));
-//             data.push($scope.getCount($scope.allitems_information, "N-ISAC"));
-//             data.push($scope.getCount($scope.allitems_information, "數聯資安"));
-//             data.push($scope.getCount($scope.allitems_information, "其他"));
-//             data.push($scope.getCount($scope.allitems_information, "H-ISAC"));
-//             data.push($scope.getCount($scope.allitems_information, "SecBuzzer"));
-//             var count = 0;
-//             for (i = 0; i < data.length; i++)
-//                 count += data[i];
-//             if(count < 10)
-//             	count = " " + count + " ";
-//             var config8 = {
-//                 type: 'doughnut',
-//                 data: {
-//                     labels: [
-//                         "健保署SOC",
-//                         "衛生福利部SOC",
-//                         "N-ISAC",
-//                         "數聯資安",
-//                         "其他",
-//                         "H-ISAC",
-//                         "SecBuzzer"
-//                     ],
-//                     datasets: [{
-//                         data: data,
-//                         backgroundColor: [
-//                             "#E2ACEF",
-//                             "#36A2EB",
-//                             "#FFCE56",
-//                             "#00cc66",
-//                             "#ff6633",
-//                             "#660000",
-//                             "#57f0ed"
-//                         ],
-//                         hoverBackgroundColor: [
-//                             "#E2ACEF",
-//                             "#36A2EB",
-//                             "#FFCE56",
-//                             "#00cc66",
-//                             "#ff6633",
-//                             "#660000",
-//                             "#57f0ed"
-//                         ]
-//                     }]
-//                 },
-//                 options: {
-//                 	title: {
-//                 		display: true,
-//                 		text: '近兩週',
-//                 		fontFamily: "'Noto Sans TC', 'Source Sans Pro', Calibri, Candara, Arial, sans-serif",
-//                 		fontSize: 15,
-//                 		fontColor: '#369',
-//                 		position: 'bottom'
-//                 	},
-//                 	legend: {
-//                 		display: false,
-//                 		position: 'bottom',
-//                 		fullWidth: true,
-//                 		reverse: false
-//                 	},
-//                     pieceLabel: {
-//                         render: 'value',
-//                         fontSize: 16,
-//                         fontStyle: 'bold',
-//                         fontColor: '#666',
-//                         fontFamily: 'Arial'
-//                     },
-//                     elements: {
-//                         center: {
-//                             text: count,
-//                             color: '#FF6384',
-//                             fontStyle: 'Arial',
-//                             sidePadding: 50
-//                         }
-//                     }
-//                 }
-//             };
-//             var ctx8 = document.getElementById("myChart8").getContext("2d");
-//             var myChart8 = new Chart(ctx8, config8);
-//             document.getElementById('myLegend8').innerHTML = myChart8.generateLegend();
-//         }).catch(function() {
-// // bootbox.alert({
-// // message: globalReadDataFail,
-// // buttons: {
-// // ok: {
-// // label: '<i class="fas fa-fw fa-times"></i>' + btnClose,
-// // className: 'btn-danger',
-// // }
-// // },
-// // callback: function() {}
-// // });
-//         }).finally(function() {});
-
-//     };
-//     $scope.queryInformationDashboard2Week();
-
-//     $scope.queryInformationDashboard = function() {
-//         var request = {};
-//         $http.post('./api/p00/query/information/dashboard', request, csrf_config).then(function(response) {
-//         	 $scope.allitems_information = response.data.datatable;
-//              var data = [];
-//              data.push($scope.getCount($scope.allitems_information, "健保署SOC"));
-//              data.push($scope.getCount($scope.allitems_information, "衛生福利部SOC"));
-//              data.push($scope.getCount($scope.allitems_information, "N-ISAC"));
-//              data.push($scope.getCount($scope.allitems_information, "數聯資安"));
-//              data.push($scope.getCount($scope.allitems_information, "其他"));
-//              data.push($scope.getCount($scope.allitems_information, "H-ISAC"));
-//              data.push($scope.getCount($scope.allitems_information, "SecBuzzer"));
-//              var count = 0;
-//              for (i = 0; i < data.length; i++)
-//                  count += data[i];
-//              if(count < 10)
-//              	count = " " + count + " ";
-//              var config9 = {
-//                  type: 'doughnut',
-//                  data: {
-//                      labels: [
-//                          "健保署SOC",
-//                          "衛生福利部SOC",
-//                          "N-ISAC",
-//                          "數聯資安",
-//                          "其他",
-//                          "H-ISAC",
-//                          "SecBuzzer"
-//                      ],
-//                      datasets: [{
-//                          data: data,
-//                          backgroundColor: [
-//                              "#E2ACEF",
-//                              "#36A2EB",
-//                              "#FFCE56",
-//                              "#00cc66",
-//                              "#ff6633",
-//                              "#660000",
-//                              "#57f0ed"
-//                          ],
-//                          hoverBackgroundColor: [
-//                              "#E2ACEF",
-//                              "#36A2EB",
-//                              "#FFCE56",
-//                              "#00cc66",
-//                              "#ff6633",
-//                              "#660000",
-//                              "#57f0ed"
-//                          ]
-//                      }]
-//                  },
-//                  options: {
-//                  	title: {
-//                  		display: true,
-//                  		text: '總計',
-//                  		fontFamily: "'Noto Sans TC', 'Source Sans Pro', Calibri, Candara, Arial, sans-serif",
-//                  		fontSize: 15,
-//                  		fontColor: '#369',
-//                  		position: 'bottom'
-//                  	},
-//                  	legend: {
-//                  		display: false,
-//                  		position: 'bottom',
-//                  		fullWidth: true,
-//                  		reverse: false
-//                  	},
-//                      pieceLabel: {
-//                          render: 'value',
-//                          fontSize: 16,
-//                          fontStyle: 'bold',
-//                          fontColor: '#666',
-//                          fontFamily: 'Arial'
-//                      },
-//                      elements: {
-//                          center: {
-//                              text: count,
-//                              color: '#FF6384',
-//                              fontStyle: 'Arial',
-//                              sidePadding: 50
-//                          }
-//                      }
-//                  }
-//              };
-//              var ctx9 = document.getElementById("myChart9").getContext("2d");
-//              var myChart9 = new Chart(ctx9, config9);
-//              document.getElementById('myLegend9').innerHTML = myChart9.generateLegend();
-//          }).catch(function() {
-// // bootbox.alert({
-// // message: globalReadDataFail,
-// // buttons: {
-// // ok: {
-// // label: '<i class="fas fa-fw fa-times"></i>' + btnClose,
-// // className: 'btn-danger',
-// // }
-// // },
-// // callback: function() {}
-// // });
-//         }).finally(function() {});
-
-//     };
-//     $scope.queryInformationDashboard();
     
     $scope.getCount = function(allitems, name) {
         var count = 0;

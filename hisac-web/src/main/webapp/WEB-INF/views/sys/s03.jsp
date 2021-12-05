@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html;charset=UTF-8"%>
 <!DOCTYPE html>
 <html ng-app="myApp">
-<%@ include file="../include/head.jsp"%>
+<%@ include file="../include/head_back.jsp"%>
 <script>
 	var globalReadDataFail = '<s:message code="globalReadDataFail" />';
 	var btnClose = '<s:message code="btnClose" />';

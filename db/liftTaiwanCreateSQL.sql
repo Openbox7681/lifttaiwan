@@ -1010,4 +1010,16 @@ END
 GO
 
 
+CREATE TABLE [dbo].[topaf50_new](
+    [Id] [bigint] IDENTITY(1,1) NOT NULL,
+	[class_sub] [nvarchar](50) NULL,
+	[affiliation_e] [nvarchar](3000) NULL,
+	[country] [nvarchar](50) NULL,
+	[tac] [int] NOT NULL,
+	[con_num] [int] NOT NULL,
+    PRIMARY KEY (Id)
+)
+
+
+
 

@@ -142,6 +142,16 @@ function getAppController($scope, $http, $window, $timeout) {
 	angular.element("#divgtpCode").removeAttr("style");
 	angular.element("#divVerify").removeAttr("style");
 	
+	
+	$scope.test = function(){
+		bootbox.confirm(
+				{message: "這是一個確認按鈕的樣式！"
+					,buttons: {confirm: {label: 'Yes',className: 'btn-success'},
+					cancel: {label: 'No',className: 'btn-danger'}},
+					callback: function (result) 
+					{console.log('This was logged in the callback: ' + result);}})
+	}
+	
 	$scope.login = function() {
 		var grecaptcha = $("#g-recaptcha-response").val();
 //		if (grecaptcha == '' && $scope.showTwoFactor) return;
@@ -157,6 +167,9 @@ function getAppController($scope, $http, $window, $timeout) {
 			closeButton: false,
 			message : '<i class="fas fa-fw fa-circle-notch fa-spin"></i>' + dataLoading 
 		});
+		
+		
+		
 		
 		
 		

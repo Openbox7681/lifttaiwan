@@ -27,49 +27,21 @@
 	href="<c:out value="${pageContext.request.contextPath}" />/resources/favicon.ico"
 	type="image/vnd.microsoft.icon" />
 <link rel="stylesheet"
-	href="<c:out value="${pageContext.request.contextPath}" />/resources/plugins/bootstrap/css/bootstrap-theme-cosmo.min.css" /> 
-	
-
-
-	
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/css/bootstrap.min.css">
-
-<!-- =====  google font  =====-->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&amp;display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri&amp;family=Noto+Sans+TC&amp;display=swap"
-    rel="stylesheet">
-<!-- =====  awesome icon  =====-->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-
-
-<link rel="stylesheet"
-	href="<c:out value="${pageContext.request.contextPath}" />/resources/css/style.css">
-
-<link rel="stylesheet"
-	href="<c:out value="${pageContext.request.contextPath}" />/resources/css/responsive.css">
-	
-<%-- <link rel="stylesheet"
-	href="<c:out value="${pageContext.request.contextPath}" />/resources/plugins/fontawesome/css/fontawesome-all.min.css"> --%>
-<link rel="stylesheet"
-	href="<c:out value="${pageContext.request.contextPath}" />/resources/css/bootstrap-datetimepicker.min.css">
+	href="<c:out value="${pageContext.request.contextPath}" />/resources/plugins/bootstrap/css/bootstrap-theme-cosmo.min.css" />
 <link rel="stylesheet"
 	href="<c:out value="${pageContext.request.contextPath}" />/resources/css/default.css">
-	
-	
-
+<link rel="stylesheet"
+	href="<c:out value="${pageContext.request.contextPath}" />/resources/plugins/fontawesome/css/fontawesome-all.min.css">
+<link rel="stylesheet"
+	href="<c:out value="${pageContext.request.contextPath}" />/resources/css/bootstrap-datetimepicker.min.css">
 <script
 	src="<c:out value="${pageContext.request.contextPath}" />/resources/plugins/html5shiv.min.js"></script>
 <script
 	src="<c:out value="${pageContext.request.contextPath}" />/resources/plugins/respond.min.js"></script>
-	
 <script
 	src="<c:out value="${pageContext.request.contextPath}" />/resources/plugins/jquery.min.js"></script>
 <script
-	src="<c:out value="${pageContext.request.contextPath}" />/resources/plugins/bootstrap/js/bootstrap.min.js"></script> 
-	
+	src="<c:out value="${pageContext.request.contextPath}" />/resources/plugins/bootstrap/js/bootstrap.min.js"></script>
 <script
 	src="<c:out value="${pageContext.request.contextPath}" />/resources/plugins/bootbox.min.js"></script>
 <script
@@ -95,12 +67,9 @@
 <script
 	src="<c:out value="${pageContext.request.contextPath}" />/resources/plugins/FileSaver.js"></script>
 	
-
-
 	
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/js/bootstrap.min.js"></script>
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.min.js"></script>
 	
    

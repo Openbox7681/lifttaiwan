@@ -2,9 +2,7 @@
 <!-- partial:index.partial.html-->
 
 
-<div class="col-md-12">
-            <div class="sidebar_button" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><span>選單項目</span></div>
-</div>
+
        
  <div class="col-lg-3 none">
             <div class="sidebar">
@@ -33,7 +31,19 @@
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">系統管理</button>
                   </h2>
                   <div class="accordion-collapse collapse" id="panelsStayOpen-collapseTwo" aria-labelledby="panelsStayOpen-headingTwo">
-                    <div class="accordion-body"><a href="pages/s_permissions.html"><span>角色權限</span></a><a href="pages/s_userdata.html"><span>後台使用者資料管理      </span></a><a href="pages/s_manage_image.html"><span>圖片/連結檢測</span></a><a href="pages/s_settings.html"><span>網站設定 </span></a></div>
+                    <div class="accordion-body">
+                    <a href="pages/s_permissions.html">
+                    <span>角色權限</span></a>
+                    <a href="pages/s_userdata.html">
+                    <span>後台使用者資料管理</span></a>
+                    
+                    <a href="<c:out value="${pageContext.request.contextPath}" />/sys/s02">
+                    <span>角色資料管理</span></a>
+                    
+                    <a href="<c:out value="${pageContext.request.contextPath}" />/sys/s02">
+                  
+                    <span>圖片/連結檢測</span></a><a href="pages/s_settings.html">
+                    <span>網站設定 </span></a></div>
                   </div>
                 </div>
               </div>

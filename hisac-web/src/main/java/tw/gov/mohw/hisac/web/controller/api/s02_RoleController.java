@@ -216,7 +216,7 @@ public class s02_RoleController extends BaseController {
 	 *            編號
 	 * @return 是否刪除成功
 	 */
-	@RequestMapping(value = "/s02/delete/", method = RequestMethod.POST)
+	@RequestMapping(value = "/s02/delete", method = RequestMethod.POST)
 	public @ResponseBody String DeleteById(Locale locale, HttpServletRequest request, @RequestBody String json) {
 		JSONObject responseJson = new JSONObject();
 		CsrfToken token = new HttpSessionCsrfTokenRepository().loadToken(request);

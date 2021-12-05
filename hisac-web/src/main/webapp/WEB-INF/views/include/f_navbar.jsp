@@ -1,4 +1,7 @@
 <%@ page language="java" pageEncoding="UTF8"%>
+
+
+
 <!-- partial:index.partial.html-->
     <header class="nav" id="top_pos">
       <div class="container">
@@ -30,7 +33,7 @@
                 <p>說明文字說明文字說明文字   </p>
               </div>
               <div class="statistics_line">
-                <div class="icon"><img src="<c:out value="${pageContext.request.contextPath}" />/resources/img/icon/icon_subsidy.svg"></div><span>256,000</span>
+                <div class="icon"><img src="<c:out value="${pageContext.request.contextPath}" />/resources/img/icon/icon_subsidy.svg"></div><span>32122</span>
                 <h5>補助總人數</h5>
               </div>
             </div>
@@ -41,7 +44,7 @@
                 <p>說明文字說明文字說明文字   </p>
               </div>
               <div class="statistics_line">
-                <div class="icon"><img src="<c:out value="${pageContext.request.contextPath}" />/resources/img/icon/icon_research.svg"></div><span>513,000</span>
+                <div class="icon"><img src="<c:out value="${pageContext.request.contextPath}" />/resources/img/icon/icon_research.svg"></div><span>967</span>
                 <h5>研究成果總數</h5>
               </div>
             </div>
@@ -52,7 +55,7 @@
                 <p>說明文字說明文字說明文字   </p>
               </div>
               <div class="statistics_line">
-                <div class="icon"><img src="<c:out value="${pageContext.request.contextPath}" />/resources/img/icon/icon_cooperate.svg"></div><span>27,000</span>
+                <div class="icon"><img src="<c:out value="${pageContext.request.contextPath}" />/resources/img/icon/icon_cooperate.svg"></div><span>263</span>
                 <h5>國際合著篇數</h5>
               </div>
             </div>
