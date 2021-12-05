@@ -26,10 +26,11 @@
 <link rel="shortcut icon"
 	href="<c:out value="${pageContext.request.contextPath}" />/resources/favicon.ico"
 	type="image/vnd.microsoft.icon" />
-<link rel="stylesheet"
-	href="<c:out value="${pageContext.request.contextPath}" />/resources/plugins/bootstrap/css/bootstrap-theme-cosmo.min.css" /> 
 	
-
+ <%-- <link rel="stylesheet"
+	href="<c:out value="${pageContext.request.contextPath}" />/resources/plugins/bootstrap/css/bootstrap-theme-cosmo.min.css" /> 
+	 --%>
+ 
 
 	
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
@@ -53,12 +54,14 @@
 	
 <%-- <link rel="stylesheet"
 	href="<c:out value="${pageContext.request.contextPath}" />/resources/plugins/fontawesome/css/fontawesome-all.min.css"> --%>
-<link rel="stylesheet"
-	href="<c:out value="${pageContext.request.contextPath}" />/resources/css/bootstrap-datetimepicker.min.css">
-<link rel="stylesheet"
+	
+ <link rel="stylesheet"
+	href="<c:out value="${pageContext.request.contextPath}" />/resources/css/bootstrap-datetimepicker.min.css">  
+	
+ <link rel="stylesheet"
 	href="<c:out value="${pageContext.request.contextPath}" />/resources/css/default.css">
 	
-	
+	 
 
 <script
 	src="<c:out value="${pageContext.request.contextPath}" />/resources/plugins/html5shiv.min.js"></script>
@@ -72,7 +75,13 @@
 	
 <script
 	src="<c:out value="${pageContext.request.contextPath}" />/resources/plugins/bootbox.min.js"></script> --%>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.min.js"></script>
 	
+
+
 <script
 	src="<c:out value="${pageContext.request.contextPath}" />/resources/plugins/angular/angular.min.js"></script>
 <script
@@ -98,11 +107,6 @@
 	
 
 
-	
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/js/bootstrap.min.js"></script>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.min.js"></script>
 	
    
 <script src="https://gw.alipayobjects.com/os/antv/pkg/_antv.g2-3.5.1/dist/g2.min.js"></script>
