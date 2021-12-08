@@ -34,11 +34,12 @@
                     <div class="accordion-body">
                     <a href="pages/s_permissions.html">
                     <span>角色權限</span></a>
-                    <a href="pages/s_userdata.html">
-                    <span>後台使用者資料管理</span></a>
+                    
+                    <a href="<c:out value="${pageContext.request.contextPath}" />/sys/s05">
+                    <span>人員基本資料資料管理</span></a>
                     
                     <a href="<c:out value="${pageContext.request.contextPath}" />/sys/s02">
-                    <span>角色資料管理</span></a>
+                    <span>角色資料維護</span></a>
                     
                     <a href="<c:out value="${pageContext.request.contextPath}" />/sys/s02">
                   
@@ -58,7 +59,10 @@
                   </div>
                 </div>
               </div>
-              <div class="mhr"></div><a class="button_line_gray" href="pages/subsystem_data.html">               <span>子系統資料維護</span></a>
+              <div class="mhr"></div>
+              <a class="button_line_gray" href="<c:out value="${pageContext.request.contextPath}" />/sys/s01">     
+              <span>子系統資料維護</span>
+              </a>
               <div class="mhr"></div>
               <a class="button_line_gray" href="<c:out value="${pageContext.request.contextPath}" />/sys/s11">
               <span>表單資料維護</span></a>

@@ -4,8 +4,13 @@
 <%@ include file="../include/head.jsp"%>
 <script src="<c:out value="${pageContext.request.contextPath}" />/resources/js/sys/s01.js"></script>
 <body class="no-skin" ng-controller="getAppController" id="body">
-	<%@ include file="../include/navbar.jsp"%>
-	<div id="divQuery" class="container">
+	<%@ include file="../include/f_navbar.jsp"%>
+		<section id="main_content">
+				<div class="container">
+					<div class="row">
+						<%@ include file="../include/slidebar.jsp"%>
+						
+		<div id="divQuery" class="col-lg-9">
 		<div class="row">
 			<h4 class="form_heading form_heading_fix form_heading_gray">
 				<img src="<c:out value="${pageContext.request.contextPath}" />/resources/img/icon-setting.svg" />
@@ -82,11 +87,11 @@
 			</h4>
 		</div>
 		<div class="row">
-			<div class="col-xs-12 col-md-6 no_padding">
+			<div class="col-xs-12 col-md-11"  style = "padding : 3px">
 				<div class="help-block"></div>
 				<%@ include file="./../include/table_row_select.jsp"%>
 			</div>
-			<div class="col-xs-12 col-md-6 no_padding">
+			<div class="col-xs-12 col-md-1" style = "padding : 3px">
 				<a class="btn btn_custom btn_blue pull-right" type="button"
 					ng-click="openEdit()" ng-show="${actionCreate}"> <i
 					class="fas fa-fw fa-plus-circle"></i> <s:message code="btnCreate" />
@@ -190,7 +195,8 @@
 			</div>
 		</div>
 	</div>
-	<div id="divEdit" class="container" ng-show="btnIns || btnUpd">
+	
+	<div id="divEdit" class="col-lg-9" ng-show="btnIns || btnUpd">
 		<div class="row">
 			<h4 class="form_heading form_heading_fix form_heading_gray"
 				ng-show="btnIns">
@@ -338,6 +344,31 @@
 			</div>
 		</div>
 	</div>
+					
+				
+				
+				
+				
+					</div>
+			</div>
+				
+			
+		
+		
+		</section>
+		
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	<div class="footer_space"></div>
 	<%@ include file="../include/footer.jsp"%>
 </body>

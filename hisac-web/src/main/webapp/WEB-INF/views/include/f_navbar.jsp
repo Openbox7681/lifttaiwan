@@ -36,7 +36,7 @@ function test(){
           <div class="col-md-3 col-sm-6">
             <div class="statistics_type">
               <div class="popinfo">
-                <p>說明文字說明文字說明文字   </p>
+                <p>  補助總人數 </p>
               </div>
               <div class="statistics_line">
                 <div class="icon"><img src="<c:out value="${pageContext.request.contextPath}" />/resources/img/icon/icon_subsidy.svg"></div><span>32122</span>
@@ -47,7 +47,7 @@ function test(){
           <div class="col-md-3 col-sm-6">
             <div class="statistics_type">
               <div class="popinfo">
-                <p>說明文字說明文字說明文字   </p>
+                <p>研究成果總數  </p>
               </div>
               <div class="statistics_line">
                 <div class="icon"><img src="<c:out value="${pageContext.request.contextPath}" />/resources/img/icon/icon_research.svg"></div><span>967</span>
@@ -58,7 +58,7 @@ function test(){
           <div class="col-md-3 col-sm-6">
             <div class="statistics_type">
               <div class="popinfo">
-                <p>說明文字說明文字說明文字   </p>
+                <p>國際合著篇數  </p>
               </div>
               <div class="statistics_line">
                 <div class="icon"><img src="<c:out value="${pageContext.request.contextPath}" />/resources/img/icon/icon_cooperate.svg"></div><span>263</span>
@@ -69,7 +69,7 @@ function test(){
           <div class="col-md-3 col-sm-6">
             <div class="statistics_type">
               <div class="popinfo">
-                <p>說明文字說明文字說明文字   </p>
+                <p>關鍵網絡總人數  </p>
               </div>
               <div class="statistics_line">
                 <div class="icon"><img src="<c:out value="${pageContext.request.contextPath}" />/resources/img/icon/icon_keypoint.svg"></div><span>173</span>

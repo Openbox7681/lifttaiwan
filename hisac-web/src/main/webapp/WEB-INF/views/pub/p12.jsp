@@ -8,8 +8,13 @@
 	src="<c:out value="${pageContext.request.contextPath}" />/resources/plugins/angular/angular-sanitize.min.js"></script>
 <script src="<c:out value="${pageContext.request.contextPath}" />/resources/js/pub/p12.js"></script>
 <body class="no-skin" ng-controller="getAppController">
-	<%@ include file="../include/navbar.jsp"%>
+	<%@ include file="../include/f_navbar.jsp"%>
+	
+	<section id="main_content">
 	<div class="container">
+	<div class="row">
+		<%@ include file="../include/slidebar.jsp"%>
+		<div class="col-lg-9 container">
 		<div class="row">
 			<h4 class="form_heading form_heading_fix form_heading_blue">
 				<img
@@ -164,6 +169,16 @@
 			</div>
 		</div>
 	</div>
+	
+	
+	
+	</div>
+	
+	</div>
+	
+	</section>
+	
+	
 	<!-- Begin: star rating dialog -->
 	<div class="modal fade" id="ratingWindow" role="dialog">
 		<div class="modal-dialog">

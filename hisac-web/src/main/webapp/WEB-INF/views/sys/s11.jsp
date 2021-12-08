@@ -139,11 +139,11 @@
 			</h4>
 		</div>
 		<div class="row">
-			<div class="col-xs-12 col-md-6 no_padding">
+			<div class="col-xs-12 col-md-11"  style = "padding : 3px">
 				<div class="help-block"></div>
 				<%@ include file="./../include/table_row_select.jsp"%>
 			</div>
-			<div class="col-xs-12 col-md-6 no_padding">
+			<div class="col-xs-12 col-md-1" style = "padding : 3px">
 				<a class="btn btn_custom btn_blue pull-right" type="button"
 					ng-click="openEdit()" ng-show="${actionCreate}"> <i
 					class="fas fa-fw fa-plus-circle"></i> <s:message code="btnCreate" />
@@ -155,7 +155,7 @@
 				<table
 					class="table table-striped table-bordered table-hover table_customer table_gray">
 					<thead>
-							<th><a href="" ng-click="setSortName('Id')"> <span><s:message code="s11Id" /></span> 
+							<th width="10%"><a href="" ng-click="setSortName('Id')"> <span><s:message code="s11Id" /></span> 
 									<i ng-show="sorttype != 'Id'"
 									class="fas fa-fw fa-sort text-muted"></i><i
 									ng-show="sorttype == 'Id' && !sortreverse"
@@ -163,7 +163,7 @@
 									ng-show="sorttype == 'Id' && sortreverse"
 									class="fas fa-fw fa-caret-up"></i>
 							</a></th>
-							<th><a href="" ng-click="setSortName('SubsystemName')"> <s:message
+							<th width="15%"><a href="" ng-click="setSortName('SubsystemName')"> <s:message
 										code="s11subsystemName" /> <i ng-show="sorttype != 'SubsystemName'"
 									class="fas fa-fw fa-sort text-muted"></i><i
 									ng-show="sorttype == 'SubsystemName' && !sortreverse"
@@ -171,7 +171,7 @@
 									ng-show="sorttype == 'SubsystemName' && sortreverse"
 									class="fas fa-fw fa-caret-up"></i>
 							</a></th>
-							<th><a href="" ng-click="setSortName('Name')"> <span><s:message code="s11Name" /></span> 
+							<th width="25%"><a href="" ng-click="setSortName('Name')"> <span><s:message code="s11Name" /></span> 
 									<i ng-show="sorttype != 'Name'"
 									class="fas fa-fw fa-sort text-muted"></i><i
 									ng-show="sorttype == 'Name' && !sortreverse"
@@ -179,15 +179,8 @@
 									ng-show="sorttype == 'Name' && sortreverse"
 									class="fas fa-fw fa-caret-up"></i>
 							</a></th>
-							<th><a href="" ng-click="setSortName('IsExternalLink')"> <span><s:message code="s11IsExternalLink" /></span>
-									<i ng-show="sorttype != 'IsExternalLink'"
-									class="fas fa-fw fa-sort text-muted"></i><i
-									ng-show="sorttype == 'IsExternalLink' && !sortreverse"
-									class="fas fa-fw fa-caret-down"></i> <i
-									ng-show="sorttype == 'IsExternalLink' && sortreverse"
-									class="fas fa-fw fa-caret-up"></i>
-							</a></th>
-							<th><a href="" ng-click="setSortName('isEnable')"> <s:message
+						
+							<th width="10%"><a href="" ng-click="setSortName('isEnable')"> <s:message
 										code="isEnable" /> <i ng-show="sorttype != 'isEnable'"
 									class="fas fa-fw fa-sort text-muted"></i><i
 									ng-show="sorttype == 'isEnable' && !sortreverse"
@@ -196,7 +189,7 @@
 									class="fas fa-fw fa-caret-up"></i>
 							</a></th>
 							
-							<th><a href="" ng-click="setSortName('isShow')"> <s:message
+							<th width="10%" ><a href="" ng-click="setSortName('isShow')"> <s:message
 										code="isShow" /> <i ng-show="sorttype != 'isShow'"
 									class="fas fa-fw fa-sort text-muted"></i><i
 									ng-show="sorttype == 'isShow' && !sortreverse"
@@ -205,7 +198,7 @@
 									class="fas fa-fw fa-caret-up"></i>
 							</a></th>							
 
-							<th><a href="" ng-click="setSortName('sort')"> <s:message
+							<th width="10%" ><a href="" ng-click="setSortName('sort')"> <s:message
 										code="sort" /> <i ng-show="sorttype != 'sort'"
 									class="fas fa-fw fa-sort text-muted"></i><i
 									ng-show="sorttype == 'sort' && !sortreverse"
@@ -217,7 +210,7 @@
 
 							
 							
-							<th ng-show="${actionUpdate && actionDelete}" class="func">&nbsp;</th>
+							<th width="20%" ng-show="${actionUpdate && actionDelete}" class="func">&nbsp;</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -225,7 +218,6 @@
 							<td>{{item.Id}}</td>
 							<td>{{item.SubsystemName}}</td>
 							<td>{{item.Name}}</td>
-							<td>{{item.IsExternalLink==true?"Y":"N"}}</td>
 							<td class="text-center"><span ng-show="{{item.IsEnable}}"><i
 									class="far fa-fw fa-check-circle text-success"
 									title='<s:message code="isEnableTrue" />'></i> <s:message
@@ -268,23 +260,6 @@
 			</div>
 		</div>
 	</div>
-				
-				
-				
-				
-				
-				</div>
-			
-			</div>
-	</section>
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	<div id="divEdit" class="container" ng-show="btnIns || btnUpd">
 		<div class="row">
@@ -492,6 +467,25 @@
 			</div>
 		</div>
 	</div>
+				
+				
+				
+				
+				
+				</div>
+			
+			</div>
+	</section>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	<div class="footer_space"></div>
 	<%@ include file="../include/footer.jsp"%>
 </body>

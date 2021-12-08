@@ -11,8 +11,17 @@
 	var globalSureDisableMember = '<s:message code="globalSureDisableMember" />';
 </script>
 <body class="no-skin" ng-controller="getAppController" id="body">
-	<%@ include file="../include/navbar.jsp"%>
-	<div id="divQuery" class="container">
+
+	<%@ include file="../include/f_navbar.jsp"%>
+	
+	
+	<section id="main_content">
+	<div class="container">
+	<div class="row">
+				
+	<%@ include file="../include/slidebar.jsp"%>
+	
+	<div id="divQuery" class="col-lg-9 container">
 		<div class="row">
 			<h4 class="form_heading form_heading_fix form_heading_gray">
 				<img
@@ -21,20 +30,7 @@
 			</h4>
 			<div class="col-xs-12 shadow_board">
 				<form name="queryForm">
-					<div>
-						<div class="form_group">
-							<label for="QueryOrgId"
-								class="form_label form_label_search form_label_gray"><s:message
-									code="memberOrgName" /></label>
-							<div class="form_input form_input_search">
-								<select id="QueryOrgId" name="QueryOrgId" ng-model="QueryOrgId" data-live-search="true" 
-									class="selectpicker form-control" ng-disabled="QueryOrgIdDisable" ng-change="changOrgId()"
-									ng-options="org.Id as org.Name + '('+org.Code+')' for org in orgs">
-									<option value="" selected><s:message code="all" /></option>
-								</select>
-							</div>
-						</div>
-					</div>
+					
 					<div>
 						<div class="form_group">
 							<label for="QueryAccount"
@@ -74,19 +70,7 @@
 							</div>
 						</div>
 					</div>
-					<div>
-						<div class="form_group">
-							<label for="QuerySpareEmail"
-								class="form_label form_label_search form_label_gray"><s:message
-									code="memberSpareEmail" /></label>
-							<div class="form_input form_input_search">
-								<input type="text" id="QuerySpareEmail" name="QuerySpareEmail"
-									ng-model="QuerySpareEmail" class="form-control"
-									placeholder="<s:message code="memberSpareEmail" />"
-									autocomplete="off">
-							</div>
-						</div>
-					</div>
+					
 					<div>
 						<div class="form_group">
 							<label for="QueryMobilePhone"
@@ -100,71 +84,11 @@
 							</div>
 						</div>
 					</div>
-					<div>
-						<div class="form_group">
-							<label for="QueryCityPhone"
-								class="form_label form_label_search form_label_gray"><s:message
-									code="memberCityPhone" /></label>
-							<div class="form_input form_input_search">
-								<input type="text" id="QueryCityPhone" name="QueryCityPhone"
-									ng-model="QueryCityPhone" class="form-control"
-									placeholder="<s:message code="memberCityPhone" />"
-									autocomplete="off">
-							</div>
-						</div>
-					</div>
-					<div>
-						<div class="form_group">
-							<label for="QueryFaxPhone"
-								class="form_label form_label_search form_label_gray"><s:message
-									code="memberFaxPhone" /></label>
-							<div class="form_input form_input_search">
-								<input type="text" id="QueryFaxPhone" name="QueryFaxPhone"
-									ng-model="QueryFaxPhone" class="form-control"
-									placeholder="<s:message code="memberFaxPhone" />"
-									autocomplete="off">
-							</div>
-						</div>
-					</div>
-					<div>
-						<div class="form_group">
-							<label for="QueryAddress"
-								class="form_label form_label_search form_label_gray"><s:message
-									code="memberAddress" /></label>
-							<div class="form_input form_input_search">
-								<input type="text" id="QueryAddress" name="QueryAddress"
-									ng-model="QueryAddress" class="form-control"
-									placeholder="<s:message code="memberAddress" />"
-									autocomplete="off">
-							</div>
-						</div>
-					</div>
-					<div>
-						<div class="form_group">
-							<label for="QueryDepartment"
-								class="form_label form_label_search form_label_gray"><s:message
-									code="memberDepartment" /></label>
-							<div class="form_input form_input_search">
-								<input type="text" id="QueryDepartment" name="QueryDepartment"
-									ng-model="QueryDepartment" class="form-control"
-									placeholder="<s:message code="memberDepartment" />"
-									autocomplete="off">
-							</div>
-						</div>
-					</div>
-					<div>
-						<div class="form_group">
-							<label for="QueryTitle"
-								class="form_label form_label_search form_label_gray"><s:message
-									code="memberPosition" /></label>
-							<div class="form_input form_input_search">
-								<input type="text" id="QueryTitle" name="QueryTitle"
-									ng-model="QueryTitle" class="form-control"
-									placeholder="<s:message code="memberPosition" />"
-									autocomplete="off">
-							</div>
-						</div>
-					</div>
+					
+					
+					
+					
+					
 
 					<c:if
 						test="${(isMemberAdmin==true && isAdmin==false && isHisac==false)!=true}">
@@ -240,11 +164,11 @@
 			</h4>
 		</div>
 		<div class="row">
-			<div class="col-xs-12 col-md-6 no_padding">
+			<div class="col-xs-12 col-md-11"  style = "padding : 3px">
 				<div class="help-block"></div>
 				<%@ include file="./../include/table_row_select.jsp"%>
 			</div>
-			<div class="col-xs-12 col-md-6 no_padding">
+			<div class="col-xs-12 col-md-1" style = "padding : 3px">
 				<a class="btn btn_custom btn_blue pull-right" type="button"
 					ng-click="openEdit(1)" ng-show="${actionCreate}"> <i
 					class="fas fa-fw fa-plus-circle"></i> <s:message code="btnCreate" />
@@ -314,22 +238,10 @@
 									ng-show="sorttype == 'cityPhone' && sortreverse"
 									class="fas fa-fw fa-caret-up"></i>
 							</a></th>
-							<th><a href="" ng-click="setSortName('name')"> <s:message
-										code="memberOrgName" /> <i ng-show="sorttype != 'name'"
-									class="fas fa-fw fa-sort text-muted"></i><i
-									ng-show="sorttype == 'name' && !sortreverse"
-									class="fas fa-fw fa-caret-down"></i> <i
-									ng-show="sorttype == 'name' && sortreverse"
-									class="fas fa-fw fa-caret-up"></i>
-							</a><br /> <a href="" ng-click="setSortName('department')"> <s:message
-										code="memberDepartment" /> <i
-									ng-show="sorttype != 'department'"
-									class="fas fa-fw fa-sort text-muted"></i> <i
-									ng-show="sorttype == 'department' && !sortreverse"
-									class="fas fa-fw fa-caret-down"></i> <i
-									ng-show="sorttype == 'department' && sortreverse"
-									class="fas fa-fw fa-caret-up"></i>
-							</a></th>
+							
+						<th>是否啟用</th>
+							
+							
 							<th><s:message code="memberStatus" /><br /><s:message code="roleName" /></th>
 							<th ng-show="${actionUpdate && actionDelete}" class="func">&nbsp;</th>
 						</tr>
@@ -343,13 +255,17 @@
 							</td>
 							<td>{{item.MobilePhone}}<br />{{item.CityPhone}}
 							</td>
-							<td>{{item.OrgName}}<p ng-if="item.CILevel!=''">{{item.CILevel}}</p>{{item.Department}}<br />
+							
+							<td>{{item.IsEnable}}
 							</td>
+							
 							<td><span ng-if="item.Status==0"><s:message
 										code="memberStatus0" /></span> <span ng-if="item.Status==1"><s:message
 										code="memberStatus1" /></span> <span ng-if="item.Status==2"><s:message
 										code="memberStatus2" /></span> <span ng-if="item.Status==3"><s:message
-										code="memberStatus3" /></span><br />{{item.Roles| join:', '}}</td>
+										code="memberStatus3" /></span>
+										<br/>admin
+										</td>
 							<td ng-show="${actionUpdate && actionDelete}" class="text-center">
 								<a class="btn btn-sm btn-primary" ng-click="editData(item.Id);"
 								title='<s:message code="btnEdit" />'
@@ -387,7 +303,8 @@
 			</div>
 		</div>
 	</div>
-	<div id="divEdit" class="container" ng-show="btnIns || btnUpd">
+	
+	<div id="divEdit" class="col-lg-9 container" ng-show="btnIns || btnUpd">
 		<div class="row">
 			<h4 class="form_heading form_heading_fix form_heading_gray"
 				ng-show="btnIns">
@@ -401,32 +318,7 @@
 			</h4>
 			<div class="col-xs-12 shadow_board">
 				<form name="editForm">
-					<div>
-						<div class="form_group">
-							<label for="OrgId"
-								class="form_label form_label_search form_label_gray"><s:message
-									code="memberOrgName" /></label>
-							<div class="form_input form_input_search">						
-								<select id="OrgId" name="OrgId" ng-model="OrgId" 
-								ng-disabled=!btnIns
-									ng-disabled=!btnIns							
-									ng-disabled="btnUpd" class="form-control" ng-required="true" 
-									ng-options="org.Id as org.Name + '('+org.Code+')' for org in orgs">
-									
-<!-- 																	ng-disabled="OrgIdDisable"	
- -->									
-										
-									<option value=""><s:message
-											code="pleaseSelect" /><s:message code="memberOrgName" /></option>
-								</select>
-								<h5 class="text-danger"
-									ng-show="editForm.OrgId.$error.required && editForm.OrgId.$dirty">
-									<s:message code="pleaseSelect" />
-									<s:message code="memberOrgName" />
-								</h5>
-							</div>
-						</div>
-					</div>
+					
 					<div>
 						<div class="form_group">
 							<label for="Account"
@@ -500,33 +392,7 @@
 							</div>
 						</div>
 					</div>
-					<div>
-						<div class="form_group">
-							<label for="SpareEmail"
-								class="form_label form_label_search form_label_gray"><s:message
-									code="memberSpareEmail" /></label>
-							<div class="form_input form_input_search">
-								<input type="text" id="SpareEmail" name="SpareEmail"
-									ng-model="SpareEmail" class="form-control"
-							
-									placeholder="<s:message code="memberSpareEmail" />"
-									autocomplete="off" ng-maxlength="128">
-									
-									<h5 class="text-danger">
-										如有多筆email請用,分隔，如example01@gamil.com,example02@gmail.com 
-									</h5> 
-									
-									
-									<%-- ng-pattern="/^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/i"
-									placeholder="<s:message code="memberSpareEmail" />"
-									autocomplete="off" ng-maxlength="128"> --%>
-								<%-- <h5 class="text-danger"
-									ng-show="!editForm.SpareEmail.$error.required && editForm.SpareEmail.$invalid && editForm.SpareEmail.$dirty">
-									<s:message code="memberEmailFormat" arguments="128" />
-								</h5> --%>
-							</div>
-						</div>
-					</div>
+					
 					<div>
 						<div class="form_group">
 							<label for="MobilePhone"
@@ -560,181 +426,50 @@
 							</div>
 						</div>
 					</div>
+					
 					<div>
 						<div class="form_group">
-							<label for="CityPhone"
-								class="form_label form_label_search form_label_gray"><s:message
-									code="memberCityPhone" /></label>
+							<label for="Password"
+								class="form_label form_label_search form_label_gray">密碼</label>
 							<div class="form_input form_input_search">
-								<input type="text" id="CityPhone" name="CityPhone"
-									ng-model="CityPhone" class="form-control"
-									placeholder="<s:message code="memberCityPhone" />"
-									autocomplete="off" ng-maxlength="16"
-									ng-pattern="/^0\d{1,2}-\d{6,10}/" />
-
-								<h5 class="text-danger"
-									ng-show="editForm.CityPhone.$error.maxlength && editForm.CityPhone.$dirty">
-									<s:message code="formatMaxLengthAfter" arguments="16" />
-								</h5>
-								<h5 class="validation-msg"
-									ng-show="editForm.CityPhone.$invalid && editForm.CityPhone.$dirty">
-									<s:message code="phoneFormatErr" />
-								</h5>
-							</div>
-						</div>
-					</div>
-					<div>
-						<div class="form_group">
-							<label for="FaxPhone"
-								class="form_label form_label_search form_label_gray"><s:message
-									code="memberFaxPhone" /></label>
-							<div class="form_input form_input_search">
-								<input type="text" id="FaxPhone" name="FaxPhone"
-									ng-model="FaxPhone" class="form-control"
-									placeholder="<s:message code="memberFaxPhone" />"
-									autocomplete="off" ng-maxlength="16"
-									ng-pattern="/^0\d{1,2}-\d{6,10}/" />
-
-								<h5 class="validation-msg"
-									ng-show="!editForm.FaxPhone.$error.required && editForm.FaxPhone.$invalid && editForm.FaxPhone.$dirty">
-									<s:message code="phoneFormatErr" />
-								</h5>
-								<h5 class="text-danger"
-									ng-show="editForm.FaxPhone.$error.maxlength && editForm.FaxPhone.$dirty">
-									<s:message code="formatMaxLengthAfter" arguments="16" />
-								</h5>
-								
-							</div>
-						</div>
-					</div>
-					<div>
-						<div class="form_group">
-							<label for="Address"
-								class="form_label form_label_search form_label_gray"><s:message
-									code="memberAddress" /></label>
-							<div class="form_input form_input_search">
-								<input type="text" id="Address" name="Address"
-									ng-model="Address" class="form-control"
-									placeholder="<s:message code="memberAddress" />"
-									autocomplete="off" ng-maxlength="256" />
-								<h5 class="text-danger"
-									ng-show="editForm.Address.$error.maxlength && editForm.Address.$dirty">
-									<s:message code="formatMaxLengthAfter" arguments="256" />
-								</h5>
-							</div>
-						</div>
-					</div>
-					<div>
-						<div class="form_group">
-							<label for="Department"
-								class="form_label form_label_search form_label_gray"><s:message
-									code="memberDepartment" /></label>
-							<div class="form_input form_input_search">
-								<input type="text" id="Department" name="Department"
-									ng-model="Department" class="form-control"
-									placeholder="<s:message code="memberDepartment" />"
-									autocomplete="off" ng-maxlength="128" />
-								<h5 class="text-danger"
-									ng-show="editForm.Department.$error.maxlength && editForm.Department.$dirty">
-									<s:message code="formatMaxLengthAfter" arguments="128" />
-								</h5>
-							</div>
-						</div>
-					</div>
-					<div>
-						<div class="form_group">
-							<label for="Title"
-								class="form_label form_label_search form_label_gray"><s:message
-									code="memberPosition" /></label>
-							<div class="form_input form_input_search">
-								<input type="text" id="Title" name="Title" ng-model="Title"
+								<input type="text" id="Password"
+									name="Password" ng-model="Password"
+									ng-maxlength="300" ng-minlength="10" 
 									class="form-control"
-									placeholder="<s:message code="memberPosition" />"
-									autocomplete="off" ng-maxlength="128" />
-								<h5 class="text-danger"
-									ng-show="editForm.Title.$error.maxlength && editForm.Title.$dirty">
-									<s:message code="formatMaxLengthAfter" arguments="128" />
-								</h5>
-							</div>
-						</div>
-					</div>
-					
-					<div>
-						<div class="form_group">
-							<label for="healthLevelId"
-								class="form_label form_label_pdpl form_label_gray"><s:message
-									code="healthLevel" /></label>
-							<div class="form_input form_input_pdpl">
-								<select id="healthLevelId" name="healthLevel"
-									ng-model = "healthLevelId" class = "form-control"
-									ng-disabled=!btnIns>
-<!-- 									ng-options="healthLevel.id as healthLevel.name for healthLevel in healthLevels">
- -->									
-									<option ng-value="1">醫學中心</option>
-									<option ng-value="2">準醫學中心</option>
-									<option ng-value="3">區域醫院</option>
-									<option ng-value="4">地區醫院</option>
-									<option ng-value="5">非醫院</option>
-									<option ng-value="0"><s:message code="pleaseSelect" /><s:message
-											code="healthLevel" /></option>
-								</select>
-							</div>	
-						</div>			
-					</div>
-					
-					
-					<div>
-						<div class="form_group">
-							<label for="securityLevel"
-								class="form_label form_label_search form_label_gray"><s:message
-									code="securityLevel" /></label>
-							<div class="form_input form_input_search">
-								<select id="securityLevel" name="securityLevel"
-									ng-model="securityLevel" class="form-control"
-									ng-disabled=!btnIns
-									>
-									<option ng-value="1">A</option>
-									<option ng-value="2">B</option>
-									<option ng-value="3">C</option>
-									<option ng-value="4">D</option>
-									<option ng-value="5">E</option>
-									<option ng-value="0"><s:message code="pleaseSelect" /><s:message
-											code="securityLevel" /></option>
+									placeholder="請輸入密碼"
+									autocomplete="off"  >
 									
-								</select>
+									
 							</div>
 						</div>
 					</div>
 					
-					
-					<div>
+						<div>
 						<div class="form_group">
-							<label for="IsPublic"
-								class="form_label form_label_search form_label_gray"><s:message
-									code="isPublicOffice" /></label>
-							<div class="form_input form_input_search_half">
-								<%-- <select id="IsPublic" name="IsPublic"
-									ng-model="IsPublic" class="form-control"
-									ng-disabled=!btnIns
-									>
-									<option ng-value="true"><s:message code="isPublicOfficeTrue" /></option>
-									<option ng-value="false"><s:message code="isPublicOfficeFalse" /></option>
-									<option value=""><s:message code="pleaseSelect" /><s:message
-											code="isPublicOffice" /></option>
-								</select> --%>
-								
-								<toggle ng-model="IsPublic" ng-init="IsPublic=false"
-									ng-disabled=!btnIns
-									on='<i class="far fa-fw fa-check-circle"></i><s:message code="isPublicOfficeTrue" />'
-									off='<i class="fas fa-fw fa-minus-circle"></i><s:message code="isPublicOfficeFalse" />'
-									onstyle="btn-success" offstyle="btn-danger"></toggle>
-								
-								
-								
+							<label for="ConfirmPassword"
+								class="form_label form_label_search form_label_gray">確認密碼</label>
+							<div class="form_input form_input_search">
+								<input type="text" id="Password"
+									name="ConfirmPassword" ng-model="ConfirmPassword"
+									ng-maxlength="300" ng-minlength="10" 
+									class="form-control"
+									placeholder="請輸入密碼"
+									autocomplete="off"  >
+									
+									
 							</div>
 						</div>
 					</div>
 					
+					
+					
+					
+					
+					
+					
+					
+					
+				
 					
 					<div ng-show="memberRoleData.length > 0">
 						<div class="form_group">
@@ -805,6 +540,26 @@
 			</div>
 		</div>
 	</div>
+	
+	
+	
+	
+	
+	</div>
+	
+	</div>
+	
+	</section>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	<div class="modal-body" id="exporExcel" ng-show="false">
 	<table>

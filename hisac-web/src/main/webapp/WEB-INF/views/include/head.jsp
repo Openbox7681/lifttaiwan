@@ -55,11 +55,17 @@
 <%-- <link rel="stylesheet"
 	href="<c:out value="${pageContext.request.contextPath}" />/resources/plugins/fontawesome/css/fontawesome-all.min.css"> --%>
 	
- <link rel="stylesheet"
-	href="<c:out value="${pageContext.request.contextPath}" />/resources/css/bootstrap-datetimepicker.min.css">  
+ <%-- <link rel="stylesheet"
+	href="<c:out value="${pageContext.request.contextPath}" />/resources/css/bootstrap-datetimepicker.min.css">   --%>
 	
  <link rel="stylesheet"
 	href="<c:out value="${pageContext.request.contextPath}" />/resources/css/default.css">
+	
+	
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/css/bootstrap-datetimepicker.min.css">
+
+
 	
 	 
 
@@ -80,6 +86,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/js/bootstrap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.min.js"></script>
 	
+
 
 
 <script

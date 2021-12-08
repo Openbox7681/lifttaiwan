@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html;charset=UTF-8"%>
 <!DOCTYPE html>
 <html ng-app="myApp">
-<%@ include file="../include/head_back.jsp"%>
+<%@ include file="../include/head.jsp"%>
 <script>
 	var globalReadDataFail = '<s:message code="globalReadDataFail" />';
 	var btnClose = '<s:message code="btnClose" />';
@@ -12,16 +12,18 @@
 	var globalUpdateDataFail = '<s:message code="globalUpdateDataFail" />';
 	var dataLoading = '<s:message code="dataLoading" />';
 </script>
-<script
-	src="<c:out value="${pageContext.request.contextPath}" />/resources/plugins/paging.js"></script>
+
 <script src="<c:out value="${pageContext.request.contextPath}" />/resources/js/sys/s03.js"></script>
-<script
-	src="<c:out value="${pageContext.request.contextPath}" />/resources/plugins/angular-bootstrap-toggle/angular-bootstrap-toggle.min.js"></script>
-<link rel="stylesheet"
-	href="<c:out value="${pageContext.request.contextPath}" />/resources/plugins/angular-bootstrap-toggle/angular-bootstrap-toggle.min.css">
+
 <body class="no-skin" ng-controller="getAppController" id="body">
-	<%@ include file="../include/navbar.jsp"%>
-	<div id="divQuery" class="container">
+	<%@ include file="../include/f_navbar.jsp"%>
+	
+	<section id="main_content">
+	<div class="container">
+	<div class="row">
+	<%@ include file="../include/slidebar.jsp"%>
+	
+	<div id="divQuery" class="col-lg-9 container">
 		<div class="row">
 			<h4 class="form_heading form_heading_fix form_heading_gray">
 				<img src="<c:out value="${pageContext.request.contextPath}" />/resources/img/icon-setting.svg" />
@@ -139,7 +141,7 @@
 								class="form_label form_label_search form_label_gray"><s:message
 									code="systemCreateAccount" /></label>
 							<div class="form_input form_input_search">
-								<input type="text" id="CreateAccount" name="CreateAccount"
+								<input type="datetime-local" id="CreateAccount" name="CreateAccount"
 									ng-model="CreateAccount" class="form-control"
 									placeholder="<s:message code="systemCreateAccount" />"
 									autocomplete="off">
@@ -151,7 +153,7 @@
 							<label for=Sdate
 								class="form_label form_label_search form_label_gray"><s:message
 									code="systemSdate" /></label>
-							<div class="form_input form_input_search">
+							<div class="form_input form_input_search" style="position: relative">
 								<input type="text" id="Sdate" name="Sdate"
 									ng-model="Sdate" class="form-control"
 									placeholder="<s:message code="systemSdate" />"
@@ -164,7 +166,7 @@
 							<label for=Edate
 								class="form_label form_label_search form_label_gray"><s:message
 									code="systemEdate" /></label>
-							<div class="form_input form_input_search">
+							<div class="form_input form_input_search"  style="position: relative">
 								<input type="text" id="Edate" name="Edate"
 									ng-model="Edate" class="form-control"
 									placeholder="<s:message code="systemEdate" />"
@@ -316,6 +318,14 @@
 			</div>
 		</div>
 	</div>
+	
+	
+	</div>
+	</div>
+	</section>
+	
+	
+	
 	
 	<div class="footer_space"></div>
 	<%@ include file="../include/footer.jsp"%>

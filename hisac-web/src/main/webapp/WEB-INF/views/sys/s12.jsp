@@ -5,8 +5,14 @@
 <script src="<c:out value="${pageContext.request.contextPath}" />/resources/js/sys/s12.js"></script>
 
 <body class="no-skin" ng-controller="getAppController" id="body">
-	<%@ include file="../include/navbar.jsp"%>
-	<div id="divQuery" class="container">
+	<%@ include file="../include/f_navbar.jsp"%>
+	
+	<section id="main_content">
+	<div class="container">
+	<div class="row">
+	<%@ include file="../include/slidebar.jsp"%>
+	
+	<div id="divQuery" class="col-lg-9 container">
 		<div class="row">
 			<h4 class="form_heading form_heading_fix form_heading_gray">
 				<img
@@ -78,7 +84,6 @@
 					class="table table-striped table-bordered table-hover table_customer table_gray">
 					<thead>
 						<tr>
-							<th width="25%"><s:message code="s12subsystemName" /></th>
 							<th width="25%"><s:message code="s12Name" /></th>
 							<th width="10%"><label for="selectReadAllorNone"><input
 									id="selectReadAllorNone"
@@ -116,7 +121,6 @@
 					</thead>
 					<tbody>
 						<tr ng-repeat="form in RoleForm | filter:search">
-							<td>{{form.SubsystemName}}</td>
 							<td>{{form.FormName}}</td>
 							<td class="text-center"><label
 								for="selectRead_{{form.FormId}}"><input
@@ -172,6 +176,20 @@
 			</div> --%>
 		</div>
 	</div>
+	
+	
+	
+	
+		
+				
+	</div>	
+	</div>
+	</section>
+	
+	
+	
+	
+	
 
 	<div class="footer_space"></div>
 	<%@ include file="../include/footer.jsp"%>

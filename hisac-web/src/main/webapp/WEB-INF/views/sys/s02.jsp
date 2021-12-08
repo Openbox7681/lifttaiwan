@@ -17,37 +17,7 @@
 				<img src="<c:out value="${pageContext.request.contextPath}" />/resources/img/icon-setting.svg" />
 				<b><c:out value="${appName}" /></b>
 			</h4>
-			
-			<!-- <div class="col-lg-12">
-                <div id="filiter">
-                  <div class="filiter_line subsystem_data_color">
-                    <h6>角色名稱</h6>
-                    <div class="choose_item">
-                      <div class="input-group mb-2">
-                        <input class="form-control" type="text" placeholder="標題關鍵字" aria-label="標題關鍵字" aria-describedby="basic-addon2">
-                      </div>
-                    </div>
-                    <h6>是否啟用</h6>
-                    <div class="choose_item">
-                      <select class="form-select" aria-label="Default select example">
-                        <option selected="">全部</option>
-                        <option value="1">是</option>
-                        <option value="2">否</option>
-                      </select>
-                    </div>
-                    <div class="search_btn hcenter">
-                      <div class="button_fill_orange btn_m">
-                        <p>查詢</p>
-                      </div>
-                      <div class="button_fill_gray btn_m"><i class="fas fa-undo-alt"></i>
-                        <p>清空</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-			 -->
-			
+
 			
 			<div class="col-lg-12 shadow_board">
 				<form name="queryForm">
@@ -104,11 +74,11 @@
 			</h4>
 		</div>
 		<div class="row">
-			<div class="col-xs-12 col-md-6 no_padding">
+			<div class="col-xs-12 col-md-11"  style = "padding : 3px">
 				<div class="help-block"></div>
 				<%@ include file="./../include/table_row_select.jsp"%>
 			</div>
-			<div class="col-xs-12 col-md-6 no_padding">
+			<div class="col-xs-12 col-md-1" style = "padding : 3px">
 				<a class="btn btn_custom btn_blue pull-right" type="button"
 					ng-click="openEdit()" ng-show="${actionCreate}"> <i
 					class="fas fa-fw fa-plus-circle"></i> <s:message code="btnCreate" />
