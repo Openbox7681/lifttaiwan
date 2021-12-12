@@ -12,7 +12,7 @@ import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "topaf50_new")
+@Table(name = "topaf50_lift")
 public class Topaf50 {
 
 	private Long id;
