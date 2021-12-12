@@ -8,7 +8,8 @@
 	src="<c:out value="${pageContext.request.contextPath}" />/resources/plugins/Chart.min.js"></script>
 <script
 	src="<c:out value="${pageContext.request.contextPath}" />/resources/plugins/Chart.PieceLabel.min.js"></script>
-   <script src="<c:out value="${pageContext.request.contextPath}" />/resources/js/custom.js"></script>
+<script 
+	src="<c:out value="${pageContext.request.contextPath}" />/resources/js/custom.js"></script>
 
 <body class="no-skin"ng-controller="getAppController" >
 

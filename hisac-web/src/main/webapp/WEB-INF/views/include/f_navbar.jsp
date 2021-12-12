@@ -6,6 +6,8 @@ function test(){
 
 }
     </script>
+<script
+	src="<c:out value="${pageContext.request.contextPath}" />/resources/js/common/f_navbar.js"></script>
 
 
 <!-- partial:index.partial.html-->
@@ -39,7 +41,7 @@ function test(){
                 <p>  補助總人數 </p>
               </div>
               <div class="statistics_line">
-                <div class="icon"><img src="<c:out value="${pageContext.request.contextPath}" />/resources/img/icon/icon_subsidy.svg"></div><span>32122</span>
+                <div class="icon"><img src="<c:out value="${pageContext.request.contextPath}" />/resources/img/icon/icon_subsidy.svg"></div><span id="peopleNum"></span>
                 <h5>補助總人數</h5>
               </div>
             </div>
@@ -50,7 +52,7 @@ function test(){
                 <p>研究成果總數  </p>
               </div>
               <div class="statistics_line">
-                <div class="icon"><img src="<c:out value="${pageContext.request.contextPath}" />/resources/img/icon/icon_research.svg"></div><span>967</span>
+                <div class="icon"><img src="<c:out value="${pageContext.request.contextPath}" />/resources/img/icon/icon_research.svg"></div><span id="paperNum"></span>
                 <h5>研究成果總數</h5>
               </div>
             </div>

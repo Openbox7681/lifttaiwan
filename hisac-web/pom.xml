@@ -16,7 +16,7 @@
 		<org.hibernate.validator-version>5.4.2.Final</org.hibernate.validator-version>
 		<org.hibernate.core-version>5.2.12.Final</org.hibernate.core-version>
 		<javax.mail-version>1.6.0</javax.mail-version>
-		<org.javassist-version>3.22.0-GA</org.javassist-version>
+		<org.javassist-version>3.25.0-GA</org.javassist-version>
 		<com.microsoft.sqlserver.jdbc-version>6.2.2.jre8</com.microsoft.sqlserver.jdbc-version>
 		<javax.servlet.api-version>4.0.0</javax.servlet.api-version>
 		<javax.servlet.jsp-version>2.3.1</javax.servlet.jsp-version>

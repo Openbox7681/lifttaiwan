@@ -130,8 +130,13 @@
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 	
+	<bean id="peopleMainsLiftDAO" class="tw.gov.mohw.hisac.web.dao.PeopleMainsLiftDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
 	
-	
+	<bean id="paperMainsLiftDAO" class="tw.gov.mohw.hisac.web.dao.PaperMainsLiftDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
 	
 	
 	
