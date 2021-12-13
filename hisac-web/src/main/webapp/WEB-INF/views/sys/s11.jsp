@@ -11,6 +11,10 @@
 	<section id="main_content">
 	<div class="container">
 	<div class="row">
+	
+	<div class="col-md-12">
+          <div class="sidebar_button" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><span>選單項目</span></div>
+     </div>
 				
 	<%@ include file="../include/slidebar.jsp"%>
 					
@@ -466,25 +470,13 @@
 				</form>
 			</div>
 		</div>
+	</div>			
 	</div>
-				
-				
-				
-				
-				
-				</div>
-			
-			</div>
+	</div>
 	</section>
 	
-	
-	
-	
-	
-	
-	
-	
-	
+	 <!-- tablet&mobile sidebar lightbox-->
+	<%@ include file="../include/mobilesidebar.jsp"%>
 	
 	<div class="footer_space"></div>
 	<%@ include file="../include/footer.jsp"%>

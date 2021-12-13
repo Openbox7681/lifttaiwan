@@ -7,6 +7,9 @@ function test(){
 }
 </script>
 
+<script src="<c:out value="${pageContext.request.contextPath}" />/resources/js/custom.js"></script>
+
+
 <!-- partial:index.partial.html-->
     <header class="nav" id="top_pos">
       <div class="container">
@@ -38,8 +41,12 @@ function test(){
                 <p>  補助總人數 </p>
               </div>
               <div class="statistics_line">
-                <div class="icon"><img src="<c:out value="${pageContext.request.contextPath}" />/resources/img/icon/icon_subsidy.svg"></div><span id="peopleNum"></span>
+                <div class="icon"><img src="<c:out value="${pageContext.request.contextPath}" />/resources/img/icon/icon_subsidy.svg">
+               
+				</div><span id="peopleNum"></span>
                 <h5>補助總人數</h5>
+                
+                
               </div>
             </div>
           </div>
@@ -76,6 +83,18 @@ function test(){
               </div>
             </div>
           </div>
+          
+           <div id="loadingActivity" class=" col-md-12 col-sm-12 public_loading">
+					<h4>
+						<i class="fas fa-circle-notch fa-spin"></i>
+						<s:message code="dataLoading" />
+					</h4>
+		</div>
+		
         </div>
+        
+        
+        
+        
       </div>
     </section>

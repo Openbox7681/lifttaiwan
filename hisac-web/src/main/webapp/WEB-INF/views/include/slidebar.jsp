@@ -32,7 +32,7 @@
                   </h2>
                   <div class="accordion-collapse collapse" id="panelsStayOpen-collapseTwo" aria-labelledby="panelsStayOpen-headingTwo">
                     <div class="accordion-body">
-                    <a href="pages/s_permissions.html">
+                    <a href="<c:out value="${pageContext.request.contextPath}" />/sys/s11">
                     <span>角色權限</span></a>
                     
                     <a href="<c:out value="${pageContext.request.contextPath}" />/sys/s05">
@@ -43,7 +43,9 @@
                     
                     <a href="<c:out value="${pageContext.request.contextPath}" />/sys/s02">
                   
-                    <span>圖片/連結檢測</span></a><a href="pages/s_settings.html">
+                    <span>圖片/連結檢測</span></a>
+                    
+                    <a href="pages/s_settings.html">
                     <span>網站設定 </span></a></div>
                   </div>
                 </div>

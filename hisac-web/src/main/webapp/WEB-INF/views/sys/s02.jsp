@@ -3,11 +3,16 @@
 <html ng-app="myApp">
 <%@ include file="../include/head.jsp"%>
 <script src="<c:out value="${pageContext.request.contextPath}" />/resources/js/sys/s02.js"></script>
+
 <body class="no-skin" ng-controller="getAppController" id="body">
 	<%@ include file="../include/f_navbar.jsp"%>
 	<section id="main_content">
 	<div class="container">
 	<div class="row">
+	
+	<div class="col-md-12">
+          <div class="sidebar_button" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><span>選單項目</span></div>
+     </div>
 	
 	<%@ include file="../include/slidebar.jsp"%>
 
@@ -248,16 +253,12 @@
 			</div>
 		</div>
 	</div>
-	
-	
-	
-	
-	
 	</div>
-	
 	</div>
-	
 	</section>
+	
+	 <!-- tablet&mobile sidebar lightbox-->
+	<%@ include file="../include/mobilesidebar.jsp"%>
 
 	
 	<div class="footer_space"></div>

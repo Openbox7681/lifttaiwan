@@ -2,8 +2,8 @@
 <!DOCTYPE html>
 <html ng-app="myApp">
 <%@ include file="../include/head.jsp"%>
-<%-- <script src="<c:out value="${pageContext.request.contextPath}" />/resources/js/alt/a01.js"></script>
- --%>
+ <script src="<c:out value="${pageContext.request.contextPath}" />/resources/js/alt/a01.js"></script>
+ 
  <body class="no-skin" ng-controller="getAppController" id="body">
 	<%@ include file="../include/f_navbar.jsp"%>
 	<div id="divQuery" class="container">

@@ -13,6 +13,8 @@ var myApp = angular.module('myApp', []).controller('getAppController',
 function getAppController($scope, $http, $window) {
 	
 	$scope.queryNumber = function() {
+        $("#loadingActivity").fadeIn("slow");
+
 		var request = {
 			count_topname : true,
 			count_p_id : true,
@@ -21,11 +23,12 @@ function getAppController($scope, $http, $window) {
 		};
 		$http.post('./common/queryNumber', request, csrf_config).then(function(response) {
 			
+			console.log("testfff");
+			
 			$("#peopleNum").text(response.data.peopleNum);
 			$("#paperNum").text(response.data.paperNum);
 			$("#paperCorNum").text(response.data.paperCorNum);
 			$("#snaTopNum").text(response.data.snaTopNum);		
-
 		}).catch(function() {
 			bootbox.alert({
 				message : globalReadDataFail,
@@ -39,6 +42,8 @@ function getAppController($scope, $http, $window) {
 			});
 		}).finally(function() {
 			$("#imgLoading").hide();
+            $("#loadingActivity").fadeOut("slow");
+
 		});
 	};
 	$scope.queryNumber();

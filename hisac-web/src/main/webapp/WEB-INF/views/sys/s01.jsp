@@ -6,9 +6,15 @@
 <body class="no-skin" ng-controller="getAppController" id="body">
 	<%@ include file="../include/f_navbar.jsp"%>
 		<section id="main_content">
-				<div class="container">
-					<div class="row">
-						<%@ include file="../include/slidebar.jsp"%>
+		<div class="container">
+		<div class="row">
+		
+		<div class="col-md-12">
+          <div class="sidebar_button" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><span>選單項目</span></div>
+        </div>
+		
+		
+		<%@ include file="../include/slidebar.jsp"%>
 						
 		<div id="divQuery" class="col-lg-9">
 		<div class="row">
