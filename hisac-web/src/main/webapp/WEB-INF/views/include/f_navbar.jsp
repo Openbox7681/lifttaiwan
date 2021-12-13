@@ -5,10 +5,7 @@ function test(){
     bootbox.alert("This is the default alert!");
 
 }
-    </script>
-<script
-	src="<c:out value="${pageContext.request.contextPath}" />/resources/js/common/f_navbar.js"></script>
-
+</script>
 
 <!-- partial:index.partial.html-->
     <header class="nav" id="top_pos">
@@ -63,7 +60,7 @@ function test(){
                 <p>國際合著篇數  </p>
               </div>
               <div class="statistics_line">
-                <div class="icon"><img src="<c:out value="${pageContext.request.contextPath}" />/resources/img/icon/icon_cooperate.svg"></div><span>263</span>
+                <div class="icon"><img src="<c:out value="${pageContext.request.contextPath}" />/resources/img/icon/icon_cooperate.svg"></div><span id="paperCorNum"></span>
                 <h5>國際合著篇數</h5>
               </div>
             </div>
@@ -74,7 +71,7 @@ function test(){
                 <p>關鍵網絡總人數  </p>
               </div>
               <div class="statistics_line">
-                <div class="icon"><img src="<c:out value="${pageContext.request.contextPath}" />/resources/img/icon/icon_keypoint.svg"></div><span>173</span>
+                <div class="icon"><img src="<c:out value="${pageContext.request.contextPath}" />/resources/img/icon/icon_keypoint.svg"></div><span id="snaTopNum"></span>
                 <h5>關鍵網絡總人數</h5>
               </div>
             </div>

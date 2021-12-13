@@ -3,42 +3,38 @@ package tw.gov.mohw.hisac.web.dao;
 import java.util.List;
 
 import org.hibernate.Criteria;
-import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.json.JSONObject;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import tw.gov.mohw.hisac.web.domain.PaperMainsLift;
+import tw.gov.mohw.hisac.web.domain.PaperCorLift;
 
-/**
- * 子系統服務
- */
 @Repository
 @Transactional
-public class PaperMainsLiftDAOImpl extends BaseSessionFactory implements PaperMainsLiftDAO {
+public class PaperCorLiftDAOImpl extends BaseSessionFactory implements PaperCorLiftDAO {
 
-	public void insert(PaperMainsLift entity) {
+	public void insert(PaperCorLift entity) {
 		getSessionFactory().getCurrentSession().save(entity);
 	}
 
-	public void update(PaperMainsLift entity) {
+	public void update(PaperCorLift entity) {
 		getSessionFactory().getCurrentSession().update(entity);
 	}
 
-	public void delete(PaperMainsLift entity) {
+	public void delete(PaperCorLift entity) {
 		getSessionFactory().getCurrentSession().delete(entity);
 	}
 
-	public PaperMainsLift get(Long id) {
-		return getSessionFactory().getCurrentSession().get(PaperMainsLift.class, id);
+	public PaperCorLift get(Long id) {
+		return getSessionFactory().getCurrentSession().get(PaperCorLift.class, id);
 	}
 
 	@SuppressWarnings({"deprecation", "unchecked"})
-	public List<PaperMainsLift> getAll() {
-		Criteria cr = getSessionFactory().getCurrentSession().createCriteria(PaperMainsLift.class);
-		List<PaperMainsLift> list = cr.list();
+	public List<PaperCorLift> getAll() {
+		Criteria cr = getSessionFactory().getCurrentSession().createCriteria(PaperCorLift.class);
+		List<PaperCorLift> list = cr.list();
 		if (list.size() > 0) {
 			return list;
 		} else {
@@ -47,27 +43,27 @@ public class PaperMainsLiftDAOImpl extends BaseSessionFactory implements PaperMa
 	}
 
 	@SuppressWarnings("deprecation")
-	public PaperMainsLift getByCode(String code) {
-		Criteria cr = getSessionFactory().getCurrentSession().createCriteria(PaperMainsLift.class);
+	public PaperCorLift getByCode(String code) {
+		Criteria cr = getSessionFactory().getCurrentSession().createCriteria(PaperCorLift.class);
 		cr.add(Restrictions.eq("code", code));
-		return (PaperMainsLift) cr.uniqueResult();
+		return (PaperCorLift) cr.uniqueResult();
 	}
 
 	@SuppressWarnings("deprecation")
-	public PaperMainsLift getByName(String name) {
-		Criteria cr = getSessionFactory().getCurrentSession().createCriteria(PaperMainsLift.class);
+	public PaperCorLift getByName(String name) {
+		Criteria cr = getSessionFactory().getCurrentSession().createCriteria(PaperCorLift.class);
 		cr.add(Restrictions.eq("name", name));
-		return (PaperMainsLift) cr.uniqueResult();
+		return (PaperCorLift) cr.uniqueResult();
 	}
 
 	@SuppressWarnings({"deprecation", "unchecked"})
-	public List<PaperMainsLift> getList(JSONObject obj) {
+	public List<PaperCorLift> getList(JSONObject obj) {
 		int start = obj.isNull("start") == true ? 0 : obj.getInt("start");
 		int maxRows = obj.isNull("maxRows") == true ? 0 : obj.getInt("maxRows");
 		long id = obj.isNull("Id") == true ? 0 : obj.getLong("Id");
 		Boolean number = obj.isNull("number") == true ? null : obj.getBoolean("number");
 		
-		Criteria cr = getSessionFactory().getCurrentSession().createCriteria(PaperMainsLift.class);
+		Criteria cr = getSessionFactory().getCurrentSession().createCriteria(PaperCorLift.class);
 		if (id != 0) {
 			cr.add(Restrictions.eq("id", id));
 		}
@@ -79,7 +75,7 @@ public class PaperMainsLiftDAOImpl extends BaseSessionFactory implements PaperMa
 		cr.setFirstResult(start);
 		if (maxRows != 0)
 			cr.setMaxResults(maxRows);
-		List<PaperMainsLift> list = cr.list();
+		List<PaperCorLift> list = cr.list();
 		if (list.size() > 0) {
 			return list;
 		} else {
@@ -95,8 +91,12 @@ public class PaperMainsLiftDAOImpl extends BaseSessionFactory implements PaperMa
 		Boolean isEnable = obj.isNull("IsEnable") == true ? null : obj.getBoolean("IsEnable");
 		Boolean isShow = obj.isNull("IsShow") == true ? null : obj.getBoolean("IsShow");
 		Boolean count_paper_SerialNumber = obj.isNull("count_paper_SerialNumber") == true ? null : obj.getBoolean("count_paper_SerialNumber");
-		Criteria cr = getSessionFactory().getCurrentSession().createCriteria(PaperMainsLift.class);
+		String paper_corId = obj.isNull("paper_corId") == true ? null : obj.getString("paper_corId");
+		Criteria cr = getSessionFactory().getCurrentSession().createCriteria(PaperCorLift.class);
 		if(count_paper_SerialNumber) {
+			if(paper_corId != null && paper_corId.length()>0) {
+				cr.add(Restrictions.eq("paper_corId", paper_corId));
+			}
 			cr.setProjection(Projections.countDistinct("paper_SerialNumber"));
 		}else {
 			cr.setProjection(Projections.rowCount());

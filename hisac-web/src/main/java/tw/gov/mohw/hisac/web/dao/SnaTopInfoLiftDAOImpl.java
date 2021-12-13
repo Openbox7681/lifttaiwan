@@ -10,35 +10,32 @@ import org.json.JSONObject;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import tw.gov.mohw.hisac.web.domain.PaperMainsLift;
+import tw.gov.mohw.hisac.web.domain.SnaTopInfoLift;
 
-/**
- * 子系統服務
- */
 @Repository
 @Transactional
-public class PaperMainsLiftDAOImpl extends BaseSessionFactory implements PaperMainsLiftDAO {
+public class SnaTopInfoLiftDAOImpl extends BaseSessionFactory implements SnaTopInfoLiftDAO {
 
-	public void insert(PaperMainsLift entity) {
+	public void insert(SnaTopInfoLift entity) {
 		getSessionFactory().getCurrentSession().save(entity);
 	}
 
-	public void update(PaperMainsLift entity) {
+	public void update(SnaTopInfoLift entity) {
 		getSessionFactory().getCurrentSession().update(entity);
 	}
 
-	public void delete(PaperMainsLift entity) {
+	public void delete(SnaTopInfoLift entity) {
 		getSessionFactory().getCurrentSession().delete(entity);
 	}
 
-	public PaperMainsLift get(Long id) {
-		return getSessionFactory().getCurrentSession().get(PaperMainsLift.class, id);
+	public SnaTopInfoLift get(Long id) {
+		return getSessionFactory().getCurrentSession().get(SnaTopInfoLift.class, id);
 	}
 
 	@SuppressWarnings({"deprecation", "unchecked"})
-	public List<PaperMainsLift> getAll() {
-		Criteria cr = getSessionFactory().getCurrentSession().createCriteria(PaperMainsLift.class);
-		List<PaperMainsLift> list = cr.list();
+	public List<SnaTopInfoLift> getAll() {
+		Criteria cr = getSessionFactory().getCurrentSession().createCriteria(SnaTopInfoLift.class);
+		List<SnaTopInfoLift> list = cr.list();
 		if (list.size() > 0) {
 			return list;
 		} else {
@@ -47,27 +44,27 @@ public class PaperMainsLiftDAOImpl extends BaseSessionFactory implements PaperMa
 	}
 
 	@SuppressWarnings("deprecation")
-	public PaperMainsLift getByCode(String code) {
-		Criteria cr = getSessionFactory().getCurrentSession().createCriteria(PaperMainsLift.class);
+	public SnaTopInfoLift getByCode(String code) {
+		Criteria cr = getSessionFactory().getCurrentSession().createCriteria(SnaTopInfoLift.class);
 		cr.add(Restrictions.eq("code", code));
-		return (PaperMainsLift) cr.uniqueResult();
+		return (SnaTopInfoLift) cr.uniqueResult();
 	}
 
 	@SuppressWarnings("deprecation")
-	public PaperMainsLift getByName(String name) {
-		Criteria cr = getSessionFactory().getCurrentSession().createCriteria(PaperMainsLift.class);
+	public SnaTopInfoLift getByName(String name) {
+		Criteria cr = getSessionFactory().getCurrentSession().createCriteria(SnaTopInfoLift.class);
 		cr.add(Restrictions.eq("name", name));
-		return (PaperMainsLift) cr.uniqueResult();
+		return (SnaTopInfoLift) cr.uniqueResult();
 	}
 
 	@SuppressWarnings({"deprecation", "unchecked"})
-	public List<PaperMainsLift> getList(JSONObject obj) {
+	public List<SnaTopInfoLift> getList(JSONObject obj) {
 		int start = obj.isNull("start") == true ? 0 : obj.getInt("start");
 		int maxRows = obj.isNull("maxRows") == true ? 0 : obj.getInt("maxRows");
 		long id = obj.isNull("Id") == true ? 0 : obj.getLong("Id");
 		Boolean number = obj.isNull("number") == true ? null : obj.getBoolean("number");
 		
-		Criteria cr = getSessionFactory().getCurrentSession().createCriteria(PaperMainsLift.class);
+		Criteria cr = getSessionFactory().getCurrentSession().createCriteria(SnaTopInfoLift.class);
 		if (id != 0) {
 			cr.add(Restrictions.eq("id", id));
 		}
@@ -79,7 +76,7 @@ public class PaperMainsLiftDAOImpl extends BaseSessionFactory implements PaperMa
 		cr.setFirstResult(start);
 		if (maxRows != 0)
 			cr.setMaxResults(maxRows);
-		List<PaperMainsLift> list = cr.list();
+		List<SnaTopInfoLift> list = cr.list();
 		if (list.size() > 0) {
 			return list;
 		} else {
@@ -94,10 +91,10 @@ public class PaperMainsLiftDAOImpl extends BaseSessionFactory implements PaperMa
 		String name = obj.isNull("Name") == true ? null : obj.getString("Name");
 		Boolean isEnable = obj.isNull("IsEnable") == true ? null : obj.getBoolean("IsEnable");
 		Boolean isShow = obj.isNull("IsShow") == true ? null : obj.getBoolean("IsShow");
-		Boolean count_paper_SerialNumber = obj.isNull("count_paper_SerialNumber") == true ? null : obj.getBoolean("count_paper_SerialNumber");
-		Criteria cr = getSessionFactory().getCurrentSession().createCriteria(PaperMainsLift.class);
-		if(count_paper_SerialNumber) {
-			cr.setProjection(Projections.countDistinct("paper_SerialNumber"));
+		Boolean count_topname = obj.isNull("count_topname") == true ? false : obj.getBoolean("count_topname");
+		Criteria cr = getSessionFactory().getCurrentSession().createCriteria(SnaTopInfoLift.class);
+		if(count_topname) {
+			cr.setProjection(Projections.countDistinct("topname"));
 		}else {
 			cr.setProjection(Projections.rowCount());
 			if (id != 0)

@@ -6,22 +6,22 @@ import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import tw.gov.mohw.hisac.web.dao.PaperMainsLiftDAO;
-import tw.gov.mohw.hisac.web.domain.PaperMainsLift;
+import tw.gov.mohw.hisac.web.dao.PaperCorLiftDAO;
+import tw.gov.mohw.hisac.web.domain.PaperCorLift;
 
 @Service
-public class PaperMainsLiftService {
+public class PaperCorLiftService {
 	@Autowired
-	PaperMainsLiftDAO paperMainsLiftDAO;
+	PaperCorLiftDAO paperCorLiftDAO;
 
-	public List<PaperMainsLift> getAll() {
-		return paperMainsLiftDAO.getAll();
+	public List<PaperCorLift> getAll() {
+		return paperCorLiftDAO.getAll();
 	}
 
-	public List<PaperMainsLift> getList(String json) {
+	public List<PaperCorLift> getList(String json) {
 		try {
 			JSONObject obj = new JSONObject(json);
-			return paperMainsLiftDAO.getList(obj);
+			return paperCorLiftDAO.getList(obj);
 		} catch (Exception e) {
 			return null;
 		}
@@ -30,13 +30,13 @@ public class PaperMainsLiftService {
 	public long getListSize(String json) {
 		try {
 			JSONObject obj = new JSONObject(json);
-			return paperMainsLiftDAO.getListSize(obj);
+			return paperCorLiftDAO.getListSize(obj);
 		} catch (Exception e) {
 			return 0;
 		}
 	}
 
-	public PaperMainsLift insert(Long memberId, String json) {
+	public PaperCorLift insert(Long memberId, String json) {
 		try {
 			JSONObject obj = new JSONObject(json);
 			String code = obj.isNull("Code") == true ? null : obj.getString("Code");
@@ -46,7 +46,7 @@ public class PaperMainsLiftService {
 			boolean isShow = obj.isNull("IsShow") == true ? false : obj.getBoolean("IsShow");
 			long sort = obj.isNull("Sort") == true ? 0 : obj.getLong("Sort");
 			Date now = new Date();
-			PaperMainsLift entity = new PaperMainsLift();
+			PaperCorLift entity = new PaperCorLift();
 //			entity.setCode(code);
 //			entity.setName(name);
 //			entity.setIconStyle(iconStyle);
@@ -58,7 +58,7 @@ public class PaperMainsLiftService {
 //			entity.setModifyId(memberId);
 //			entity.setModifyTime(now);
 
-			paperMainsLiftDAO.insert(entity);
+			paperCorLiftDAO.insert(entity);
 			return entity;
 		} catch (Exception e) {
 			//e.printStackTrace();
@@ -66,7 +66,7 @@ public class PaperMainsLiftService {
 		}
 	}
 
-	public PaperMainsLift update(long memberId, String json) {
+	public PaperCorLift update(long memberId, String json) {
 		try {
 			JSONObject obj = new JSONObject(json);
 			long id = obj.isNull("Id") == true ? 0 : obj.getLong("Id");
@@ -77,7 +77,7 @@ public class PaperMainsLiftService {
 			boolean isShow = obj.isNull("IsShow") == true ? false : obj.getBoolean("IsShow");
 			long sort = obj.isNull("Sort") == true ? 0 : obj.getLong("Sort");
 			Date now = new Date();
-			PaperMainsLift entity = paperMainsLiftDAO.get(id);
+			PaperCorLift entity = paperCorLiftDAO.get(id);
 //			entity.setCode(code);
 //			entity.setName(name);
 //			entity.setIconStyle(iconStyle);
@@ -87,7 +87,7 @@ public class PaperMainsLiftService {
 //			entity.setModifyId(memberId);
 //			entity.setModifyTime(now);
 
-			paperMainsLiftDAO.update(entity);
+			paperCorLiftDAO.update(entity);
 			return entity;
 		} catch (Exception e) {
 			//e.printStackTrace();
@@ -97,8 +97,8 @@ public class PaperMainsLiftService {
 
 	public boolean delete(Long id) {
 		try {
-			PaperMainsLift entity = paperMainsLiftDAO.get(id);
-			paperMainsLiftDAO.delete(entity);
+			PaperCorLift entity = paperCorLiftDAO.get(id);
+			paperCorLiftDAO.delete(entity);
 			return true;
 		} catch (Exception e) {
 			//e.printStackTrace();
@@ -106,24 +106,24 @@ public class PaperMainsLiftService {
 		}
 	}
 
-	public PaperMainsLift getById(Long id) {
-		return paperMainsLiftDAO.get(id);
+	public PaperCorLift getById(Long id) {
+		return paperCorLiftDAO.get(id);
 	}
 
 	public boolean isExist(Long id) {
-		return paperMainsLiftDAO.get(id) != null;
+		return paperCorLiftDAO.get(id) != null;
 	}
 
-	public PaperMainsLift findByName(String name) {
-		return paperMainsLiftDAO.getByName(name);
+	public PaperCorLift findByName(String name) {
+		return paperCorLiftDAO.getByName(name);
 	}
 
 	public boolean isNameExist(String name) {
 		return findByName(name) != null;
 	}
 
-	public PaperMainsLift findByCode(String code) {
-		return paperMainsLiftDAO.getByCode(code);
+	public PaperCorLift findByCode(String code) {
+		return paperCorLiftDAO.getByCode(code);
 	}
 
 	public boolean isCodeExist(String code) {

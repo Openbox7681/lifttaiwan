@@ -6,22 +6,22 @@ import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import tw.gov.mohw.hisac.web.dao.PaperMainsLiftDAO;
-import tw.gov.mohw.hisac.web.domain.PaperMainsLift;
+import tw.gov.mohw.hisac.web.dao.SnaTopInfoLiftDAO;
+import tw.gov.mohw.hisac.web.domain.SnaTopInfoLift;
 
 @Service
-public class PaperMainsLiftService {
+public class SnaTopInfoLiftService {
 	@Autowired
-	PaperMainsLiftDAO paperMainsLiftDAO;
+	SnaTopInfoLiftDAO snaTopInfoLiftDAO;
 
-	public List<PaperMainsLift> getAll() {
-		return paperMainsLiftDAO.getAll();
+	public List<SnaTopInfoLift> getAll() {
+		return snaTopInfoLiftDAO.getAll();
 	}
 
-	public List<PaperMainsLift> getList(String json) {
+	public List<SnaTopInfoLift> getList(String json) {
 		try {
 			JSONObject obj = new JSONObject(json);
-			return paperMainsLiftDAO.getList(obj);
+			return snaTopInfoLiftDAO.getList(obj);
 		} catch (Exception e) {
 			return null;
 		}
@@ -30,13 +30,13 @@ public class PaperMainsLiftService {
 	public long getListSize(String json) {
 		try {
 			JSONObject obj = new JSONObject(json);
-			return paperMainsLiftDAO.getListSize(obj);
+			return snaTopInfoLiftDAO.getListSize(obj);
 		} catch (Exception e) {
 			return 0;
 		}
 	}
 
-	public PaperMainsLift insert(Long memberId, String json) {
+	public SnaTopInfoLift insert(Long memberId, String json) {
 		try {
 			JSONObject obj = new JSONObject(json);
 			String code = obj.isNull("Code") == true ? null : obj.getString("Code");
@@ -46,7 +46,7 @@ public class PaperMainsLiftService {
 			boolean isShow = obj.isNull("IsShow") == true ? false : obj.getBoolean("IsShow");
 			long sort = obj.isNull("Sort") == true ? 0 : obj.getLong("Sort");
 			Date now = new Date();
-			PaperMainsLift entity = new PaperMainsLift();
+			SnaTopInfoLift entity = new SnaTopInfoLift();
 //			entity.setCode(code);
 //			entity.setName(name);
 //			entity.setIconStyle(iconStyle);
@@ -58,7 +58,7 @@ public class PaperMainsLiftService {
 //			entity.setModifyId(memberId);
 //			entity.setModifyTime(now);
 
-			paperMainsLiftDAO.insert(entity);
+			snaTopInfoLiftDAO.insert(entity);
 			return entity;
 		} catch (Exception e) {
 			//e.printStackTrace();
@@ -66,7 +66,7 @@ public class PaperMainsLiftService {
 		}
 	}
 
-	public PaperMainsLift update(long memberId, String json) {
+	public SnaTopInfoLift update(long memberId, String json) {
 		try {
 			JSONObject obj = new JSONObject(json);
 			long id = obj.isNull("Id") == true ? 0 : obj.getLong("Id");
@@ -77,7 +77,7 @@ public class PaperMainsLiftService {
 			boolean isShow = obj.isNull("IsShow") == true ? false : obj.getBoolean("IsShow");
 			long sort = obj.isNull("Sort") == true ? 0 : obj.getLong("Sort");
 			Date now = new Date();
-			PaperMainsLift entity = paperMainsLiftDAO.get(id);
+			SnaTopInfoLift entity = snaTopInfoLiftDAO.get(id);
 //			entity.setCode(code);
 //			entity.setName(name);
 //			entity.setIconStyle(iconStyle);
@@ -87,7 +87,7 @@ public class PaperMainsLiftService {
 //			entity.setModifyId(memberId);
 //			entity.setModifyTime(now);
 
-			paperMainsLiftDAO.update(entity);
+			snaTopInfoLiftDAO.update(entity);
 			return entity;
 		} catch (Exception e) {
 			//e.printStackTrace();
@@ -97,8 +97,8 @@ public class PaperMainsLiftService {
 
 	public boolean delete(Long id) {
 		try {
-			PaperMainsLift entity = paperMainsLiftDAO.get(id);
-			paperMainsLiftDAO.delete(entity);
+			SnaTopInfoLift entity = snaTopInfoLiftDAO.get(id);
+			snaTopInfoLiftDAO.delete(entity);
 			return true;
 		} catch (Exception e) {
 			//e.printStackTrace();
@@ -106,24 +106,24 @@ public class PaperMainsLiftService {
 		}
 	}
 
-	public PaperMainsLift getById(Long id) {
-		return paperMainsLiftDAO.get(id);
+	public SnaTopInfoLift getById(Long id) {
+		return snaTopInfoLiftDAO.get(id);
 	}
 
 	public boolean isExist(Long id) {
-		return paperMainsLiftDAO.get(id) != null;
+		return snaTopInfoLiftDAO.get(id) != null;
 	}
 
-	public PaperMainsLift findByName(String name) {
-		return paperMainsLiftDAO.getByName(name);
+	public SnaTopInfoLift findByName(String name) {
+		return snaTopInfoLiftDAO.getByName(name);
 	}
 
 	public boolean isNameExist(String name) {
 		return findByName(name) != null;
 	}
 
-	public PaperMainsLift findByCode(String code) {
-		return paperMainsLiftDAO.getByCode(code);
+	public SnaTopInfoLift findByCode(String code) {
+		return snaTopInfoLiftDAO.getByCode(code);
 	}
 
 	public boolean isCodeExist(String code) {

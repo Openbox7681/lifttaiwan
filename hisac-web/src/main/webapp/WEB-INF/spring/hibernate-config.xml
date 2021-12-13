@@ -138,6 +138,14 @@
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 	
+	<bean id="paperCorLiftDAO" class="tw.gov.mohw.hisac.web.dao.PaperCorLiftDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	<bean id="snaTopInfoLiftDAO" class="tw.gov.mohw.hisac.web.dao.SnaTopInfoLiftDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
 	
 	
 	
