@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Order;
+import org.hibernate.criterion.ProjectionList;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.json.JSONObject;
@@ -80,6 +81,25 @@ public class PeopleMainsLiftDAOImpl extends BaseSessionFactory implements People
 		if (maxRows != 0)
 			cr.setMaxResults(maxRows);
 		List<PeopleMainsLift> list = cr.list();
+		if (list.size() > 0) {
+			return list;
+		} else {
+			return null;
+		}
+	}
+	
+	@SuppressWarnings({"deprecation", "unchecked"})
+	public List<Object[]> getMapData() {
+		Criteria cr = getSessionFactory().getCurrentSession().createCriteria(PeopleMainsLift.class);
+		
+		ProjectionList projectionList = Projections.projectionList();        
+		projectionList.add(Projections.groupProperty("class_main"))
+		        .add(Projections.groupProperty("country_name"))
+		        .add(Projections.count("id"));
+		
+		cr.setProjection(projectionList);
+		
+		List<Object[]> list = cr.list();
 		if (list.size() > 0) {
 			return list;
 		} else {

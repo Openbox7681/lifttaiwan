@@ -18,7 +18,7 @@ public class PeopleMainsLift {
 	private @NotNull String inout_class;
 	private Long year;
 	private String country;
-	private String conutry_name;
+	private String country_name;
 	private String region;
 	private String class_main;
 	private String class_sub;
@@ -65,11 +65,11 @@ public class PeopleMainsLift {
 	public void setCountry(String country) {
 		this.country = country;
 	}
-	public String getConutry_name() {
-		return conutry_name;
+	public String getCountry_name() {
+		return country_name;
 	}
-	public void setConutry_name(String conutry_name) {
-		this.conutry_name = conutry_name;
+	public void setCountry_name(String country_name) {
+		this.country_name = country_name;
 	}
 	public String getRegion() {
 		return region;

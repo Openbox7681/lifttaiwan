@@ -1,9 +1,15 @@
 package tw.gov.mohw.hisac.web.controller.api;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
+import java.util.Map;
+import java.util.Map.Entry;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -40,6 +46,73 @@ public class f_navbarController extends BaseController {
 		listjson.put("paperNum", paperMainsLiftService.getListSize(json));
 		listjson.put("paperCorNum", paperCorLiftService.getListSize(json));
 		listjson.put("snaTopNum", snaTopInfoLiftService.getListSize(json));
+		
+		model.addAttribute("json", listjson.toString());
+		return "msg";
+	}
+	
+	@RequestMapping(value = "/queryMap", method = RequestMethod.POST)
+	public String queryMap(Locale locale, HttpServletRequest request, Model model, @RequestBody String json) {
+		JSONObject listjson = new JSONObject();
+		JSONArray sn_array = new JSONArray();
+
+		List<Object[]> mapList = peopleMainsLiftService.getMapData();
+		if(mapList != null) {
+			for(Object[] mapData : mapList) {
+				if(sn_array.toString().contains(mapData[1].toString())) {
+					for(int i=0; i<sn_array.length(); i++) {
+						JSONObject obj = (JSONObject) sn_array.get(i);
+						if(obj.getString("name").equals(mapData[1].toString())) {
+							
+							Long count = obj.getLong("trend") + Long.valueOf(mapData[2].toString());
+							obj.put("trend", count);
+							
+							if("資訊及數位相關產業".equals(mapData[0].toString())) {
+								obj.put("value1", mapData[2]);
+							}else if("綠電及再生能源產業".equals(mapData[0].toString())) {
+								obj.put("value2", mapData[2]);
+							}else if("台灣精準健康戰略產業".equals(mapData[0].toString())) {
+								obj.put("value3", mapData[2]);
+							}else if("國防及戰略產業".equals(mapData[0].toString())) {
+								obj.put("value4", mapData[2]);
+							}else if("民生及戰備產業".equals(mapData[0].toString())) {
+								obj.put("value5", mapData[2]);
+							}else if("其他".equals(mapData[0].toString())) {
+								obj.put("value6", mapData[2]);
+							}
+						}
+					}
+				}else {
+					JSONObject sn_json = new JSONObject();
+					
+					sn_json.put("name", mapData[1].toString());
+					sn_json.put("trend", Long.valueOf(mapData[2].toString()));
+					sn_json.put("value1", Long.valueOf(0));
+					sn_json.put("value2", Long.valueOf(0));
+					sn_json.put("value3", Long.valueOf(0));
+					sn_json.put("value4", Long.valueOf(0));
+					sn_json.put("value5", Long.valueOf(0));
+					sn_json.put("value6", Long.valueOf(0));
+					
+					if("資訊及數位相關產業".equals(mapData[0].toString())) {
+						sn_json.put("value1", mapData[2]);
+					}else if("綠電及再生能源產業".equals(mapData[0].toString())) {
+						sn_json.put("value2", mapData[2]);
+					}else if("台灣精準健康戰略產業".equals(mapData[0].toString())) {
+						sn_json.put("value3", mapData[2]);
+					}else if("國防及戰略產業".equals(mapData[0].toString())) {
+						sn_json.put("value4", mapData[2]);
+					}else if("民生及戰備產業".equals(mapData[0].toString())) {
+						sn_json.put("value5", mapData[2]);
+					}else if("其他".equals(mapData[0].toString())) {
+						sn_json.put("value6", mapData[2]);
+					}
+				
+					sn_array.put(sn_json);
+				}
+			}
+		}
+		listjson.put("mapData",sn_array);
 		
 		model.addAttribute("json", listjson.toString());
 		return "msg";

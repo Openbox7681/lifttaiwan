@@ -16,4 +16,5 @@ public interface PeopleMainsLiftDAO {
 	public PeopleMainsLift getByName(String name);
 	public List<PeopleMainsLift> getList(JSONObject obj);
 	public long getListSize(JSONObject obj);
+	public List<Object[]> getMapData();
 }

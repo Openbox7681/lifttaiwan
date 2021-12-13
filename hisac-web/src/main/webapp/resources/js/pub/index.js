@@ -307,6 +307,18 @@ function getAppController($scope, $http, $window) {
     
     $scope.mountNode = function(){
     	
+    	var request= {
+    			
+    	};
+    	
+    	$http.post('./common/queryMap', request, csrf_config).then(function(response) {
+			
+    		var userData = response.data.mapData;
+    		    	        
+
+		
+    	
+    	
     	/* 		console.log( ${pageContext.request.contextPath} );
     	 */        
     	 		const countryContinentData = `
@@ -510,49 +522,7 @@ function getAppController($scope, $http, $window) {
     	          .filter(i => !!i.trim())
     	          .map(i => i.split('\t')));
     	        
-    	        var userData = [
-    	          {
-    	            name: 'Russia',
-    	            trend: 3916,
-    	            value1:1,
-    	            value2:2,
-    	            value3:3,
-    	            value4:4,
-    	            value5:5,
-    	            value6:6,
-    	          },
-    	          {
-    	            name: 'China',
-    	            trend: 10000,
-    	            value1:1,
-    	            value4:1000,
-    	            value5:5,
-    	            value6:6,
-    	          },
-    	          
-    	          {
-    	              name: 'Taiwan',
-    	              trend: 90330,
-    	              value1:1,
-    	              value2:1,
-    	              value3:1,
-    	              value4:100,
-    	              value5:5,
-    	              value6:6,
-    	            },
-    	          {
-    	            name: 'Poland',
-    	            trend: 30000,
-    	            value1:1,
-    	            value2:2,
-    	            value3:3,
-    	            value4:4,
-    	            value5:5,
-    	            value6:6,
-    	          }
-    	        ];
     	        
-    	        userData = my_json;
     	        
     	        $.getJSON('../resources/js/world.geo.json', function(mapData) {
     	          var chart = new G2.Chart({
@@ -653,7 +623,21 @@ function getAppController($scope, $http, $window) {
     	            })
     	          chart.render()
     	        })
-    	
+    	        
+    	}).catch(function() {
+			bootbox.alert({
+				message : globalReadDataFail,
+				buttons : {
+					ok : {
+						label : '<i class="fas fa-fw fa-times"></i>' + btnClose,
+						className : 'btn-danger',
+					}
+				},
+				callback: function() { }
+			});
+		}).finally(function() {
+			$("#imgLoading").hide();
+		});
     	
     	
     	
