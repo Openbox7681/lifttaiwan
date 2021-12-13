@@ -1151,3 +1151,16 @@ CREATE TABLE [dbo].[paper_keyword_cls_lift](
 INSERT INTO paper_keyword_cls_lift(
 	Clsss_sub, Keyword, Time_num)
 SELECT clsss_sub, Keyword, time_num FROM Paper_keyword_CLS
+
+
+CREATE TABLE [dbo].[ttmax_info_lift](
+	Id [bigint] IDENTITY(1,1) NOT NULL,
+	[Class_sub] [nvarchar](255) NULL,
+	[Index_x] [float] NULL,
+	[Index_y] [float] NULL,
+	[Paper_total_num] [float] NULL,
+	PRIMARY KEY (Id)
+) 
+
+INSERT INTO ttmax_info_lift(Class_sub, Index_x ,Index_y,Paper_total_num )
+SELECT Class_sub, index_x, index_y, paper_total_num FROM TTMAX_info

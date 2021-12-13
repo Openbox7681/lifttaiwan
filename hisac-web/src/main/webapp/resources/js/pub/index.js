@@ -115,16 +115,9 @@ function getAppController($scope, $http, $window) {
 
         const data = [
         [
-            [0.44235026836395264, 1.0833333730697632, 3562, '晶圓代工', '資訊及數位相關產業'],
-            [0.36915940046310425, 1, 4801, '晶圓封測', '資訊及數位相關產業'],
-            [0.3624591827392578, 0.7777777910232544, 1461, '智慧運輸', '資訊及數位相關產業'],
-        ],
-        [
-            [0.1439911276102066, 1.1111111640930176, 3788, '智慧醫材', '臺灣精準健康戰略產業'],
-            [0.1413225680589676, 1.1111111640930176, 3869, '智慧醫療', '臺灣精準健康戰略產業'],
-            [0.16367989778518677, 0.8999999761581421, 3869, '照護管理', '臺灣精準健康戰略產業'],
-
-            
+            [0.44235026836395264, 1.0833333730697632, 3562, '晶圓代工', '千里馬計畫優勢'],
+            [0.36915940046310425, 1, 4801, '晶圓封測', '千里馬計畫優勢'],
+            [0.3624591827392578, 0.7777777910232544, 1461, '智慧運輸', '千里馬計畫優勢'],
         ]
         
         
@@ -135,11 +128,12 @@ function getAppController($scope, $http, $window) {
                 {
                     offset: 0,
                     color: '#f7f8fa'
-                },
-                {
-                    offset: 1,
-                    color: '#cdd0d5'
                 }
+//                ,
+//                {
+//                    offset: 1,
+//                    color: '#cdd0d5'
+//                }
             ]),
             title: {
                 text: '',
@@ -149,7 +143,7 @@ function getAppController($scope, $http, $window) {
             legend: {
                 right: '10%',
                 top: '3%',
-                data: ['資訊及數位相關產業' , '臺灣精準健康戰略產業']
+                data: ['千里馬計畫優勢' ]
             },
             grid: {
                 left: '8%',
@@ -172,7 +166,7 @@ function getAppController($scope, $http, $window) {
             },
             series: [
                 {
-                    name: '資訊及數位相關產業',
+                    name: '千里馬計畫優勢',
                     data: data[0],
                     type: 'scatter',
                     symbolSize: function (data) {
@@ -204,40 +198,40 @@ function getAppController($scope, $http, $window) {
                         ])
                     }
                 }
-                ,
-                {
-                    name: '臺灣精準健康戰略產業',
-                    data: data[1],
-                    type: 'scatter',
-                    symbolSize: function (data) {
-                        return Math.sqrt(data[2]) / 2;
-                    },
-                    emphasis: {
-                        focus: 'series',
-                        label: {
-                            show: true,
-                            formatter: function (param) {
-                                return param.data[3] +"\n" + "數量 : " + param.data[2];
-                            },
-                            position: 'top'
-                        }
-                    },
-                    itemStyle: {
-                        shadowBlur: 10,
-                        shadowColor: 'rgba(25, 100, 150, 0.5)',
-                        shadowOffsetY: 5,
-                        color: new echarts.graphic.RadialGradient(0.4, 0.3, 1, [
-                            {
-                                offset: 0,
-                                color: 'rgb(129, 227, 238)'
-                            },
-                            {
-                                offset: 1,
-                                color: 'rgb(25, 183, 207)'
-                            }
-                        ])
-                    }
-                }
+//                ,
+//                {
+//                    name: '臺灣精準健康戰略產業',
+//                    data: data[1],
+//                    type: 'scatter',
+//                    symbolSize: function (data) {
+//                        return Math.sqrt(data[2]) / 2;
+//                    },
+//                    emphasis: {
+//                        focus: 'series',
+//                        label: {
+//                            show: true,
+//                            formatter: function (param) {
+//                                return param.data[3] +"\n" + "數量 : " + param.data[2];
+//                            },
+//                            position: 'top'
+//                        }
+//                    },
+//                    itemStyle: {
+//                        shadowBlur: 10,
+//                        shadowColor: 'rgba(25, 100, 150, 0.5)',
+//                        shadowOffsetY: 5,
+//                        color: new echarts.graphic.RadialGradient(0.4, 0.3, 1, [
+//                            {
+//                                offset: 0,
+//                                color: 'rgb(129, 227, 238)'
+//                            },
+//                            {
+//                                offset: 1,
+//                                color: 'rgb(25, 183, 207)'
+//                            }
+//                        ])
+//                    }
+//                }
             ]
         };
 
