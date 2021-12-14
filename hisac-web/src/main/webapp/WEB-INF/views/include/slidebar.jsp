@@ -32,7 +32,7 @@
                   </h2>
                   <div class="accordion-collapse collapse" id="panelsStayOpen-collapseTwo" aria-labelledby="panelsStayOpen-headingTwo">
                     <div class="accordion-body">
-                    <a href="<c:out value="${pageContext.request.contextPath}" />/sys/s11">
+                    <a href="<c:out value="${pageContext.request.contextPath}" />/sys/s12">
                     <span>角色權限</span></a>
                     
                     <a href="<c:out value="${pageContext.request.contextPath}" />/sys/s05">

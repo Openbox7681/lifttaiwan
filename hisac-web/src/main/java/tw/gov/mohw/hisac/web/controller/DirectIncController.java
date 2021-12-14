@@ -37,5 +37,20 @@ public class DirectIncController extends BaseController {
 	public String i01(Locale locale, Model model) {
 		return "/inc/i01";
 	}
+	
+	
+	/**
+	 * 公開資訊管理
+	 * 
+	 * @param locale 
+	 * 			Locale
+	 * @param model 
+	 * 			Model
+	 * @return "/inc/i01"
+	 */
+	@RequestMapping(value = "/i02", method = RequestMethod.GET)
+	public String i02(Locale locale, Model model) {
+		return "/inc/i02";
+	}
 
 }
