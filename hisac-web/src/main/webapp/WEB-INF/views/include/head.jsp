@@ -47,7 +47,7 @@
 
 
 <link rel="stylesheet"
-	href="<c:out value="${pageContext.request.contextPath}" />/resources/css/style.css">
+	href="<c:out value="${pageContext.request.contextPath}" />/resources/css/style2.css">
 
 <link rel="stylesheet"
 	href="<c:out value="${pageContext.request.contextPath}" />/resources/css/responsive.css">
