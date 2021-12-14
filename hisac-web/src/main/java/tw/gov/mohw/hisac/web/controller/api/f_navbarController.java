@@ -20,10 +20,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import tw.gov.mohw.hisac.web.controller.BaseController;
+import tw.gov.mohw.hisac.web.domain.TtmaxInfoLift;
 import tw.gov.mohw.hisac.web.service.PaperCorLiftService;
 import tw.gov.mohw.hisac.web.service.PaperMainsLiftService;
 import tw.gov.mohw.hisac.web.service.PeopleMainsLiftService;
 import tw.gov.mohw.hisac.web.service.SnaTopInfoLiftService;
+import tw.gov.mohw.hisac.web.service.TtmaxInfoLiftService;
 
 @Controller
 @RequestMapping(value = "/pub/common", produces = "application/json; charset=utf-8")
@@ -37,6 +39,8 @@ public class f_navbarController extends BaseController {
 	private PaperCorLiftService paperCorLiftService;
 	@Autowired
 	private SnaTopInfoLiftService snaTopInfoLiftService;
+	@Autowired
+	private TtmaxInfoLiftService ttmaxInfoLiftService;
 
 	@RequestMapping(value = "/queryNumber", method = RequestMethod.POST)
 	public String queryNumber(Locale locale, HttpServletRequest request, Model model, @RequestBody String json) {
@@ -113,6 +117,29 @@ public class f_navbarController extends BaseController {
 			}
 		}
 		listjson.put("mapData",sn_array);
+		
+		model.addAttribute("json", listjson.toString());
+		return "msg";
+	}
+	
+	@RequestMapping(value = "/queryPoints", method = RequestMethod.POST)
+	public String queryPoints(Locale locale, HttpServletRequest request, Model model, @RequestBody String json) {
+		JSONObject listjson = new JSONObject();
+		JSONArray sn_array = new JSONArray();
+		
+		List<TtmaxInfoLift> pointList = ttmaxInfoLiftService.getList(json);
+		if(pointList.size()>0) {
+			for(TtmaxInfoLift ttmaxInfoLift : pointList) {
+				JSONArray obj_array = new JSONArray();
+				obj_array.put(ttmaxInfoLift.getIndex_x());
+				obj_array.put(ttmaxInfoLift.getIndex_y());
+				obj_array.put(ttmaxInfoLift.getPaper_total_num());
+				obj_array.put(ttmaxInfoLift.getClass_sub());
+				obj_array.put("千里馬計畫優勢");
+				sn_array.put(obj_array);
+			}
+		}
+		listjson.put("pointData", sn_array);
 		
 		model.addAttribute("json", listjson.toString());
 		return "msg";

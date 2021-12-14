@@ -117,132 +117,151 @@ function getAppController($scope, $http, $window) {
         var app = {};
 
         var option;
+        
+        var request= {
+    			
+    	};
+        
+        $http.post('./common/queryPoints', request, csrf_config).then(function(response) {
+			
+        	
+					
+		
 
-        const data = [
-        [
-            [0.44235026836395264, 1.0833333730697632, 3562, '晶圓代工', '千里馬計畫優勢'],
-            [0.36915940046310425, 1, 4801, '晶圓封測', '千里馬計畫優勢'],
-            [0.3624591827392578, 0.7777777910232544, 1461, '智慧運輸', '千里馬計畫優勢'],
-        ]
+	        const data = [response.data.pointData];
+	        
+	        option = {
+	            backgroundColor: new echarts.graphic.RadialGradient(0.3, 0.3, 0.8, [
+	                {
+	                    offset: 0,
+	                    color: '#f7f8fa'
+	                }
+	//                ,
+	//                {
+	//                    offset: 1,
+	//                    color: '#cdd0d5'
+	//                }
+	            ]),
+	            title: {
+	                text: '',
+	                left: '5%',
+	                top: '3%'
+	            },
+	            legend: {
+	                right: '10%',
+	                top: '3%',
+	                data: ['千里馬計畫優勢' ]
+	            },
+	            grid: {
+	                left: '8%',
+	                top: '10%'
+	            },
+	            xAxis: {
+	                splitLine: {
+	                    lineStyle: {
+	                        type: 'dashed'
+	                    }
+	                }
+	            },
+	            yAxis: {
+	                splitLine: {
+	                    lineStyle: {
+	                        type: 'dashed'
+	                    }
+	                },
+	                scale: true
+	            },
+	            series: [
+	                {
+	                    name: '千里馬計畫優勢',
+	                    data: data[0],
+	                    type: 'scatter',
+	                    symbolSize: function (data) {
+	                        return Math.sqrt(data[2]) / 2;
+	                    },
+	                    emphasis: {
+	                        focus: 'series',
+	                        label: {
+	                            show: true,
+	                            formatter: function (param) {
+	                                return param.data[3] +"\n" + "數量 : " + param.data[2];
+	                            },
+	                            position: 'top'
+	                        }
+	                    },
+	                    itemStyle: {
+	                        shadowBlur: 10,
+	                        shadowColor: 'rgba(120, 36, 50, 0.5)',
+	                        shadowOffsetY: 5,
+	                        color: new echarts.graphic.RadialGradient(0.4, 0.3, 1, [
+	                            {
+	                                offset: 0,
+	                                color: 'rgb(251, 118, 123)'
+	                            },
+	                            {
+	                                offset: 1,
+	                                color: 'rgb(204, 46, 72)'
+	                            }
+	                        ])
+	                    }
+	                }
+	//                ,
+	//                {
+	//                    name: '臺灣精準健康戰略產業',
+	//                    data: data[1],
+	//                    type: 'scatter',
+	//                    symbolSize: function (data) {
+	//                        return Math.sqrt(data[2]) / 2;
+	//                    },
+	//                    emphasis: {
+	//                        focus: 'series',
+	//                        label: {
+	//                            show: true,
+	//                            formatter: function (param) {
+	//                                return param.data[3] +"\n" + "數量 : " + param.data[2];
+	//                            },
+	//                            position: 'top'
+	//                        }
+	//                    },
+	//                    itemStyle: {
+	//                        shadowBlur: 10,
+	//                        shadowColor: 'rgba(25, 100, 150, 0.5)',
+	//                        shadowOffsetY: 5,
+	//                        color: new echarts.graphic.RadialGradient(0.4, 0.3, 1, [
+	//                            {
+	//                                offset: 0,
+	//                                color: 'rgb(129, 227, 238)'
+	//                            },
+	//                            {
+	//                                offset: 1,
+	//                                color: 'rgb(25, 183, 207)'
+	//                            }
+	//                        ])
+	//                    }
+	//                }
+	            ]
+	        };
+	
+	        if (option && typeof option === 'object') {
+	            myChart.setOption(option);
+	        }
         
-        
-        
-        ];
-        option = {
-            backgroundColor: new echarts.graphic.RadialGradient(0.3, 0.3, 0.8, [
-                {
-                    offset: 0,
-                    color: '#f7f8fa'
-                }
-//                ,
-//                {
-//                    offset: 1,
-//                    color: '#cdd0d5'
-//                }
-            ]),
-            title: {
-                text: '',
-                left: '5%',
-                top: '3%'
-            },
-            legend: {
-                right: '10%',
-                top: '3%',
-                data: ['千里馬計畫優勢' ]
-            },
-            grid: {
-                left: '8%',
-                top: '10%'
-            },
-            xAxis: {
-                splitLine: {
-                    lineStyle: {
-                        type: 'dashed'
-                    }
-                }
-            },
-            yAxis: {
-                splitLine: {
-                    lineStyle: {
-                        type: 'dashed'
-                    }
-                },
-                scale: true
-            },
-            series: [
-                {
-                    name: '千里馬計畫優勢',
-                    data: data[0],
-                    type: 'scatter',
-                    symbolSize: function (data) {
-                        return Math.sqrt(data[2]) / 2;
-                    },
-                    emphasis: {
-                        focus: 'series',
-                        label: {
-                            show: true,
-                            formatter: function (param) {
-                                return param.data[3] +"\n" + "數量 : " + param.data[2];
-                            },
-                            position: 'top'
-                        }
-                    },
-                    itemStyle: {
-                        shadowBlur: 10,
-                        shadowColor: 'rgba(120, 36, 50, 0.5)',
-                        shadowOffsetY: 5,
-                        color: new echarts.graphic.RadialGradient(0.4, 0.3, 1, [
-                            {
-                                offset: 0,
-                                color: 'rgb(251, 118, 123)'
-                            },
-                            {
-                                offset: 1,
-                                color: 'rgb(204, 46, 72)'
-                            }
-                        ])
-                    }
-                }
-//                ,
-//                {
-//                    name: '臺灣精準健康戰略產業',
-//                    data: data[1],
-//                    type: 'scatter',
-//                    symbolSize: function (data) {
-//                        return Math.sqrt(data[2]) / 2;
-//                    },
-//                    emphasis: {
-//                        focus: 'series',
-//                        label: {
-//                            show: true,
-//                            formatter: function (param) {
-//                                return param.data[3] +"\n" + "數量 : " + param.data[2];
-//                            },
-//                            position: 'top'
-//                        }
-//                    },
-//                    itemStyle: {
-//                        shadowBlur: 10,
-//                        shadowColor: 'rgba(25, 100, 150, 0.5)',
-//                        shadowOffsetY: 5,
-//                        color: new echarts.graphic.RadialGradient(0.4, 0.3, 1, [
-//                            {
-//                                offset: 0,
-//                                color: 'rgb(129, 227, 238)'
-//                            },
-//                            {
-//                                offset: 1,
-//                                color: 'rgb(25, 183, 207)'
-//                            }
-//                        ])
-//                    }
-//                }
-            ]
-        };
+        }).catch(function() {
+			bootbox.alert({
+				message : globalReadDataFail,
+				buttons : {
+					ok : {
+						label : '<i class="fas fa-fw fa-times"></i>' + btnClose,
+						className : 'btn-danger',
+					}
+				},
+				callback: function() { }
+			});
+		}).finally(function() {
+			$("#imgLoading").hide();
+            $("#loadingActivity").fadeOut("slow");
 
-        if (option && typeof option === 'object') {
-            myChart.setOption(option);
-        }
+		});
     }
     
     $scope.maxima()
