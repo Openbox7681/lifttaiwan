@@ -159,7 +159,6 @@ function getAppController($rootScope, $scope, $http, $cookieStore, $anchorScroll
 		$scope.Name = "";
 		$scope.Sort = 0;
 		$scope.IsEnable = true;
-		$scope.IsShow.IsEnable = true;
 	}
 	// Switch to Edit(Insert) Mode End
 	
@@ -182,18 +181,13 @@ function getAppController($rootScope, $scope, $http, $cookieStore, $anchorScroll
 			Id : id
 		};
 		var request = {Id:id};
-		$http.post('./api/s01/query/id', request, csrf_config).then(function(response) {
-			//console.log("Id="+response.data[0].Id);
+		$http.post('./api/s01/query/id', request, csrf_config).then(function(response) {			
 			$scope.openEdit();
 			$scope.btnIns = false;
 			$scope.btnUpd = true;
 			$scope.Id = response.data[0].Id;
 			$scope.Name = response.data[0].Name;
-			$scope.Sort = response.data[0].Sort;
 			$scope.IsEnable = response.data[0].IsEnable;
-			$scope.IsShow = response.data[0].IsShow;
-			$scope.IconStyle = response.data[0].IconStyle;
-			$scope.Code = response.data[0].Code;
 			bootbox.hideAll();
 			
 		}).catch(function() {
