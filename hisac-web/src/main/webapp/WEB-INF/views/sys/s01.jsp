@@ -366,7 +366,8 @@
 	
 	
 	
-	
+	 <!-- tablet&mobile sidebar lightbox-->
+	<%@ include file="../include/mobilesidebar.jsp"%>
 	
 	
 	
