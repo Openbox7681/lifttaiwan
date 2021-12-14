@@ -71,7 +71,7 @@ public class f_navbarController extends BaseController {
 								obj.put("value1", mapData[2]);
 							}else if("綠電及再生能源產業".equals(mapData[0].toString())) {
 								obj.put("value2", mapData[2]);
-							}else if("台灣精準健康戰略產業".equals(mapData[0].toString())) {
+							}else if("臺灣精準健康戰略產業".equals(mapData[0].toString())) {
 								obj.put("value3", mapData[2]);
 							}else if("國防及戰略產業".equals(mapData[0].toString())) {
 								obj.put("value4", mapData[2]);
@@ -98,7 +98,7 @@ public class f_navbarController extends BaseController {
 						sn_json.put("value1", mapData[2]);
 					}else if("綠電及再生能源產業".equals(mapData[0].toString())) {
 						sn_json.put("value2", mapData[2]);
-					}else if("台灣精準健康戰略產業".equals(mapData[0].toString())) {
+					}else if("臺灣精準健康戰略產業".equals(mapData[0].toString())) {
 						sn_json.put("value3", mapData[2]);
 					}else if("國防及戰略產業".equals(mapData[0].toString())) {
 						sn_json.put("value4", mapData[2]);

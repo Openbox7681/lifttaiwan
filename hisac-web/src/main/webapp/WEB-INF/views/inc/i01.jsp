@@ -28,13 +28,6 @@
 			</h4>
 		</div>
 		<div class="row">
-<!-- isAdmin=${isAdmin}<br>
-isHisac=${isHisac}<br>
-isApplyAdmin=${isApplyAdmin}<br>
-isRRUnitEventHandlerSign=${isRRUnitEventHandlerSign}<br>
-isMemberContact=${isMemberContact}<br>
-isEventHandlingUnitContact=${isEventHandlingUnitContact}<br>
-isCERTEventProcessingSign=${isCERTEventProcessingSign}<br> -->
 			<form name="queryForm">
 				<div class="col-xs-12 shadow_board">
 					<div>

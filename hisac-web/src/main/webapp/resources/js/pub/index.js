@@ -112,6 +112,7 @@ function getAppController($scope, $http, $window) {
     
     
     $scope.maxima = function(){
+    	
         var dom = document.getElementById("maxima");
         var myChart = echarts.init(dom);
         var app = {};
@@ -599,7 +600,7 @@ function getAppController($scope, $http, $window) {
     	              alias: '綠電及再生能源產業'
     	            },
     	            value3: {
-    	              alias: '台灣精準健康戰略產業'
+    	              alias: '臺灣精準健康戰略產業'
     	            },
     	            value4: {
     	              alias: '國防及戰略產業'

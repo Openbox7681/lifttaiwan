@@ -979,7 +979,323 @@
 		</div>
 	</div>
 
-	
+	<div id="divReview" class="container">
+		<div class="row">
+			<div class="col-xs-12 shadow_board">
+				<form class="form-horizontal" role="form" name="myForm">
+
+					<div>
+						<div class="form_group">
+							<h4 class="form_heading form_heading form_heading_yellow">
+								<i class="fa fa-info-circle"><b><s:message
+											code="btnReview" /></b></i>
+							</h4>
+						</div>
+					</div>
+					<div>
+						<div class="form_group">
+							<label class="form_label form_label_search form_label_gray"><s:message
+									code="s31PostId" /></label> <span>{{PostId}}</span>
+						</div>
+					</div>
+					<div>
+						<div class="form_group">
+							<label class="form_label form_label_search form_label_gray"><s:message
+									code="s31NewsManagementGroup" /></label> <span>{{NewsManagementGroupName}}</span>
+						</div>
+					</div>
+					<div>
+						<div class="form_group">
+							<label class="form_label form_label_search form_label_gray"><s:message
+									code="s31PostDateTime" /></label> <span>{{PostDateTime}}</span>
+						</div>
+					</div>
+					<div>
+						<div class="form_group">
+							<label class="form_label form_label_search form_label_gray"><s:message
+									code="s31Title" /></label> <span>{{Title}}</span>
+						</div>
+					</div>
+					<div>
+						<div class="form_group">
+							<label class="form_label form_label_search form_label_gray"><s:message
+									code="s31SourceName" /></label> <span>{{SourceName}}</span>
+						</div>
+					</div>
+					<div>
+						<div class="form_group">
+							<label class="form_label form_label_search form_label_gray"><s:message
+									code="s31SourceLink" /></label> <span>{{SourceLink}}</span>
+						</div>
+					</div>
+					<div>
+						<div class="form_group">
+							<label class="form_label form_label_search form_label_gray"><s:message
+									code="s31ContentType" /></label> <span ng-show="ContentType == '1'"><s:message
+									code="s31ContentType1" /></span> <span ng-show="ContentType == '2'"><s:message
+									code="s31ContentType2" /></span>
+						</div>
+					</div>
+					<div ng-show="ContentType == '1'">
+						<div class="form_group">
+							<label class="form_label form_label_search form_label_gray"><s:message
+									code="s31Content" /></label> <span>
+								<div ng-if="!IsBreakLine" ng-bind-html="Content"></div>
+								<div ng-if="IsBreakLine" ng-bind-html="Content | trustHtml"></div>
+							</span>
+						</div>
+					</div>
+					<div ng-show="ContentType == '2'">
+						<div class="form_group">
+							<label class="form_label form_label_search form_label_gray"><s:message
+									code="s31ExternalLink" /></label> <span>{{ExternalLink}}</span>
+						</div>
+					</div>
+					<div>
+						<div class="form_group">
+							<label class="form_label form_label_search form_label_gray"><s:message
+									code="s31StartDateTime" /></label> <span>{{StartDateTime}}</span> <span><s:message
+									code="globalDataFromTo" /></span> <br class="visible-xs" /> <label
+								class="form_label form_label_search form_label_gray"><s:message
+									code="s31EndDateTime" /></label> <span>{{EndDateTime}}</span>
+						</div>
+					</div>
+					<div>
+						<div class="form_group">
+							<label class="form_label form_label_search form_label_gray"><s:message
+									code="isEnable" /></label> <span ng-show="IsEnable == true"><s:message
+									code="isEnableTrue" /></span> <span ng-show="IsEnable == false"><s:message
+									code="isEanbleFalse" /></span>
+						</div>
+					</div>
+					<div>
+						<div class="form_group">
+							<label class="form_label form_label_search form_label_gray"><s:message
+									code="isPublic" /></label> <span ng-show="IsPublic == true"><s:message
+									code="isPublicTrue" /></span> <span ng-show="IsPublic == false"><s:message
+									code="isPublicFalse" /></span>
+						</div>
+					</div>
+					<div>
+						<div class="form_group">
+							<label class="form_label form_label_search form_label_gray"><s:message
+									code="s31Status" /></label> <span ng-show="Status == '1'"><s:message
+									code="s31StatusOpt1" /></span> <span ng-show="Status == '2'"><s:message
+									code="s31StatusOpt2" /></span> <span ng-show="Status == '3'"><s:message
+									code="s31StatusOpt3" /></span> <span ng-show="Status == '4'"><s:message
+									code="s31StatusOpt4" /></span> <span ng-show="Status == '5'"><s:message
+									code="s31StatusOpt5" /></span> <span ng-show="Status == '6'"><s:message
+									code="s31StatusOpt6" /></span>
+						</div>
+					</div>
+
+					<div ng-if="itemImages.length > 0">
+						<div class="form_group">
+							<div class="form_group">
+								<h4 class="form_heading form_heading form_heading_yellow">
+									<i class="fa fa-info-circle"><b><s:message
+												code="globalImageList" /></b></i>
+								</h4>
+							</div>
+							<div class="col-xs-12 shadow_board">
+								<div class="help-block"></div>
+								<div>
+									<div class="col-xs-12 col-sm-6 col-md-4"
+										ng-repeat="item in itemImages">
+										<div class="thumbnail">
+											<img src="./api/s31/pic/download/{{Id}}/{{item.Id}}"
+												title="{{item.FileDesc}}" class="img-responsive" />
+											<div class="caption">
+												<p>
+													<s:message code="globalImageDescription" />
+													: {{item.FileDesc}}
+												</p>
+												<p>
+													<s:message code="globalImageName" />
+													: {{item.FileName}}
+												</p>
+												<p>
+													<s:message code="globalImageSize" />
+													: {{item.FileSize}}
+												</p>
+												<p>
+													<s:message code="globalImageLink" />
+													:
+												</p>
+												<div class="input-group">
+													<input type="text" class="form-control"
+														value="{{item.ImageLink}}"> <span
+														class="input-group-addon"
+														onclick="$(this).prev().select(); document.execCommand('Copy')"><i
+														class="fas fa-fw fa-copy"></i></span>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="submit_bar"></div>
+							</div>
+						</div>
+					</div>
+
+					<div ng-if="itemAttachments.length > 0">
+						<div class="form_group">
+							<div class="form_group">
+								<h4 class="form_heading form_heading form_heading_yellow">
+									<i class="fa fa-info-circle"><b><s:message
+												code="globalAttachmentList" /></b></i>
+								</h4>
+							</div>
+							<div class="col-xs-12 shadow_board">
+								<div class="help-block"></div>
+								<div>
+									<div class="col-xs-12 col-sm-6 col-md-4"
+										ng-repeat="item in itemAttachments">
+										<div class="thumbnail">
+											<div class="caption">
+												<p>
+													<s:message code="globalAttachmentDescription" />
+													: {{item.FileDesc}}
+												</p>
+												<p>
+													<s:message code="globalAttachmentName" />
+													: <a
+														href="./api/s31/attach/download/{{item.NewsManagementId}}/{{item.Id}}"
+														target="_blank">{{item.FileName}}</a>
+												</p>
+												<p>
+													<s:message code="globalAttachmentSize" />
+													: {{item.FileSize}}
+												</p>
+												<p>
+													<s:message code="globalHashSHA256" />
+													:
+												</p>
+												<div class="input-group">
+													<input type="text" class="form-control"
+														value="{{item.FileHash}}"> <span
+														class="input-group-addon"
+														onclick="$(this).prev().select(); document.execCommand('Copy')"><i
+														class="fas fa-fw fa-copy"></i></span>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="submit_bar"></div>
+							</div>
+						</div>
+					</div>
+
+					<div ng-show="IsSeeLog">
+						<div class="form_group">
+							<h4 class="form_heading form_heading form_heading_yellow">
+								<i class="fa fa-info-circle"><b><s:message
+											code="globalProcessLog" /></b></i>
+							</h4>
+						</div>
+						<div class="form_group">
+							<table
+								class="table table-striped table-bordered table-hover table_customer table_gray">
+								<thead>
+									<tr>
+										<th><s:message code="globalProcessLogAction" /></th>
+										<th><s:message code="globalProcessLogStatus" /></th>
+										<th><s:message code="globalProcessLogFrom" /></th>
+										<th><s:message code="globalProcessLogSednTime" /></th>
+										<th><s:message code="globalProcessLogContent" /></th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr ng-repeat="item in MessageProcessLogData">
+										<td><span ng-if="item.PreStatus == 1"><s:message
+													code="s31ShowPreStatus1" /></span> <span
+											ng-if="item.PreStatus == 2"><s:message
+													code="s31ShowPreStatus2" /></span> <span
+											ng-if="item.PreStatus == 3"><s:message
+													code="s31ShowPreStatus3" /></span> <span
+											ng-if="item.PreStatus == 6"><s:message
+													code="s31ShowPreStatus6" /></span> <span><i
+												class="fas fa-fw fa-arrow-right"></i></span> <span
+											ng-if="item.Status == 2"><s:message
+													code="s31ShowStatus2" /></span> <span ng-if="item.Status == 3"><s:message
+													code="s31ShowStatus3" /></span> <span ng-if="item.Status == 5"><s:message
+													code="s31ShowStatus5" /></span> <span ng-if="item.Status == 6"><s:message
+													code="s31ShowStatus6" /></span></td>
+										<td><span ng-if="item.Status == 1"><s:message
+													code="s31Status1" /></span> <span ng-if="item.Status == 2"><s:message
+													code="s31Status2" /></span> <span ng-if="item.Status == 3"><s:message
+													code="s31Status3" /></span> <span ng-if="item.Status == 4"><s:message
+													code="s31Status4" /></span> <span ng-if="item.Status == 5"><s:message
+													code="s31Status5" /></span> <span ng-if="item.Status == 6"><s:message
+													code="s31Status6" /></span></td>
+										<td>{{item.CreateName}}</td>
+										<td>{{item.CreateTime}}</td>
+										<td>{{item.Opinion}}</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+
+					<div ng-show="IsSeeOpinion && Status == 3">
+						<div class="form_group">
+							<h4 class="form_heading form_heading form_heading_yellow">
+								<i class="fa fa-info-circle"><b><s:message
+											code="globalProcessLogContent" /></b></i>
+							</h4>
+						</div>
+						<div class="form_group">
+							<label for="Opinion"
+								class="form_label form_label_search form_label_gray"><s:message
+									code="globalProcessLogContent" /></label>
+							<div class="form_input form_input_search">
+								<textarea id="Opinion" name="Opinion" ng-model="Opinion"
+									rows="5" autocomplete="off" class="form-control"
+									ng-required="true"></textarea>
+								<h5 class="text-danger"
+									ng-show="myForm.Opinion.$error.required && myForm.Opinion.$dirty">
+									<s:message code="pleaseEnter" />
+									<s:message code="globalProcessLogContent" />
+								</h5>
+							</div>
+						</div>
+					</div>
+
+				</form>
+			</div>
+			<div class="page-header">
+				<div>
+					<div class="clearfix form-actions">
+						<div class="text-center">
+							<button class="btn btn_custom btn_blue"
+								ng-disabled="!myForm.$valid" ng-click="examine(Id, '4')"
+								ng-show="messagePassButton">
+								<i class="fas fa-fw fa-check"></i>
+								<s:message code="btnPass" />
+							</button>
+							<button class="btn btn_custom btn_blue"
+								ng-disabled="!myForm.$valid" ng-click="examine(Id, '6')"
+								ng-show="messageBackButton">
+								<i class="fas fa-fw fa-arrow-left"></i>
+								<s:message code="btnBack" />
+							</button>
+							<button class="btn btn_custom btn_blue"
+								ng-disabled="!myForm.$valid" ng-click="examine(Id, '2')"
+								ng-show="messageUndoButtonButton">
+								<i class="fas fa-fw fa-eraser"></i>
+								<s:message code="btnReject" />
+							</button>
+							<button class="btn btn_custom btn_gray" ng-click="closeEdit()">
+								<i class="fas fa-fw fa-undo"></i>
+								<s:message code="btnReturn" />
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 
 	<%@ include file="../include/footer.jsp"%>
 </body>
