@@ -1,0 +1,12 @@
+@charset "UTF-8";
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap");
+	.td_style{
+		text-align: center!important;
+	}
+	.title_style{
+		text-align: left!important;
+	}
+	.title_margin{
+		text-align: left!important;
+		margin: 1rem 0;
+	}

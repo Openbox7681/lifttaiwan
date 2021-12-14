@@ -187,8 +187,8 @@ function getAppController($rootScope, $scope, $http, $cookieStore, $anchorScroll
 	   	$scope.ActionName = "";
 	    $scope.Sort = 0;	   	
 	   	$scope.IsExternalLink = false;
-	   	$scope.IsEnable = false;
-	   	$scope.IsShow = false;
+	   	$scope.IsEnable = true;
+	   	$scope.IsShow = true;
 	}
 	// Switch to Edit(Insert) Mode End
 	
