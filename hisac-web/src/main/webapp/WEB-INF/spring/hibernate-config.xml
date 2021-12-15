@@ -150,6 +150,10 @@
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 	
+	<bean id="videoDataDAO" class="tw.gov.mohw.hisac.web.dao.VideoDataDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
 	
 	
 	

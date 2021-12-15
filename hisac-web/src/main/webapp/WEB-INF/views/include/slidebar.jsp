@@ -57,7 +57,10 @@
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">公開資訊管理</button>
                   </h2>
                   <div class="accordion-collapse collapse" id="panelsStayOpen-collapseThree" aria-labelledby="panelsStayOpen-headingThree">
-                    <div class="accordion-body"><a href="pages/m_manage_cooperate.html"><span>國際合作個案管理</span></a><a href="pages/m_manage_video.html"><span>影音資訊管理</span></a></div>
+                    <div class="accordion-body">
+                     <a href="<c:out value="${pageContext.request.contextPath}" />/inc/i01"><span>國際合作個案管理</span></a>
+                     <a href="<c:out value="${pageContext.request.contextPath}" />/inc/i02"><span>影音資訊管理</span></a>
+                    </div>
                   </div>
                 </div>
               </div>
