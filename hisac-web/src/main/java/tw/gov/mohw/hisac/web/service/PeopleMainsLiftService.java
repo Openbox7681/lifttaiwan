@@ -34,6 +34,14 @@ public class PeopleMainsLiftService {
 			return null;
 		}
 	}
+	
+	public List<Object[]> getFormData() {
+		try {
+			return peopleMainsDAO.getFormData();
+		} catch (Exception e) {
+			return null;
+		}
+	}
 
 	public long getListSize(String json) {
 		try {

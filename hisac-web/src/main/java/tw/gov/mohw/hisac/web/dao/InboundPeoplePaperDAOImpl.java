@@ -10,7 +10,6 @@ import org.json.JSONObject;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import tw.gov.mohw.hisac.web.domain.PeopleMainsLift;
 import tw.gov.mohw.hisac.web.domain.ViewInboundPeoplePaper;
 
 /**

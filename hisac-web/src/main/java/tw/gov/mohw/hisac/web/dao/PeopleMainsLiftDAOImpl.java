@@ -106,6 +106,25 @@ public class PeopleMainsLiftDAOImpl extends BaseSessionFactory implements People
 			return null;
 		}
 	}
+	
+	@SuppressWarnings({"deprecation", "unchecked"})
+	public List<Object[]> getFormData() {
+		Criteria cr = getSessionFactory().getCurrentSession().createCriteria(PeopleMainsLift.class);
+		
+		ProjectionList projectionList = Projections.projectionList();        
+		projectionList.add(Projections.groupProperty("class_main"))
+		        .add(Projections.groupProperty("identify"))
+		        .add(Projections.countDistinct("p_id"));
+		
+		cr.setProjection(projectionList);
+		
+		List<Object[]> list = cr.list();
+		if (list.size() > 0) {
+			return list;
+		} else {
+			return null;
+		}
+	}
 
 	@SuppressWarnings("deprecation")
 	public long getListSize(JSONObject obj) {

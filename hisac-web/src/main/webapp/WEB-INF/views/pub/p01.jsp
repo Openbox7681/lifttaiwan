@@ -41,98 +41,53 @@
                           <thead class="tablecolor">
                             <tr>
                               <th scope="col"> </th>
-                              
-                              
                               <th scope="col">
-                                <div class="plan_text"> 
-                                  <p>A計畫別</p>
-                                  <p>人數(%)去除重複</p>
+                                <div class="plan_text td_style"> 
+                                  <p>盤古開天</p>
                                 </div>
                               </th>
                               <th scope="col">
-                                <div class="plan_text"> 
-                                  <p>B計畫別</p>
-                                  <p>人數(%)去除重複               </p>
-                                </div>
-                              </th>
-                              
-                              <th scope="col">
-                                <div class="plan_text"> 
-                                  <p>B計畫別</p>
-                                  <p>人數(%)去除重複               </p>
+                                <div class="plan_text td_style"> 
+                                  <p>國合PI</p>
                                 </div>
                               </th>
                               <th scope="col">
-                                <div class="plan_text">
+                                <div class="plan_text td_style"> 
+                                  <p>短期訪問學者</p>
+                                </div>
+                              </th>
+                              <th scope="col">
+                                <div class="plan_text td_style"> 
+                                  <p>龍門計畫主持人</p>
+                                </div>
+                              </th>
+                              <th scope="col">
+                                <div class="plan_text td_style"> 
+                                  <p>政策邀訪學者</p>
+                                </div>
+                              </th>
+                              <th scope="col">
+                                <div class="plan_text td_style"> 
+                                  <p>千里馬申請人</p>
+                                </div>
+                              </th>
+                              <th scope="col">
+                                <div class="plan_text td_style">
                                   <p>合計</p>
                                 </div>
                               </th>
-                              
-                              
                             </tr>
                           </thead>
-                          <tbody class="areacolor">
-                            <tr>
-                              <th scope="row">領域a</th>
-                              <td>99</td>
-                              <td>99</td>
-                              <td>                               </td>
-                            </tr>
-                            <tr>
-                              <th scope="row">領域b</th>
-                              <td>99</td>
-                              <td>99</td>
-                              <td>                            </td>
-                            </tr>
-                            <tr>
-                              <th scope="row">領域c</th>
-                              <td>99</td>
-                              <td>99</td>
-                              <td>                            </td>
-                            </tr>
-                            <tr>
-                              <th scope="row">領域d</th>
-                              <td>99</td>
-                              <td>99</td>
-                              <td>                             </td>
-                            </tr>
-                            <tr>
-                              <th scope="row">領域e</th>
-                              <td>99</td>
-                              <td>99</td>
-                              <td>                          </td>
-                            </tr>
-                            <tr>
-                              <th scope="row">領域f</th>
-                              <td>99</td>
-                              <td>99</td>
-                              <td>                             </td>
-                            </tr>
-                            <tr>
-                              <th scope="row">領域g</th>
-                              <td>99</td>
-                              <td>99</td>
-                              <td>                            </td>
-                            </tr>
-                            <tr>
-                              <th scope="row">領域g</th>
-                              <td>99</td>
-                              <td>99</td>
-                              <td>                             </td>
-                            </tr>
-                            <tr>
-                              <th scope="row">領域i</th>
-                              <td>99</td>
-                              <td>99</td>
-                              <td>                             </td>
-                            </tr>
-                            <tr>
-                              <th scope="row">合計</th>
-                              <td>99</td>
-                              <td>99</td>
-                               <td>99</td>
-                              
-                              <td>26,000</td>
+                          <tbody>
+                            <tr ng-repeat="item in formData">
+                              <th scope="row" class="td_style">{{item.name}}</th>
+                              <td class="td_style">{{item.open}}</td>
+                              <td class="td_style">{{item.pi}}</td>
+                              <td class="td_style">{{item.short}}</td>
+                              <td class="td_style">{{item.dragon}}</td>
+                              <td class="td_style">{{item.policy}}</td>
+                              <td class="td_style">{{item.horse}}</td>
+                              <td class="td_style">{{item.total}}</td>
                             </tr>
                           </tbody>
                         </table>
