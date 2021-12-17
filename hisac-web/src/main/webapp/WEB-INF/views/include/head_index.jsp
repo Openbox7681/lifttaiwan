@@ -22,23 +22,46 @@
 <meta name="_csrf" content="<c:out value="${_csrf.token}" />" />
 <meta name="_csrf_header" content="<c:out value="${_csrf.headerName}" />" />
 <link rel="shortcut icon"
-	href="<c:out value="${pageContext.request.contextPath}" />/resources/favicon.ico"
+	href="<c:out value="${pageContext.request.contextPath}" />/resources/img/logo.ico"
 	type="image/x-icon" />
 <link rel="shortcut icon"
-	href="<c:out value="${pageContext.request.contextPath}" />/resources/favicon.ico"
+	href="<c:out value="${pageContext.request.contextPath}" />/resources/img/logo.ico"
 	type="image/vnd.microsoft.icon" />
-<link rel="stylesheet"
-	href="<c:out value="${pageContext.request.contextPath}" />/resources/plugins/bootstrap/css/bootstrap-theme-cosmo.min.css" />
+<%-- <link rel="stylesheet"
+	href="<c:out value="${pageContext.request.contextPath}" />/resources/plugins/bootstrap/css/bootstrap-theme-cosmo.min.css" /> --%>
 <link rel="stylesheet"
 	href="<c:out value="${pageContext.request.contextPath}" />/resources/css/default.css">
 <link rel="stylesheet"
 	href="<c:out value="${pageContext.request.contextPath}" />/resources/plugins/fontawesome/css/fontawesome-all.min.css">
-<link rel="stylesheet"
+<%-- <link rel="stylesheet"
 	href="<c:out value="${pageContext.request.contextPath}" />/resources/css/basicstyle.css">
 <link rel="stylesheet"
 	href="<c:out value="${pageContext.request.contextPath}" />/resources/css/mainstyle.css">
 <link rel="stylesheet"
-	href="<c:out value="${pageContext.request.contextPath}" />/resources/css/responsive.css">
+	href="<c:out value="${pageContext.request.contextPath}" />/resources/css/responsive.css"> --%>
+
+<title>Lift Taiwan</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+ <!-- =====  vendor  =====-->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+<!-- =====  google font  =====-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri&amp;family=Noto+Sans+TC&amp;display=swap" rel="stylesheet">
+
+<link rel="stylesheet"
+	href="<c:out value="${pageContext.request.contextPath}" />/resources/css/fontend/basicstyle.css">
+<link rel="stylesheet"
+	href="<c:out value="${pageContext.request.contextPath}" />/resources/css/fontend/mainstyle.css">
+<link rel="stylesheet"
+	href="<c:out value="${pageContext.request.contextPath}" />/resources/css/fontend/map_point.css">
+<link rel="stylesheet"
+	href="<c:out value="${pageContext.request.contextPath}" />/resources/css/fontend/index_style.css">
+<link rel="stylesheet"
+	href="<c:out value="${pageContext.request.contextPath}" />/resources/css/fontend/responsive.css">
+	
+	
 <script
 	src="<c:out value="${pageContext.request.contextPath}" />/resources/plugins/html5shiv.min.js"></script>
 <script

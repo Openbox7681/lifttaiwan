@@ -172,6 +172,16 @@ function getAppController($scope, $http, $window) {
 	                },
 	                scale: true
 	            },
+	            toolbox: {
+	                feature: {
+	                    saveAsImage: {
+	                    	show : true
+	                    	,title : '保存為圖片'
+	                    	
+	                    	
+	                    },
+	                },
+	            },
 	            series: [
 	                {
 	                    name: '千里馬計畫優勢',
@@ -685,7 +695,7 @@ function getAppController($scope, $http, $window) {
                 trigger: 'axis'
             },
             legend: {
-                data: ['Installation', 'Manufacturing', 'Sales & Distribution', 'Project Development', 'Other']
+                data: ['In-bound', 'Out-bound']
             },
             grid: {
                 left: '3%',
@@ -695,7 +705,8 @@ function getAppController($scope, $http, $window) {
             },
             toolbox: {
                 feature: {
-                    saveAsImage: {}
+                    saveAsImage: { show: true 
+                    	,title : '保存為圖片'}
                 }
             },
             xAxis: {
@@ -708,34 +719,16 @@ function getAppController($scope, $http, $window) {
             },
             series: [
                 {
-                    name: 'Installation',
+                    name: 'In-bound',
                     type: 'line',
-                    stack: 'Total',
+                    smooth: true,
                     data: [120, 132, 101, 134, 90, 230, 210]
                 },
                 {
-                    name: 'Manufacturing',
+                    name: 'Out-bound',
                     type: 'line',
-                    stack: 'Total',
+                    smooth: true,
                     data: [220, 182, 191, 234, 290, 330, 310]
-                },
-                {
-                    name: 'Sales & Distribution',
-                    type: 'line',
-                    stack: 'Total',
-                    data: [150, 232, 201, 154, 190, 330, 410]
-                },
-                {
-                    name: 'Project Development',
-                    type: 'line',
-                    stack: 'Total',
-                    data: [320, 332, 301, 334, 390, 330, 320]
-                },
-                {
-                    name: 'Other',
-                    type: 'line',
-                    stack: 'Total',
-                    data: [820, 932, 901, 934, 1290, 1330, 1320]
                 }
             ]
         };

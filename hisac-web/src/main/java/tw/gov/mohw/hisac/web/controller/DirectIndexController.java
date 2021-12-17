@@ -158,6 +158,9 @@ public class DirectIndexController extends BaseController {
 		}
 		return "sign_up";
 	}
+	
+	
+	
 
 	/**
 	 * 最新消息
@@ -168,9 +171,9 @@ public class DirectIndexController extends BaseController {
 	 *            Model
 	 * @return Url
 	 */
-	@RequestMapping(value = "/news", method = RequestMethod.GET)
+	@RequestMapping(value = "/fontend", method = RequestMethod.GET)
 	public String News(Locale locale, Model model) {
-		return "news";
+		return "/fontend/index";
 	}
 
 	/**

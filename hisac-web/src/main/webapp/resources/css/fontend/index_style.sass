@@ -1,0 +1,610 @@
+@mixin pos($left,$top)
+  z-index: 3
+  position: absolute
+  left: $left
+  top: $top
+  transform: translateX(-50%) translateY(50%)
+  display: none
+@mixin center
+  position: absolute
+  left: 50%
+  top: 50%
+  transform: translateX(-50%) translateY(-50%)
+@mixin notselect
+  user-drag: none
+  -webkit-user-drag: none
+  user-select: none
+  -moz-user-select: none
+  -webkit-user-select: none
+  -ms-user-select: none  
+//---custom basic settings-color---
+$maincolor: #fa7805
+$maincolor_sub: #eb551e
+$subcolor: #4c4c4c
+$fontcolor_g0: #F1F1F1
+$fontcolor_g1: #bcbcbc
+$fontcolor_g2: #a3a3a3
+$fontcolor_g3: #666
+
+h1,h2,h3,h4,h5,h6
+  color: $fontcolor_g3
+a
+  color: $fontcolor_g3
+  text-decoration: none !important
+  outline: none
+  &:hover
+    color: $maincolor
+    transition: 0.5s
+
+.container
+  max-width: 1500px
+
+#top_button
+  display: none
+
+.nav_barcontent
+  p
+    padding-bottom: 1rem
+span
+  font-size: 1rem
+.fancyTab
+  text-align: center
+  padding: 15px 0
+  background-color: #eee
+  box-shadow: 0 0 0 1px #ddd
+  top: 15px
+  transition: top .2s
+  border-top-left-radius: 5px
+  border-top-right-radius: 5px
+
+  &.active
+    top: 0
+    transition: top .2s
+
+.whiteBlock
+  display: none
+
+.fancyTab
+  &.active .whiteBlock
+    display: block
+    height: 2px
+    bottom: -2px
+    background-color: #fff
+    width: 99%
+    position: absolute
+    z-index: 1
+
+  a
+    font-family: 'Source Sans Pro'
+    font-size: 1.65em
+    font-weight: 300
+    transition: .2s
+    color: #333
+
+
+.fancyTabs
+  border-bottom: 2px solid #ddd
+  margin: 15px 0 0
+
+li.fancyTab
+  a
+    padding-top: 15px
+    top: -15px
+    padding-bottom: 0
+
+  &.active a
+    padding-top: inherit
+
+.fancyTab
+  .fa
+    font-size: 40px
+    width: 100%
+    padding: 15px 0 5px
+    color: #666
+
+  &.active .fa
+    color: #cfb87c
+
+  a:focus
+    outline: none
+
+.fancyTabContent
+  border-color: transparent
+  box-shadow: 0 -2px 0 -1px #fff, 0 0 0 1px #ddd
+  padding: 30px 15px 15px
+  position: relative
+  background-color: #fff
+
+.nav-tabs > li.fancyTab
+  &.active > a
+    border-width: 0
+
+    &:focus, &:hover
+      border-width: 0
+
+  &:hover
+    background-color: #f9f9f9
+    box-shadow: 0 0 0 1px rgba(250, 120, 5, 0.5)
+
+  &.active:hover
+    background-color: #fff
+    box-shadow: 1px 1px 0 1px #fff, 0 0px 0 1px $maincolor, -1px 1px 0 0px $maincolor inset
+
+  &:hover a
+    border-color: transparent
+
+.nav.nav-tabs .fancyTab a[data-toggle="tab"]
+  background-color: transparent
+  border-bottom: 0
+
+.nav-tabs > li.fancyTab
+  &:hover a
+    border-right: 1px solid transparent
+
+  > a
+    margin-right: 0
+    border-top: 0
+    padding-bottom: 30px
+    margin-bottom: -30px
+
+  margin-right: 0
+  margin-bottom: 0
+
+  &:last-child a
+    border-right: 1px solid transparent
+
+  &.active:last-child
+    border-right: 0px solid $maincolor
+    box-shadow: 0px 2px 0 0px #fff, 0px 0px 0 1px $maincolor
+
+.fancyTab:last-child
+  box-shadow: 0 0 0 1px #ddd
+
+.tabs .nav-tabs li.fancyTab.active a
+  box-shadow: none
+  top: 0
+
+.fancyTab.active
+  background: #fff
+  box-shadow: 1px 1px 0 1px #fff, 0 0px 0 1px #ddd, -1px 1px 0 0px $maincolor inset
+  padding-bottom: 30px
+
+.arrow-down
+  display: none
+  width: 0
+  height: 0
+  border-left: 20px solid transparent
+  border-right: 20px solid transparent
+  border-top: 22px solid $maincolor
+  position: absolute
+  top: -1px
+  left: calc(50% - 20px)
+
+.arrow-down-inner
+  width: 0
+  height: 0
+  border-left: 18px solid transparent
+  border-right: 18px solid transparent
+  border-top: 12px solid #fff
+  position: absolute
+  top: -22px
+  left: -18px
+
+.fancyTab.active .arrow-down
+  display: block
+
+@media (max-width: 1200px)
+  .fancyTab
+    .fa
+      font-size: 36px
+
+    .hidden-xs
+      font-size: 1rem
+
+@media (max-width: 992px)
+  .fancyTab
+    .fa
+      font-size: 33px
+
+    .hidden-xs
+      font-size: 0.875rem
+      font-weight: normal
+
+@media (max-width: 768px)
+  .fancyTab > a
+    font-size: 18px
+
+  .nav > li.fancyTab > a
+    padding: 15px 0
+    margin-bottom: inherit
+
+  .fancyTab .fa
+    font-size: 30px
+
+  .nav-tabs > li.fancyTab > a
+    border-right: 1px solid transparent
+    padding-bottom: 0
+
+  .fancyTab.active .fa
+    color: #333
+
+
+
+.nav-tabs>li>a
+  line-height: 1rem
+
+
+
+
+//index map
+
+#map
+  width: 100%
+  height: auto
+  position: relative
+  .map_bg
+    position: relative
+
+
+.box
+  display: inline-block
+  padding: 0.5rem 1rem
+  background-color: rgba(0, 0, 0, 0.4)
+  border-radius: 5px
+  color: white
+
+
+.country1
+  +pos(25%,50%)
+.country2
+  +pos(50%,40%)  
+.country3
+  +pos(35%,60%)  
+.country4
+  +pos(67%,40%)  
+.country5
+  +pos(44%,30%)  
+.country6
+  +pos(45%,50%)  
+.country7
+  +pos(72%,23%)  
+.country8
+  +pos(45%,43%)  
+.country9
+  +pos(65%,43%)  
+.country10
+  +pos(35%,71%)  
+.country11
+  +pos(58%,15%)  
+.country12
+  +pos(32%,59%) 
+.country13
+  +pos(52%,67%) 
+.country14
+  +pos(25%,30%)  
+
+.country15
+  +pos(25%,30%)
+.country15
+  +pos(76%,20%)
+.country16
+  +pos(52%,37%)  
+
+
+
+
+
+
+
+
+.worldicon
+  width: 100px
+  height: 50px
+  background-image: url('../img/icon/icon_return_world.svg')
+  background-size: cover
+  margin-bottom: 0.5rem
+  transition: 0.5s
+  cursor: pointer
+  &:hover
+    transition: 0.5s
+    background-image: url('../img/icon/icon_return_worldo.svg')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//index info search
+
+#int_info
+  position: relative
+  background-color: #f9f9fa
+  padding-bottom: 5%
+  .button_fill_orange
+    padding: 0.5rem 1rem
+    margin: 1rem 0 0.5rem 0
+.borline
+  background-color: $maincolor
+  width: 50px
+  height: 5px
+  margin: 1rem 0
+.sharebtn
+  position: absolute
+  background-color: #f49c00
+  width: 40px
+  height: 30px
+  bottom: 10%
+  right: 6%
+  border-radius: 5px
+  cursor: pointer
+  text-align: center
+  img
+    width: 70%
+
+
+.chart_area
+  width: 100%
+  height: auto
+  overflow: hidden
+  cursor: pointer
+  .fill
+    object-fit: cover
+
+
+.area_tabs
+  li
+    padding-bottom: 0.875rem
+    color: $fontcolor_g3
+    cursor: pointer
+    span
+      padding: 0 1rem 0 0.5rem
+      border-radius: 3rem
+      transition: 0.5s
+    span:hover
+      background-color: $maincolor
+      transition: 0.5s
+      color: white
+    span::before
+      content: ""
+      display: inline-block
+      width: 0.6rem
+      height: 0.6rem
+      margin-right: 3%
+      background-image: url('../img/icon/icon_cube.svg')
+
+
+.blue
+  span::before
+    background-image: url('../img/icon/icon_cube_blue.svg')!important
+  span:hover
+    background-color: #366694!important
+.lightblue
+  span::before
+    background-image: url('../img/icon/icon_cube_lightblue.svg')!important
+  span:hover
+    background-color: #7caedd!important
+.lightblue
+  span::before
+    background-image: url('../img/icon/icon_cube_lightblue.svg')!important
+  span:hover
+    background-color: #7caedd!important
+.green
+  span::before
+    background-image: url('../img/icon/icon_cube_green.svg')!important
+  span:hover
+    background-color: #63cecb!important
+.yellow
+  span::before
+    background-image: url('../img/icon/icon_cube_yellow.svg')!important
+  span:hover
+    background-color: #ffbf61!important
+.deepred
+  span::before
+    background-image: url('../img/icon/icon_cube_red.svg')!important
+  span:hover
+    background-color: #ff5f5f!important 
+.pink
+  span::before
+    background-image: url('../img/icon/icon_cube_pink.svg')!important
+  span:hover
+    background-color: #ff6e9e!important         
+
+.title
+  h5::before
+    content: ""
+    display: inline-block
+    width: 30px
+    height: 30px
+    margin-right: 1%
+    background-image: url('../img/icon/icon_cube2.svg')
+.line2
+  margin: 1rem 0
+.inbound,.outbound,.mechanism,.result
+  max-width: 60px
+  height: 60px
+  width: 100%
+  background-size: cover
+.inbound
+  background-image: url('../img/icon/icon_inbound.svg')
+.outbound
+  background-image: url('../img/icon/icon_outbound.svg')
+.mechanism
+  background-image: url('../img/icon/icon_mech.svg')
+.result
+  background-image: url('../img/icon/icon_result_paper.svg')
+
+
+
+.change_pink1
+  background-image: url('../img/icon/index_change_color/icon_inbound_pink.svg')
+.change_pink2
+  background-image: url('../img/icon/index_change_color/icon_outbound_pink.svg')
+.change_pink3
+  background-image: url('../img/icon/index_change_color/icon_mech_pink.svg')
+.change_pink4
+  background-image: url('../img/icon/index_change_color/icon_result_paper_pink.svg')
+
+
+.change_green1
+  background-image: url('../img/icon/index_change_color/icon_inbound_green.svg')
+.change_green2
+  background-image: url('../img/icon/index_change_color/icon_outbound_green.svg')
+.change_green3
+  background-image: url('../img/icon/index_change_color/icon_mech_green.svg')
+.change_green4
+  background-image: url('../img/icon/index_change_color/icon_result_paper_green.svg')
+
+.change_yellow1
+  background-image: url('../img/icon/index_change_color/icon_inbound_yellow.svg')
+.change_yellow2
+  background-image: url('../img/icon/index_change_color/icon_outbound_yellow.svg')
+.change_yellow3
+  background-image: url('../img/icon/index_change_color/icon_mech_yellow.svg')
+.change_yellow4
+  background-image: url('../img/icon/index_change_color/icon_result_paper_yellow.svg')
+
+.change_blue1
+  background-image: url('../img/icon/index_change_color/icon_inbound_blue.svg')
+.change_blue2
+  background-image: url('../img/icon/index_change_color/icon_outbound_blue.svg')
+.change_blue3
+  background-image: url('../img/icon/index_change_color/icon_mech_blue.svg')
+.change_blue4
+  background-image: url('../img/icon/index_change_color/icon_result_paper_blue.svg')
+
+.change_lightblue1
+  background-image: url('../img/icon/index_change_color/icon_inbound_lightblue.svg')
+.change_lightblue2
+  background-image: url('../img/icon/index_change_color/icon_outbound_lightblue.svg')
+.change_lightblue3
+  background-image: url('../img/icon/index_change_color/icon_mech_lightblue.svg')
+.change_lightblue4
+  background-image: url('../img/icon/index_change_color/icon_result_paper_lightblue.svg')
+
+.change_red1
+  background-image: url('../img/icon/index_change_color/icon_inbound_red.svg')
+.change_red2
+  background-image: url('../img/icon/index_change_color/icon_outbound_red.svg')
+.change_red3
+  background-image: url('../img/icon/index_change_color/icon_mech_red.svg')
+.change_red4
+  background-image: url('../img/icon/index_change_color/icon_result_paper_red.svg')
+
+
+
+
+
+
+
+
+
+
+
+
+
+.tabicon
+  img
+    width: 50%
+.icon-info
+  background-size: cover
+  background-image: url('../img/icon/icon_livelihood.svg')
+
+#info_cube
+  .cube_outer
+    width: 100%
+    border-radius: 10px
+    overflow: hidden
+    padding: 1rem
+    box-shadow:  2px 2px 14px -1px rgba(0, 0, 0, 0.2)
+    margin-bottom: 2rem
+  h2
+    margin-top: 1rem
+  .countryinfo
+    margin-bottom: 1rem
+    p
+      color: $fontcolor_g3
+
+//index-video
+
+#video_info,#cooperate_case
+  .moreinfo
+    display: inline-block
+    float: right
+    p
+      color: $fontcolor_g2
+      transition: 0.5s
+      cursor: pointer
+
+      &:hover
+        color: $maincolor
+        transition: 0.5s
+
+
+#video_info,#coope0ate_case
+  background-color: $fontcolor_g0
+  .keybtn
+    margin: 0
+
+.outer
+  width: 100%
+  border-radius: 10px
+  overflow: hidden
+  box-shadow:  2px 2px 14px -1px rgba(0, 0, 0, 0.2)
+  margin-bottom: 1rem
+  .video_outer
+    position: relative
+    width: 100%
+    max-height: 200px
+    overflow: hidden
+    -webkit-filter: grayscale(0)
+    cursor: pointer
+    transition: 0.5s
+    &:hover
+      transition: 0.5s
+      -webkit-filter: grayscale(1)
+    img
+      width: 100%
+  .video_content,.video_tag
+    padding: 1rem 1rem
+  .video_content
+    span,h6,p
+      padding-top: 0.5rem
+    span
+      color: $maincolor
+    p
+      color: $fontcolor_g2 !important
+
+
+.player
+  position: absolute
+  width: 100px
+  height: 70px
+  left: 50%
+  top: 50%
+  background-size: cover
+  background-image: url('../img/icon/player_o.svg')
+  transform: translateX(-50%) translateY(-50%)
+
+
+//footer
+#index_adjust
+  .footer_content
+    p
+      font-size: 1.1rem
+      line-height: 1.5rem !important
+
+
+  .middlecenter
+    position: relative
+  .footer_logo
+    padding-top: 60%
+
