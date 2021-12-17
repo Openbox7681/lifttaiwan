@@ -55,6 +55,33 @@ function getAppController($scope, $rootScope, $http, $window) {
 	};
 	$scope.queryNumber();
 	
+	$scope.queryForm = function() {
+
+		var request = {
+			
+		};
+		$http.post('./common/queryForm', request, csrf_config).then(function(response) {
+			
+			$scope.formData = response.data.formData;
+			
+		}).catch(function() {
+			bootbox.alert({
+				message : globalReadDataFail,
+				buttons : {
+					ok : {
+						label : '<i class="fas fa-fw fa-times"></i>' + btnClose,
+						className : 'btn-danger',
+					}
+				},
+				callback: function() { }
+			});
+		}).finally(function() {
+			$("#imgLoading").hide();
+            $("#loadingActivity").fadeOut("slow");
+
+		});
+	};
+	$scope.queryForm();
 	
 	
 	
