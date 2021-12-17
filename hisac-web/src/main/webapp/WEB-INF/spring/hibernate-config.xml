@@ -158,7 +158,9 @@
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 	
-	
+	<bean id="inboundPeoplePaperDAO" class="tw.gov.mohw.hisac.web.dao.InboundPeoplePaperDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
 	
 	<tx:annotation-driven transaction-manager="transactionManager"
 		proxy-target-class="true" />
