@@ -14,7 +14,7 @@ function test(){
     <header class="nav" id="top_pos">
       <div class="container">
         <div class="row">
-          <div class="col-xs-12"><a class="nav_logo" href="index.html"><img src="<c:out value="${pageContext.request.contextPath}" />/resources/img/logo_lightup.svg" alt=""></a>
+          <div class="col-xs-12"><a class="nav_logo" href="index"><img src="<c:out value="${pageContext.request.contextPath}" />/resources/img/logo_lightup.svg" alt=""></a>
             <div class="nav_turnfront">
             <div class="button_fill_orange btn_s">
             <span href="#" onclick="logout();"> <s:message code="globalLogout" /></span>
