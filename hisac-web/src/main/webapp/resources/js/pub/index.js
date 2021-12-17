@@ -695,7 +695,7 @@ function getAppController($scope, $http, $window) {
                 trigger: 'axis'
             },
             legend: {
-                data: ['In-bound', 'Out-bound']
+                data: ['In-bound']
             },
             grid: {
                 left: '3%',
@@ -712,7 +712,7 @@ function getAppController($scope, $http, $window) {
             xAxis: {
                 type: 'category',
                 boundaryGap: false,
-                data: ['2010', '2012', '2014', '2016', '2017', '2018', '2019']
+                data: ['2011','2012','2013','2014','2015','2016','2017','2018','2019','2020']
             },
             yAxis: {
                 type: 'value'
@@ -722,14 +722,9 @@ function getAppController($scope, $http, $window) {
                     name: 'In-bound',
                     type: 'line',
                     smooth: true,
-                    data: [120, 132, 101, 134, 90, 230, 210]
-                },
-                {
-                    name: 'Out-bound',
-                    type: 'line',
-                    smooth: true,
-                    data: [220, 182, 191, 234, 290, 330, 310]
+                    data: [1, 2, 3, 4, 5, 6, 7,8,9,10]
                 }
+                
             ]
         };
 

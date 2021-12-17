@@ -63,7 +63,7 @@
                                         <div class="row">
                                             <div class="col-lg-12">
                                                 <div class="index_title">
-                                                    <h6>近十年In-bound、Outbound核定人數與經費分布</h6>
+                                                    <h6>近十年In-bound核定人數與經費分布</h6>
                                                 </div>
                                             </div>
                                             <div class="col-lg-12">
