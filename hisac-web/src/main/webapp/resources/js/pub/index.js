@@ -681,63 +681,76 @@ function getAppController($scope, $http, $window) {
     
     $scope.solar_employment = function(){
     	
-    	var dom = document.getElementById("solar_employment");
-        var myChart = echarts.init(dom);
-        var app = {};
-
-        var option;
-
-        option = {
-            title: {
-                text: ''
-            },
-            tooltip: {
-                trigger: 'axis'
-            },
-            legend: {
-                data: ['In-bound']
-            },
-            grid: {
-                left: '3%',
-                right: '4%',
-                bottom: '3%',
-                containLabel: true
-            },
-            toolbox: {
-                feature: {
-                    saveAsImage: { show: true 
-                    	,title : '保存為圖片'}
-                }
-            },
-            xAxis: {
-                type: 'category',
-                boundaryGap: false,
-                data: ['2011','2012','2013','2014','2015','2016','2017','2018','2019','2020']
-            },
-            yAxis: {
-                type: 'value'
-            },
-            series: [
-                {
-                    name: 'In-bound',
-                    type: 'line',
-                    smooth: true,
-                    data: [1, 2, 3, 4, 5, 6, 7,8,9,10]
-                }
-                
-            ]
-        };
-
-        if (option && typeof option === 'object') {
-            myChart.setOption(option);
-        }
+		var request= {
+		    			
+		};
     	
+    	$http.post('./common/queryLines', request, csrf_config).then(function(response) {
     	
-    	
-    	
-    	
-    	
-    	
+			var dom = document.getElementById("solar_employment");
+		    var myChart = echarts.init(dom);
+		    var app = {};
+		
+		    var option;
+		
+		    option = {
+		        title: {
+		            text: ''
+		        },
+		        tooltip: {
+		            trigger: 'axis'
+		        },
+		        legend: {
+		            data: ['In-bound']
+		        },
+		        grid: {
+		            left: '3%',
+		            right: '4%',
+		            bottom: '3%',
+		            containLabel: true
+		        },
+		        toolbox: {
+		            feature: {
+		                saveAsImage: { show: true 
+		                	,title : '保存為圖片'}
+		            }
+		        },
+		        xAxis: {
+		            type: 'category',
+		            boundaryGap: false,
+		            data: ['2011','2012','2013','2014','2015','2016','2017','2018','2019','2020']
+		        },
+		        yAxis: {
+		            type: 'value'
+		        },
+		        series: [
+		            {
+		                name: 'In-bound',
+		                type: 'line',
+		                smooth: true,
+		                data: response.data.lineData
+		            }
+		            
+		        ]
+		    };
+		
+		    if (option && typeof option === 'object') {
+		        myChart.setOption(option);
+		    }
+    	}).catch(function() {
+			bootbox.alert({
+				message : globalReadDataFail,
+				buttons : {
+					ok : {
+						label : '<i class="fas fa-fw fa-times"></i>' + btnClose,
+						className : 'btn-danger',
+					}
+				},
+				callback: function() { }
+			});
+		}).finally(function() {
+			$("#imgLoading").hide();
+		});
     }
     
     
