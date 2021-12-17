@@ -60,7 +60,7 @@ function getAppController($scope, $rootScope, $http, $window) {
 		var request = {
 			
 		};
-		$http.post('./common/queryForm', request, csrf_config).then(function(response) {
+		$http.post('./common/p01/queryForm', request, csrf_config).then(function(response) {
 			
 			$scope.formData = response.data.formData;
 			

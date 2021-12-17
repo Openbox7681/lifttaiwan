@@ -35,89 +35,81 @@
                   <div class="col-lg-12">
                     <div class="form_chart">
                       <div class="form_outbor">
-                        <table class="table caption-top">
+                        <table class="table caption-top table_font_size">
                           <thead class="tablecolor">
                             <tr>
                               <th scope="col"> </th>
                               <th scope="col">
-                                <div class="plan_text"> 
-                                  <p>A計畫別</p>
-                                  <p>人數(%)去除重複</p>
+                                <div class="plan_text td_style"> 
+                                  <p>2011</p>
                                 </div>
                               </th>
                               <th scope="col">
-                                <div class="plan_text"> 
-                                  <p>B計畫別</p>
-                                  <p>人數(%)去除重複               </p>
+                                <div class="plan_text td_style"> 
+                                  <p>2012</p>
                                 </div>
                               </th>
-                              <th class="middle_outer" scope="col">
-                                <div class="plan_text_mcenter">
-                                  <p>合計</p>
+                              <th scope="col">
+                                <div class="plan_text td_style"> 
+                                  <p>2013</p>
+                                </div>
+                              </th>
+                              <th scope="col">
+                                <div class="plan_text td_style"> 
+                                  <p>2014</p>
+                                </div>
+                              </th>
+                              <th scope="col">
+                                <div class="plan_text td_style"> 
+                                  <p>2015</p>
+                                </div>
+                              </th>
+                              <th scope="col">
+                                <div class="plan_text td_style"> 
+                                  <p>2016</p>
+                                </div>
+                              </th>
+                              <th scope="col">
+                                <div class="plan_text td_style"> 
+                                  <p>2017</p>
+                                </div>
+                              </th>
+                              <th scope="col">
+                                <div class="plan_text td_style"> 
+                                  <p>2018</p>
+                                </div>
+                              </th>
+                              <th scope="col">
+                                <div class="plan_text td_style"> 
+                                  <p>2019</p>
+                                </div>
+                              </th>
+                              <th scope="col">
+                                <div class="plan_text td_style"> 
+                                  <p>2020</p>
+                                </div>
+                              </th>
+                              <th scope="col">
+                                <div class="plan_text td_style"> 
+                                  <p>total</p>
                                 </div>
                               </th>
                             </tr>
                           </thead>
-                          <tbody class="areacolor">
-                            <tr>
-                              <th scope="row">領域a</th>
-                              <td>99</td>
-                              <td>99</td>
-                              <td>                               </td>
-                            </tr>
-                            <tr>
-                              <th scope="row">領域b</th>
-                              <td>99</td>
-                              <td>99</td>
-                              <td>                            </td>
-                            </tr>
-                            <tr>
-                              <th scope="row">領域c</th>
-                              <td>99</td>
-                              <td>99</td>
-                              <td>                            </td>
-                            </tr>
-                            <tr>
-                              <th scope="row">領域d</th>
-                              <td>99</td>
-                              <td>99</td>
-                              <td>                             </td>
-                            </tr>
-                            <tr>
-                              <th scope="row">領域e</th>
-                              <td>99</td>
-                              <td>99</td>
-                              <td>                          </td>
-                            </tr>
-                            <tr>
-                              <th scope="row">領域f</th>
-                              <td>99</td>
-                              <td>99</td>
-                              <td>                             </td>
-                            </tr>
-                            <tr>
-                              <th scope="row">領域g</th>
-                              <td>99</td>
-                              <td>99</td>
-                              <td>                            </td>
-                            </tr>
-                            <tr>
-                              <th scope="row">領域g</th>
-                              <td>99</td>
-                              <td>99</td>
-                              <td>                             </td>
-                            </tr>
-                            <tr>
-                              <th scope="row">領域i</th>
-                              <td>99</td>
-                              <td>99</td>
-                              <td>                             </td>
-                            </tr>
-                            <tr>
-                              <th scope="row">合計</th>
-                              <td>99</td>
-                              <td>99</td>
-                              <td>26,000</td>
+                          <tbody>
+                            <tr ng-repeat="item in formData">
+                              <th scope="row" class="td_style">{{item.name}}</th>
+                              <td class="td_style">{{item.eleven}}</td>
+                              <td class="td_style">{{item.twelve}}</td>
+                              <td class="td_style">{{item.thirteen}}</td>
+                              <td class="td_style">{{item.fourteen}}</td>
+                              <td class="td_style">{{item.fifteen}}</td>
+                              <td class="td_style">{{item.sixteen}}</td>
+                              <td class="td_style">{{item.seventeen}}</td>
+                              <td class="td_style">{{item.eighteen}}</td>
+                              <td class="td_style">{{item.nineteen}}</td>
+                              <td class="td_style">{{item.twenty}}</td>
+                              <td class="td_style">{{item.total}}</td>
                             </tr>
                           </tbody>
                         </table>
