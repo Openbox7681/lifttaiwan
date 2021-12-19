@@ -413,6 +413,7 @@ function getAppController($scope, $http, $cookieStore, $cookies, $anchorScroll, 
 			$scope.isSupport1 = false;
 			$scope.isSupport2 = true;
 			$scope.isSupport3 = false;
+			$scope.drawPlanCountry();
 		}else if(index == 3){
 			$scope.isSupport1 = false;
 			$scope.isSupport2 = false;
@@ -434,6 +435,8 @@ function getAppController($scope, $http, $cookieStore, $cookies, $anchorScroll, 
 
 			
 			$scope.queryForm();
+			
+			$scope.queryCountry();
 		}else if ($scope.inlineRadioOptions == 2){
 			$scope.isSupport = false;
 			$scope.isResult = true;
@@ -454,8 +457,114 @@ function getAppController($scope, $http, $cookieStore, $cookies, $anchorScroll, 
 		
 	}
 	
+	$scope.drawPlanCountry = function(){
+		var dom1 = document.getElementById("a2");
+        var myChart1 = echarts.init(dom1);
+        var app = {};
+
+        var option1;
+
+        option1 = {
+            title: {
+                text: 'A-2補助人數(依領域及國家)'
+            },
+            tooltip: {
+                trigger: 'axis'
+            },
+            legend: {
+            },
+            grid: {
+                left: '3%',
+                right: '4%',
+                bottom: '3%',
+                containLabel: true
+            },
+            toolbox: {
+                feature: {
+                    saveAsImage: {}
+                }
+            },
+            xAxis: {
+                type: 'category',
+                boundaryGap: false,
+                data: $scope.CountryDataDraw 
+            },
+            yAxis: {
+                type: 'value'
+            },
+            series: [
+                {
+                    name: '盤古開天',
+                    type: 'line',
+                    stack: 'Total',
+                    data: $scope.OpenData
+                },
+                {
+                    name: '國合PI',
+                    type: 'line',
+                    stack: 'Total',
+                    data: $scope.piDataDraw 
+                },
+                {
+                    name: '短期訪問學者',
+                    type: 'line',
+                    stack: 'Total',
+                    data: $scope.piDataDraw 
+                },
+                {
+                    name: '龍門計畫主持人',
+                    type: 'line',
+                    stack: 'Total',
+                    data: $scope.dragonDataDraw
+                },
+                {
+                    name: '政策邀訪學者',
+                    type: 'line',
+                    stack: 'Total',
+                    data: $scope.policyDataDraw
+                },
+                {
+                    name: '千里馬申請人',
+                    type: 'line',
+                    stack: 'Total',
+                    data: $scope.horseDataDraw
+                }
+            ]
+        };
+
+        if (option1 && typeof option1 === 'object') {
+        	myChart1.setOption(option1);
+        }
+	}
 	
 	
+	$scope.queryCountry = function() {
+		var request = {
+				startYear : $scope.StartYear,
+				endYear : $scope.EndYear,
+				classSubList : $scope.InfoList,
+				countryList : $scope.CountryList,
+				classMainOption : $scope.option
+			
+		};
+		$http.post('./common/queryCountryData', request, csrf_config).then(function(response) {
+			$scope.CountryData = response.data.formData;
+			$scope.CountryDataDraw = response.data.countryData 
+			$scope.OpenData = response.data.openData 
+			$scope.piDataDraw = response.data.piData 
+			$scope.shortDataDraw = response.data.shortData 
+			$scope.dragonDataDraw = response.data.dragonData 
+			$scope.policyDataDraw = response.data.policyData 
+			$scope.horseDataDraw = response.data.horseData
+
+			
+			
+		})
+
+		
+		
+		
+	}
 	
 	$scope.queryForm = function() {
 
@@ -463,7 +572,7 @@ function getAppController($scope, $http, $cookieStore, $cookies, $anchorScroll, 
 				startYear : $scope.StartYear,
 				endYear : $scope.EndYear,
 				classSubList : $scope.InfoList,
-				countryList : $scope.InfoList,
+				countryList : $scope.CountryList,
 				classMainOption : $scope.option
 			
 		};
@@ -571,20 +680,7 @@ function getAppController($scope, $http, $cookieStore, $cookies, $anchorScroll, 
                 myChart.setOption(option);
             }
 			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
+	
 			
 		}).catch(function() {
 			bootbox.alert({

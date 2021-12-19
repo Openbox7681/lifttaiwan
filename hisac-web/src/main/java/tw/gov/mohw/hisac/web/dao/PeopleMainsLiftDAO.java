@@ -22,6 +22,9 @@ public interface PeopleMainsLiftDAO {
 	
 	public List<Object[]> getClassSubDataByCondition(Long startYear , Long endYear , JSONArray classSubList , JSONArray countryList, int classMainOption);
 	
+	public List<Object[]> getCountryDataByCondition(Long startYear , Long endYear , JSONArray classSubList , JSONArray countryList,int classMainOption);
+
+	
 	public List<Object[]> getAllCountry();
 
 }

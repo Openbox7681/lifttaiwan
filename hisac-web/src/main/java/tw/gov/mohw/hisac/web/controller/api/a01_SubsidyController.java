@@ -75,7 +75,195 @@ public class a01_SubsidyController extends BaseController {
 		model.addAttribute("json", responsejson.toString());
 		return "msg";
 	}
-	
+	@RequestMapping(value = "/queryCountryData", method = RequestMethod.POST)
+	public String queryCountryData(Locale locale, HttpServletRequest request, Model model, @RequestBody String json) {
+		JSONObject listjson = new JSONObject();
+		JSONArray sn_array = new JSONArray();
+		JSONObject total_json = new JSONObject();
+		
+		JSONObject obj1 = new JSONObject(json);
+		
+		Long startYear = obj1.isNull("startYear") == true ? 0 : obj1.getLong("startYear");
+		Long endYear = obj1.isNull("endYear") == true ? 0 : obj1.getLong("endYear");
+		
+		int classMainOption = obj1.isNull("classMainOption") == true ? 0 : obj1.getInt("classMainOption");
+		
+		JSONArray classSubList = obj1.isNull("classSubList") == true ? null : obj1.getJSONArray("classSubList");
+		JSONArray countryList = obj1.isNull("countryList") == true ? null : obj1.getJSONArray("countryList");
+		
+		for(int i=0; i<countryList.length(); i++) {
+
+			JSONObject obj = (JSONObject) countryList.get(i);
+			
+			if (obj.getBoolean("Flag") == true) {
+
+			
+			JSONObject sn_json = new JSONObject();
+
+			sn_json.put("name", obj.getString("Name"));
+			sn_json.put("open", Long.valueOf(0));
+			sn_json.put("pi", Long.valueOf(0));
+			sn_json.put("short", Long.valueOf(0));
+			sn_json.put("dragon", Long.valueOf(0));
+			sn_json.put("policy", Long.valueOf(0));
+			sn_json.put("horse", Long.valueOf(0));
+			sn_json.put("total", Long.valueOf(0));
+			
+			sn_array.put(sn_json);
+			}
+
+			
+
+		}
+
+		
+		
+		
+		total_json.put("name", "合計");
+		total_json.put("open", Long.valueOf(0));
+		total_json.put("pi", Long.valueOf(0));
+		total_json.put("short", Long.valueOf(0));
+		total_json.put("dragon", Long.valueOf(0));
+		total_json.put("policy", Long.valueOf(0));
+		total_json.put("horse", Long.valueOf(0));
+		total_json.put("total", Long.valueOf(0));
+		
+		List<Object[]> formList = peopleMainsLiftService.getCountryDataByCondition(startYear, endYear, classSubList, countryList,classMainOption);
+		if(formList != null) {
+			for(Object[] formData : formList) {
+				
+				if(sn_array.toString().contains(formData[0].toString())) {
+					for(int i=0; i<sn_array.length(); i++) {
+						JSONObject obj = (JSONObject) sn_array.get(i);
+						if(obj.getString("name").equals(formData[0].toString())) {
+							
+							Long count = obj.getLong("total") + Long.valueOf(formData[2].toString());
+							obj.put("total", count);
+							
+							Long total = total_json.getLong("total") + Long.valueOf(formData[2].toString());
+							total_json.put("total", total);
+							
+							if("盤古開天".equals(formData[1].toString())) {
+								obj.put("open", formData[2]);
+								Long value = total_json.getLong("open") + Long.valueOf(formData[2].toString());
+								total_json.put("open", value);
+							}else if("國合PI".equals(formData[1].toString())) {
+								obj.put("pi", formData[2]);
+								Long value = total_json.getLong("pi") + Long.valueOf(formData[2].toString());
+								total_json.put("pi", value);
+							}else if("短期訪問學者".equals(formData[1].toString())) {
+								obj.put("short", formData[2]);
+								Long value = total_json.getLong("short") + Long.valueOf(formData[2].toString());
+								total_json.put("short", value);
+							}else if("龍門計畫主持人".equals(formData[1].toString())) {
+								obj.put("dragon", formData[2]);
+								Long value = total_json.getLong("dragon") + Long.valueOf(formData[2].toString());
+								total_json.put("dragon", value);
+							}else if("政策邀訪學者".equals(formData[1].toString())) {
+								obj.put("policy", formData[2]);
+								Long value = total_json.getLong("policy") + Long.valueOf(formData[2].toString());
+								total_json.put("policy", value);
+							}else if("千里馬申請人".equals(formData[1].toString())) {
+								obj.put("horse", formData[2]);
+								Long value = total_json.getLong("horse") + Long.valueOf(formData[2].toString());
+								total_json.put("horse", value);
+							}
+						}
+					}
+				}else {
+					JSONObject sn_json = new JSONObject();
+					
+					sn_json.put("name", formData[0].toString());
+					sn_json.put("open", Long.valueOf(0));
+					sn_json.put("pi", Long.valueOf(0));
+					sn_json.put("short", Long.valueOf(0));
+					sn_json.put("dragon", Long.valueOf(0));
+					sn_json.put("policy", Long.valueOf(0));
+					sn_json.put("horse", Long.valueOf(0));
+					sn_json.put("total", Long.valueOf(formData[2].toString()));
+					
+					Long total = total_json.getLong("total") + Long.valueOf(formData[2].toString());
+					total_json.put("total", total);
+					
+					if("盤古開天".equals(formData[1].toString())) {
+						sn_json.put("open", formData[2]);
+						Long count = total_json.getLong("open") + Long.valueOf(formData[2].toString());
+						total_json.put("open", count);
+					}else if("國合PI".equals(formData[1].toString())) {
+						sn_json.put("pi", formData[2]);
+						Long count = total_json.getLong("pi") + Long.valueOf(formData[2].toString());
+						total_json.put("pi", count);
+					}else if("短期訪問學者".equals(formData[1].toString())) {
+						sn_json.put("short", formData[2]);
+						Long count = total_json.getLong("short") + Long.valueOf(formData[2].toString());
+						total_json.put("short", count);
+					}else if("龍門計畫主持人".equals(formData[1].toString())) {
+						sn_json.put("dragon", formData[2]);
+						Long count = total_json.getLong("dragon") + Long.valueOf(formData[2].toString());
+						total_json.put("dragon", count);
+					}else if("政策邀訪學者".equals(formData[1].toString())) {
+						sn_json.put("policy", formData[2]);
+						Long count = total_json.getLong("policy") + Long.valueOf(formData[2].toString());
+						total_json.put("policy", count);
+					}else if("千里馬申請人".equals(formData[1].toString())) {
+						sn_json.put("horse", formData[2]);
+						Long count = total_json.getLong("horse") + Long.valueOf(formData[2].toString());
+						total_json.put("horse", count);
+					}
+				
+					sn_array.put(sn_json);
+				}
+				
+				
+				
+				
+			}
+		}
+		
+		ArrayList<String> countryData = new ArrayList<String>();
+		
+		ArrayList<Long> openData = new ArrayList<Long>();
+		ArrayList<Long> piData = new ArrayList<Long>();
+		ArrayList<Long> shortData = new ArrayList<Long>();
+		ArrayList<Long> dragonData = new ArrayList<Long>();
+		ArrayList<Long> policyData = new ArrayList<Long>();
+		ArrayList<Long> horseData = new ArrayList<Long>();
+		
+		for(int i=0; i<sn_array.length(); i++) {
+			
+			JSONObject obj = (JSONObject) sn_array.get(i);
+
+			if(!obj.getString("name").equals("合計")) {
+				countryData.add(obj.getString("name"));
+				openData.add(obj.getLong("open"));
+				piData.add(obj.getLong("pi"));
+				shortData.add(obj.getLong("short"));
+				dragonData.add(obj.getLong("dragon"));
+				policyData.add(obj.getLong("policy"));
+				horseData.add(obj.getLong("horse"));
+			}
+		}
+		
+		listjson.put("countryData", countryData);
+		listjson.put("piData", piData);
+		listjson.put("openData", openData);
+		listjson.put("shortData", shortData);
+		listjson.put("dragonData", dragonData);
+		listjson.put("policyData", policyData);
+		listjson.put("horseData", horseData);
+		
+		sn_array.put(total_json);
+		listjson.put("formData",sn_array);
+		
+		model.addAttribute("json", listjson.toString());
+		return "msg";
+		
+
+		
+	}
+
+		
+
 	
 	
 	@RequestMapping(value = "/queryClassSubData", method = RequestMethod.POST)

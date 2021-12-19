@@ -228,7 +228,7 @@
                                             </li>
                                         </ul>
                                         
-                                  <div class="col-sm-12 exportbtn"  ng-show = "isSupport1" >
+                                  <div class="col-sm-12 exportbtn"  ng-show= "isSupport1" >
                                  	補助人數(依領域)
                                  	
                                  	<table class="table table-striped">
@@ -271,56 +271,64 @@
                                        </tbody>
                                         
                                     </table>
+                                    
+                                  
                                  	
                                  </div>
-                                  <div class="col-sm-12 exportbtn" ng-show = "isSupport1">
+                                 
+                                 
+                                  <div class="col-sm-12 exportbtn"  ng-hide = !isSupport1>
                                     <div id="a1" style="height: 600px; width: 100%"></div>
                                     <!--補助資料分析 A-1補助人數(依領域) 堆積柱狀圖-->
                                 </div>
                                  
                                  
-                                 
-                                 
-                                 <div class="col-sm-12 exportbtn" ng-show = "isSupport2">
+                                 <div class="col-sm-12 exportbtn" ng-show = "isSupport2" >
                                     補助人數(依領域及國家)
                                     <table class="table table-striped">
+                                         <thead>
                                         <tr>
                                             <th>國家別</th>
-                                            <th>千里馬(人數 %i)</th>
-                                            <th>龍門(人數 %)</th>
+                                            <th>盤古開天</th>
+                                            <th>國合PI</th>
+                                            <th>龍門計畫主持人</th>
+                                            <th>千里馬申請人</th>
+                                            <th>龍門計畫主持人</th>
+                                            <th>政策邀訪學者</th>
                                             <th>合計</th>
                                         </tr>
-                                        <tr>
-                                            <td>國家A</td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
+                                          </thead>
+                                         <tbody>
+                                        
+                                        <tr ng-repeat="item in CountryData">
+                                            <td>{{item.name}}</td>
+                                            <td>{{item.open}}</td>
+                                            <td>{{item.pi}}</td>
+                                            <td>{{item.dragon}}</td>
+                                            <td>{{item.short}}</td>
+                                            <td>{{item.horse}}</td>
+                                            <td>{{item.policy}}</td>
+                                            <td>{{item.total}}</td>
                                         </tr>
-                                        <tr>
-                                            <td>國家B</td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                        </tr>
-                                        <tr>
-                                            <td>國家C</td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                        </tr>
-                                        <tr>
-                                            <td>合計</td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                        </tr>
+                                          </tbody>
+                                        
+                                        
+                                      
                                     </table>
+                                    
+                                    
                                 </div>
                                 
+                                 <div class="col-sm-12 exportbtn" >
+                                    <div id="a2" style="height: 600px; width: 100%"></div>
+                                    <!--A-2補助人數(依領域及國家)-->
+                                </div>
+                                 
                                 
+                              <!--   
                                 <div class="col-sm-12 exportbtn" ng-show = "isSupport3">
-                                    <div id="bars" style="height: 300px; width: 100%"></div>
-                                </div>
+                                    <div id="bars" style="height: 300px; width: 600px"></div>
+                                </div> -->
                                  
                                       
                                   

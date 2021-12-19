@@ -49,7 +49,14 @@ public class PeopleMainsLiftService {
 		return peopleMainsDAO.getAllCountry();
 	}
 	
-	//利用搜尋條件取得表格資料
+	//利用搜尋條件取得表格資料 (領域及國家)
+	
+		public List<Object[]> getCountryDataByCondition(Long startYear, Long endYear, JSONArray classSubList , JSONArray countryList, int classMainOption) {
+				return peopleMainsDAO.getCountryDataByCondition(startYear, endYear, classSubList, countryList, classMainOption);
+			
+		}
+	
+	//利用搜尋條件取得表格資料 (領域)
 	
 	public List<Object[]> getClassSubDataByCondition(Long startYear, Long endYear, JSONArray classSubList , JSONArray countryList, int classMainOption) {
 			return peopleMainsDAO.getClassSubDataByCondition(startYear, endYear , classSubList, countryList, classMainOption);

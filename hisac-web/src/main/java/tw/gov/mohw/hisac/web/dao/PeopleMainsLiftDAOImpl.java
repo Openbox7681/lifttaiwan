@@ -146,6 +146,79 @@ public class PeopleMainsLiftDAOImpl extends BaseSessionFactory implements People
 			return null;
 		}
 	};
+	
+	//輔助追蹤查詢領域與國家
+	public List<Object[]> getCountryDataByCondition(Long startYear , Long endYear , JSONArray classSubList , JSONArray countryList
+			,int classMainOption){
+Criteria cr = getSessionFactory().getCurrentSession().createCriteria(PeopleMainsLift.class);
+		
+		ProjectionList projectionList = Projections.projectionList();        
+		cr.add(Restrictions.ge("years", startYear));
+		
+		cr.add(Restrictions.le("years", endYear));
+		
+		
+		Disjunction disCountry  = Restrictions.disjunction();
+		for(int i=0; i<countryList.length(); i++) {
+			JSONObject obj = (JSONObject) countryList.get(i);
+			if (obj.getBoolean("Flag") == true) {
+				String class_sub = obj.getString("Name");
+				disCountry.add(Restrictions.eq("country", class_sub));
+			}	
+		}
+        cr.add(disCountry);
+		
+		
+		if(!classSubList.toString().contains("全部")) {
+			Disjunction dis = Restrictions.disjunction();
+			for(int i=0; i<classSubList.length(); i++) {
+				JSONObject obj = (JSONObject) classSubList.get(i);
+				if (obj.getBoolean("Flag") == true) {
+					String class_sub = obj.getString("Name");
+	                dis.add(Restrictions.eq("class_sub", class_sub));
+				}	
+			}
+	        cr.add(dis);
+		}
+		switch (classMainOption) {
+			case 1:
+				cr.add(Restrictions.eq("class_main", "資訊及數位相關產業"));
+				break;
+			case 2:
+				cr.add(Restrictions.eq("class_main", "臺灣精準健康戰略產業"));
+				break;
+			case 3 : 
+				cr.add(Restrictions.eq("class_main", "國防及戰略產業"));
+				break;
+			case 4 :
+				cr.add(Restrictions.eq("class_main", "民生及戰備產業"));
+				break;
+			case 5 :
+				cr.add(Restrictions.eq("class_main", "綠電及再生能源產業"));
+				break;
+			case 6:
+				cr.add(Restrictions.eq("class_main", "其他"));
+				break;
+			
+		}
+		
+		projectionList.add(Projections.groupProperty("country"))
+		.add(Projections.groupProperty("identify"))
+        .add(Projections.count("country"));
+		
+		cr.setProjection(projectionList);
+
+		
+		List<Object[]> list = cr.list();
+		if (list.size() > 0) {
+			return list;
+		} else {
+			return null;
+		}
+		
+		
+		
+	}
 
 //	
 //	輔助追蹤查詢QUERY
@@ -158,6 +231,17 @@ public class PeopleMainsLiftDAOImpl extends BaseSessionFactory implements People
 		cr.add(Restrictions.ge("years", startYear));
 		
 		cr.add(Restrictions.le("years", endYear));
+		
+		
+		Disjunction disCountry  = Restrictions.disjunction();
+		for(int i=0; i<countryList.length(); i++) {
+			JSONObject obj = (JSONObject) countryList.get(i);
+			if (obj.getBoolean("Flag") == true) {
+				String class_sub = obj.getString("Name");
+				disCountry.add(Restrictions.eq("country", class_sub));
+			}	
+		}
+        cr.add(disCountry);
 		
 		
 		if(!classSubList.toString().contains("全部")) {
