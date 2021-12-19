@@ -44,6 +44,10 @@ public class PeopleMainsLiftService {
 			return null;
 		}
 	}
+	//取得全部國家
+	public List<Object[]>  getAllCountry(){
+		return peopleMainsDAO.getAllCountry();
+	}
 	
 	//利用搜尋條件取得表格資料
 	

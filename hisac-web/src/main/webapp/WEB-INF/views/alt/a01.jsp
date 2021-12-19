@@ -93,6 +93,84 @@
                                             
                                     </div>
                                     
+                                      <h6>按國家查詢</h6>
+                                      
+                            <div id="countysearch">
+                            
+                            	 <div class="accordion accordion-flush" id="accordionFlushExample">
+                            	
+                                         <div class="accordion-item">
+                                                <h2 class="accordion-header" id="flush-headingOne">
+                                                    <button class="accordion-button collapsed" type="button"
+                                                        data-bs-toggle="collapse" data-bs-target="#flush-collapseOne"
+                                                        aria-expanded="false"
+                                                        aria-controls="flush-collapseOne">全世界</button>
+                                                </h2>
+                                                <div class="accordion-collapse collapse" id="flush-collapseOne"
+                                                    aria-labelledby="flush-headingOne"
+                                                    data-bs-parent="#accordionFlushExample">
+                                                    <div class="accordion-body">
+                                                        <div class="form-check"  ng-repeat = "item in CountryList">
+                                                            <input class="form-check-input" id="country" type="checkbox"
+                                                            ng-model = "item.Flag"
+                                                                value="">
+                                                            <label class="form-check-label" for="country">
+                                                            
+                                                            {{item.Name}}
+                                                            
+                                                            </label>
+                                                        </div>
+                                                        
+                                                    </div>
+                                                </div>
+                                            </div>                     
+                                                              
+                                      </div>
+                            
+                                   </div>
+                                    
+                                    
+                                  
+                                    
+                                  <div class="subsidy check_outer">
+                                        <p>統計表名稱</p>
+                                        <div class="form-check form-check-inline" id="calldata1" data-index="0">
+                                            <input class="form-check-input" id="inlineRadio1" type="radio"
+                                                name="inlineRadioOptions" 
+                                                ng-value = 1
+                                                ng-model = "inlineRadioOptions"
+                                                >
+                                            <label class="form-check-label" for="inlineRadio1">補助資料分析</label>
+                                        </div>
+                                        <div class="form-check form-check-inline" id="calldata2" data-index="1">
+                                            <input class="form-check-input" id="inlineRadio2" type="radio"
+                                                name="inlineRadioOptions" 
+                                                ng-value = 2
+                                                ng-model = "inlineRadioOptions"
+                                                
+                                                >
+                                            <label class="form-check-label" for="inlineRadio2">成果分析(論文/GRB等)</label>
+                                        </div>
+                                        <div class="form-check form-check-inline" id="calldata3" data-index="2">
+                                            <input class="form-check-input" id="inlineRadio3" type="radio"
+                                                name="inlineRadioOptions" 
+                                                ng-value = 3
+                                                ng-model = "inlineRadioOptions"
+                                                
+                                                >
+                                            <label class="form-check-label" for="inlineRadio3">國際網絡表現</label>
+                                        </div>
+                                        <div class="form-check form-check-inline" id="calldata4" data-index="3">
+                                            <input class="form-check-input" id="inlineRadio4" type="radio"
+                                                name="inlineRadioOptions" 
+                                                ng-value = 4
+                                                 ng-model = "inlineRadioOptions"
+                                                
+                                                >
+                                            <label class="form-check-label" for="inlineRadio4">現職分析</label>
+                                        </div>
+                                    </div>
+                                    
                              <div class="search_btn hright">
                                         <div class="button_fill_orange btn_m">
                                             <p ng-click = 'query()' ng-disabled = "value.length ==0"
@@ -107,6 +185,160 @@
 				      	</div>
 				      	 </div>
 				
+				        <div class="col-lg-12 adjust_pos">
+				              <div class="row">
+				                 <div class="col-sm-12">
+                                    <div class="index_title title_style">
+                                        <h5>查詢結果</h5>
+                                    </div>
+                                </div>
+                                
+                                 <div class="col-sm-12 exportbtn" id="adjust_subsidybtn" ng-show = "isSupport" 
+                                 >
+                                 	<ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                                            <li class="nav-item" role="presentation">
+                                                <button class="nav-link active" id="pills-home-tab"
+                                                    data-bs-toggle="pill" data-bs-target="#pills-home" type="button"
+                                                    role="tab" aria-controls="pills-home"
+                                                    aria-selected="true"
+                                                    ng-click = "supportSwitch(1)"
+                                                    >
+                                                    補助人數(依領域)
+                                                    
+                                                    </button>
+                                            </li>
+                                            <li class="nav-item" role="presentation">
+                                                <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill"
+                                                    data-bs-target="#pills-profile" type="button" role="tab"
+                                                    aria-controls="pills-profile"
+                                                    aria-selected="false"
+                                                ng-click = "supportSwitch(2)"
+                                                    
+                                                    >補助人數(依領域及國家)</button>
+                                            </li>
+                                            <li class="nav-item" role="presentation">
+                                                <button class="nav-link" id="pills-top-tab" data-bs-toggle="pill"
+                                                    data-bs-target="#pills-top" type="button" role="tab"
+                                                    aria-controls="pills-top"
+                                                    aria-selected="false"
+                                                  ng-click = "supportSwitch(3)"
+                                                    
+                                                    
+                                                    >國內機構分析(依in+out分開呈現)Top10</button>
+                                            </li>
+                                        </ul>
+                                        
+                                  <div class="col-sm-12 exportbtn"  ng-show = "isSupport1" >
+                                 	補助人數(依領域)
+                                 	
+                                 	<table class="table table-striped">
+                                 		<thead>
+                            
+                                        <tr>
+                                            <th>主領域</th>
+                                            <th>次領域</th>
+                                            
+                                            <th>盤古開天</th>
+                                            <th>國合PI</th>
+                                            <th>龍門計畫主持人</th>
+                                            <th>千里馬申請人</th>
+                                            <th>龍門計畫主持人</th>
+                                            <th>政策邀訪學者</th>
+                                            <th>合計</th>
+                                        </tr>
+                                        
+                                        </thead>
+                                        
+                                       <tbody>
+                                        
+                                        
+                                        <tr ng-repeat="item in formData">
+                                            <td>{{item.classMain}}</td>
+                                            <td>{{item.classSub}}</td>
+                                            <td>{{item.open}}</td>
+                                            <td>{{item.pi}}</td>
+                                            <td>{{item.dragon}}</td>
+                                            <td>{{item.short}}</td>
+                                            <td>{{item.horse}}</td>
+                                            <td>{{item.policy}}</td>
+                                            <td>{{item.total}}</td>
+
+                                        </tr>
+                                        
+                                       
+                                        
+                                       
+                                       </tbody>
+                                        
+                                    </table>
+                                 	
+                                 </div>
+                                  <div class="col-sm-12 exportbtn" ng-show = "isSupport1">
+                                    <div id="a1" style="height: 600px; width: 100%"></div>
+                                    <!--補助資料分析 A-1補助人數(依領域) 堆積柱狀圖-->
+                                </div>
+                                 
+                                 
+                                 
+                                 
+                                 <div class="col-sm-12 exportbtn" ng-show = "isSupport2">
+                                    補助人數(依領域及國家)
+                                    <table class="table table-striped">
+                                        <tr>
+                                            <th>國家別</th>
+                                            <th>千里馬(人數 %i)</th>
+                                            <th>龍門(人數 %)</th>
+                                            <th>合計</th>
+                                        </tr>
+                                        <tr>
+                                            <td>國家A</td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>國家B</td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>國家C</td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>合計</td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                
+                                
+                                <div class="col-sm-12 exportbtn" ng-show = "isSupport3">
+                                    <div id="bars" style="height: 300px; width: 100%"></div>
+                                </div>
+                                 
+                                      
+                                  
+                                
+                                 </div>
+                                
+                                
+                                
+                                 
+                                
+                                
+                                
+				                  
+				                  </div>
+				        
+				        	
+				        
+				        </div>
 				
 				
 				</div>

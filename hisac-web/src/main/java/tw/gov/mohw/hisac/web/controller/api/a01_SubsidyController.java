@@ -1,5 +1,6 @@
 package tw.gov.mohw.hisac.web.controller.api;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
@@ -47,6 +48,35 @@ public class a01_SubsidyController extends BaseController {
 		return "msg";
 	}
 	
+	@RequestMapping(value = "/getAllCountry", method = RequestMethod.POST)
+	public String getAllCountry(Locale locale, HttpServletRequest request, Model model, @RequestBody String json) {
+		JSONObject responsejson = new JSONObject();
+
+		JSONArray sn_array = new JSONArray();
+
+		List<Object[]> formList = peopleMainsLiftService.getAllCountry();
+		if(formList != null) {
+			for(Object[] formData : formList) {
+				JSONObject listjson = new JSONObject();
+
+				String countryName = formData[0].toString();
+				
+				listjson.put("Name", countryName);
+				
+				listjson.put("Flag", false);
+				sn_array.put(listjson);
+			}
+		}
+
+		
+		responsejson.put("Data",sn_array);
+
+		
+		model.addAttribute("json", responsejson.toString());
+		return "msg";
+	}
+	
+	
 	
 	@RequestMapping(value = "/queryClassSubData", method = RequestMethod.POST)
 	public String queryClassSubData(Locale locale, HttpServletRequest request, Model model, @RequestBody String json) {
@@ -74,11 +104,14 @@ public class a01_SubsidyController extends BaseController {
 		total_json.put("horse", Long.valueOf(0));
 		total_json.put("total", Long.valueOf(0));
 		total_json.put("IsAll", false);
+		
+		
 
 		
 		List<Object[]> formList = peopleMainsLiftService.getClassSubDataByCondition(startYear, endYear, classSubList, countryList,classMainOption);
 		if(formList != null) {
 			for(Object[] formData : formList) {
+				
 				//先判對副領域是否存在
 				if(sn_array.toString().contains(formData[0].toString())) {
 					for(int i=0; i<sn_array.length(); i++) {
@@ -256,8 +289,38 @@ public class a01_SubsidyController extends BaseController {
 		other_json.put("total", Long.valueOf(0));
 		other_json.put("IsAll", true);
 		
+		
+		
+		ArrayList<String> classData = new ArrayList<String>();
+		
+		ArrayList<Long> openData = new ArrayList<Long>();
+		ArrayList<Long> piData = new ArrayList<Long>();
+		ArrayList<Long> shortData = new ArrayList<Long>();
+		ArrayList<Long> dragonData = new ArrayList<Long>();
+		ArrayList<Long> policyData = new ArrayList<Long>();
+		ArrayList<Long> horseData = new ArrayList<Long>();
+
+		
+		
 		for(int i=0; i<sn_array.length(); i++) {
+			
 			JSONObject obj = (JSONObject) sn_array.get(i);
+
+			if(!obj.getString("classMain").equals("全部")) {
+				classData.add(obj.getString("classSub"));
+				openData.add(obj.getLong("open"));
+				piData.add(obj.getLong("pi"));
+				shortData.add(obj.getLong("short"));
+				dragonData.add(obj.getLong("dragon"));
+				policyData.add(obj.getLong("policy"));
+				horseData.add(obj.getLong("horse"));
+			}
+			
+			
+			
+			
+			
+			
 			if(obj.getString("classMain").equals("資訊及數位相關產業")) {
 				
 				Long openCount = info_json.getLong("open") + obj.getLong("open");
@@ -364,39 +427,46 @@ public class a01_SubsidyController extends BaseController {
 			}
 		}
 		
-		
-		switch (classMainOption) {
-			case 0 :
-				sn_array.put(info_json);
-				sn_array.put(healthy_json);
-				sn_array.put(safe_json);
-				sn_array.put(livelihood_json);
-				sn_array.put(power_json);
-				sn_array.put(other_json);
-				break;
-			case 1 :
-				sn_array.put(info_json);
-				break;
-			case 2 :
-				sn_array.put(healthy_json);
-				break;
-			case 3 :
-				sn_array.put(safe_json);
-				break;
-			case 4 :
-				sn_array.put(livelihood_json);
-				break;
-			case 5 :
-				sn_array.put(power_json);
-				break;
-			case 6 :
-				sn_array.put(other_json);
-				break;
-		}
-		
+//		switch (classMainOption) {
+//			case 0 :
+//				sn_array.put(info_json);
+//				sn_array.put(healthy_json);
+//				sn_array.put(safe_json);
+//				sn_array.put(livelihood_json);
+//				sn_array.put(power_json);
+//				sn_array.put(other_json);
+//				break;
+//			case 1 :
+//				sn_array.put(info_json);
+//				break;
+//			case 2 :
+//				sn_array.put(healthy_json);
+//				break;
+//			case 3 :
+//				sn_array.put(safe_json);
+//				break;
+//			case 4 :
+//				sn_array.put(livelihood_json);
+//				break;
+//			case 5 :
+//				sn_array.put(power_json);
+//				break;
+//			case 6 :
+//				sn_array.put(other_json);
+//				break;
+//		}
+//		
 		
 		
 		listjson.put("formData",sn_array);
+		listjson.put("classData", classData);
+		listjson.put("piData", piData);
+		listjson.put("openData", openData);
+		listjson.put("shortData", shortData);
+		listjson.put("dragonData", dragonData);
+		listjson.put("policyData", policyData);
+		listjson.put("horseData", horseData);
+
 		
 		model.addAttribute("json", listjson.toString());
 		return "msg";

@@ -127,6 +127,26 @@ public class PeopleMainsLiftDAOImpl extends BaseSessionFactory implements People
 			return null;
 		}
 	}
+	
+	public List<Object[]> getAllCountry(){
+		
+		Criteria cr = getSessionFactory().getCurrentSession().createCriteria(PeopleMainsLift.class);
+		
+		ProjectionList projectionList = Projections.projectionList();        
+		projectionList.add(Projections.groupProperty("country"))
+		.add(Projections.countDistinct("p_id"));
+		
+		
+		cr.setProjection(projectionList);
+		
+		List<Object[]> list = cr.list();
+		if (list.size() > 0) {
+			return list;
+		} else {
+			return null;
+		}
+	};
+
 //	
 //	輔助追蹤查詢QUERY
 //	
@@ -170,8 +190,7 @@ public class PeopleMainsLiftDAOImpl extends BaseSessionFactory implements People
 			case 6:
 				cr.add(Restrictions.eq("class_main", "其他"));
 				break;
-			default:
-				break;
+			
 		}
 		
 

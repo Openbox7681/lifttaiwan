@@ -11,6 +11,15 @@ myApp.filter('trustHtml',function($sce){
 
 function getAppController($scope, $http, $cookieStore, $cookies, $anchorScroll, $location) {
 	
+	//輔助資料分析 成果分析 國際網格表現 現職分析
+	//選項按鈕
+	$scope.isSupport = false;
+	$scope.isResult = false;
+	$scope.isInter = false;
+	$scope.isAnalysis = false
+	
+	$scope.inlineRadioOptions =1;
+	
 	$scope.queryNumber = function() {
         $("#loadingActivity").fadeIn("slow");
         	
@@ -25,9 +34,7 @@ function getAppController($scope, $http, $cookieStore, $cookies, $anchorScroll, 
 			paper_corId : "1"
 		};
 		$http.post('./common/queryNumber', request, csrf_config).then(function(response) {
-			
-			console.log("testfff");
-			
+						
 			$("#peopleNum").text(response.data.peopleNum);
 			$("#paperNum").text(response.data.paperNum);
 			$("#paperCorNum").text(response.data.paperCorNum);
@@ -49,6 +56,35 @@ function getAppController($scope, $http, $cookieStore, $cookies, $anchorScroll, 
 
 		});
 	};
+	
+	
+	$scope.getCountry = function(){
+		var request = {
+				
+		};
+		$http.post('./common/getAllCountry', request, csrf_config).then(function(response) {
+			$scope.CountryList =response.data.Data
+			
+			
+		}).catch(function() {
+			bootbox.alert({
+				message : globalReadDataFail,
+				buttons : {
+					ok : {
+						label : '<i class="fas fa-fw fa-times"></i>' + btnClose,
+						className : 'btn-danger',
+					}
+				},
+				callback: function() { }
+			});
+		}).finally(function() {
+			$("#imgLoading").hide();
+            $("#loadingActivity").fadeOut("slow");
+
+		});
+	}
+	
+	$scope.getCountry();
 	
 	
 	
@@ -290,6 +326,7 @@ function getAppController($scope, $http, $cookieStore, $cookies, $anchorScroll, 
 	    			"Name" : "全部",
 	    			"Flag" : $scope.infoSelectAll
 	    		}] ;
+			$scope.option =0;
 	    	$(".su_healthy").removeClass("it_color");
 		    $(".su_safe").removeClass("it_color");
 		    $(".su_power").removeClass("it_color");
@@ -366,11 +403,55 @@ function getAppController($scope, $http, $cookieStore, $cookies, $anchorScroll, 
 		}
 	}
 	
-	
-	
+	//輔助資料呈現畫面切換
+	$scope.supportSwitch = function(index){
+		if(index ==1){
+			$scope.isSupport1 = true;
+			$scope.isSupport2 = false;
+			$scope.isSupport3 = false;
+		}else if (index == 2) {
+			$scope.isSupport1 = false;
+			$scope.isSupport2 = true;
+			$scope.isSupport3 = false;
+		}else if(index == 3){
+			$scope.isSupport1 = false;
+			$scope.isSupport2 = false;
+			$scope.isSupport3 = true;
+		}
+	}
 	
 	$scope.query =function(){
-		$scope.queryForm();
+		console.log($scope.inlineRadioOptions)
+		if ($scope.inlineRadioOptions == 1 ){
+			$scope.isSupport = true;
+			$scope.isResult = false;
+			$scope.isInter = false;
+			$scope.isAnalysis = false;
+			
+			$scope.isSupport1 = true;
+			$scope.isSupport2 = false;
+			$scope.isSupport3 = false;
+
+			
+			$scope.queryForm();
+		}else if ($scope.inlineRadioOptions == 2){
+			$scope.isSupport = false;
+			$scope.isResult = true;
+			$scope.isInter = false;
+			$scope.isAnalysis = false;
+		}else if ($scope.inlineRadioOptions == 3){
+			$scope.isSupport = false;
+			$scope.isResult = false;
+			$scope.isInter = true;
+			$scope.isAnalysis = false;
+		}else if ($scope.inlineRadioOptions == 4){
+			$scope.isSupport = false;
+			$scope.isResult = false;
+			$scope.isInter = false;
+			$scope.isAnalysis = true;
+		}
+		
+		
 	}
 	
 	
@@ -391,7 +472,119 @@ function getAppController($scope, $http, $cookieStore, $cookies, $anchorScroll, 
 			
 			$scope.formData = response.data.formData;
 			
-			console.log($scope.formData);
+			
+			var dom = document.getElementById("a1");
+            var myChart = echarts.init(dom);
+            var app = {};
+
+            var option;
+
+            option = {
+                tooltip: {
+                    trigger: 'axis',
+                    axisPointer: {
+                        type: 'shadow'
+                    }
+                },
+                legend: {},
+                grid: {
+                    left: '3%',
+                    right: '4%',
+                    bottom: '3%'
+                },
+                xAxis: [
+                    {
+                        type: 'category',
+                        data:  response.data.classData 
+                        ,
+                        show :false
+
+                    }
+                ],
+                yAxis: [
+                    {
+                        type: 'value'
+                    }
+                ],
+                series: [
+                    
+                    {
+                        name: '盤古開天',
+                        type: 'bar',
+                        stack: 'Ad',
+                        emphasis: {
+                            focus: 'series'
+                        },
+                        data: response.data.openData 
+                    },
+                    {
+                        name: '國合PI',
+                        type: 'bar',
+                        stack: 'Ad',
+                        emphasis: {
+                            focus: 'series'
+                        },
+                        data: response.data.piData 
+                    
+                    },
+                    {
+                        name: '短期訪問學者',
+                        type: 'bar',
+                        stack: 'Ad',
+                        emphasis: {
+                            focus: 'series'
+                        },
+                        data: response.data.shortData 
+                    },
+                    {
+                        name: '龍門計畫主持人',
+                        type: 'bar',
+                        stack: 'Ad',
+                        emphasis: {
+                            focus: 'series'
+                        },
+                        data: response.data.dragonData 
+                    },
+                    {
+                        name: '政策邀訪學者',
+                        type: 'bar',
+                        stack: 'Ad',
+                        emphasis: {
+                            focus: 'series'
+                        },
+                        data: response.data.policyData 
+                    },
+                    {
+                        name: '千里馬申請人',
+                        type: 'bar',
+                        stack: 'Ad',
+                        emphasis: {
+                            focus: 'series'
+                        },
+                        data: response.data.horseData 
+                    }
+                   
+                ]
+            };
+
+            if (option && typeof option === 'object') {
+                myChart.setOption(option);
+            }
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
 			
 		}).catch(function() {
 			bootbox.alert({
