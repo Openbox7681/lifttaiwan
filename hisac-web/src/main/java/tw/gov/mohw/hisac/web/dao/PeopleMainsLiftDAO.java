@@ -2,6 +2,7 @@ package tw.gov.mohw.hisac.web.dao;
 
 import java.util.List;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import tw.gov.mohw.hisac.web.domain.PeopleMainsLift;
@@ -18,4 +19,9 @@ public interface PeopleMainsLiftDAO {
 	public long getListSize(JSONObject obj);
 	public List<Object[]> getMapData();
 	public List<Object[]> getFormData();
+	
+	public List<Object[]> getClassSubDataByCondition(Long startYear , Long endYear , JSONArray classSubList , JSONArray countryList, int classMainOption);
+	
+	public List<Object[]> getAllCountry();
+
 }

@@ -53,10 +53,10 @@ public class PeopleMainsLift {
 	public void setInout_class(String inout_class) {
 		this.inout_class = inout_class;
 	}
-	public Long getYear() {
+	public Long getYears() {
 		return year;
 	}
-	public void setYear(Long year) {
+	public void setYears(Long year) {
 		this.year = year;
 	}
 	public String getCountry() {

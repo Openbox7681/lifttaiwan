@@ -297,9 +297,9 @@ function getAppController($scope, $http, $window) {
             },
             series: [
                 {
-                    name: 'Access From',
+                    name: '研習機構',
                     type: 'pie',
-                    radius: ['40%', '70%'],
+                    radius: ['20%', '50%'],
                     avoidLabelOverlap: false,
                     label: {
                         show: false,
@@ -308,7 +308,7 @@ function getAppController($scope, $http, $window) {
                     emphasis: {
                         label: {
                             show: true,
-                            fontSize: '40',
+                            fontSize: '30',
                             fontWeight: 'bold'
                         }
                     },
@@ -316,11 +316,21 @@ function getAppController($scope, $http, $window) {
                         show: false
                     },
                     data: [
-                        { value: 1048, name: 'Search Engine' },
-                        { value: 735, name: 'Direct' },
-                        { value: 580, name: 'Email' },
-                        { value: 484, name: 'Union Ads' },
-                        { value: 300, name: 'Video Ads' }
+                        { value: 119, name: 'University of California' },
+                        { value: 52, name: 'Harvard University' },
+                        { value: 49, name: 'University of Harvard' },
+                        { value: 49, name: 'University of Texas' },
+                        { value: 45, name: 'University of Washington' },
+                        { value: 39, name: 'Stanford University' },
+                        { value: 36, name: 'Georgia Institute of Technology' },
+                        { value: 30, name: 'California Institute of Technology' },
+                        { value: 29, name: 'University of Illinois' },
+                        { value : 21, name : "University of Michigan"}
+                        
+
+                        
+                        
+                        
                     ]
                 }
             ]

@@ -2,6 +2,8 @@ package tw.gov.mohw.hisac.web.service;
 
 import java.util.Date;
 import java.util.List;
+
+import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -42,6 +44,19 @@ public class PeopleMainsLiftService {
 			return null;
 		}
 	}
+	//取得全部國家
+	public List<Object[]>  getAllCountry(){
+		return peopleMainsDAO.getAllCountry();
+	}
+	
+	//利用搜尋條件取得表格資料
+	
+	public List<Object[]> getClassSubDataByCondition(Long startYear, Long endYear, JSONArray classSubList , JSONArray countryList, int classMainOption) {
+			return peopleMainsDAO.getClassSubDataByCondition(startYear, endYear , classSubList, countryList, classMainOption);
+		
+	}
+	
+	
 
 	public long getListSize(String json) {
 		try {
