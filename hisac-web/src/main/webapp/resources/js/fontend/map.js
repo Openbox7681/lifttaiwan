@@ -7,52 +7,109 @@ $(document).scroll(function() {
     }
   });
 
+$(document).ready(function() {
+	
+  $("#inbound").text("31710");
+  $("#outbound").text("402");
+  $("#mechanism").text("31629");
+  $("#result").text("5000");
 
-$(function() {                       
-  $(".d").click(function() { 
-    $(".change_text").text("國家名");
+  $(".d1").click(function() {
+	  $(".change_text").text("巴拿馬");
+	  $("#inbound").text("0");
+	  $("#outbound").text("0");
+	  $("#mechanism").text("0");
+	  $("#result").text("0");
   });
-});
 
-$(function() {                       
-  $(".s").click(function() { 
-    $(".change_text").text("國家名");
+  $(".s1").click(function() { 
+	  $(".change_text").text("台灣");
+	  $("#inbound").text("24456");
+	  $("#outbound").text("0");
+	  $("#mechanism").text("24183");
+	  $("#result").text("5000");
   });
-});
-$(function() {                       
-  $(".t").click(function() { 
-    $(".change_text").text("國家名");
+  
+  $(".s2").click(function() { 
+    $(".change_text").text("德國");
+    $("#inbound").text("110");
+	  $("#outbound").text("23");
+	  $("#mechanism").text("132");
+	  $("#result").text("29");
   });
-});
-$(function() {                       
-  $(".u").click(function() { 
-    $(".change_text").text("國家名");
+  
+  $(".t1").click(function() { 
+    $(".change_text").text("馬來西亞");
+    $("#inbound").text("202");
+	  $("#outbound").text("0");
+	  $("#mechanism").text("202");
+	  $("#result").text("11");
   });
-});
-$(function() {                       
-  $(".g").click(function() { 
-    $(".change_text").text("國家名");
+  
+  $(".t4").click(function() { 
+    $(".change_text").text("中國");
+    $("#inbound").text("0");
+	  $("#outbound").text("0");
+	  $("#mechanism").text("0");
+	  $("#result").text("232");
   });
-});
-$(function() {                       
-  $(".v").click(function() { 
-    $(".change_text").text("國家名");
+  
+  $(".t3").click(function() { 
+    $(".change_text").text("法國");
+    $("#inbound").text("153");
+	  $("#outbound").text("6");
+	  $("#mechanism").text("151");
+	  $("#result").text("18");
   });
-});
+                     
+  $(".u1").click(function() { 
+    $(".change_text").text("印度");
+    $("#inbound").text("3016");
+	  $("#outbound").text("0");
+	  $("#mechanism").text("2913");
+	  $("#result").text("15");
+  });
+                     
+  $(".u3").click(function() { 
+    $(".change_text").text("俄羅斯");
+    $("#inbound").text("321");
+	  $("#outbound").text("0");
+	  $("#mechanism").text("317");
+	  $("#result").text("10");
+  });
+  
+  $(".v1").click(function() { 
+    $(".change_text").text("越南");
+    $("#inbound").text("235");
+	  $("#outbound").text("0");
+	  $("#mechanism").text("233");
+	  $("#result").text("0");
+  });
 
-$(function() {                       
-  $(".o").click(function() { 
-    $(".change_text").text("國家名");
+  $(".o1").click(function() { 
+    $(".change_text").text("美國");
+    $("#inbound").text("618");
+	  $("#outbound").text("286");
+	  $("#mechanism").text("877");
+	  $("#result").text("383");
   });
-});
-
-
-$(function() {                       
+                    
+  $(".o4").click(function() { 
+    $(".change_text").text("日本");
+    $("#inbound").text("373");
+	  $("#outbound").text("23");
+	  $("#mechanism").text("388");
+	  $("#result").text("81");
+  });
+  
   $(".worldicon").click(function() { 
     $(".change_text").text("過去10年中的國際優秀人才和研究成果");
+    $("#inbound").text("31710");
+    $("#outbound").text("402");
+    $("#mechanism").text("31629");
+    $("#result").text("5000");
   });
 });
-
 
 
 
@@ -225,6 +282,7 @@ $(function() {
 
 
 
+$(document).ready(function () {
 
 $(".d1").mouseenter(
   function(){
@@ -235,29 +293,6 @@ $(".d1").mouseenter(
 $(".d1").mouseleave(
   function(){
   	$(".country1").fadeOut(1000);
-  }
-);
-
-$(".d2").mouseenter(
-  function(){
-    $(".country2").fadeIn();
-  }
-
-);
-$(".d2").mouseleave(
-  function(){
-  	$(".country2").fadeOut(1000);
-  }
-);
-$(".d3").mouseenter(
-  function(){
-    $(".country3").fadeIn();
-  }
-
-);
-$(".d3").mouseleave(
-  function(){
-  	$(".country3").fadeOut(1000);
   }
 );
 $(".s1").mouseenter(
@@ -297,13 +332,13 @@ $(".t1").mouseleave(
   }
 );
 
-$(".t2").mouseenter(
+$(".t4").mouseenter(
   function(){
     $(".country7").fadeIn();
   }
 
 );
-$(".t2").mouseleave(
+$(".t4").mouseleave(
   function(){
   	$(".country7").fadeOut(1000);
   }
@@ -332,17 +367,7 @@ $(".u1").mouseleave(
   	$(".country9").fadeOut(1000);
   }
 );
-$(".u2").mouseenter(
-  function(){
-    $(".country10").fadeIn();
-  }
 
-);
-$(".u2").mouseleave(
-  function(){
-  	$(".country10").fadeOut(1000);
-  }
-);
 $(".u3").mouseenter(
   function(){
     $(".country11").fadeIn();
@@ -352,18 +377,6 @@ $(".u3").mouseenter(
 $(".u3").mouseleave(
   function(){
   	$(".country11").fadeOut(1000);
-  }
-);
-
-$(".g1").mouseenter(
-  function(){
-    $(".country12").fadeIn();
-  }
-
-);
-$(".g1").mouseleave(
-  function(){
-  	$(".country12").fadeOut(1000);
   }
 );
 
@@ -391,28 +404,19 @@ $(".o1").mouseleave(
   	$(".country14").fadeOut(1000);
   }
 );
-$(".o2").mouseenter(
+$(".o4").mouseenter(
   function(){
     $(".country15").fadeIn();
   }
 
 );
-$(".o2").mouseleave(
+$(".o4").mouseleave(
   function(){
   	$(".country15").fadeOut(1000);
   }
 );
-$(".o3").mouseenter(
-  function(){
-    $(".country16").fadeIn();
-  }
+});
 
-);
-$(".o3").mouseleave(
-  function(){
-  	$(".country16").fadeOut(1000);
-  }
-);
 
 
 $(document).ready(function() {

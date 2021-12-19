@@ -24,48 +24,27 @@
             	<div class="map_bg">
 					<img src="<c:out value="${pageContext.request.contextPath}" />/resources/img/index_map.svg">                    
 					<div class="d1 d"></div>
-                    <div class="box box country1"><span>巴拿馬</span></div>
-                    <div class="d2 d"></div>
-
-                    <!--
-                    <div class="box country2"><span>國家名 </span></div>
-                    <div class="d3 d"></div>
-                    <div class="box country3"><span>國家名 </span></div>-->
-
+                    <div class="box country1"><span>巴拿馬</span></div>
                     <div class="s1 s"></div>
                     <div class="box country4"> <span>台灣 </span></div>
                     <div class="s2 s"></div>
-                    <div class="box country5"><span>德國 </span></div>
+                    <div class="box country5"><span>德國</span></div>
                     <div class="t1 t"></div>
-                    <div class="box country6"> <span>馬來西亞 </span></div>
-                    <div class="t2 t"></div>
-                    <div class="box country7"> <span>中國 </span></div>
+                    <div class="box country6"><span>馬來西亞</span></div>
+                    <div class="t4 t"></div>
+                    <div class="box country7"><span>中國</span></div>
                     <div class="t3 t"></div>
-                    <div class="box country8"> <span>法國 </span></div>
+                    <div class="box country8"><span>法國</span></div>
                     <div class="u1 u"></div>
-                    <div class="box country9"> <span>印度 </span></div>
-
-                    <!--
-                    <div class="u2 u"></div>
-                    <div class="box country10"><span>國家名 </span></div>-->
-
+                    <div class="box country9"><span>印度</span></div>
                     <div class="u3 u"></div>
-                    <div class="box country11"><span>俄羅斯 </span></div>
-
-                    <!--
-                    <div class="g1 g"></div>
-                    <div class="box country12"><span>國家名 </span></div>-->
-
+                    <div class="box country11"><span>俄羅斯</span></div>
                     <div class="v1 v"></div>
-                    <div class="box country13"><span>越南 </span></div>
+                    <div class="box country13"><span>越南</span></div>
                     <div class="o1 o"></div>
-                    <div class="box country14"><span>美國 </span></div>
-                    <div class="o2 o"></div>
-                    <div class="box country15"><span>日本 </span></div>
-
-                    <!--
-                    <div class="o3 o"></div>
-                    <div class="box country16"><span>國家名 </span></div>-->
+                    <div class="box country14"><span>美國</span></div>
+                    <div class="o4 o"></div>
+                    <div class="box country15"><span>日本</span></div>
                 </div>
             </section>
             <section id="info_cube">
@@ -81,26 +60,26 @@
                             <div class="cube_outer">
                                 <div class="inbound"></div>
                                 <p>In-bound人數</p>
-                                <h2>936+</h2>
+                                <h2 id="inbound"></h2>
                             </div>
                         </div>
                         <div class="col-md-2 col-xs-6">
                             <div class="cube_outer">
                                 <div class="outbound"></div>
                                 <p>Out-bound人數</p>
-                                <h2>732+ </h2>
+                                <h2 id="outbound"></h2>
                             </div>
                         </div><a class="col-md-2 col-xs-6" href="#">
                             <div class="cube_outer">
                                 <div class="mechanism"></div>
                                 <p>國際機構數</p>
-                                <h2>1298+ </h2>
+                                <h2 id="mechanism"></h2>
                             </div>
                         </a><a class="col-md-2 col-xs-6" href="#">
                             <div class="cube_outer">
                                 <div class="result"></div>
                                 <p>研究成果</p>
-                                <h2>2301+ </h2>
+                                <h2 id="result"></h2>
                             </div>
                         </a>
                     </div>

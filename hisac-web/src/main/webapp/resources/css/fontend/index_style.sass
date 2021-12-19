@@ -26,6 +26,8 @@ $fontcolor_g1: #bcbcbc
 $fontcolor_g2: #a3a3a3
 $fontcolor_g3: #666
 
+body
+  overflow-x: hidden
 h1,h2,h3,h4,h5,h6
   color: $fontcolor_g3
 a
@@ -36,8 +38,14 @@ a
     color: $maincolor
     transition: 0.5s
 
-.container
-  max-width: 1500px
+#mapadjust
+  width: 100%
+  max-width: 1600px
+
+#bgblock
+  box-shadow:  2px 2px 14px -1px rgba(0, 0, 0, 0.2)
+  margin: 0rem 0rem 2rem 0rem 
+  border-radius: 10px
 
 #top_button
   display: none
@@ -242,8 +250,12 @@ li.fancyTab
   width: 100%
   height: auto
   position: relative
+  text-align: center
   .map_bg
     position: relative
+    margin-top: 2rem
+    width: 65%
+    display: inline-block
 
 
 .box
@@ -426,6 +438,7 @@ li.fancyTab
     height: 30px
     margin-right: 1%
     background-image: url('../../img/icon/icon_cube2.svg')
+
 .line2
   margin: 1rem 0
 .inbound,.outbound,.mechanism,.result
@@ -519,6 +532,7 @@ li.fancyTab
   background-image: url('../../img/icon/icon_livelihood.svg')
 
 #info_cube
+  padding-bottom: 0
   .cube_outer
     width: 100%
     border-radius: 10px
