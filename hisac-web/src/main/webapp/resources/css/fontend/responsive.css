@@ -64,12 +64,6 @@
   h4{
     font-size: 1.3rem
   }
-/*  h5{
-    font-size: 1.2rem
-  }
-  h6{
-    font-size: 1.2rem*/
- /* }*/
   p{
     font-size: 1rem
   }
@@ -142,10 +136,14 @@
     padding-bottom: 0;
   }
   .cube_outer p{
-    font-size: 1.6rem;
+    font-size: 1.3rem;
   }
   .cube_outer h2{
     font-size: 2rem;
+  }
+  #map .map_bg{
+
+    width: 110%;
   }
 
 
@@ -189,6 +187,7 @@
     width: 80%;
   }
 
+
 }
 /* ---- End of max-width 480px CSS ---- */
 
@@ -205,13 +204,13 @@
 /* ---- Start of max-width 380px CSS ---- */
 @media all and (max-width: 380px) {
 
+
 }
 /* ---- End of max-width 380px CSS ---- */
 
 
 /* ---- Start of max-width 320px CSS ---- */
 @media all and (max-width: 320px) {
-
 
 
 }

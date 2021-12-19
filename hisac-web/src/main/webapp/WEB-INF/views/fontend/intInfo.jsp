@@ -2,20 +2,29 @@
 <!DOCTYPE html>
 <html ng-app="myApp">
 <%@ include file="../include/head_index.jsp"%>
-<script
-	src="<c:out value="${pageContext.request.contextPath}" />/resources/plugins/angular/angular-sanitize.min.js"></script>
-<script
-	src="<c:out value="${pageContext.request.contextPath}" />/resources/plugins/paging.js"></script>
-<script src="<c:out value="${pageContext.request.contextPath}" />/resources/js/fontend/main.js"></script>
-<script src="<c:out value="${pageContext.request.contextPath}" />/resources/js/fontend/map.js"></script>
-<script src="<c:out value="${pageContext.request.contextPath}" />/resources/js/fontend/echarts.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<!-- =====  vendor  =====-->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/css/bootstrap.min.css">
+<!-- =====  google font  =====-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri&amp;family=Noto+Sans+TC&amp;display=swap" rel="stylesheet">
+<!-- =====  awesome icon  =====-->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<link rel="stylesheet" href="<c:out value="${pageContext.request.contextPath}" />/resources/css/new.css">
+<link rel="stylesheet" href="<c:out value="${pageContext.request.contextPath}" />/resources/css/fontend/basicstyle.css">
+<link rel="stylesheet" href="<c:out value="${pageContext.request.contextPath}" />/resources/css/fontend/mainstyle.css">
+<link rel="stylesheet" href="<c:out value="${pageContext.request.contextPath}" />/resources/css/fontend/responsive.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://gw.alipayobjects.com/os/antv/pkg/_antv.g2-3.5.1/dist/g2.min.js"></script>
 <script src="https://gw.alipayobjects.com/os/antv/pkg/_antv.data-set-0.10.1/dist/data-set.min.js"></script>
-<link rel="stylesheet"
-	href="<c:out value="${pageContext.request.contextPath}" />/resources/css/new.css">
-<body class="no-skin" ng-controller="getAppController" id="stop">
+
+<script src="<c:out value="${pageContext.request.contextPath}" />/resources/js/fontend/filiter_keyword_none.js"></script>
+<script src="<c:out value="${pageContext.request.contextPath}" />/resources/js/fontend/main.js"> </script>
+<script type="text/javascript" src="<c:out value="${pageContext.request.contextPath}" />/resources/js/fontend/echarts.min.js"></script>
+<body class="no-skin" id="stop">
 	<header class="nav" id="top_pos">
         <div class="container">
             <div class="row">
@@ -81,7 +90,7 @@
                         </li>
                     </ul>
                     <div class="tab-content" id="pills-tabContent">
-                    	<div class="tab-pane fade show active" id="pills-mechanism" role="tabpanel"
+                    	<div class="tab-pane fade show active fade_style" id="pills-mechanism" role="tabpanel"
                             aria-labelledby="pills-mechanism-tab">
                             <div class="col-lg-12">
                             	<div class="row">
@@ -226,7 +235,7 @@
                             	</div>
                             </div>
                         </div>
-                        <div class="tab-pane fade" id="pills-scholar" role="tabpanel"
+                        <div class="tab-pane fade fade_style" id="pills-scholar" role="tabpanel"
                             aria-labelledby="pills-scholar-tab">
                             <div class="col-lg-12">
                                 <div class="row">
@@ -370,7 +379,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="tab-pane fade" id="pills-cooperate" role="tabpanel"
+                        <div class="tab-pane fade fade_style" id="pills-cooperate" role="tabpanel"
                             aria-labelledby="pills-cooperate-tab">
                             <div class="col-lg-12">
                                 <div class="row">
@@ -447,7 +456,7 @@
                                             </ul>
                                         </div>
                                         <div class="tab-content" id="pills-tabContent">
-                                            <div class="tab-pane fade show active" id="pills-int1" role="tabpanel"
+                                            <div class="tab-pane fade fade_style show active" id="pills-int1" role="tabpanel"
                                                 aria-labelledby="pills-int1-tab">
                                                 <div class="col-lg-12">
                                                     <div class="row">
@@ -521,7 +530,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="tab-pane fade" id="pills-int2" role="tabpanel"
+                                            <div class="tab-pane fade fade_style" id="pills-int2" role="tabpanel"
                                                 aria-labelledby="pills-int2-tab">
                                                 <div class="col-lg-12">
                                                     <div class="row">
@@ -606,7 +615,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="tab-pane fade" id="pills-sixarea" role="tabpanel"
+                        <div class="tab-pane fade fade_style" id="pills-sixarea" role="tabpanel"
                             aria-labelledby="pills-sixarea-tab">
                             <div class="col-lg-12">
                                 <div class="row">
@@ -673,7 +682,7 @@
         	</div>
         </div>
     </section>
-    <div class="modal fade" id="myModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    <div class="modal fade fade_style" id="myModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
         aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">

@@ -192,7 +192,7 @@ header .nav_bar ul span {
   left: 50%;
   top: 50%;
   background-size: cover;
-  background-image: url("../../img/icon/player_o.svg");
+  background-image: url("../img/icon/player_o.svg");
   -webkit-transform: translateX(-50%) translateY(-50%);
           transform: translateX(-50%) translateY(-50%);
 }
@@ -277,18 +277,18 @@ header .nav_bar ul span {
   background-size: cover;
 }
 .linkouter .start {
-  background-image: url("../../img/icon/icon_left.svg");
+  background-image: url("../img/icon/icon_left.svg");
 }
 .linkouter .prev {
-  background-image: url("../../img/icon/icon_left_1.svg");
+  background-image: url("../img/icon/icon_left_1.svg");
 }
 .linkouter .next {
-  background-image: url("../../img/icon/icon_left_1.svg");
+  background-image: url("../img/icon/icon_left_1.svg");
   -webkit-transform: rotate(180deg);
           transform: rotate(180deg);
 }
 .linkouter .end {
-  background-image: url("../../img/icon/icon_left.svg");
+  background-image: url("../img/icon/icon_left.svg");
   -webkit-transform: rotate(180deg);
           transform: rotate(180deg);
 }
@@ -547,7 +547,7 @@ li.fancyTab.active a {
 #banner_content .banner {
   width: 100%;
   padding: 12% 8%;
-  background-image: url("../../img/banner.jpg");
+  background-image: url("../img/banner.jpg");
   background-size: cover;
 }
 #banner_content .banner h2 {
@@ -578,7 +578,7 @@ li.fancyTab.active a {
   width: 0.875rem;
   height: 0.875rem;
   margin-right: 0.5rem;
-  background-image: url("../../img/icon/icon_cube.svg");
+  background-image: url("../img/icon/icon_cube.svg");
 }
 #privacy_content .line_div {
   height: 0.5px;
@@ -628,7 +628,7 @@ li.fancyTab.active a {
   width: 1.3rem;
   height: 1.3rem;
   margin-right: 1rem;
-  background-image: url("../../img/icon/icon_cube.svg");
+  background-image: url("../img/icon/icon_cube.svg");
 }
 
 #banner_content {
@@ -638,7 +638,7 @@ li.fancyTab.active a {
   width: 100%;
   padding: 12% 8%;
   text-align: center;
-  background-image: url("../../img/plan_banner.jpg");
+  background-image: url("../img/plan_banner.jpg");
   background-size: cover;
 }
 #banner_content .banner2 h2, #banner_content .banner2 h5 {
@@ -674,7 +674,7 @@ li.fancyTab.active a {
   display: inline-block;
   width: 1.3rem;
   height: 1.3rem;
-  background-image: url("../../img/icon/icon_cube.svg");
+  background-image: url("../img/icon/icon_cube.svg");
 }
 
 .result_lightbox {
