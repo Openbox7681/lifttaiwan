@@ -167,6 +167,13 @@
 							autocomplete="off" ng-required="true">
                       </div>
                     </div>
+                    <h6>影片描述</h6>
+                    <div class="choose_item">
+                      <div class="input-group mb-2">
+                        <input type="text" id="Description" name="Description" ng-model="Description" 
+                        	class="form-control" placeholder="影片描述" autocomplete="off" ng-required="true">
+                      </div>
+                    </div>
                     <h6>影片連結網址</h6>
                     <div class="choose_item">
                       <div class="input-group mb-2">
@@ -175,11 +182,19 @@
 							autocomplete="off" ng-required="true">
                       </div>
                     </div>
-                    <h6>影片縮圖網址</h6>
+               		<h6>作者</h6>
                     <div class="choose_item">
                       <div class="input-group mb-2">
-                        <input type="text" id="Thumbnail_Url" name="Thumbnail_Url" ng-model="Thumbnail_Url"
-							class="form-control" placeholder="影片縮圖網址" ng-maxlength="2147483647"
+                        <input type="text" id="Author" name="Author" ng-model="Author"
+							class="form-control" placeholder="作者" ng-maxlength="2147483647"
+							autocomplete="off" ng-required="true">
+                      </div>
+                    </div>
+                    <h6>關鍵字</h6>
+                    <div class="choose_item">
+                      <div class="input-group mb-2">
+                        <input type="text" id="Tag" name="Tag" ng-model="Tag"
+							class="form-control" placeholder="關鍵字請以『，』分開" ng-maxlength="2147483647"
 							autocomplete="off" ng-required="true">
                       </div>
                     </div>
@@ -197,6 +212,24 @@
 							off='<i class="fas fa-fw fa-minus-circle"></i>否'
 							onstyle="btn-success" offstyle="btn-danger"></toggle>
 					</div>
+					<h6>縮圖上傳</h6>
+                    <div class="choose_item">
+                      <div class="input-group mb-2">
+                      	<input type="file" id="img_upload_file_article" data-target="file-uploader" multiple="multiple"/>
+                      	<input type="hidden" name="img_upload_base_article" id="img_upload_base_article" />
+                      </div>
+                    </div>
+                    <h6>縮圖預覽</h6>
+                    <div class="choose_item">
+                      <div class="input-group mb-2">
+                      </div>
+                    </div>
+                    <h6></h6>
+                    <div class="choose_item">
+                      <div class="input-group mb-2">
+                      	<img width="200px" height="100px" id="img_upload_show_article" >
+                      </div>
+                    </div>
                     <div class="search_btn hcenter saveicon">
                       <div class="button_fill_orange btn_m" ng-show="${actionUpdate} && btnUpd" ng-click="updateData()">
                         <p>儲存</p>

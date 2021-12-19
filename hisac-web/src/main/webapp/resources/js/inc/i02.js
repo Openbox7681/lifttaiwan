@@ -155,9 +155,14 @@ function getAppController($rootScope, $scope, $http, $cookieStore, $anchorScroll
 		$scope.btnIns = true;
 		$scope.btnUpd = false;
 		$scope.Id = "";
-	   	$scope.Name = "";
 	    $scope.Title = "";
-	    $scope.Date = null;
+	    $scope.Description = "";
+	    $scope.Author = "";
+	    $scope.Tag = "";
+	    $scope.Video_Url = "";
+	    $("#img_upload_show_article").attr("src",null);
+	    $("#img_upload_base_article").val(null);;
+	    $("#img_upload_file_article").val(null);
 	   	$scope.IsEnable = true;
 	   	$scope.IsShow = true;
 	}
@@ -185,10 +190,13 @@ function getAppController($rootScope, $scope, $http, $cookieStore, $anchorScroll
 			$scope.btnUpd = true;
 			$scope.Id = response.data[0].Id;
 			$scope.Title = response.data[0].Title;
+			$scope.Description = response.data[0].Description;
+			$scope.Author = response.data[0].Author;
+			$scope.Tag = response.data[0].Tag;
 			$scope.Video_Url = response.data[0].Video_Url;
-			$scope.Thumbnail_Url = response.data[0].Thumbnail_Url;
 			$scope.IsEnable = response.data[0].IsEnable;
 			$scope.IsShow = response.data[0].IsShow;
+			$("#img_upload_show_article").attr("src",response.data[0].Img);
 		}).catch(function() {
 			
 		}).finally(function() { });
@@ -266,10 +274,13 @@ function getAppController($rootScope, $scope, $http, $cookieStore, $anchorScroll
 		var request = {
 			Id : $scope.Id,
 			Title : $scope.Title,
+			Description : $scope.Description,
+			Author : $scope.Author,
+			Tag : $scope.Tag,
 			Video_Url : $scope.Video_Url,
-			Thumbnail_Url : $scope.Thumbnail_Url,
 			IsEnable : $scope.IsEnable,
-			IsShow : $scope.IsShow
+			IsShow : $scope.IsShow,
+			Img : $("#img_upload_base_article").val()
 		};
 		$http.post('./common/i02/create', request, csrf_config).then(
 			function(response) {
@@ -319,10 +330,13 @@ function getAppController($rootScope, $scope, $http, $cookieStore, $anchorScroll
 		var request = {
 			Id : $scope.Id,
 			Title : $scope.Title,
+			Description : $scope.Description,
+			Author : $scope.Author,
+			Tag : $scope.Tag,
 			Video_Url : $scope.Video_Url,
-			Thumbnail_Url : $scope.Thumbnail_Url,
 			IsEnable : $scope.IsEnable,
-			IsShow : $scope.IsShow
+			IsShow : $scope.IsShow,
+			Img : $("#img_upload_base_article").val()
 		};
 		$http.post('./common/i02/update', request, csrf_config).then(
 			function(response) {
@@ -366,4 +380,14 @@ function getAppController($rootScope, $scope, $http, $cookieStore, $anchorScroll
 			}).finally(function() { });
 		};
 		// Update Data End
+		
+		$("#img_upload_file_article").change(function() {		
+	        var file = this.files[0];
+	        var reader = new FileReader();
+	        reader.readAsDataURL(file);//呼叫自帶方法進行轉換
+	        reader.onload = function(e) {
+	        $("#img_upload_show_article").attr("src", this.result);//將轉換後的編碼存入src完成預覽
+	        $("#img_upload_base_article").val(this.result);//將轉換後的編碼儲存到input供後臺使用
+	        }; 
+	    });
 };

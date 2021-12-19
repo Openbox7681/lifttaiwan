@@ -52,6 +52,7 @@ public class ArticleDataService {
 		try {
 			JSONObject obj = new JSONObject(json);
 			String title = obj.isNull("Title") == true ? null : obj.getString("Title");
+			String description = obj.isNull("Description") == true ? null : obj.getString("Description");
 			String author = obj.isNull("Author") == true ? null : obj.getString("Author");
 			String tag = obj.isNull("Tag") == true ? null : obj.getString("Tag");
 			Long sort = obj.isNull("Sort") == true ? 0 : obj.getLong("Sort");
@@ -63,6 +64,7 @@ public class ArticleDataService {
 			
 			ArticleData entity = new ArticleData();
 			entity.setTitle(title);
+			entity.setDescription(description);
 			entity.setAuthor(author);
 			entity.setTag(tag);
 			entity.setSort(sort);
@@ -90,6 +92,7 @@ public class ArticleDataService {
 			JSONObject obj = new JSONObject(json);
 			long id = obj.isNull("Id") == true ? 0 : obj.getLong("Id");
 			String title = obj.isNull("Title") == true ? null : obj.getString("Title");
+			String description = obj.isNull("Description") == true ? null : obj.getString("Description");
 			String author = obj.isNull("Author") == true ? null : obj.getString("Author");
 			String tag = obj.isNull("Tag") == true ? null : obj.getString("Tag");
 			Long sort = obj.isNull("Sort") == true ? 0 : obj.getLong("Sort");
@@ -101,6 +104,7 @@ public class ArticleDataService {
 
 			ArticleData entity = articleDataDAO.get(id);
 			entity.setTitle(title);
+			entity.setDescription(description);
 			entity.setAuthor(author);
 			entity.setTag(tag);
 			entity.setSort(sort);

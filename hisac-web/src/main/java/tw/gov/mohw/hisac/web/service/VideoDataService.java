@@ -54,15 +54,21 @@ public class VideoDataService {
 		try {
 			JSONObject obj = new JSONObject(json);
 			String title = obj.isNull("Title") == true ? null : obj.getString("Title");
+			String description = obj.isNull("Description") == true ? null : obj.getString("Description");
+			String author = obj.isNull("Author") == true ? null : obj.getString("Author");
+			String tag = obj.isNull("Tag") == true ? null : obj.getString("Tag");
 			String video_url = obj.isNull("Video_Url") == true ? null : obj.getString("Video_Url");
-			String thumbnail_Url = obj.isNull("Thumbnail_Url") == true ? null : obj.getString("Thumbnail_Url");
+			String img = obj.isNull("Img") == true ? null : obj.getString("Img");
 			boolean isEnable = obj.isNull("IsEnable") == true ? false : obj.getBoolean("IsEnable");
 			boolean isShow = obj.isNull("IsShow") == true ? false : obj.getBoolean("IsShow");
 			Date now = new Date();
 			VideoData entity = new VideoData();
 			entity.setTitle(title);
+			entity.setDescription(description);
+			entity.setAuthor(author);
+			entity.setTag(tag);
 			entity.setVideo_Url(video_url);
-			entity.setThumbnail_Url(thumbnail_Url);
+			entity.setImg(img);
 			entity.setIsEnable(isEnable);
 			entity.setIsShow(isShow);
 			entity.setCreateId(memberId);
@@ -83,16 +89,21 @@ public class VideoDataService {
 			JSONObject obj = new JSONObject(json);
 			long id = obj.isNull("Id") == true ? 0 : obj.getLong("Id");
 			String title = obj.isNull("Title") == true ? null : obj.getString("Title");
+			String description = obj.isNull("Description") == true ? null : obj.getString("Description");
+			String author = obj.isNull("Author") == true ? null : obj.getString("Author");
+			String tag = obj.isNull("Tag") == true ? null : obj.getString("Tag");
 			String video_url = obj.isNull("Video_Url") == true ? null : obj.getString("Video_Url");
-			String thumbnail_Url = obj.isNull("Thumbnail_Url") == true ? null : obj.getString("Thumbnail_Url");
-			boolean isEnable = obj.isNull("IsEnable") == true ? false : obj.getBoolean("IsEnable");
+			String img = obj.isNull("Img") == true ? null : obj.getString("Img");			boolean isEnable = obj.isNull("IsEnable") == true ? false : obj.getBoolean("IsEnable");
 			boolean isShow = obj.isNull("IsShow") == true ? false : obj.getBoolean("IsShow");
 			Date now = new Date();
 
 			VideoData entity = videoDataDAO.get(id);
 			entity.setTitle(title);
+			entity.setDescription(description);
+			entity.setAuthor(author);
+			entity.setTag(tag);
 			entity.setVideo_Url(video_url);
-			entity.setThumbnail_Url(thumbnail_Url);
+			entity.setImg(img);
 			entity.setIsEnable(isEnable);
 			entity.setIsShow(isShow);
 			entity.setModifyId(memberId);

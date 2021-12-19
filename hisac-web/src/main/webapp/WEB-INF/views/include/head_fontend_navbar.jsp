@@ -11,12 +11,20 @@
             </div>
             <!-- pc navbar-->
             <div class="nav_bar none" id="acolor">
-              <ul><a href="pages/plan-info.html">
-                  <li>計畫介紹 <span>|</span></li></a><a href="pages/int-info.html">                 
-                  <li>國際資訊查詢 <span>|</span></li></a><a href="pages/int-coop.html">                 
-                  <li>國際合作案例 <span>|</span></li></a><a href="pages/video-info.html">                 
-                  <li>影音資訊<span>|</span></li></a><a href="pages/contact.html">                 
-                  <li>聯絡我們</li></a></ul>
+              <ul>
+              	<a href="<c:out value="${pageContext.request.contextPath}" />/fontend/plan">
+                	<li>計畫介紹 <span>|</span></li>
+                </a>
+              	<a href="<c:out value="${pageContext.request.contextPath}" />/fontend/intInfo">
+                	<li>國際資訊查詢 <span>|</span></li>
+                </a>
+              	<a href="<c:out value="${pageContext.request.contextPath}" />/fontend/intCoop">
+                	<li>國際合作案例 <span>|</span></li>
+                </a>
+              	<a href="<c:out value="${pageContext.request.contextPath}" />/fontend/videoInfo">
+                	<li>影音資訊<span>|</span></li>
+                </a>
+              </ul>
             </div>
           </div>
         </div>

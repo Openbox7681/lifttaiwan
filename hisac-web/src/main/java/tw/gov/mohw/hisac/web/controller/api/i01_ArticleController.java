@@ -79,6 +79,7 @@ public class i01_ArticleController extends BaseController {
 			JSONObject sn_json = new JSONObject();
 			sn_json.put("Id", articleData.getId());
 			sn_json.put("Title", articleData.getTitle());
+			sn_json.put("Description", articleData.getDescription());
 			sn_json.put("Author", articleData.getAuthor());
 			sn_json.put("Tag", articleData.getTag());
 			sn_json.put("Sort", articleData.getSort());
