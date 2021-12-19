@@ -162,6 +162,16 @@
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 	
+	<bean id="inboundPeoplePaperNoCorDAO" class="tw.gov.mohw.hisac.web.dao.InboundPeoplePaperNoCorDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="outboundPeoplePaperDAO" class="tw.gov.mohw.hisac.web.dao.OutboundPeoplePaperDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="outboundPeoplePaperNoCorDAO" class="tw.gov.mohw.hisac.web.dao.OutboundPeoplePaperNoCorDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
 	<tx:annotation-driven transaction-manager="transactionManager"
 		proxy-target-class="true" />
 </beans>

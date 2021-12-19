@@ -88,8 +88,11 @@ public class i02_VideoController extends BaseController {
 			JSONObject sn_json = new JSONObject();
 			sn_json.put("Id", videoData.getId());
 			sn_json.put("Title", videoData.getTitle());
+			sn_json.put("Description", videoData.getDescription());
+			sn_json.put("Author", videoData.getAuthor());
+			sn_json.put("Tag", videoData.getTag());
+			sn_json.put("Img", videoData.getImg());
 			sn_json.put("Video_Url", videoData.getVideo_Url());
-			sn_json.put("Thumbnail_Url", videoData.getThumbnail_Url());
 			sn_json.put("IsEnable", videoData.getIsEnable());
 			sn_json.put("IsShow", videoData.getIsShow());
 			sn_array.put(sn_json);

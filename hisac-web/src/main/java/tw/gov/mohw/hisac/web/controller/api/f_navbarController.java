@@ -21,7 +21,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import tw.gov.mohw.hisac.web.controller.BaseController;
 import tw.gov.mohw.hisac.web.domain.TtmaxInfoLift;
+import tw.gov.mohw.hisac.web.service.InboundPeoplePaperNoCorService;
 import tw.gov.mohw.hisac.web.service.InboundPeoplePaperService;
+import tw.gov.mohw.hisac.web.service.OutboundPeoplePaperNoCorService;
+import tw.gov.mohw.hisac.web.service.OutboundPeoplePaperService;
 import tw.gov.mohw.hisac.web.service.PaperCorLiftService;
 import tw.gov.mohw.hisac.web.service.PaperMainsLiftService;
 import tw.gov.mohw.hisac.web.service.PeopleMainsLiftService;
@@ -44,6 +47,12 @@ public class f_navbarController extends BaseController {
 	private InboundPeoplePaperService inboundPeoplePaperService;
 	@Autowired
 	private TtmaxInfoLiftService ttmaxInfoLiftService;
+	@Autowired
+	private InboundPeoplePaperNoCorService inboundPeoplePaperNoCorService;
+	@Autowired
+	private OutboundPeoplePaperService outboundPeoplePaperService;
+	@Autowired
+	private OutboundPeoplePaperNoCorService outboundPeoplePaperNoCorService;
 
 	@RequestMapping(value = "/queryNumber", method = RequestMethod.POST)
 	public String queryNumber(Locale locale, HttpServletRequest request, Model model, @RequestBody String json) {
@@ -165,8 +174,8 @@ public class f_navbarController extends BaseController {
 		return "msg";
 	}
 	
-	@RequestMapping(value = "/queryForm", method = RequestMethod.POST)
-	public String queryForm(Locale locale, HttpServletRequest request, Model model, @RequestBody String json) {
+	@RequestMapping(value = "/p01/queryForm", method = RequestMethod.POST)
+	public String queryFormP01(Locale locale, HttpServletRequest request, Model model, @RequestBody String json) {
 		JSONObject listjson = new JSONObject();
 		JSONArray sn_array = new JSONArray();
 		JSONObject total_json = new JSONObject();
@@ -268,6 +277,244 @@ public class f_navbarController extends BaseController {
 		}
 		sn_array.put(total_json);
 		listjson.put("formData",sn_array);
+		
+		model.addAttribute("json", listjson.toString());
+		return "msg";
+	}
+	
+	@RequestMapping(value = "/p02/queryForm", method = RequestMethod.POST)
+	public String queryFormP02(Locale locale, HttpServletRequest request, Model model, @RequestBody String json) {
+		JSONObject listjson = new JSONObject();
+		JSONArray sn_array = new JSONArray();
+		
+		JSONObject inbound_json = new JSONObject();
+		inbound_json.put("name","In bound 國際合著篇數");
+		inbound_json.put("eleven", Float.valueOf(0));
+		inbound_json.put("twelve", Float.valueOf(0));
+		inbound_json.put("thirteen", Float.valueOf(0));
+		inbound_json.put("fourteen", Float.valueOf(0));
+		inbound_json.put("fifteen", Float.valueOf(0));
+		inbound_json.put("sixteen", Float.valueOf(0));
+		inbound_json.put("seventeen", Float.valueOf(0));
+		inbound_json.put("eighteen", Float.valueOf(0));
+		inbound_json.put("nineteen", Float.valueOf(0));
+		inbound_json.put("twenty", Float.valueOf(0));
+		inbound_json.put("total", Float.valueOf(0));
+		
+		Float inboundValue = Float.valueOf(0);
+		
+		List<Object[]> inboundList = inboundPeoplePaperService.getLineData();
+		if(inboundList.size()>0) {
+			for(Object[] lineData : inboundList) {
+				if("100".equals(lineData[0].toString())) {
+					inbound_json.put("eleven", Float.valueOf(lineData[1].toString()));
+				}else if("101".equals(lineData[0].toString())) {
+					inbound_json.put("twelve", Float.valueOf(lineData[1].toString()));
+				}else if("102".equals(lineData[0].toString())) {
+					inbound_json.put("thirteen", Float.valueOf(lineData[1].toString()));
+				}else if("103".equals(lineData[0].toString())) {
+					inbound_json.put("fourteen", Float.valueOf(lineData[1].toString()));
+				}else if("104".equals(lineData[0].toString())) {
+					inbound_json.put("fifteen", Float.valueOf(lineData[1].toString()));
+				}else if("105".equals(lineData[0].toString())) {
+					inbound_json.put("sixteen", Float.valueOf(lineData[1].toString()));
+				}else if("106".equals(lineData[0].toString())) {
+					inbound_json.put("seventeen", Float.valueOf(lineData[1].toString()));
+				}else if("107".equals(lineData[0].toString())) {
+					inbound_json.put("eighteen", Float.valueOf(lineData[1].toString()));
+				}else if("108".equals(lineData[0].toString())) {
+					inbound_json.put("nineteen", Float.valueOf(lineData[1].toString()));
+				}else if("109".equals(lineData[0].toString())) {
+					inbound_json.put("twenty", Float.valueOf(lineData[1].toString()));
+				}
+				inboundValue = inboundValue + Float.valueOf(lineData[1].toString());
+			}
+			inbound_json.put("total", inboundValue);
+			sn_array.put(inbound_json);
+		}
+		
+		JSONObject inNoCor_json = new JSONObject();
+		inNoCor_json.put("name","In bound 平均發表篇數");
+		inNoCor_json.put("eleven", Float.valueOf(0));
+		inNoCor_json.put("twelve", Float.valueOf(0));
+		inNoCor_json.put("thirteen", Float.valueOf(0));
+		inNoCor_json.put("fourteen", Float.valueOf(0));
+		inNoCor_json.put("fifteen", Float.valueOf(0));
+		inNoCor_json.put("sixteen", Float.valueOf(0));
+		inNoCor_json.put("seventeen", Float.valueOf(0));
+		inNoCor_json.put("eighteen", Float.valueOf(0));
+		inNoCor_json.put("nineteen", Float.valueOf(0));
+		inNoCor_json.put("twenty", Float.valueOf(0));
+		inNoCor_json.put("total", Float.valueOf(0));
+		
+		Float inNoCorValue = Float.valueOf(0);
+		
+		List<Object[]> inNoCorList = inboundPeoplePaperNoCorService.getLineData();
+		if(inNoCorList.size()>0) {
+			for(Object[] lineData : inNoCorList) {
+				if("100".equals(lineData[0].toString())) {
+					Float value = inbound_json.getFloat("eleven");
+					value = value / Float.valueOf(lineData[1].toString());
+					inNoCor_json.put("eleven", (float)(Math.round(value*100))/100);
+				}else if("101".equals(lineData[0].toString())) {
+					Float value = inbound_json.getFloat("twelve");
+					value = value / Float.valueOf(lineData[1].toString());
+					inNoCor_json.put("twelve", (float)(Math.round(value*100))/100);
+				}else if("102".equals(lineData[0].toString())) {
+					Float value = inbound_json.getFloat("thirteen");
+					value = value / Float.valueOf(lineData[1].toString());
+					inNoCor_json.put("thirteen", (float)(Math.round(value*100))/100);
+				}else if("103".equals(lineData[0].toString())) {
+					Float value = inbound_json.getFloat("fourteen");
+					value = value / Float.valueOf(lineData[1].toString());
+					inNoCor_json.put("fourteen", (float)(Math.round(value*100))/100);
+				}else if("104".equals(lineData[0].toString())) {
+					Float value = inbound_json.getFloat("fifteen");
+					value = value / Float.valueOf(lineData[1].toString());
+					inNoCor_json.put("fifteen", (float)(Math.round(value*100))/100);
+				}else if("105".equals(lineData[0].toString())) {
+					Float value = inbound_json.getFloat("sixteen");
+					value = value / Float.valueOf(lineData[1].toString());
+					inNoCor_json.put("sixteen", (float)(Math.round(value*100))/100);
+				}else if("106".equals(lineData[0].toString())) {
+					Float value = inbound_json.getFloat("seventeen");
+					value = value / Float.valueOf(lineData[1].toString());
+					inNoCor_json.put("seventeen", (float)(Math.round(value*100))/100);
+				}else if("107".equals(lineData[0].toString())) {
+					Float value = inbound_json.getFloat("eighteen");
+					value = value / Float.valueOf(lineData[1].toString());
+					inNoCor_json.put("eighteen", (float)(Math.round(value*100))/100);
+				}else if("108".equals(lineData[0].toString())) {
+					Float value = inbound_json.getFloat("nineteen");
+					value = value / Float.valueOf(lineData[1].toString());
+					inNoCor_json.put("nineteen", (float)(Math.round(value*100))/100);
+				}else if("109".equals(lineData[0].toString())) {
+					Float value = inbound_json.getFloat("twenty");
+					value = value / Float.valueOf(lineData[1].toString());
+					inNoCor_json.put("twenty", (float)(Math.round(value*100))/100);
+				}
+				inNoCorValue = inNoCorValue + Float.valueOf(lineData[1].toString());
+			}
+			Float inNoCorTotal = inNoCorValue / inbound_json.getFloat("total");
+			inNoCor_json.put("total", (float)(Math.round(inNoCorTotal*100))/100);
+			sn_array.put(inNoCor_json);
+		}
+		
+		JSONObject outbound_json = new JSONObject();
+		outbound_json.put("name","Out bound 國際合著篇數");
+		outbound_json.put("eleven", Float.valueOf(0));
+		outbound_json.put("twelve", Float.valueOf(0));
+		outbound_json.put("thirteen", Float.valueOf(0));
+		outbound_json.put("fourteen", Float.valueOf(0));
+		outbound_json.put("fifteen", Float.valueOf(0));
+		outbound_json.put("sixteen", Float.valueOf(0));
+		outbound_json.put("seventeen", Float.valueOf(0));
+		outbound_json.put("eighteen", Float.valueOf(0));
+		outbound_json.put("nineteen", Float.valueOf(0));
+		outbound_json.put("twenty", Float.valueOf(0));
+		outbound_json.put("total", Float.valueOf(0));
+		
+		Float outboundValue = Float.valueOf(0);
+		
+		List<Object[]> outboundList = outboundPeoplePaperService.getLineData();
+		if(outboundList.size()>0) {
+			for(Object[] lineData : outboundList) {
+				if("100".equals(lineData[0].toString())) {
+					outbound_json.put("eleven", Float.valueOf(lineData[1].toString()));
+				}else if("101".equals(lineData[0].toString())) {
+					outbound_json.put("twelve", Float.valueOf(lineData[1].toString()));
+				}else if("102".equals(lineData[0].toString())) {
+					outbound_json.put("thirteen", Float.valueOf(lineData[1].toString()));
+				}else if("103".equals(lineData[0].toString())) {
+					outbound_json.put("fourteen", Float.valueOf(lineData[1].toString()));
+				}else if("104".equals(lineData[0].toString())) {
+					outbound_json.put("fifteen", Float.valueOf(lineData[1].toString()));
+				}else if("105".equals(lineData[0].toString())) {
+					outbound_json.put("sixteen", Float.valueOf(lineData[1].toString()));
+				}else if("106".equals(lineData[0].toString())) {
+					outbound_json.put("seventeen", Float.valueOf(lineData[1].toString()));
+				}else if("107".equals(lineData[0].toString())) {
+					outbound_json.put("eighteen", Float.valueOf(lineData[1].toString()));
+				}else if("108".equals(lineData[0].toString())) {
+					outbound_json.put("nineteen", Float.valueOf(lineData[1].toString()));
+				}else if("109".equals(lineData[0].toString())) {
+					outbound_json.put("twenty", Float.valueOf(lineData[1].toString()));
+				}
+				outboundValue = outboundValue + Float.valueOf(lineData[1].toString());
+			}
+			outbound_json.put("total", outboundValue);
+			sn_array.put(outbound_json);
+		}
+		
+		JSONObject outNoCor_json = new JSONObject();
+		outNoCor_json.put("name","Out bound 平均發表篇數");
+		outNoCor_json.put("eleven", Float.valueOf(0));
+		outNoCor_json.put("twelve", Float.valueOf(0));
+		outNoCor_json.put("thirteen", Float.valueOf(0));
+		outNoCor_json.put("fourteen", Float.valueOf(0));
+		outNoCor_json.put("fifteen", Float.valueOf(0));
+		outNoCor_json.put("sixteen", Float.valueOf(0));
+		outNoCor_json.put("seventeen", Float.valueOf(0));
+		outNoCor_json.put("eighteen", Float.valueOf(0));
+		outNoCor_json.put("nineteen", Float.valueOf(0));
+		outNoCor_json.put("twenty", Float.valueOf(0));
+		outNoCor_json.put("total", Float.valueOf(0));
+		
+		Float outNoCorValue = Float.valueOf(0);
+		
+		List<Object[]> outNotCorList = outboundPeoplePaperNoCorService.getLineData();
+		if(outNotCorList.size()>0) {
+			for(Object[] lineData : outNotCorList) {
+				if("100".equals(lineData[0].toString())) {
+					Float value = outbound_json.getFloat("eleven");
+					value = value / Float.valueOf(lineData[1].toString());
+					outNoCor_json.put("eleven", (float)(Math.round(value*100))/100);
+				}else if("101".equals(lineData[0].toString())) {
+					Float value = outbound_json.getFloat("twelve");
+					value = value / Float.valueOf(lineData[1].toString());
+					outNoCor_json.put("twelve", (float)(Math.round(value*100))/100);
+				}else if("102".equals(lineData[0].toString())) {
+					Float value = outbound_json.getFloat("thirteen");
+					value = value / Float.valueOf(lineData[1].toString());
+					outNoCor_json.put("thirteen", (float)(Math.round(value*100))/100);
+				}else if("103".equals(lineData[0].toString())) {
+					Float value = outbound_json.getFloat("fourteen");
+					value = value / Float.valueOf(lineData[1].toString());
+					outNoCor_json.put("fourteen", (float)(Math.round(value*100))/100);
+				}else if("104".equals(lineData[0].toString())) {
+					Float value = outbound_json.getFloat("fifteen");
+					value = value / Float.valueOf(lineData[1].toString());
+					outNoCor_json.put("fifteen", (float)(Math.round(value*100))/100);
+				}else if("105".equals(lineData[0].toString())) {
+					Float value = outbound_json.getFloat("sixteen");
+					value = value / Float.valueOf(lineData[1].toString());
+					outNoCor_json.put("sixteen", (float)(Math.round(value*100))/100);
+				}else if("106".equals(lineData[0].toString())) {
+					Float value = outbound_json.getFloat("seventeen");
+					value = value / Float.valueOf(lineData[1].toString());
+					outNoCor_json.put("seventeen", (float)(Math.round(value*100))/100);
+				}else if("107".equals(lineData[0].toString())) {
+					Float value = outbound_json.getFloat("eighteen");
+					value = value / Float.valueOf(lineData[1].toString());
+					outNoCor_json.put("eighteen", (float)(Math.round(value*100))/100);
+				}else if("108".equals(lineData[0].toString())) {
+					Float value = outbound_json.getFloat("nineteen");
+					value = value / Float.valueOf(lineData[1].toString());
+					outNoCor_json.put("nineteen", (float)(Math.round(value*100))/100);
+				}else if("109".equals(lineData[0].toString())) {
+					Float value = outbound_json.getFloat("twenty");
+					value = value / Float.valueOf(lineData[1].toString());
+					outNoCor_json.put("twenty", (float)(Math.round(value*100))/100);
+				}
+				outNoCorValue = outNoCorValue + Float.valueOf(lineData[1].toString());
+			}
+			Float outNoCorTotal = outNoCorValue / outbound_json.getFloat("total");
+			outNoCor_json.put("total", (float)(Math.round(outNoCorTotal*100))/100);			
+			sn_array.put(outNoCor_json);
+		}
+		
+		
+		listjson.put("formData", sn_array);
 		
 		model.addAttribute("json", listjson.toString());
 		return "msg";

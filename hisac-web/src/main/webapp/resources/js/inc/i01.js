@@ -156,6 +156,7 @@ function getAppController($rootScope, $scope, $http, $cookieStore, $cookies, Upl
 		$scope.btnUpd = false;
 		$scope.Id = 0;
 	    $scope.Title = "";
+	    $scope.Description = "";
 	    $scope.Author = "";
 	    $scope.Tag = "";
 	    $scope.Sort = null;
@@ -191,6 +192,7 @@ function getAppController($rootScope, $scope, $http, $cookieStore, $cookies, Upl
 			$scope.btnUpd = true;
 			$scope.Id = response.data[0].Id;
 			$scope.Title = response.data[0].Title;
+			$scope.Description = response.data[0].Description;
 			$scope.Author = response.data[0].Author;
 			$scope.Tag = response.data[0].Tag;
 			$scope.Sort = response.data[0].Sort;
@@ -278,6 +280,7 @@ function getAppController($rootScope, $scope, $http, $cookieStore, $cookies, Upl
 		var request = {
 			Id : $scope.Id,
 			Title : $scope.Title,
+			Description : $scope.Description,
 			Author : $scope.Author,
 			Tag : $scope.Tag,
 			Sort : $scope.Sort,
@@ -345,6 +348,7 @@ function getAppController($rootScope, $scope, $http, $cookieStore, $cookies, Upl
 		var request = {
 			Id : $scope.Id,
 			Title : $scope.Title,
+			Description : $scope.Description,
 			Author : $scope.Author,
 			Tag : $scope.Tag,
 			Sort : $scope.Sort,
@@ -405,6 +409,7 @@ function getAppController($rootScope, $scope, $http, $cookieStore, $cookies, Upl
 		var request = {
 			Id : $scope.Id,
 			Title : $scope.Title,
+			Description : $scope.Description,
 			Author : $scope.Author,
 			Tag : $scope.Tag,
 			Sort : $scope.Sort,
@@ -471,6 +476,7 @@ function getAppController($rootScope, $scope, $http, $cookieStore, $cookies, Upl
 		var request = {
 			Id : $scope.Id,
 			Title : $scope.Title,
+			Description : $scope.Description,
 			Author : $scope.Author,
 			Tag : $scope.Tag,
 			Sort : $scope.Sort,

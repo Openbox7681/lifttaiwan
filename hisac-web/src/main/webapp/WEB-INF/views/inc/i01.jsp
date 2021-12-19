@@ -181,6 +181,14 @@
 							autocomplete="off" ng-required="true">
                       </div>
                     </div>
+                    <h6>文章描述</h6>
+                    <div class="choose_item">
+                      <div class="input-group mb-2">
+                        <input type="text" id="Description" name="Description" ng-model="Description"
+							class="form-control" placeholder="文章描述" ng-maxlength="2147483647"
+							autocomplete="off" ng-required="true">
+                      </div>
+                    </div>
                     <h6>作者</h6>
                     <div class="choose_item">
                       <div class="input-group mb-2">
