@@ -3,10 +3,12 @@ package tw.gov.mohw.hisac.web.dao;
 import java.util.List;
 
 import org.hibernate.Criteria;
+import org.hibernate.criterion.Disjunction;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.ProjectionList;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
+import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -125,6 +127,76 @@ public class PeopleMainsLiftDAOImpl extends BaseSessionFactory implements People
 			return null;
 		}
 	}
+//	
+//	輔助追蹤查詢QUERY
+//	
+	public List<Object[]> getClassSubDataByCondition(Long startYear , Long endYear , JSONArray classSubList , JSONArray countryList, int classMainOption) {
+		
+		Criteria cr = getSessionFactory().getCurrentSession().createCriteria(PeopleMainsLift.class);
+		
+		ProjectionList projectionList = Projections.projectionList();        
+		cr.add(Restrictions.ge("years", startYear));
+		
+		cr.add(Restrictions.le("years", endYear));
+		
+		
+		if(!classSubList.toString().contains("全部")) {
+			Disjunction dis = Restrictions.disjunction();
+			for(int i=0; i<classSubList.length(); i++) {
+				JSONObject obj = (JSONObject) classSubList.get(i);
+				if (obj.getBoolean("Flag") == true) {
+					String class_sub = obj.getString("Name");
+	                dis.add(Restrictions.eq("class_sub", class_sub));
+				}	
+			}
+	        cr.add(dis);
+		}
+		switch (classMainOption) {
+			case 1:
+				cr.add(Restrictions.eq("class_main", "資訊及數位相關產業"));
+				break;
+			case 2:
+				cr.add(Restrictions.eq("class_main", "臺灣精準健康戰略產業"));
+				break;
+			case 3 : 
+				cr.add(Restrictions.eq("class_main", "國防及戰略產業"));
+				break;
+			case 4 :
+				cr.add(Restrictions.eq("class_main", "民生及戰備產業"));
+				break;
+			case 5 :
+				cr.add(Restrictions.eq("class_main", "綠電及再生能源產業"));
+				break;
+			case 6:
+				cr.add(Restrictions.eq("class_main", "其他"));
+				break;
+			default:
+				break;
+		}
+		
+
+
+		
+		projectionList.add(Projections.groupProperty("class_sub"))
+		.add(Projections.groupProperty("class_main"))
+		.add(Projections.groupProperty("identify"))
+        .add(Projections.count("class_sub"));
+		
+		cr.setProjection(projectionList);
+		cr.addOrder(Order.desc("class_main"));
+
+		
+		List<Object[]> list = cr.list();
+		if (list.size() > 0) {
+			return list;
+		} else {
+			return null;
+		}
+
+	}
+
+	
+	
 
 	@SuppressWarnings("deprecation")
 	public long getListSize(JSONObject obj) {

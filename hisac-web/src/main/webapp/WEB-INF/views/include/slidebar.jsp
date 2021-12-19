@@ -6,9 +6,15 @@
        
  <div class="col-lg-3 none">
             <div class="sidebar">
+              <a class="button_line_gray"
               
-              
-              <a class="button_line_gray" href="pages/subsidy.html">        <span>補助追蹤 </span></a>
+               href="<c:out value="${pageContext.request.contextPath}" />/alt/a01"
+               
+               >       
+               <span>補助追蹤 </span>
+          
+               </a>
+               
               <div class="mhr"></div>
               <div class="button">
                 <div class="accordion" id="accordionPanelsStayOpenExample">

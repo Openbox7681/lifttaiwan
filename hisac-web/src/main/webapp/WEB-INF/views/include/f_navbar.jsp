@@ -7,14 +7,17 @@ function test(){
 }
 </script>
 
-<script src="<c:out value="${pageContext.request.contextPath}" />/resources/js/custom.js"></script>
 
 
 <!-- partial:index.partial.html-->
     <header class="nav" id="top_pos">
       <div class="container">
         <div class="row">
-          <div class="col-xs-12"><a class="nav_logo" href="index"><img src="<c:out value="${pageContext.request.contextPath}" />/resources/img/logo_lightup.svg" alt=""></a>
+          <div class="col-xs-12"><a class="nav_logo" 
+               href="<c:out value="${pageContext.request.contextPath}" />/pub/index"
+          >
+          
+          <img src="<c:out value="${pageContext.request.contextPath}" />/resources/img/logo_lightup.svg" alt=""></a>
             <div class="nav_turnfront">
             <div class="button_fill_orange btn_s">
             <span href="#" onclick="logout();"> <s:message code="globalLogout" /></span>

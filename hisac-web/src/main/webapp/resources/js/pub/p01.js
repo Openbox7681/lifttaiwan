@@ -29,9 +29,7 @@ function getAppController($scope, $rootScope, $http, $window) {
 			paper_corId : "1"
 		};
 		$http.post('./common/queryNumber', request, csrf_config).then(function(response) {
-			
-			console.log("testfff");
-			
+						
 			$("#peopleNum").text(response.data.peopleNum);
 			$("#paperNum").text(response.data.paperNum);
 			$("#paperCorNum").text(response.data.paperCorNum);
