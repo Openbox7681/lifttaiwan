@@ -2,7 +2,7 @@
 <header class="nav" id="top_pos">
       <div class="container">
         <div class="row">
-          <div class="col-md-12"><a class="nav_logo" href="index.html"><img
+          <div class="col-md-12"><a class="nav_logo" href="<c:out value="${pageContext.request.contextPath}" />/fontend/"><img
          src="<c:out value="${pageContext.request.contextPath}" />/resources/img/logo_lightup.svg"
           alt=""></a>
             <!-- mobile navbar-->
