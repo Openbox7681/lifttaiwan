@@ -21,29 +21,36 @@
 <meta name="_csrf" content="<c:out value="${_csrf.token}" />" />
 <meta name="_csrf_header" content="<c:out value="${_csrf.headerName}" />" />
 <link rel="shortcut icon"
-	href="<c:out value="${pageContext.request.contextPath}" />/resources/favicon.ico"
+	href="<c:out value="${pageContext.request.contextPath}" />/resources/img/logo.ico"
 	type="image/x-icon" />
 <link rel="shortcut icon"
-	href="<c:out value="${pageContext.request.contextPath}" />/resources/favicon.ico"
+	href="<c:out value="${pageContext.request.contextPath}" />/resources/img/logo.ico"
 	type="image/vnd.microsoft.icon" />
 	
  <%-- <link rel="stylesheet"
 	href="<c:out value="${pageContext.request.contextPath}" />/resources/plugins/bootstrap/css/bootstrap-theme-cosmo.min.css" /> 
 	 --%>
  
+<!-- =====  vendor  =====-->
 
-	
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/css/bootstrap.min.css">
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css"> -->
+<link rel="stylesheet" href="<c:out value="${pageContext.request.contextPath}" />/resources/css/reset.min.css">
+ <!-- =====  bootstrap  =====-->
+
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/css/bootstrap.min.css"> -->
+
+<link rel="stylesheet" href="<c:out value="${pageContext.request.contextPath}" />/resources/css/5.0.2bootstrap.css">
 
 <!-- =====  google font  =====-->
-<link rel="preconnect" href="https://fonts.googleapis.com">
+<!-- <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&amp;display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri&amp;family=Noto+Sans+TC&amp;display=swap"
-    rel="stylesheet">
+    rel="stylesheet"> -->
 <!-- =====  awesome icon  =====-->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"> -->
+<link rel="stylesheet" href="<c:out value="${pageContext.request.contextPath}" />/resources/css/all.min.css">
+
 
 
 <link rel="stylesheet"
@@ -65,8 +72,9 @@
 	
 	
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/css/bootstrap-datetimepicker.min.css">
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/css/bootstrap-datetimepicker.min.css"> -->
 
+<link rel="stylesheet" href="<c:out value="${pageContext.request.contextPath}" />/resources/css/4.17.37bootstrap-datetimepicker.min.css">
 
 	
 	 
@@ -83,12 +91,22 @@
 	
 <script
 	src="<c:out value="${pageContext.request.contextPath}" />/resources/plugins/bootbox.min.js"></script> --%>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<%-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+ --%>
+<script
+	src="<c:out value="${pageContext.request.contextPath}" />/resources/plugins/3.6.0jquery.min.js"></script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/js/bootstrap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.min.js"></script>
+<%-- <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/js/bootstrap.min.js"></script>
+ --%>
+<script
+	src="<c:out value="${pageContext.request.contextPath}" />/resources/plugins/bootstrap/5.1.3/js/bootstrap.min.js"></script>
 	
 
+
+<%-- <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.min.js"></script>
+ --%>	
+<script
+	src="<c:out value="${pageContext.request.contextPath}" />/resources/plugins/5.5.2bootbox.min.js"></script> 
 
 
 <script
@@ -118,8 +136,13 @@
 
 	
    
-<script src="https://gw.alipayobjects.com/os/antv/pkg/_antv.g2-3.5.1/dist/g2.min.js"></script>
-<script src="https://gw.alipayobjects.com/os/antv/pkg/_antv.data-set-0.10.1/dist/data-set.min.js"></script>
+<%-- <script src="https://gw.alipayobjects.com/os/antv/pkg/_antv.g2-3.5.1/dist/g2.min.js"></script>
+<script src="https://gw.alipayobjects.com/os/antv/pkg/_antv.data-set-0.10.1/dist/data-set.min.js"></script> --%>
+
+<script src="<c:out value="${pageContext.request.contextPath}" />/resources/plugins/g2.min.js"></script>
+<script src="<c:out value="${pageContext.request.contextPath}" />/resources/plugins/data-set.min.js"></script>
+
+
 <script type="text/javascript" src="<c:out value="${pageContext.request.contextPath}" />/resources/js/echarts-5.2.2/dist/echarts.min.js"></script>
 
 

@@ -409,6 +409,7 @@ function getAppController($scope, $http, $cookieStore, $cookies, $anchorScroll, 
 			$scope.isSupport1 = true;
 			$scope.isSupport2 = false;
 			$scope.isSupport3 = false;
+			$scope.drawPlan();
 		}else if (index == 2) {
 			$scope.isSupport1 = false;
 			$scope.isSupport2 = true;
@@ -457,14 +458,123 @@ function getAppController($scope, $http, $cookieStore, $cookies, $anchorScroll, 
 		
 	}
 	
-	$scope.drawPlanCountry = function(){
-		var dom1 = document.getElementById("a2");
-        var myChart1 = echarts.init(dom1);
+	$scope.drawPlan = function(){
+		console.log("test")
+		document.getElementById("a1").removeAttribute('_echarts_instance_');
+		
+		var dom = document.getElementById("a1");
+        var myChart = echarts.init(dom);
         var app = {};
 
-        var option1;
+        var option;
 
-        option1 = {
+        option = {
+            tooltip: {
+                trigger: 'axis',
+                axisPointer: {
+                    type: 'shadow'
+                }
+            },
+            legend: {},
+            grid: {
+                left: '3%',
+                right: '4%',
+                bottom: '3%'
+            },
+            xAxis: [
+                {
+                    type: 'category',
+                    data:  $scope.ClassDataDrawPlan
+                    ,
+                    show :false
+
+                }
+            ],
+            yAxis: [
+                {
+                    type: 'value'
+                }
+            ],
+            series: [
+                
+                {
+                    name: '盤古開天',
+                    type: 'bar',
+                    stack: 'Ad',
+                    emphasis: {
+                        focus: 'series'
+                    },
+                    data: $scope.OpenDataDrawPlan 
+                },
+                {
+                    name: '國合PI',
+                    type: 'bar',
+                    stack: 'Ad',
+                    emphasis: {
+                        focus: 'series'
+                    },
+                    data: $scope.piDataDrawPlan
+                
+                },
+                {
+                    name: '短期訪問學者',
+                    type: 'bar',
+                    stack: 'Ad',
+                    emphasis: {
+                        focus: 'series'
+                    },
+                    data: $scope.shortDataDrawPlan
+                },
+                {
+                    name: '龍門計畫主持人',
+                    type: 'bar',
+                    stack: 'Ad',
+                    emphasis: {
+                        focus: 'series'
+                    },
+                    data: $scope.dragonDataDrawPlan 
+                },
+                {
+                    name: '政策邀訪學者',
+                    type: 'bar',
+                    stack: 'Ad',
+                    emphasis: {
+                        focus: 'series'
+                    },
+                    data: $scope.policyDataDrawPlan 
+                },
+                {
+                    name: '千里馬申請人',
+                    type: 'bar',
+                    stack: 'Ad',
+                    emphasis: {
+                        focus: 'series'
+                    },
+                    data: $scope.horseDataDrawPlan
+                }
+               
+            ]
+        };
+
+        if (option && typeof option === 'object') {
+            myChart.setOption(option);
+        }
+	}
+	
+	
+	
+	$scope.drawPlanCountry = function(){
+		console.log("test")
+		
+		document.getElementById("a1").removeAttribute('_echarts_instance_');
+		
+		var dom = document.getElementById("a1");
+        var myChart = echarts.init(dom);
+        var app = {};
+
+        var option;
+
+        option= {
             title: {
                 text: 'A-2補助人數(依領域及國家)'
             },
@@ -532,8 +642,8 @@ function getAppController($scope, $http, $cookieStore, $cookies, $anchorScroll, 
             ]
         };
 
-        if (option1 && typeof option1 === 'object') {
-        	myChart1.setOption(option1);
+        if (option && typeof option === 'object') {
+        	myChart.setOption(option,true);
         }
 	}
 	
@@ -581,105 +691,18 @@ function getAppController($scope, $http, $cookieStore, $cookies, $anchorScroll, 
 			
 			$scope.formData = response.data.formData;
 			
+			$scope.ClassDataDrawPlan = response.data.classData
+			$scope.OpenDataDrawPlan = response.data.openData 
+			$scope.piDataDrawPlan = response.data.piData 
+			$scope.shortDataDrawPlan = response.data.shortData 
+			$scope.dragonDataDrawPLan = response.data.dragonData 
+			$scope.policyDataDrawPLan = response.data.policyData 
+			$scope.horseDataDraw = response.data.horseData
 			
-			var dom = document.getElementById("a1");
-            var myChart = echarts.init(dom);
-            var app = {};
-
-            var option;
-
-            option = {
-                tooltip: {
-                    trigger: 'axis',
-                    axisPointer: {
-                        type: 'shadow'
-                    }
-                },
-                legend: {},
-                grid: {
-                    left: '3%',
-                    right: '4%',
-                    bottom: '3%'
-                },
-                xAxis: [
-                    {
-                        type: 'category',
-                        data:  response.data.classData 
-                        ,
-                        show :false
-
-                    }
-                ],
-                yAxis: [
-                    {
-                        type: 'value'
-                    }
-                ],
-                series: [
-                    
-                    {
-                        name: '盤古開天',
-                        type: 'bar',
-                        stack: 'Ad',
-                        emphasis: {
-                            focus: 'series'
-                        },
-                        data: response.data.openData 
-                    },
-                    {
-                        name: '國合PI',
-                        type: 'bar',
-                        stack: 'Ad',
-                        emphasis: {
-                            focus: 'series'
-                        },
-                        data: response.data.piData 
-                    
-                    },
-                    {
-                        name: '短期訪問學者',
-                        type: 'bar',
-                        stack: 'Ad',
-                        emphasis: {
-                            focus: 'series'
-                        },
-                        data: response.data.shortData 
-                    },
-                    {
-                        name: '龍門計畫主持人',
-                        type: 'bar',
-                        stack: 'Ad',
-                        emphasis: {
-                            focus: 'series'
-                        },
-                        data: response.data.dragonData 
-                    },
-                    {
-                        name: '政策邀訪學者',
-                        type: 'bar',
-                        stack: 'Ad',
-                        emphasis: {
-                            focus: 'series'
-                        },
-                        data: response.data.policyData 
-                    },
-                    {
-                        name: '千里馬申請人',
-                        type: 'bar',
-                        stack: 'Ad',
-                        emphasis: {
-                            focus: 'series'
-                        },
-                        data: response.data.horseData 
-                    }
-                   
-                ]
-            };
-
-            if (option && typeof option === 'object') {
-                myChart.setOption(option);
-            }
 			
+			
+			$scope.drawPlan();
+
 	
 			
 		}).catch(function() {

@@ -3,7 +3,6 @@
 <html ng-app="myApp">
 <%@ include file="../include/head.jsp"%>
 <script src="<c:out value="${pageContext.request.contextPath}" />/resources/js/sys/s11.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.min.js"></script>
 
 <body class="no-skin" ng-controller="getAppController" id="body">
 	<%@ include file="../include/f_navbar.jsp"%>

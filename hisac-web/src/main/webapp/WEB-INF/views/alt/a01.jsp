@@ -277,10 +277,7 @@
                                  </div>
                                  
                                  
-                                  <div class="col-sm-12 exportbtn"  ng-hide = !isSupport1>
-                                    <div id="a1" style="height: 600px; width: 100%"></div>
-                                    <!--補助資料分析 A-1補助人數(依領域) 堆積柱狀圖-->
-                                </div>
+                                 
                                  
                                  
                                  <div class="col-sm-12 exportbtn" ng-show = "isSupport2" >
@@ -319,9 +316,14 @@
                                     
                                 </div>
                                 
-                                 <div class="col-sm-12 exportbtn" >
-                                    <div id="a2" style="height: 600px; width: 100%"></div>
-                                    <!--A-2補助人數(依領域及國家)-->
+                                 <div class="col-sm-12"  >
+                                    <div class="col-sm-12"
+                                       id="a1" style="height: 600px; width: 100%">
+                                     </div>
+                                     
+                                    
+                                    
+                                    <!--補助資料分析 A-1補助人數(依領域) 堆積柱狀圖-->
                                 </div>
                                  
                                 
