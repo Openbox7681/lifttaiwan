@@ -77,12 +77,25 @@
 	src="<c:out value="${pageContext.request.contextPath}" />/resources/plugins/html5shiv.min.js"></script>
 <script
 	src="<c:out value="${pageContext.request.contextPath}" />/resources/plugins/respond.min.js"></script>
-<script
+<%-- <script
 	src="<c:out value="${pageContext.request.contextPath}" />/resources/plugins/jquery.min.js"></script>
 <script
 	src="<c:out value="${pageContext.request.contextPath}" />/resources/plugins/bootstrap/js/bootstrap.min.js"></script>
+	
 <script
-	src="<c:out value="${pageContext.request.contextPath}" />/resources/plugins/bootbox.min.js"></script>
+	src="<c:out value="${pageContext.request.contextPath}" />/resources/plugins/bootbox.min.js"></script> --%>
+	
+	
+<%-- <script
+	src="<c:out value="${pageContext.request.contextPath}" />/resources/plugins/3.6.0jquery.min.js"></script> --%>
+	
+<script
+	src="<c:out value="${pageContext.request.contextPath}" />/resources/plugins/2.1.3jquery.min.js"></script>
+<script
+	src="<c:out value="${pageContext.request.contextPath}" />/resources/plugins/bootstrap/5.1.3/js/bootstrap.min.js"></script>
+<script
+	src="<c:out value="${pageContext.request.contextPath}" />/resources/plugins/5.5.2bootbox.min.js"></script>
+
 <script
 	src="<c:out value="${pageContext.request.contextPath}" />/resources/plugins/angular/angular.min.js"></script>
 <script
