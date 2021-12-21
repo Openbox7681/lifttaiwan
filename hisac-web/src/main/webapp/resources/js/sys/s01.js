@@ -173,10 +173,7 @@ function getAppController($rootScope, $scope, $http, $cookieStore, $anchorScroll
 	
 	// Switch to Edit(Update) Mode Start
 	$scope.editData = function(id) {
-		bootbox.dialog({
-			closeButton: false,
-			message : '<i class="fas fa-fw fa-circle-notch fa-spin"></i>' + dataLoading 
-		});
+		
 		var request = {
 			Id : id
 		};
@@ -188,7 +185,6 @@ function getAppController($rootScope, $scope, $http, $cookieStore, $anchorScroll
 			$scope.Id = response.data[0].Id;
 			$scope.Name = response.data[0].Name;
 			$scope.IsEnable = response.data[0].IsEnable;
-			bootbox.hideAll();
 			
 		}).catch(function() {
 			bootbox.hideAll();
