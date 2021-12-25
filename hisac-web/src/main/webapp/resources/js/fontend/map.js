@@ -118,7 +118,7 @@ $(document).ready(function() {
 
 
 
-$(function() {
+$(document).ready(function() {
   const inbound = document.querySelector(".inbound");
   const outbound = document.querySelector(".outbound");
   const mechanism = document.querySelector(".mechanism");
