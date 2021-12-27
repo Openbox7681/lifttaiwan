@@ -23,17 +23,17 @@
 	<div class="container" id="mapadjust">
 		<div id="bgblock">
             <section id="map">
-            	<div class="map_bg">
+            	<div class="map_style">
 					<img src="<c:out value="${pageContext.request.contextPath}" />/resources/img/index_map.svg">                    
 					<div class="d1 d"></div>
                     <div class="box country1"><span>巴拿馬</span></div>
-                    <div class="s1 s"></div>
+                    <div class="s1 s max_point"></div>
                     <div class="box country4"> <span>台灣 </span></div>
                     <div class="s2 s"></div>
                     <div class="box country5"><span>德國</span></div>
                     <div class="t1 t"></div>
                     <div class="box country6"><span>馬來西亞</span></div>
-                    <div class="t4 t"></div>
+                    <div class="t2 t"></div>
                     <div class="box country7"><span>中國</span></div>
                     <div class="t3 t"></div>
                     <div class="box country8"><span>法國</span></div>
@@ -45,7 +45,7 @@
                     <div class="box country13"><span>越南</span></div>
                     <div class="o1 o"></div>
                     <div class="box country14"><span>美國</span></div>
-                    <div class="o4 o"></div>
+                    <div class="o2 o mid_point"></div>
                     <div class="box country15"><span>日本</span></div>
                 </div>
             </section>
@@ -437,7 +437,8 @@
                     <div class="line2"></div>
                     <div class="row">
                         <div class="col-md-6"><a class="button_fill_orange"
-                                href="pages/int-info.html"><span>六大領域Top20機構</span></a>
+                                href="<c:out value="${pageContext.request.contextPath}" />/fontend/institution">
+                                <span>六大領域Top20機構</span></a>
                             <div class="chart_area">
                                 <!--<img class="fill" src="img/index_cube.jpg">-->
                                 <div id="top20" style="width: 555px; height: 213px"></div>
@@ -447,7 +448,8 @@
                             </div>
                         </div>
                         <div class="col-md-6"><a class="button_fill_orange"
-                                href="pages/top-scholar.html"><span>六大領域Top20學者</span></a>
+                                href="<c:out value="${pageContext.request.contextPath}" />/fontend/scholar">
+                                <span>六大領域Top20學者</span></a>
                             <div class="chart_area">
                                 <img class="fill" src="<c:out value="${pageContext.request.contextPath}" />/resources/img/index_form.jpg">
                                 <div class="sharebtn">
@@ -456,7 +458,8 @@
                             </div>
                         </div>
                         <div class="col-md-6"><a class="button_fill_orange"
-                                href="pages/other-coop.html"><span>台灣及其他國家國際合作表現</span></a>
+                                href="<c:out value="${pageContext.request.contextPath}" />/fontend/cooperate">
+                                <span>台灣及其他國家國際合作表現</span></a>
                             <div class="chart_area">
                                 <!--<img class="fill" src="img/index_bar.jpg">-->
 
@@ -466,8 +469,9 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6"><a class="button_fill_orange" href="pages/six-area.html"><span>六大領域國際網絡
-                                </span></a>
+                        <div class="col-md-6"><a class="button_fill_orange" 
+                        	href="<c:out value="${pageContext.request.contextPath}" />/fontend/six">
+                        	<span>六大領域國際網絡</span></a>
                             <div class="chart_area">
                                 <!--<img class="fill" src="img/index_connect.jpg">-->
                                 <div id="connect" style="width: 555px; height: 333px"></div>

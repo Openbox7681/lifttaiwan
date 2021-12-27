@@ -1,4 +1,4 @@
-.d1, .d2, .d3, .s1, .s2, .s3, .t1, .t4, .t3, .u1, .u2, .u3, .u4, .g1, .v1, .o1, .o4, .o3 {
+.d1, .d2, .d3, .s1, .s2, .s3, .t1, .t2, .t3, .u1, .u2, .u3, .u4, .g1, .v1, .o1, .o2, .o3 {
   cursor: pointer;
   position: absolute;
   z-index: 2;
@@ -19,8 +19,8 @@
   height: 0.875rem;
   -webkit-box-shadow: 0 0 0 rgba(168, 126, 59, 0.4);
           box-shadow: 0 0 0 rgba(168, 126, 59, 0.4);
-  -webkit-animation: pulse 3s infinite;
-          animation: pulse 3s infinite;
+  -webkit-animation: pulse 1s infinite;
+          animation: pulse 1s infinite;
 }
 
 .d2 {
@@ -30,8 +30,8 @@
   height: 0.7rem;
   -webkit-box-shadow: 0 0 0 rgba(168, 126, 59, 0.4);
           box-shadow: 0 0 0 rgba(168, 126, 59, 0.4);
-  -webkit-animation: pulse 3s infinite;
-          animation: pulse 3s infinite;
+  -webkit-animation: pulse 1s infinite;
+          animation: pulse 1s infinite;
   opacity: 90%;
   -webkit-animation-delay: 1s;
           animation-delay: 1s;
@@ -44,8 +44,8 @@
   height: 0.6rem;
   -webkit-box-shadow: 0 0 0 rgba(168, 126, 59, 0.4);
           box-shadow: 0 0 0 rgba(168, 126, 59, 0.4);
-  -webkit-animation: pulse 3s infinite;
-          animation: pulse 3s infinite;
+  -webkit-animation: pulse 1s infinite;
+          animation: pulse 1s infinite;
   opacity: 80%;
   -webkit-animation-delay: 2s;
           animation-delay: 2s;
@@ -89,8 +89,8 @@
   height: 0.875rem;
   -webkit-box-shadow: 0 0 0 rgba(168, 126, 59, 0.4);
           box-shadow: 0 0 0 rgba(168, 126, 59, 0.4);
-  -webkit-animation: pulse 5s infinite;
-          animation: pulse 5s infinite;
+  -webkit-animation: pulse 1s infinite;
+          animation: pulse 1s infinite;
   opacity: 80%;
 }
 
@@ -102,8 +102,8 @@
   height: 0.7rem;
   -webkit-box-shadow: 0 0 0 rgba(168, 126, 59, 0.4);
           box-shadow: 0 0 0 rgba(168, 126, 59, 0.4);
-  -webkit-animation: pulse 3s infinite;
-          animation: pulse 3s infinite;
+  -webkit-animation: pulse 1s infinite;
+          animation: pulse 1s infinite;
   -webkit-animation-delay: 6s;
           animation-delay: 6s;
   opacity: 50%;
@@ -123,15 +123,15 @@
 }
 
 /*中國*/
-.t4 {
+.t2 {
   left: 71%;
   top: 36%;
   width: 0.8rem;
   height: 0.8rem;
   -webkit-box-shadow: 0 0 0 rgba(168, 126, 59, 0.4);
           box-shadow: 0 0 0 rgba(168, 126, 59, 0.4);
-  -webkit-animation: pulse 3s infinite;
-          animation: pulse 3s infinite;
+  -webkit-animation: pulse 1s infinite;
+          animation: pulse 1s infinite;
   -webkit-animation-delay: 8s;
           animation-delay: 8s;
   opacity: 70%;
@@ -145,8 +145,8 @@
   height: 0.6rem;
   -webkit-box-shadow: 0 0 0 rgba(168, 126, 59, 0.4);
           box-shadow: 0 0 0 rgba(168, 126, 59, 0.4);
-  -webkit-animation: pulse 3s infinite;
-          animation: pulse 3s infinite;
+  -webkit-animation: pulse 1s infinite;
+          animation: pulse 1s infinite;
   -webkit-animation-delay: 9s;
           animation-delay: 9s;
   opacity: 40%;
@@ -160,8 +160,8 @@
   height: 0.875rem;
   -webkit-box-shadow: 0 0 0 rgba(168, 126, 59, 0.4);
           box-shadow: 0 0 0 rgba(168, 126, 59, 0.4);
-  -webkit-animation: pulse 3s infinite;
-          animation: pulse 3s infinite;
+  -webkit-animation: pulse 1s infinite;
+          animation: pulse 1s infinite;
   opacity: 80%;
 }
 
@@ -172,8 +172,8 @@
   height: 0.6rem;
   -webkit-box-shadow: 0 0 0 rgba(168, 126, 59, 0.4);
           box-shadow: 0 0 0 rgba(168, 126, 59, 0.4);
-  -webkit-animation: pulse 3s infinite;
-          animation: pulse 3s infinite;
+  -webkit-animation: pulse 1s infinite;
+          animation: pulse 1s infinite;
   -webkit-animation-delay: 11s;
           animation-delay: 11s;
 }
@@ -186,8 +186,8 @@
   height: 0.875rem;
   -webkit-box-shadow: 0 0 0 rgba(168, 126, 59, 0.4);
           box-shadow: 0 0 0 rgba(168, 126, 59, 0.4);
-  -webkit-animation: pulse 3s infinite;
-          animation: pulse 3s infinite;
+  -webkit-animation: pulse 1s infinite;
+          animation: pulse 1s infinite;
   -webkit-animation-delay: 12s;
           animation-delay: 12s;
 }
@@ -199,8 +199,8 @@
   height: 0.7rem;
   -webkit-box-shadow: 0 0 0 rgba(168, 126, 59, 0.4);
           box-shadow: 0 0 0 rgba(168, 126, 59, 0.4);
-  -webkit-animation: pulse 3s infinite;
-          animation: pulse 3s infinite;
+  -webkit-animation: pulse 1s infinite;
+          animation: pulse 1s infinite;
   -webkit-animation-delay: 14s;
           animation-delay: 14s;
 }
@@ -213,8 +213,8 @@
   height: 0.875rem;
   -webkit-box-shadow: 0 0 0 rgba(168, 126, 59, 0.4);
           box-shadow: 0 0 0 rgba(168, 126, 59, 0.4);
-  -webkit-animation: pulse 3s infinite;
-          animation: pulse 3s infinite;
+  -webkit-animation: pulse 1s infinite;
+          animation: pulse 1s infinite;
   -webkit-animation-delay: 15s;
           animation-delay: 15s;
 }
@@ -227,22 +227,22 @@
   height: 0.8rem;
   -webkit-box-shadow: 0 0 0 rgba(168, 126, 59, 0.4);
           box-shadow: 0 0 0 rgba(168, 126, 59, 0.4);
-  -webkit-animation: pulse 3s infinite;
-          animation: pulse 3s infinite;
+  -webkit-animation: pulse 1s infinite;
+          animation: pulse 1s infinite;
   -webkit-animation-delay: 3s;
           animation-delay: 3s;
 }
 
 /*日本*/
-.o4 {
+.o2 {
   left: 79%;
   top: 29%;
   width: 0.875rem;
   height: 0.875rem;
   -webkit-box-shadow: 0 0 0 rgba(168, 126, 59, 0.4);
           box-shadow: 0 0 0 rgba(168, 126, 59, 0.4);
-  -webkit-animation: pulse 3s infinite;
-          animation: pulse 3s infinite;
+  -webkit-animation: pulse 1s infinite;
+          animation: pulse 1s infinite;
   -webkit-animation-delay: 4s;
           animation-delay: 4s;
 }
@@ -254,8 +254,8 @@
   height: 0.75rem;
   -webkit-box-shadow: 0 0 0 rgba(168, 126, 59, 0.4);
           box-shadow: 0 0 0 rgba(168, 126, 59, 0.4);
-  -webkit-animation: pulse 3s infinite;
-          animation: pulse 3s infinite;
+  -webkit-animation: pulse 1s infinite;
+          animation: pulse 1s infinite;
   -webkit-animation-delay: 13s;
           animation-delay: 13s;
 }
@@ -284,8 +284,8 @@
   background-color: #ffbf61;
   -webkit-box-shadow: 0 0 0 rgba(252, 198, 3, 0.4);
           box-shadow: 0 0 0 rgba(252, 198, 3, 0.4);
-  -webkit-animation: pulse 3s infinite;
-          animation: pulse 3s infinite;
+  -webkit-animation: pulse 1s infinite;
+          animation: pulse 1s infinite;
   -webkit-animation-delay: 4s;
           animation-delay: 4s;
 }
@@ -432,4 +432,19 @@
     -webkit-box-shadow: 0 0 0 0 rgba(255, 204, 0, 0);
             box-shadow: 0 0 0 0 rgba(255, 204, 0, 0);
   }
+}
+
+.min_point {
+    width: 0.875rem;
+    height: 0.875rem;
+}
+
+.mid_point {
+    width: 1.9rem;
+    height: 1.9rem;
+}
+
+.max_point {
+    width: 3rem;
+    height: 3rem;
 }

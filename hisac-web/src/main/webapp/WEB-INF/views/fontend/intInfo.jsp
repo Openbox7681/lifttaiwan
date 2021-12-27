@@ -1,7 +1,7 @@
 ﻿<%@ page language="java" contentType="text/html;charset=UTF-8"%>
 <!DOCTYPE html>
 <html ng-app="myApp">
-<%@ include file="../include/head_index.jsp"%>
+<%@ include file="../include/head_index_info.jsp"%>
 <!-- =====  vendor  =====-->
 <link rel="stylesheet" href="<c:out value="${pageContext.request.contextPath}" />/resources/css/reset.min.css">
 <link rel="stylesheet" href="<c:out value="${pageContext.request.contextPath}" />/resources/css/5.0.2bootstrap.css">

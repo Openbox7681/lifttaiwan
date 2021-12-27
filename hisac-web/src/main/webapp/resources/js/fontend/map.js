@@ -46,7 +46,7 @@ $(document).ready(function() {
 	  $("#result").text("11");
   });
   
-  $(".t4").click(function() { 
+  $(".t2").click(function() { 
     $(".change_text").text("中國");
     $("#inbound").text("0");
 	  $("#outbound").text("0");
@@ -94,7 +94,7 @@ $(document).ready(function() {
 	  $("#result").text("383");
   });
                     
-  $(".o4").click(function() { 
+  $(".o2").click(function() { 
     $(".change_text").text("日本");
     $("#inbound").text("373");
 	  $("#outbound").text("23");
@@ -332,13 +332,13 @@ $(".t1").mouseleave(
   }
 );
 
-$(".t4").mouseenter(
+$(".t2").mouseenter(
   function(){
     $(".country7").fadeIn();
   }
 
 );
-$(".t4").mouseleave(
+$(".t2").mouseleave(
   function(){
   	$(".country7").fadeOut(1000);
   }
@@ -404,13 +404,13 @@ $(".o1").mouseleave(
   	$(".country14").fadeOut(1000);
   }
 );
-$(".o4").mouseenter(
+$(".o2").mouseenter(
   function(){
     $(".country15").fadeIn();
   }
 
 );
-$(".o4").mouseleave(
+$(".o2").mouseleave(
   function(){
   	$(".country15").fadeOut(1000);
   }
