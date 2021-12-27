@@ -16,3 +16,9 @@
 	.fade_style{
 		opacity: 100%!important;
 	}
+    .map_style {
+        position: relative!important;
+        margin-top: 2rem!important;
+        width: 100%!important;
+        display: inline-block!important;
+    }

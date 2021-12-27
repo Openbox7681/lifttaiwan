@@ -23,17 +23,17 @@
 	<div class="container" id="mapadjust">
 		<div id="bgblock">
             <section id="map">
-            	<div class="map_bg">
+            	<div class="map_style">
 					<img src="<c:out value="${pageContext.request.contextPath}" />/resources/img/index_map.svg">                    
 					<div class="d1 d"></div>
                     <div class="box country1"><span>巴拿馬</span></div>
-                    <div class="s1 s"></div>
+                    <div class="s1 s max_point"></div>
                     <div class="box country4"> <span>台灣 </span></div>
                     <div class="s2 s"></div>
                     <div class="box country5"><span>德國</span></div>
                     <div class="t1 t"></div>
                     <div class="box country6"><span>馬來西亞</span></div>
-                    <div class="t4 t"></div>
+                    <div class="t2 t"></div>
                     <div class="box country7"><span>中國</span></div>
                     <div class="t3 t"></div>
                     <div class="box country8"><span>法國</span></div>
@@ -45,7 +45,7 @@
                     <div class="box country13"><span>越南</span></div>
                     <div class="o1 o"></div>
                     <div class="box country14"><span>美國</span></div>
-                    <div class="o4 o"></div>
+                    <div class="o2 o mid_point"></div>
                     <div class="box country15"><span>日本</span></div>
                 </div>
             </section>
