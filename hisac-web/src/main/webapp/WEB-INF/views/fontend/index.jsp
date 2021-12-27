@@ -181,32 +181,35 @@
                                 <div class="row">
                                     <div class="col-md-4">
                                         <ul class="area_tabs">
-                                            <li> <span>半導體材料：109/人</span></li>
-                                            <li> <span>半導體設備：891/人</span></li>
-                                            <li> <span>晶圓代工：548/人</span></li>
-                                            <li> <span>晶圓封測：623/人</span></li>
-                                            <li> <span>量子科技：764/人</span></li>
-                                            <li> <span>零接觸生活科技：395/人</span></li>
+                                            <li> <span>AI晶片：1388/人</span></li>
+                                            <li> <span>人工智慧：8168/人</span></li>
+                                            <li> <span>半導體材料：5981/人</span></li>
+                                            <li> <span>半導體設備：725/人</span></li>
+                                            <li> <span>行動通訊：552/人</span></li>
+                                            <li> <span>系統軟體：4285/人</span></li>
+                                            <li> <span>物聯網(含感測器)：352/人</span></li>
                                         </ul>
                                     </div>
                                     <div class="col-md-4">
                                         <ul class="area_tabs">
-                                            <li> <span>半導體材料：109/人</span></li>
-                                            <li> <span>半導體設備：891/人</span></li>
-                                            <li> <span>晶圓代工：548/人</span></li>
-                                            <li> <span>晶圓封測：623/人</span></li>
-                                            <li> <span>量子科技：764/人</span></li>
-                                            <li> <span>零接觸生活科技：395/人</span></li>
+                                            <li> <span>晶圓代工：21/人</span></li>
+                                            <li> <span>晶圓封測：5499/人</span></li>
+                                            <li> <span>智慧運輸：24/人</span></li>
+                                            <li> <span>量子科技：822/人</span></li>
+                                            <li> <span>資安支援：14/人</span></li>
+                                            <li> <span>資安防護：1/人</span></li>
+                                            <li> <span>資料中心(含伺服器)：20/人</span></li>
                                         </ul>
                                     </div>
                                     <div class="col-md-4">
                                         <ul class="area_tabs">
-                                            <li> <span>半導體材料：109/人</span></li>
-                                            <li> <span>半導體設備：891/人</span></li>
-                                            <li> <span>晶圓代工：548/人</span></li>
-                                            <li> <span>晶圓封測：623/人</span></li>
-                                            <li> <span>量子科技：764/人</span></li>
-                                            <li> <span>零接觸生活科技：395/人 </span></li>
+                                            <li> <span>運動科技：1952/人</span></li>
+                                            <li> <span>零接觸生活科技：115/人</span></li>
+                                            <li> <span>網路通訊：33人</span></li>
+                                            <li> <span>數位娛樂：4/人</span></li>
+                                            <li> <span>數據科學：154/人</span></li>
+                                            <li> <span>衛星通訊：970/人 </span></li>
+                                            <li> <span>積體電路設計：115/人 </span></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -252,32 +255,11 @@
                             <div class="row">
                                 <div class="col-md-4">
                                     <ul class="area_tabs deepred">
-                                        <li> <span>半導體材料：109/人</span></li>
-                                        <li> <span>半導體設備：891/人</span></li>
-                                        <li> <span>晶圓代工：548/人</span></li>
-                                        <li> <span>晶圓封測：623/人</span></li>
-                                        <li> <span>量子科技：764/人</span></li>
-                                        <li> <span>零接觸生活科技：395/人</span></li>
-                                    </ul>
-                                </div>
-                                <div class="col-md-4">
-                                    <ul class="area_tabs deepred">
-                                        <li> <span>半導體材料：109/人</span></li>
-                                        <li> <span>半導體設備：891/人</span></li>
-                                        <li> <span>晶圓代工：548/人</span></li>
-                                        <li> <span>晶圓封測：623/人</span></li>
-                                        <li> <span>量子科技：764/人</span></li>
-                                        <li> <span>零接觸生活科技：395/人</span></li>
-                                    </ul>
-                                </div>
-                                <div class="col-md-4">
-                                    <ul class="area_tabs deepred">
-                                        <li> <span>半導體材料：109/人</span></li>
-                                        <li> <span>半導體設備：891/人</span></li>
-                                        <li> <span>晶圓代工：548/人</span></li>
-                                        <li> <span>晶圓封測：623/人</span></li>
-                                        <li> <span>量子科技：764/人</span></li>
-                                        <li> <span>零接觸生活科技：395/人 </span></li>
+                                        <li> <span>再生醫療：12256/人</span></li>
+                                        <li> <span>健康管理：13423/人</span></li>
+                                        <li> <span>智慧醫材：1794/人</span></li>
+                                        <li> <span>智慧醫療：1668/人</span></li>
+                                        <li> <span>精準醫療(含遠距醫療)：11103/人</span></li>
                                     </ul>
                                 </div>
                             </div>
@@ -287,32 +269,17 @@
                             <div class="row">
                                 <div class="col-md-4">
                                     <ul class="area_tabs yellow">
-                                        <li> <span>半導體材料：109/人</span></li>
-                                        <li> <span>半導體設備：891/人</span></li>
-                                        <li> <span>晶圓代工：548/人</span></li>
-                                        <li> <span>晶圓封測：623/人</span></li>
-                                        <li> <span>量子科技：764/人</span></li>
-                                        <li> <span>零接觸生活科技：395/人</span></li>
+                                        <li> <span>太空發射技術：2007/人</span></li>
+                                        <li> <span>太空檢測技術：2486/人</span></li>
+                                        <li> <span>推進系統技術：14/人</span></li>
+                                        <li> <span>船舶核心技術：825/人</span></li>
+                                        <li> <span>發動機技術：66/人</span></li>
+                                        <li> <span>衛星通訊：970/人</span></li>
                                     </ul>
                                 </div>
                                 <div class="col-md-4">
                                     <ul class="area_tabs yellow">
-                                        <li> <span>半導體材料：109/人</span></li>
-                                        <li> <span>半導體設備：891/人</span></li>
-                                        <li> <span>晶圓代工：548/人</span></li>
-                                        <li> <span>晶圓封測：623/人</span></li>
-                                        <li> <span>量子科技：764/人</span></li>
-                                        <li> <span>零接觸生活科技：395/人</span></li>
-                                    </ul>
-                                </div>
-                                <div class="col-md-4">
-                                    <ul class="area_tabs yellow">
-                                        <li> <span>半導體材料：109/人</span></li>
-                                        <li> <span>半導體設備：891/人</span></li>
-                                        <li> <span>晶圓代工：548/人</span></li>
-                                        <li> <span>晶圓封測：623/人</span></li>
-                                        <li> <span>量子科技：764/人</span></li>
-                                        <li> <span>零接觸生活科技：395/人 </span></li>
+                                        <li> <span>戰機關鍵技術：1/人</span></li>
                                     </ul>
                                 </div>
                             </div>
@@ -322,32 +289,12 @@
                             <div class="row">
                                 <div class="col-md-4">
                                     <ul class="area_tabs green">
-                                        <li> <span>半導體材料：109/人</span></li>
-                                        <li> <span>半導體設備：891/人</span></li>
-                                        <li> <span>晶圓代工：548/人</span></li>
-                                        <li> <span>晶圓封測：623/人</span></li>
-                                        <li> <span>量子科技：764/人</span></li>
-                                        <li> <span>零接觸生活科技：395/人</span></li>
-                                    </ul>
-                                </div>
-                                <div class="col-md-4">
-                                    <ul class="area_tabs green">
-                                        <li> <span>半導體材料：109/人</span></li>
-                                        <li> <span>半導體設備：891/人</span></li>
-                                        <li> <span>晶圓代工：548/人</span></li>
-                                        <li> <span>晶圓封測：623/人</span></li>
-                                        <li> <span>量子科技：764/人</span></li>
-                                        <li> <span>零接觸生活科技：395/人</span></li>
-                                    </ul>
-                                </div>
-                                <div class="col-md-4">
-                                    <ul class="area_tabs green">
-                                        <li> <span>半導體材料：109/人</span></li>
-                                        <li> <span>半導體設備：891/人</span></li>
-                                        <li> <span>晶圓代工：548/人</span></li>
-                                        <li> <span>晶圓封測：623/人</span></li>
-                                        <li> <span>量子科技：764/人</span></li>
-                                        <li> <span>零接觸生活科技：395/人 </span></li>
+                                        <li> <span>太陽光電：10416/人</span></li>
+                                        <li> <span>水下基礎：4714/人</span></li>
+                                        <li> <span>風機系統：1405/人</span></li>
+                                        <li> <span>海事工程：2034/人</span></li>
+                                        <li> <span>電力設備：183/人</span></li>
+                                        <li> <span>離岸風電：1383/人</span></li>
                                     </ul>
                                 </div>
                             </div>
@@ -357,32 +304,10 @@
                             <div class="row">
                                 <div class="col-md-4">
                                     <ul class="area_tabs lightblue">
-                                        <li> <span>半導體材料：109/人</span></li>
-                                        <li> <span>半導體設備：891/人</span></li>
-                                        <li> <span>晶圓代工：548/人</span></li>
-                                        <li> <span>晶圓封測：623/人</span></li>
-                                        <li> <span>量子科技：764/人</span></li>
-                                        <li> <span>零接觸生活科技：395/人</span></li>
-                                    </ul>
-                                </div>
-                                <div class="col-md-4">
-                                    <ul class="area_tabs lightblue">
-                                        <li> <span>半導體材料：109/人</span></li>
-                                        <li> <span>半導體設備：891/人</span></li>
-                                        <li> <span>晶圓代工：548/人</span></li>
-                                        <li> <span>晶圓封測：623/人</span></li>
-                                        <li> <span>量子科技：764/人</span></li>
-                                        <li> <span>零接觸生活科技：395/人</span></li>
-                                    </ul>
-                                </div>
-                                <div class="col-md-4">
-                                    <ul class="area_tabs lightblue">
-                                        <li> <span>半導體材料：109/人</span></li>
-                                        <li> <span>半導體設備：891/人</span></li>
-                                        <li> <span>晶圓代工：548/人</span></li>
-                                        <li> <span>晶圓封測：623/人</span></li>
-                                        <li> <span>量子科技：764/人</span></li>
-                                        <li> <span>零接觸生活科技：395/人 </span></li>
+                                        <li> <span>民生物資與食品加工鏈：11/人</span></li>
+                                        <li> <span>再生能源：2219/人</span></li>
+                                        <li> <span>安全庫存：11/人</span></li>
+                                        <li> <span>救災資源資料庫：845/人</span></li>
                                     </ul>
                                 </div>
                             </div>
@@ -392,32 +317,7 @@
                             <div class="row">
                                 <div class="col-md-4">
                                     <ul class="area_tabs blue">
-                                        <li> <span>半導體材料：109/人</span></li>
-                                        <li> <span>半導體設備：891/人</span></li>
-                                        <li> <span>晶圓代工：548/人</span></li>
-                                        <li> <span>晶圓封測：623/人</span></li>
-                                        <li> <span>量子科技：764/人</span></li>
-                                        <li> <span>零接觸生活科技：395/人</span></li>
-                                    </ul>
-                                </div>
-                                <div class="col-md-4">
-                                    <ul class="area_tabs blue">
-                                        <li> <span>半導體材料：109/人</span></li>
-                                        <li> <span>半導體設備：891/人</span></li>
-                                        <li> <span>晶圓代工：548/人</span></li>
-                                        <li> <span>晶圓封測：623/人</span></li>
-                                        <li> <span>量子科技：764/人</span></li>
-                                        <li> <span>零接觸生活科技：395/人</span></li>
-                                    </ul>
-                                </div>
-                                <div class="col-md-4">
-                                    <ul class="area_tabs blue">
-                                        <li> <span>半導體材料：109/人</span></li>
-                                        <li> <span>半導體設備：891/人</span></li>
-                                        <li> <span>晶圓代工：548/人</span></li>
-                                        <li> <span>晶圓封測：623/人</span></li>
-                                        <li> <span>量子科技：764/人</span></li>
-                                        <li> <span>零接觸生活科技：395/人 </span></li>
+                                        <li> <span>其他：1403/人</span></li>
                                     </ul>
                                 </div>
                             </div>
@@ -451,7 +351,7 @@
                                 href="<c:out value="${pageContext.request.contextPath}" />/fontend/scholar">
                                 <span>六大領域Top20學者</span></a>
                             <div class="chart_area">
-                                <img class="fill" src="<c:out value="${pageContext.request.contextPath}" />/resources/img/index_form.jpg">
+                                <img class="table_img" src="<c:out value="${pageContext.request.contextPath}" />/resources/img/index_form.jpg">
                                 <div class="sharebtn">
                                 	<img src="<c:out value="${pageContext.request.contextPath}" />/resources/img/icon/icon_share.svg">
                                 </div>

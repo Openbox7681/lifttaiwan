@@ -22,3 +22,8 @@
         width: 100%!important;
         display: inline-block!important;
     }
+    .table_img{
+    	max-width: 100%!important;
+    	object-fit: cover!important;
+    	height: 213.641px!important;
+    }

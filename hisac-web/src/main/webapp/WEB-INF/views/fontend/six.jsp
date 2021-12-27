@@ -309,10 +309,8 @@
 
             var option;
 
-            var ROOT_PATH = 'https://cdn.jsdelivr.net/gh/apache/echarts-website@asf-site/examples';
-
             myChart.showLoading();
-            $.getJSON(ROOT_PATH + '/data/asset/data/les-miserables.json', function (graph) {
+            $.getJSON('../resources/js/connect.json', function (graph) {
                 myChart.hideLoading();
                 graph.nodes.forEach(function (node) {
                     node.label = {

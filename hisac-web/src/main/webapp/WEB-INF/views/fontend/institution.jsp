@@ -54,63 +54,123 @@
                                                                 <tbody>
                                                                     <tr>
                                                                         <th scope="row">1</th>
-                                                                        <td>Mark</td>
-                                                                        <td>Univ British Columbia</td>
-                                                                        <td>335598</td>
+                                                                        <td>Harvard University</td>
+                                                                        <td>US</td>
+                                                                        <td>509544</td>
                                                                     </tr>
                                                                     <tr>
                                                                         <th scope="row">2</th>
-                                                                        <td>Jacob</td>
-                                                                        <td>INAF</td>
-                                                                        <td>28391 </td>
+                                                                        <td>University of California, Los Angeles</td>
+                                                                        <td>US</td>
+                                                                        <td>288695</td>
                                                                     </tr>
                                                                     <tr>
                                                                         <th scope="row">3</th>
-                                                                        <td>Larry</td>
-                                                                        <td>Univ British Columbia</td>
-                                                                        <td>28189 </td>
+                                                                        <td>University of Toronto</td>
+                                                                        <td>Canada</td>
+                                                                        <td>287620</td>
                                                                     </tr>
                                                                     <tr>
                                                                         <th scope="row">4</th>
-                                                                        <td>Larry</td>
-                                                                        <td>Univ British Columbia</td>
-                                                                        <td>27674 </td>
+                                                                        <td>University of Michigan</td>
+                                                                        <td>US</td>
+                                                                        <td>269772</td>
                                                                     </tr>
                                                                     <tr>
                                                                         <th scope="row">5</th>
-                                                                        <td>Larry</td>
-                                                                        <td>Univ British Columbia</td>
-                                                                        <td>25760 </td>
+                                                                        <td>University of Washington</td>
+                                                                        <td>US</td>
+                                                                        <td>247978</td>
                                                                     </tr>
                                                                     <tr>
                                                                         <th scope="row">6</th>
-                                                                        <td>Larry</td>
-                                                                        <td>Univ British Columbia</td>
-                                                                        <td>25633 </td>
+                                                                        <td>The University of Tokyo</td>
+                                                                        <td>Japan</td>
+                                                                        <td>247161</td>
                                                                     </tr>
                                                                     <tr>
                                                                         <th scope="row">7</th>
-                                                                        <td>Larry</td>
-                                                                        <td>Univ British Columbia</td>
-                                                                        <td>25332 </td>
+                                                                        <td>Stanford University</td>
+                                                                        <td>US</td>
+                                                                        <td>236799</td>
                                                                     </tr>
                                                                     <tr>
                                                                         <th scope="row">8</th>
-                                                                        <td>Larry</td>
-                                                                        <td>Univ British Columbia</td>
-                                                                        <td>25217 </td>
+                                                                        <td>Johns Hopkins University</td>
+                                                                        <td>US</td>
+                                                                        <td>225704</td>
                                                                     </tr>
                                                                     <tr>
                                                                         <th scope="row">9</th>
-                                                                        <td>Larry</td>
-                                                                        <td>Univ British Columbia</td>
-                                                                        <td>25032 </td>
+                                                                        <td>University of Pennsylvania</td>
+                                                                        <td>US</td>
+                                                                        <td>222160</td>
                                                                     </tr>
                                                                     <tr>
                                                                         <th scope="row">10</th>
-                                                                        <td>Larry</td>
-                                                                        <td>Univ British Columbia</td>
-                                                                        <td>22344 </td>
+                                                                        <td>University of Minnesota</td>
+                                                                        <td>US</td>
+                                                                        <td>216489</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <th scope="row">11</th>
+                                                                        <td>University of Oxford</td>
+                                                                        <td>UK</td>
+                                                                        <td>211076</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <th scope="row">12</th>
+                                                                        <td>University of California, San Francisco</td>
+                                                                        <td>US</td>
+                                                                        <td>204677</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <th scope="row">13</th>
+                                                                        <td>Chinese Academy of Sciences</td>
+                                                                        <td>China</td>
+                                                                        <td>204316</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <th scope="row">14</th>
+                                                                        <td>University of Cambridge</td>
+                                                                        <td>UK</td>
+                                                                        <td>199231</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <th scope="row">15</th>
+                                                                        <td>University of Pittsburgh-Pittsburgh Campus</td>
+                                                                        <td>US</td>
+                                                                        <td>190815</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <th scope="row">16</th>
+                                                                        <td>Duke University</td>
+                                                                        <td>US</td>
+                                                                        <td>190139</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <th scope="row">17</th>
+                                                                        <td>University of California, Berkeley</td>
+                                                                        <td>US</td>
+                                                                        <td>187489</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <th scope="row">18</th>
+                                                                        <td>Yale University</td>
+                                                                        <td>US</td>
+                                                                        <td>186970</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <th scope="row">19</th>
+                                                                        <td>Columbia University</td>
+                                                                        <td>US</td>
+                                                                        <td>180307</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <th scope="row">20</th>
+                                                                        <td>University of California, San Diego</td>
+                                                                        <td>US</td>
+                                                                        <td>178862</td>
                                                                     </tr>
                                                                 </tbody>
                                                             </table>
@@ -397,34 +457,84 @@
                         type: 'treemap',
                         data: [
                             {
-                                name: 'nodeA',
-                                value: 10,
-                                children: [
-                                    {
-                                        name: 'nodeAa',
-                                        value: 4
-                                    },
-                                    {
-                                        name: 'nodeAb',
-                                        value: 6
-                                    }
-                                ]
+                                name: 'Harvard University',
+                                value: 509544
                             },
                             {
-                                name: 'nodeB',
-                                value: 20,
-                                children: [
-                                    {
-                                        name: 'nodeBa',
-                                        value: 20,
-                                        children: [
-                                            {
-                                                name: 'nodeBa1',
-                                                value: 20
-                                            }
-                                        ]
-                                    }
-                                ]
+                                name: 'University of California, Los Angeles',
+                                value: 288695
+                            },
+                            {
+                                name: 'University of Toronto',
+                                value: 287620
+                            },
+                            {
+                                name: 'University of Michigan',
+                                value: 269772
+                            },
+                            {
+                                name: 'University of Washington',
+                                value: 247978
+                            },
+                            {
+                                name: 'The University of Tokyo',
+                                value: 247161
+                            },
+                            {
+                                name: 'Stanford University',
+                                value: 236799
+                            },
+                            {
+                                name: 'Johns Hopkins University',
+                                value: 225704
+                            },
+                            {
+                                name: 'University of Pennsylvania',
+                                value: 222160
+                            },
+                            {
+                                name: 'University of Minnesota',
+                                value: 216489
+                            },
+                            {
+                                name: 'University of Oxford',
+                                value: 211076
+                            },
+                            {
+                                name: 'University of California, San Francisco',
+                                value: 204677
+                            },
+                            {
+                                name: 'Chinese Academy of Sciences',
+                                value: 204316
+                            },
+                            {
+                                name: 'University of Cambridge',
+                                value: 199231
+                            },
+                            {
+                                name: 'University of Pittsburgh-Pittsburgh Campus',
+                                value: 190815
+                            },
+                            {
+                                name: 'Duke University',
+                                value: 190139
+                            },
+                            {
+                                name: 'University of California, Berkeley',
+                                value: 187489
+                            },
+                            {
+                                name: 'Yale University',
+                                value: 186970
+                            },
+                            {
+                                name: 'Columbia University',
+                                value: 180307
+                            },
+                            {
+                                name: 'University of California, San Diego',
+                                value: 178862
                             }
                         ]
                     }
