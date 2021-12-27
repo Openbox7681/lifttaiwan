@@ -1,5 +1,6 @@
 package tw.gov.mohw.hisac.web.controller.api;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -186,15 +187,54 @@ public class f_navbarController extends BaseController {
 	@RequestMapping(value = "/queryLines", method = RequestMethod.POST)
 	public String queryLines(Locale locale, HttpServletRequest request, Model model, @RequestBody String json) {
 		JSONObject listjson = new JSONObject();
-		JSONArray sn_array = new JSONArray();
+		JSONArray sn_array= new JSONArray();
+		JSONArray sn_array_inNoCorList = new JSONArray();
+		JSONArray sn_array_outNotCorList = new JSONArray();
+		JSONArray sn_array_outboundList = new JSONArray();
+
 		
 		List<Object[]> lineList = inboundPeoplePaperService.getLineData();
+		List<Object[]> inNoCorList = inboundPeoplePaperNoCorService.getLineData();
+
+		List<Object[]> outNotCorList = outboundPeoplePaperNoCorService.getLineData();
+		List<Object[]> outboundList = outboundPeoplePaperService.getLineData();
+
+
+		NumberFormat nf = NumberFormat.getNumberInstance();
+		nf.setMaximumFractionDigits(3);
+
 		if(lineList.size()>0) {
-			for(Object[] lineData : lineList) {
-				sn_array.put(lineData[1].toString());
+			for(int i = 0 ; i< lineList.size(); i++) {
+				Float value = Float.valueOf(lineList.get(i)[1].toString());
+				Float noCorValue = Float.valueOf(inNoCorList.get(i)[1].toString());
+				Float outvalue = Float.valueOf(outboundList.get(i)[1].toString());
+				Float noCorOutvalue = Float.valueOf(outNotCorList.get(i)[1].toString());
+				
+				value = (float)(Math.round(value*100))/100;
+				noCorValue = (float)(Math.round(noCorValue*100))/100;
+				outvalue = (float)(Math.round(outvalue*100))/100;
+				noCorOutvalue = (float)(Math.round(noCorOutvalue*100))/100;
+				
+				sn_array.put(value);
+				noCorValue = value / noCorValue;
+				sn_array_inNoCorList.put(nf.format(noCorValue));	
+				
+				sn_array_outboundList.put(outvalue);
+				noCorOutvalue = outvalue / noCorOutvalue;
+				sn_array_outNotCorList.put(nf.format(noCorOutvalue));
+				
 			}
+			
 		}
+	
+
+		
 		listjson.put("lineData", sn_array);
+		listjson.put("inNoCorlineData", sn_array_inNoCorList);
+		listjson.put("outNotCorlineData", sn_array_outNotCorList);
+		listjson.put("outlineData", sn_array_outboundList);
+
+		
 		
 		model.addAttribute("json", listjson.toString());
 		return "msg";

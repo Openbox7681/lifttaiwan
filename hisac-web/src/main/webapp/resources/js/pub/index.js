@@ -709,10 +709,16 @@ function getAppController($scope, $http, $window) {
 		            text: ''
 		        },
 		        tooltip: {
-		            trigger: 'axis'
+		            trigger: 'axis',
+		            	axisPointer: {
+		            	      type: 'cross',
+		            	      crossStyle: {
+		            	        color: '#999'
+		            	      }
+		            	    }
 		        },
 		        legend: {
-		            data: ['In-bound']
+		            data: ['In-bound平均發表篇數', 'Out-bound平均發表篇數' , 'In-bound國際合作篇數' , 'Out-bound國際合作篇數']
 		        },
 		        grid: {
 		            left: '3%',
@@ -728,19 +734,62 @@ function getAppController($scope, $http, $window) {
 		        },
 		        xAxis: {
 		            type: 'category',
-		            boundaryGap: false,
-		            data: ['2011','2012','2013','2014','2015','2016','2017','2018','2019','2020']
+		            data: ['2011','2012','2013','2014','2015','2016','2017','2018','2019','2020'],
+		            axisPointer: {
+		                type: 'shadow'
+		              }
 		        },
-		        yAxis: {
-		            type: 'value'
-		        },
+		        yAxis: [{
+		            type: 'value',
+		            name: '篇數',
+		            min: 0,
+		            max: 30000,
+		            interval: 5000,
+		            axisLabel: {
+		              formatter: '{value} 篇'
+		            }
+		          }
+		        ,{
+		        	 type: 'value',
+			            name: '篇數',
+			            min: 0,
+			            max: 1,
+			            interval: 0.2,
+			            axisLabel: {
+			              formatter: '{value} 篇'
+
+		        }
+		        }
+		        ],
 		        series: [
 		            {
-		                name: 'In-bound',
-		                type: 'line',
-		                smooth: true,
-		                data: response.data.lineData
-		            }
+		                name: 'In-bound平均發表篇數',
+		                type: 'bar',
+                        yAxisIndex: 1,
+		                data: response.data.inNoCorlineData
+		            },
+		            {
+		                name: 'Out-bound平均發表篇數',
+		                type: 'bar',
+                        yAxisIndex: 1,
+		                data: response.data.outNotCorlineData
+		            },
+		            
+		            {
+                        name: 'In-bound國際合作篇數',
+                        type: 'line',
+                        yAxisIndex: 0,
+                        data: response.data.lineData
+                    }
+		            
+		            ,
+		            {
+                        name: 'Out-bound國際合作篇數',
+                        type: 'line',
+                        yAxisIndex: 0,
+                        data: response.data.outlineData
+                    }
+		            
 		            
 		        ]
 		    };
