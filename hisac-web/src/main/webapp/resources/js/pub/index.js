@@ -840,7 +840,7 @@ function getAppController($scope, $http, $window) {
 		        },
 		        xAxis: {
 		            type: 'category',
-		            data: ['2011','2012','2013','2014','2015','2016','2017','2018','2019','2020'],
+		            data: ['2011年','2012年','2013年','2014年','2015年','2016年','2017年','2018年','2019年','2020年'],
 		            axisPointer: {
 		                type: 'shadow'
 		              }

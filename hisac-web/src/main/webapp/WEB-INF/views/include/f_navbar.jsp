@@ -1,11 +1,4 @@
 <%@ page language="java" pageEncoding="UTF8"%>
-<script>
-   
-function test(){
-    bootbox.alert("This is the default alert!");
-
-}
-</script>
 
 
 
@@ -23,7 +16,7 @@ function test(){
             <span href="#" onclick="logout();"> <s:message code="globalLogout" /></span>
             </div>
             
-              <div class="button_fill_orange btn_s" onclick="test()" ><a href="../fontend" style="color:white;"><span>回到前台</span></a></div>
+              <div class="button_fill_orange btn_s"  ><a href="../fontend" style="color:white;"><span>回到前台</span></a></div>
               <div class="user"><span>Admin000</span></div>
  
             </div>
@@ -41,48 +34,53 @@ function test(){
           <div class="col-md-3 col-sm-6">
             <div class="statistics_type">
               <div class="popinfo">
-                <p>  補助總人數 </p>
+                <p>統計92~110年核定通過人次</p>
               </div>
               <div class="statistics_line">
                 <div class="icon"><img src="<c:out value="${pageContext.request.contextPath}" />/resources/img/icon/icon_subsidy.svg">
-               
 				</div><span id="peopleNum"></span>
-                <h5>補助總人數</h5>
-                
-                
+                <h5>
+                 補助總人數
+                </h5>
               </div>
             </div>
           </div>
           <div class="col-md-3 col-sm-6">
             <div class="statistics_type">
               <div class="popinfo">
-                <p>研究成果總數  </p>
+                <p>統計92~110年受補助人WOS論文發表篇數</p>
               </div>
               <div class="statistics_line">
                 <div class="icon"><img src="<c:out value="${pageContext.request.contextPath}" />/resources/img/icon/icon_research.svg"></div><span id="paperNum"></span>
-                <h5>研究成果總數</h5>
+                <h5>
+                研究成果總數
+                </h5>
               </div>
             </div>
           </div>
           <div class="col-md-3 col-sm-6">
             <div class="statistics_type">
               <div class="popinfo">
-                <p>國際合著篇數  </p>
+                <p>統計92~110年受補助人曾與國際學者共同發表之WOS論文篇數</p>
               </div>
               <div class="statistics_line">
                 <div class="icon"><img src="<c:out value="${pageContext.request.contextPath}" />/resources/img/icon/icon_cooperate.svg"></div><span id="paperCorNum"></span>
-                <h5>國際合著篇數</h5>
+                <h5>
+                國際合著篇數
+                </h5>
               </div>
             </div>
           </div>
           <div class="col-md-3 col-sm-6">
             <div class="statistics_type">
               <div class="popinfo">
-                <p>關鍵網絡總人數  </p>
+                <p>計算92~110年受補助人(含關聯人才)可鏈結之Top20頂尖學者人數</p>
               </div>
               <div class="statistics_line">
                 <div class="icon"><img src="<c:out value="${pageContext.request.contextPath}" />/resources/img/icon/icon_keypoint.svg"></div><span id="snaTopNum"></span>
-                <h5>關鍵網絡總人數</h5>
+                <h5>
+                關鍵網絡總人數
+                </h5>
               </div>
             </div>
           </div>

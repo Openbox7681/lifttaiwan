@@ -63,7 +63,7 @@
                                         <div class="row">
                                             <div class="col-lg-12">
                                                 <div class="index_title">
-                                                    <h6>近十年In-bound核定人數與經費分布</h6>
+                                                    <h6>近10年各計畫學術產出表現</h6>
                                                 </div>
                                             </div>
                                             <div class="col-lg-12">
@@ -96,7 +96,7 @@
                                         <div class="row">
                                             <div class="col-lg-12">
                                                 <div class="index_title">
-                                                    <h6>Out-bound Top 10 海外主要研習機構</h6>
+                                                    <h6>Outbound Top10研習機構分布</h6>
                                                 </div>
                                             </div>
                                             <div class="col-lg-12">
