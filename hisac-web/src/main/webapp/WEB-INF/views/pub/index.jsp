@@ -32,7 +32,7 @@
             <div class="row">
               <div class="col-lg-12">
                 <div class="row">
-                  <div class="col-lg-6 col-md-6">
+                  <div class="col-lg-12 col-md-12">
                   <div class="index_chart">
                           <div class="row">
                               <div class="col-lg-12">
@@ -40,15 +40,15 @@
                                       <h6>六大領域國際關鍵人才分布</h6>
                                   </div>
                               </div>
-                              <div class="col-lg-12">
-                                  <div class="chart">
+                              <div class="col-lg-12 ">
+                                  <div class="col-lg-12 chart">
 
-                                      <div id="mountNode" style="height: 500px" ></div>
+                                      <div class="col-lg-12" id="mountNode" ></div>
                                   </div>
                               </div>
                               <div class="col-lg-12">
                                   <div class="downloadbtn">
-                                      <div class="downicon"><img src="<c:out value="${pageContext.request.contextPath}" />/resources/img/icon/icon_download.svg"></div><a
+                                      <a
                                           class="button_line_orange" href="p01">
                                           <p>詳細圖表</p>
                                       </a>
@@ -58,7 +58,7 @@
                           </div>
                        </div>
                   
-                  				<div class="col-lg-6 col-md-6">
+                  				<div class="col-lg-12 col-md-12">
                                     <div class="index_chart">
                                         <div class="row">
                                             <div class="col-lg-12">
@@ -68,14 +68,14 @@
                                             </div>
                                             <div class="col-lg-12">
                                                 <div class="chart">
-                                                      <div id="solar_employment" style="height: 500px" ></div>                                               
+                                                      <div id="solar_employment" style="height: 600px" ></div>                                               
 <!--                                                     <div id="solar_employment" style="height: 278px"></div>
  -->                                                    
                                                 </div>
                                             </div>
                                             <div class="col-lg-12">
                                                 <div class="downloadbtn">
-                                                    <div class="downicon"><img src="<c:out value="${pageContext.request.contextPath}" />/resources/img/icon/icon_download.svg"></div><a
+                                                    <a
                                                         class="button_line_orange" href="p02">
                                                         <p>詳細圖表</p>
                                                     </a>
@@ -91,24 +91,24 @@
               </div>
               <div class="col-lg-12">
                 <div class="row">
-                  <div class="col-lg-6 col-md-6">
+                  <div class="col-lg-12 col-md-12">
                                     <div class="index_chart">
                                         <div class="row">
                                             <div class="col-lg-12">
                                                 <div class="index_title">
-                                                    <h6>Out-bound海外主要研習機構</h6>
+                                                    <h6>Out-bound Top 10 海外主要研習機構</h6>
                                                 </div>
                                             </div>
                                             <div class="col-lg-12">
                                                 <div class="chart">
                                                     <!--<img src="img/img_pie-1.jpg">-->
 
-                                                    <div id="overseas_institutions" style="height: 500px"></div>
+                                                    <div id="overseas_institutions" style="height: 600px" ></div>
                                                 </div>
                                             </div>
                                             <div class="col-lg-12">
                                                 <div class="downloadbtn">
-                                                    <div class="downicon"><img src="<c:out value="${pageContext.request.contextPath}" />/resources/img/icon/icon_download.svg"></div><a
+                                                    <a
                                                         class="button_line_orange" href="pages/index_outbound.html">
                                                         <p>詳細圖表</p>
                                                     </a>
@@ -119,7 +119,7 @@
                                 </div>
                                 
                                 
-                 <div class="col-lg-6 col-md-6">
+                 <div class="col-lg-12 col-md-12">
                                     <div class="index_chart">
                                         <div class="row">
                                             <div class="col-lg-12">
@@ -132,12 +132,15 @@
                                                 <div class="chart">
                                                     <!--<img src="img/img_bubble-gradient.jpg">-->
 
-                                                    <div id="maxima" style="height: 500px"></div>
+                                                    <div id="maxima" style="height: 600px"></div>
                                                 </div>
                                             </div>
                                             <div class="col-lg-12">
                                                 <div class="downloadbtn">
-                                                    <div class="downicon"><img src="<c:out value="${pageContext.request.contextPath}" />/resources/img/icon/icon_download.svg"></div><a
+                                                
+<%--                                                     <div class="downicon"><img src="<c:out value="${pageContext.request.contextPath}" />/resources/img/icon/icon_download.svg"></div>
+ --%>                                                    
+                                                    <a
                                                         class="button_line_orange" href="pages/index_plan.html">
                                                         <p>詳細圖表</p>
                                                     </a>

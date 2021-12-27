@@ -293,11 +293,12 @@ function getAppController($scope, $http, $window) {
             },
             legend: {
                 top: '5%',
-                left: 'center'
+                left: 'center',
+                width: "70%",
+                itemGap: 21
             },
             series: [
                 {
-                    name: '研習機構',
                     type: 'pie',
                     radius: ['20%', '50%'],
                     avoidLabelOverlap: false,
@@ -307,7 +308,7 @@ function getAppController($scope, $http, $window) {
                     },
                     emphasis: {
                         label: {
-                            show: true,
+                            show: false,
                             fontSize: '30',
                             fontWeight: 'bold'
                         }
@@ -568,13 +569,14 @@ function getAppController($scope, $http, $window) {
     	          var chart = new G2.Chart({
     	            container: 'mountNode',
     	            forceFit: true,
-    	            width: 1000,
-    	            height: 500,
-    	            padding: [0, 0]
+    	            height: 600,
+    	            padding: [50, 100],
+    	            autoFit: true
     	          })
     	          chart.tooltip({
-    	            showTitle: false
-    	          })
+    	            showTitle: false,
+    	           
+    	          });
     	          // 同步度量
     	          chart.scale({
     	            longitude: {
@@ -583,11 +585,9 @@ function getAppController($scope, $http, $window) {
     	            latitude: {
     	              sync: true
     	            }
-    	          })
-    	          chart.axis(true)
-    	          chart.legend('trend', {
-    	            position: 'left'
     	          });
+    	          chart.axis(false);
+    	          chart.legend(false)
     	        
     	          // 绘制世界地图背景
     	          var ds = new DataSet()
@@ -629,9 +629,10 @@ function getAppController($scope, $http, $window) {
     	            name: {
     	              alias: '國家'
     	            },
-    	            trend: {
-    	              alias: '加總'
-    	            },
+    	            total: {
+      	              alias: '總合'
+      	            },
+    	   
     	            value1: {
     	              alias: '資訊及數位相關產業'
     	            },
@@ -654,13 +655,13 @@ function getAppController($scope, $http, $window) {
     	          userView
     	            .polygon()
     	            .position('longitude*latitude')
-    	            .color('trend', ['#ffffff', '#fa7805'])
-    	            .tooltip('name*trend*value1*value2*value3*value4*value5*value6')
+    	            .color('trend', ['#ffffff', '#0A61D7'])
+    	            .tooltip('name*total*value1*value2*value3*value4*value5*value6')
     	            .animate({
     	              leave: {
-    	                animation: 'fadeOut'
+    	                animation: 'fade-out'
     	              }
-    	            })
+    	            });
     	          chart.render()
     	        })
     	        

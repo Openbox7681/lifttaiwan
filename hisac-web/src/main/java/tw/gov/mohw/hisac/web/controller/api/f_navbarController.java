@@ -80,8 +80,8 @@ public class f_navbarController extends BaseController {
 						JSONObject obj = (JSONObject) sn_array.get(i);
 						if(obj.getString("name").equals(mapData[1].toString())) {
 							
-							Long count = obj.getLong("trend") + Long.valueOf(mapData[2].toString());
-							obj.put("trend", count);
+							Long count = obj.getLong("total") + Long.valueOf(mapData[2].toString());
+							obj.put("total", count);
 							
 							if("資訊及數位相關產業".equals(mapData[0].toString())) {
 								obj.put("value1", mapData[2]);
@@ -109,6 +109,9 @@ public class f_navbarController extends BaseController {
 					sn_json.put("value4", Long.valueOf(0));
 					sn_json.put("value5", Long.valueOf(0));
 					sn_json.put("value6", Long.valueOf(0));
+					sn_json.put("total", Long.valueOf(0));
+
+					
 					
 					if("資訊及數位相關產業".equals(mapData[0].toString())) {
 						sn_json.put("value1", mapData[2]);
@@ -128,6 +131,29 @@ public class f_navbarController extends BaseController {
 				}
 			}
 		}
+		
+		for(int i=0; i<sn_array.length(); i++) {
+			JSONObject obj = (JSONObject) sn_array.get(i);
+			if((obj.getLong("total") >= 225)) {
+				obj.put("trend", 5);
+			}else if ( obj.getLong("total")<225 && obj.getLong("total") >= 87) {
+				obj.put("trend", 4);
+			}else if  ( obj.getLong("total")<87 && obj.getLong("total") >= 38) {
+				obj.put("trend", 3);
+			}else if  ( obj.getLong("total")<38 && obj.getLong("total") >= 16) {
+				obj.put("trend", 2);
+			}else if  ( obj.getLong("total")<16 && obj.getLong("total") >= 5) {
+				obj.put("trend", 1);
+			}else if  ( obj.getLong("total")<5 && obj.getLong("total") >= 1) {
+				obj.put("trend", 0);
+			}
+			
+				
+			
+			}
+		
+		
+		
 		listjson.put("mapData",sn_array);
 		
 		model.addAttribute("json", listjson.toString());
