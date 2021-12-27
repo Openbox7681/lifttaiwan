@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import tw.gov.mohw.hisac.web.controller.BaseController;
 import tw.gov.mohw.hisac.web.domain.TtmaxInfoLift;
+import tw.gov.mohw.hisac.web.domain.ViewTtmaxInfoLift;
 import tw.gov.mohw.hisac.web.service.InboundPeoplePaperNoCorService;
 import tw.gov.mohw.hisac.web.service.InboundPeoplePaperService;
 import tw.gov.mohw.hisac.web.service.OutboundPeoplePaperNoCorService;
@@ -94,7 +95,8 @@ public class f_navbarController extends BaseController {
 								obj.put("value4", mapData[2]);
 							}else if("民生及戰備產業".equals(mapData[0].toString())) {
 								obj.put("value5", mapData[2]);
-							}else if("其他".equals(mapData[0].toString())) {
+							}
+							else if("其他".equals(mapData[0].toString())) {
 								obj.put("value6", mapData[2]);
 							}
 						}
@@ -178,11 +180,101 @@ public class f_navbarController extends BaseController {
 				sn_array.put(obj_array);
 			}
 		}
+		
+		
+	
+		
+		
 		listjson.put("pointData", sn_array);
 		
 		model.addAttribute("json", listjson.toString());
 		return "msg";
 	}
+	
+	
+	@RequestMapping(value = "/queryAllPoints", method = RequestMethod.POST)
+	public String queryAllPoints(Locale locale, HttpServletRequest request, Model model, @RequestBody String json) {
+		JSONObject listjson = new JSONObject();		
+		//資訊及數位相關產業
+		JSONArray sn_array_info = new JSONArray();
+		//國防及戰略產業
+		JSONArray sn_array_safe = new JSONArray();
+		//臺灣精準健康戰略產業
+		JSONArray sn_array_acc = new JSONArray();
+		//綠電及再生能源產業
+		JSONArray sn_array_green = new JSONArray();
+		//民生及戰備產業
+		JSONArray sn_array_war = new JSONArray();
+
+	
+		
+		List<ViewTtmaxInfoLift> pointList = ttmaxInfoLiftService.getViewList(json);
+		if(pointList.size()>0) {
+			for(ViewTtmaxInfoLift ttmaxInfoLift : pointList) {
+				if("資訊及數位相關產業".equals(ttmaxInfoLift.getClass_main().toString())) {
+					JSONArray obj_array = new JSONArray();
+					obj_array.put(ttmaxInfoLift.getIndex_x());
+					obj_array.put(ttmaxInfoLift.getIndex_y());
+					obj_array.put(ttmaxInfoLift.getPaper_total_num());
+					obj_array.put(ttmaxInfoLift.getClass_sub());
+					obj_array.put("資訊及數位相關產業");
+					sn_array_info.put(obj_array);
+				} else if ("綠電及再生能源產業".equals(ttmaxInfoLift.getClass_main().toString())){
+					JSONArray obj_array = new JSONArray();
+					obj_array.put(ttmaxInfoLift.getIndex_x());
+					obj_array.put(ttmaxInfoLift.getIndex_y());
+					obj_array.put(ttmaxInfoLift.getPaper_total_num());
+					obj_array.put(ttmaxInfoLift.getClass_sub());
+					obj_array.put("綠電及再生能源產業");
+					sn_array_green.put(obj_array);
+				} else if ("臺灣精準健康戰略產業".equals(ttmaxInfoLift.getClass_main().toString())) {
+					JSONArray obj_array = new JSONArray();
+					obj_array.put(ttmaxInfoLift.getIndex_x());
+					obj_array.put(ttmaxInfoLift.getIndex_y());
+					obj_array.put(ttmaxInfoLift.getPaper_total_num());
+					obj_array.put(ttmaxInfoLift.getClass_sub());
+					obj_array.put("臺灣精準健康戰略產業");
+					sn_array_acc.put(obj_array);
+				}else if ( "國防及戰略產業" .equals(ttmaxInfoLift.getClass_main().toString())) {
+					JSONArray obj_array = new JSONArray();
+					obj_array.put(ttmaxInfoLift.getIndex_x());
+					obj_array.put(ttmaxInfoLift.getIndex_y());
+					obj_array.put(ttmaxInfoLift.getPaper_total_num());
+					obj_array.put(ttmaxInfoLift.getClass_sub());
+					obj_array.put("國防及戰略產業");
+					sn_array_safe.put(obj_array);
+				}else if ("民生及戰備產業".equals(ttmaxInfoLift.getClass_main().toString())) {
+					JSONArray obj_array = new JSONArray();
+					obj_array.put(ttmaxInfoLift.getIndex_x());
+					obj_array.put(ttmaxInfoLift.getIndex_y());
+					obj_array.put(ttmaxInfoLift.getPaper_total_num());
+					obj_array.put(ttmaxInfoLift.getClass_sub());
+					obj_array.put("國防及戰略產業");
+					sn_array_war.put(obj_array);
+				}
+			}
+		}
+		
+		
+		listjson.put("pointInfoData", sn_array_info);
+		
+		listjson.put("pointGreenData", sn_array_green);
+
+		listjson.put("pointAccData", sn_array_acc);
+
+		listjson.put("pointSafeData", sn_array_safe);
+
+		listjson.put("pointWarData", sn_array_war);
+
+		
+		
+		
+		
+		model.addAttribute("json", listjson.toString());
+		return "msg";
+	}
+	
+	
 	
 	@RequestMapping(value = "/queryLines", method = RequestMethod.POST)
 	public String queryLines(Locale locale, HttpServletRequest request, Model model, @RequestBody String json) {

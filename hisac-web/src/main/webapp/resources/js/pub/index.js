@@ -123,13 +123,11 @@ function getAppController($scope, $http, $window) {
     			
     	};
         
-        $http.post('./common/queryPoints', request, csrf_config).then(function(response) {
+        $http.post('./common/queryAllPoints', request, csrf_config).then(function(response) {
 			
-        	
-					
-		
+    
 
-	        const data = [response.data.pointData];
+	        const data = [response.data.pointInfoData, response.data.pointGreenData, response.data.pointAccData , response.data.pointSafeData, response.data.pointWarData];
 	        
 	        option = {
 	            backgroundColor: new echarts.graphic.RadialGradient(0.3, 0.3, 0.8, [
@@ -137,11 +135,11 @@ function getAppController($scope, $http, $window) {
 	                    offset: 0,
 	                    color: '#f7f8fa'
 	                }
-	//                ,
-	//                {
-	//                    offset: 1,
-	//                    color: '#cdd0d5'
-	//                }
+	                ,
+	                {
+	                    offset: 1,
+	                    color: '#f7f8fa'
+	                }
 	            ]),
 	            title: {
 	                text: '',
@@ -151,7 +149,7 @@ function getAppController($scope, $http, $window) {
 	            legend: {
 	                right: '10%',
 	                top: '3%',
-	                data: ['千里馬計畫優勢' ]
+	                data: ['資訊及數位相關產業', '綠電及再生能源產業' , '臺灣精準健康戰略產業' , '國防及戰略產業' , '民生及戰備產業' ]
 	            },
 	            grid: {
 	                left: '8%',
@@ -184,7 +182,7 @@ function getAppController($scope, $http, $window) {
 	            },
 	            series: [
 	                {
-	                    name: '千里馬計畫優勢',
+	                    name: '資訊及數位相關產業',
 	                    data: data[0],
 	                    type: 'scatter',
 	                    symbolSize: function (data) {
@@ -195,61 +193,169 @@ function getAppController($scope, $http, $window) {
 	                        label: {
 	                            show: true,
 	                            formatter: function (param) {
-	                                return param.data[3] +"\n" + "數量 : " + param.data[2];
+	                                return param.data[3] +", " + param.data[2];
 	                            },
 	                            position: 'top'
 	                        }
 	                    },
 	                    itemStyle: {
 	                        shadowBlur: 10,
-	                        shadowColor: 'rgba(120, 36, 50, 0.5)',
+	                        shadowColor: 'rgba(250, 120, 5, 0.5)',
 	                        shadowOffsetY: 5,
 	                        color: new echarts.graphic.RadialGradient(0.4, 0.3, 1, [
 	                            {
 	                                offset: 0,
-	                                color: 'rgb(251, 118, 123)'
+	                                color: 'rgb(250, 120, 5)'
 	                            },
 	                            {
 	                                offset: 1,
-	                                color: 'rgb(204, 46, 72)'
+	                                color: 'rgb(250, 120, 5)'
 	                            }
 	                        ])
 	                    }
 	                }
-	//                ,
-	//                {
-	//                    name: '臺灣精準健康戰略產業',
-	//                    data: data[1],
-	//                    type: 'scatter',
-	//                    symbolSize: function (data) {
-	//                        return Math.sqrt(data[2]) / 2;
-	//                    },
-	//                    emphasis: {
-	//                        focus: 'series',
-	//                        label: {
-	//                            show: true,
-	//                            formatter: function (param) {
-	//                                return param.data[3] +"\n" + "數量 : " + param.data[2];
-	//                            },
-	//                            position: 'top'
-	//                        }
-	//                    },
-	//                    itemStyle: {
-	//                        shadowBlur: 10,
-	//                        shadowColor: 'rgba(25, 100, 150, 0.5)',
-	//                        shadowOffsetY: 5,
-	//                        color: new echarts.graphic.RadialGradient(0.4, 0.3, 1, [
-	//                            {
-	//                                offset: 0,
-	//                                color: 'rgb(129, 227, 238)'
-	//                            },
-	//                            {
-	//                                offset: 1,
-	//                                color: 'rgb(25, 183, 207)'
-	//                            }
-	//                        ])
-	//                    }
-	//                }
+	                ,
+	                {
+	                    name: '綠電及再生能源產業',
+	                    data: data[1],
+	                    type: 'scatter',
+	                    symbolSize: function (data) {
+	                        return Math.sqrt(data[2]) / 2;
+	                    },
+	                    emphasis: {
+	                        focus: 'series',
+	                        label: {
+	                            show: true,
+	                            formatter: function (param) {
+	                                return param.data[3] +", " + param.data[2];
+	                            },
+	                            position: 'top'
+	                        }
+	                    },
+	                    itemStyle: {
+	                        shadowBlur: 10,
+	                        shadowColor: 'rgba(99, 206, 203, 0.5)',
+	                        shadowOffsetY: 5,
+	                        color: new echarts.graphic.RadialGradient(0.4, 0.3, 1, [
+	                            {
+	                                offset: 0,
+	                                color: 'rgb(99, 206, 203)'
+	                            },
+	                            {
+	                                offset: 1,
+	                                color: 'rgb(99, 206, 203)'
+	                            }
+	                        ])
+	                    }
+	                }
+	                ,
+	                
+	                {
+	                    name: '臺灣精準健康戰略產業',
+	                    data: data[2],
+	                    type: 'scatter',
+	                    symbolSize: function (data) {
+	                        return Math.sqrt(data[2]) / 2;
+	                    },
+	                    emphasis: {
+	                        focus: 'series',
+	                        label: {
+	                            show: true,
+	                            formatter: function (param) {
+	                                return param.data[3] +", " + param.data[2];
+	                            },
+	                            position: 'top'
+	                        }
+	                    },
+	                    itemStyle: {
+	                        shadowBlur: 10,
+	                        shadowColor: 'rgba(255, 95, 95, 0.5)',
+	                        shadowOffsetY: 5,
+	                        color: new echarts.graphic.RadialGradient(0.4, 0.3, 1, [
+	                            {
+	                                offset: 0,
+	                                color: 'rgb(255, 95, 95)'
+	                            },
+	                            {
+	                                offset: 1,
+	                                color: 'rgb(255, 95, 95)'
+	                            }
+	                        ])
+	                    }
+	                },
+	                {
+	                    name: '國防及戰略產業',
+	                    data: data[3],
+	                    type: 'scatter',
+	                    symbolSize: function (data) {
+	                        return Math.sqrt(data[2]) / 2;
+	                    },
+	                    emphasis: {
+	                        focus: 'series',
+	                        label: {
+	                            show: true,
+	                            formatter: function (param) {
+	                                return param.data[3] +", " + param.data[2];
+	                            },
+	                            position: 'top'
+	                        }
+	                    },
+	                    itemStyle: {
+	                        shadowBlur: 10,
+	                        shadowColor: 'rgba(255, 191, 97, 0.5)',
+	                        shadowOffsetY: 5,
+	                        color: new echarts.graphic.RadialGradient(0.4, 0.3, 1, [
+	                            {
+	                                offset: 0,
+	                                color: 'rgb(255, 191, 97)'
+	                            },
+	                            {
+	                                offset: 1,
+	                                color: 'rgb(255, 191, 97)'
+	                            }
+	                        ])
+	                    }
+	                }
+	                ,
+	                {
+	                    name: '民生及戰備產業',
+	                    data: data[3],
+	                    type: 'scatter',
+	                    symbolSize: function (data) {
+	                        return Math.sqrt(data[2]) / 2;
+	                    },
+	                    emphasis: {
+	                        focus: 'series',
+	                        label: {
+	                            show: true,
+	                            formatter: function (param) {
+	                                return param.data[3] +", " + param.data[2];
+	                            },
+	                            position: 'top'
+	                        }
+	                    },
+	                    itemStyle: {
+	                        shadowBlur: 10,
+	                        shadowColor: 'rgba(121, 174, 221, 0.5)',
+	                        shadowOffsetY: 5,
+	                        color: new echarts.graphic.RadialGradient(0.4, 0.3, 1, [
+	                            {
+	                                offset: 0,
+	                                color: 'rgb(121, 174, 221)'
+	                            },
+	                            {
+	                                offset: 1,
+	                                color: 'rgb(121, 174, 221)'
+	                            }
+	                        ])
+	                    }
+	                }
+	                
+	                
+	                
+	                
+	                
+	                
 	            ]
 	        };
 	
@@ -741,7 +847,7 @@ function getAppController($scope, $http, $window) {
 		        },
 		        yAxis: [{
 		            type: 'value',
-		            name: '篇數',
+		            name: '合作篇數',
 		            min: 0,
 		            max: 30000,
 		            interval: 5000,
@@ -751,7 +857,7 @@ function getAppController($scope, $http, $window) {
 		          }
 		        ,{
 		        	 type: 'value',
-			            name: '篇數',
+			            name: '平均篇數',
 			            min: 0,
 			            max: 1,
 			            interval: 0.2,

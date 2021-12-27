@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tw.gov.mohw.hisac.web.dao.TtmaxInfoLiftDAO;
 import tw.gov.mohw.hisac.web.domain.TtmaxInfoLift;
+import tw.gov.mohw.hisac.web.domain.ViewTtmaxInfoLift;
 
 @Service
 public class TtmaxInfoLiftService {
@@ -24,6 +25,12 @@ public class TtmaxInfoLiftService {
 		} catch (Exception e) {
 			return null;
 		}
+	}
+	
+	public List<ViewTtmaxInfoLift> getViewList(String json) {
+			JSONObject obj = new JSONObject(json);
+			return ttmaxInfoLiftDAO.getViewList(obj);
+		
 	}
 
 	public long getListSize(String json) {

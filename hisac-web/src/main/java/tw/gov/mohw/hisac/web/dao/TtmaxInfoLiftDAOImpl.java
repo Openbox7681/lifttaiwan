@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import tw.gov.mohw.hisac.web.domain.TtmaxInfoLift;
+import tw.gov.mohw.hisac.web.domain.ViewTtmaxInfoLift;
 
 /**
  * 子系統服務
@@ -82,6 +83,33 @@ public class TtmaxInfoLiftDAOImpl extends BaseSessionFactory implements TtmaxInf
 			return null;
 		}
 	}
+	
+	
+	@SuppressWarnings({"deprecation", "unchecked"})
+	public List<ViewTtmaxInfoLift> getViewList(JSONObject obj) {
+		int start = obj.isNull("start") == true ? 0 : obj.getInt("start");
+		int maxRows = obj.isNull("maxRows") == true ? 0 : obj.getInt("maxRows");
+		long id = obj.isNull("Id") == true ? 0 : obj.getLong("Id");	
+		
+		Criteria cr = getSessionFactory().getCurrentSession().createCriteria(ViewTtmaxInfoLift.class);
+		
+		if (id != 0) {
+			cr.add(Restrictions.eq("id", id));
+		}
+		
+		cr.setFirstResult(start);
+		if (maxRows != 0) {
+			cr.setMaxResults(maxRows);
+		}
+		List<ViewTtmaxInfoLift> list = cr.list();
+		if (list.size() > 0) {
+			return list;
+		} else {
+			return null;
+		}
+	}
+	
+	
 
 	@SuppressWarnings("deprecation")
 	public long getListSize(JSONObject obj) {
