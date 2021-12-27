@@ -30,34 +30,84 @@ function getAppController($scope, $http, $window) {
                     type: 'treemap',
                     data: [
                         {
-                            name: 'nodeA',
-                            value: 10,
-                            children: [
-                                {
-                                    name: 'nodeAa',
-                                    value: 4
-                                },
-                                {
-                                    name: 'nodeAb',
-                                    value: 6
-                                }
-                            ]
+                            name: 'Harvard University',
+                            value: 509544
                         },
                         {
-                            name: 'nodeB',
-                            value: 20,
-                            children: [
-                                {
-                                    name: 'nodeBa',
-                                    value: 20,
-                                    children: [
-                                        {
-                                            name: 'nodeBa1',
-                                            value: 20
-                                        }
-                                    ]
-                                }
-                            ]
+                            name: 'University of California, Los Angeles',
+                            value: 288695
+                        },
+                        {
+                            name: 'University of Toronto',
+                            value: 287620
+                        },
+                        {
+                            name: 'University of Michigan',
+                            value: 269772
+                        },
+                        {
+                            name: 'University of Washington',
+                            value: 247978
+                        },
+                        {
+                            name: 'The University of Tokyo',
+                            value: 247161
+                        },
+                        {
+                            name: 'Stanford University',
+                            value: 236799
+                        },
+                        {
+                            name: 'Johns Hopkins University',
+                            value: 225704
+                        },
+                        {
+                            name: 'University of Pennsylvania',
+                            value: 222160
+                        },
+                        {
+                            name: 'University of Minnesota',
+                            value: 216489
+                        },
+                        {
+                            name: 'University of Oxford',
+                            value: 211076
+                        },
+                        {
+                            name: 'University of California, San Francisco',
+                            value: 204677
+                        },
+                        {
+                            name: 'Chinese Academy of Sciences',
+                            value: 204316
+                        },
+                        {
+                            name: 'University of Cambridge',
+                            value: 199231
+                        },
+                        {
+                            name: 'University of Pittsburgh-Pittsburgh Campus',
+                            value: 190815
+                        },
+                        {
+                            name: 'Duke University',
+                            value: 190139
+                        },
+                        {
+                            name: 'University of California, Berkeley',
+                            value: 187489
+                        },
+                        {
+                            name: 'Yale University',
+                            value: 186970
+                        },
+                        {
+                            name: 'Columbia University',
+                            value: 180307
+                        },
+                        {
+                            name: 'University of California, San Diego',
+                            value: 178862
                         }
                     ]
                 }
@@ -257,10 +307,8 @@ function getAppController($scope, $http, $window) {
 
         var option;
 
-        var ROOT_PATH = 'https://cdn.jsdelivr.net/gh/apache/echarts-website@asf-site/examples';
-
         myChart.showLoading();
-        $.getJSON(ROOT_PATH + '/data/asset/data/les-miserables.json', function (graph) {
+        $.getJSON('./resources/js/connect.json', function (graph) {
             myChart.hideLoading();
             graph.nodes.forEach(function (node) {
                 node.label = {

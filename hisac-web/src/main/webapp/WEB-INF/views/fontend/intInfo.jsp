@@ -116,71 +116,131 @@
                                                                 <thead class="tablecolor">
                                                                     <tr>
                                                                         <th scope="col">排名/Rank</th>
-                                                                        <th scope="col">姓名/Name</th>
                                                                         <th scope="col">機構/Oranization</th>
                                                                         <th scope="col">國家別/Country</th>
+                                                                        <th scope="col">總被引證數/TAC</th>
                                                                     </tr>
                                                                 </thead>
                                                                 <tbody>
                                                                     <tr>
                                                                         <th scope="row">1</th>
-                                                                        <td>Mark</td>
-                                                                        <td>Univ British Columbia</td>
-                                                                        <td>335598</td>
+                                                                        <td>Harvard University</td>
+                                                                        <td>US</td>
+                                                                        <td>509544</td>
                                                                     </tr>
                                                                     <tr>
                                                                         <th scope="row">2</th>
-                                                                        <td>Jacob</td>
-                                                                        <td>INAF</td>
-                                                                        <td>28391 </td>
+                                                                        <td>University of California, Los Angeles</td>
+                                                                        <td>US</td>
+                                                                        <td>288695</td>
                                                                     </tr>
                                                                     <tr>
                                                                         <th scope="row">3</th>
-                                                                        <td>Larry</td>
-                                                                        <td>Univ British Columbia</td>
-                                                                        <td>28189 </td>
+                                                                        <td>University of Toronto</td>
+                                                                        <td>Canada</td>
+                                                                        <td>287620</td>
                                                                     </tr>
                                                                     <tr>
                                                                         <th scope="row">4</th>
-                                                                        <td>Larry</td>
-                                                                        <td>Univ British Columbia</td>
-                                                                        <td>27674 </td>
+                                                                        <td>University of Michigan</td>
+                                                                        <td>US</td>
+                                                                        <td>269772</td>
                                                                     </tr>
                                                                     <tr>
                                                                         <th scope="row">5</th>
-                                                                        <td>Larry</td>
-                                                                        <td>Univ British Columbia</td>
-                                                                        <td>25760 </td>
+                                                                        <td>University of Washington</td>
+                                                                        <td>US</td>
+                                                                        <td>247978</td>
                                                                     </tr>
                                                                     <tr>
                                                                         <th scope="row">6</th>
-                                                                        <td>Larry</td>
-                                                                        <td>Univ British Columbia</td>
-                                                                        <td>25633 </td>
+                                                                        <td>The University of Tokyo</td>
+                                                                        <td>Japan</td>
+                                                                        <td>247161</td>
                                                                     </tr>
                                                                     <tr>
                                                                         <th scope="row">7</th>
-                                                                        <td>Larry</td>
-                                                                        <td>Univ British Columbia</td>
-                                                                        <td>25332 </td>
+                                                                        <td>Stanford University</td>
+                                                                        <td>US</td>
+                                                                        <td>236799</td>
                                                                     </tr>
                                                                     <tr>
                                                                         <th scope="row">8</th>
-                                                                        <td>Larry</td>
-                                                                        <td>Univ British Columbia</td>
-                                                                        <td>25217 </td>
+                                                                        <td>Johns Hopkins University</td>
+                                                                        <td>US</td>
+                                                                        <td>225704</td>
                                                                     </tr>
                                                                     <tr>
                                                                         <th scope="row">9</th>
-                                                                        <td>Larry</td>
-                                                                        <td>Univ British Columbia</td>
-                                                                        <td>25032 </td>
+                                                                        <td>University of Pennsylvania</td>
+                                                                        <td>US</td>
+                                                                        <td>222160</td>
                                                                     </tr>
                                                                     <tr>
                                                                         <th scope="row">10</th>
-                                                                        <td>Larry</td>
-                                                                        <td>Univ British Columbia</td>
-                                                                        <td>22344 </td>
+                                                                        <td>University of Minnesota</td>
+                                                                        <td>US</td>
+                                                                        <td>216489</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <th scope="row">11</th>
+                                                                        <td>University of Oxford</td>
+                                                                        <td>UK</td>
+                                                                        <td>211076</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <th scope="row">12</th>
+                                                                        <td>University of California, San Francisco</td>
+                                                                        <td>US</td>
+                                                                        <td>204677</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <th scope="row">13</th>
+                                                                        <td>Chinese Academy of Sciences</td>
+                                                                        <td>China</td>
+                                                                        <td>204316</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <th scope="row">14</th>
+                                                                        <td>University of Cambridge</td>
+                                                                        <td>UK</td>
+                                                                        <td>199231</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <th scope="row">15</th>
+                                                                        <td>University of Pittsburgh-Pittsburgh Campus</td>
+                                                                        <td>US</td>
+                                                                        <td>190815</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <th scope="row">16</th>
+                                                                        <td>Duke University</td>
+                                                                        <td>US</td>
+                                                                        <td>190139</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <th scope="row">17</th>
+                                                                        <td>University of California, Berkeley</td>
+                                                                        <td>US</td>
+                                                                        <td>187489</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <th scope="row">18</th>
+                                                                        <td>Yale University</td>
+                                                                        <td>US</td>
+                                                                        <td>186970</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <th scope="row">19</th>
+                                                                        <td>Columbia University</td>
+                                                                        <td>US</td>
+                                                                        <td>180307</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <th scope="row">20</th>
+                                                                        <td>University of California, San Diego</td>
+                                                                        <td>US</td>
+                                                                        <td>178862</td>
                                                                     </tr>
                                                                 </tbody>
                                                             </table>
@@ -247,11 +307,6 @@
                                         </div>
                                     </div>
                                     <div class="col-sm-12">
-                                        <div class="chart mt-1">
-                                            <!--<img src="../img/img_bubble-gradient2.jpg">-->
-
-                                            <div id="maxima" style="width: 800px; height: 500px"></div>
-                                        </div>
                                         <div class="col-lg-12">
                                             <div class="row">
                                                 <div class="col-lg-12 adjust_pos">
@@ -263,69 +318,129 @@
                                                                         <th scope="col">排名/Rank</th>
                                                                         <th scope="col">作者/Author</th>
                                                                         <th scope="col">發表機構/Publishing Oranization</th>
-                                                                        <th scope="col">被引用次數/Number of citations</th>
+                                                                        <th scope="col">平均被引證數/AAC</th>
                                                                     </tr>
                                                                 </thead>
                                                                 <tbody>
                                                                     <tr>
                                                                         <th scope="row">1</th>
-                                                                        <td>Mark</td>
-                                                                        <td>Univ British Columbia</td>
-                                                                        <td>335598</td>
+                                                                        <td>Peterson, Daniel</td>
+                                                                        <td>University South Florida</td>
+                                                                        <td>1560</td>
                                                                     </tr>
                                                                     <tr>
                                                                         <th scope="row">2</th>
-                                                                        <td>Jacob</td>
-                                                                        <td>INAF</td>
-                                                                        <td>28391 </td>
+                                                                        <td>Abecasis, Goncalo R.</td>
+                                                                        <td>University Michigan</td>
+                                                                        <td>1471</td>
                                                                     </tr>
                                                                     <tr>
                                                                         <th scope="row">3</th>
-                                                                        <td>Larry</td>
-                                                                        <td>Univ British Columbia</td>
-                                                                        <td>28189 </td>
+                                                                        <td>Ferlay, Jacques</td>
+                                                                        <td>International Agency for Research on Cancer</td>
+                                                                        <td>1439</td>
                                                                     </tr>
                                                                     <tr>
                                                                         <th scope="row">4</th>
-                                                                        <td>Larry</td>
-                                                                        <td>Univ British Columbia</td>
-                                                                        <td>27674 </td>
+                                                                        <td>Gabriel, Stacey B.</td>
+                                                                        <td></td>
+                                                                        <td>1357</td>
                                                                     </tr>
                                                                     <tr>
                                                                         <th scope="row">5</th>
-                                                                        <td>Larry</td>
-                                                                        <td>Univ British Columbia</td>
-                                                                        <td>25760 </td>
+                                                                        <td>Tamura, Koichiro</td>
+                                                                        <td>Tokyo Metropolitan University</td>
+                                                                        <td>1317</td>
                                                                     </tr>
                                                                     <tr>
                                                                         <th scope="row">6</th>
-                                                                        <td>Larry</td>
-                                                                        <td>Univ British Columbia</td>
-                                                                        <td>25633 </td>
+                                                                        <td>Flicek, Paul</td>
+                                                                        <td>Wellcome Trust Sanger Institute</td>
+                                                                        <td>1241</td>
                                                                     </tr>
                                                                     <tr>
                                                                         <th scope="row">7</th>
-                                                                        <td>Larry</td>
-                                                                        <td>Univ British Columbia</td>
-                                                                        <td>25332 </td>
+                                                                        <td>Haussler, David</td>
+                                                                        <td>University Calif Santa Cruz</td>
+                                                                        <td>1215</td>
                                                                     </tr>
                                                                     <tr>
                                                                         <th scope="row">8</th>
-                                                                        <td>Larry</td>
-                                                                        <td>Univ British Columbia</td>
-                                                                        <td>25217 </td>
+                                                                        <td>Gerstein, Mark</td>
+                                                                        <td>Yale University</td>
+                                                                        <td>1154</td>
                                                                     </tr>
                                                                     <tr>
                                                                         <th scope="row">9</th>
-                                                                        <td>Larry</td>
-                                                                        <td>Univ British Columbia</td>
-                                                                        <td>25032 </td>
+                                                                        <td>Mardis, Elaine R.</td>
+                                                                        <td>Washington University</td>
+                                                                        <td>1112</td>
                                                                     </tr>
                                                                     <tr>
                                                                         <th scope="row">10</th>
-                                                                        <td>Larry</td>
-                                                                        <td>Univ British Columbia</td>
-                                                                        <td>22344 </td>
+                                                                        <td>Lawrence, Michael S.</td>
+                                                                        <td>Harvard Medical School</td>
+                                                                        <td>1098</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <th scope="row">11</th>
+                                                                        <td>Chin, Lynda</td>
+                                                                        <td>The University of Texas MD Anderson Cancer Center</td>
+                                                                        <td>1040</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <th scope="row">12</th>
+                                                                        <td>Schultz, Nikolaus</td>
+                                                                        <td>Memorial Sloan Kettering Cancer Center</td>
+                                                                        <td>1013</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <th scope="row">13</th>
+                                                                        <td>Siegel, Rebecca L.</td>
+                                                                        <td>American Cancer Society</td>
+                                                                        <td>979</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <th scope="row">14</th>
+                                                                        <td>Getz, Gad</td>
+                                                                        <td>Massachusetts General Hospital</td>
+                                                                        <td>941</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <th scope="row">15</th>
+                                                                        <td>Gibbs, Richard A.</td>
+                                                                        <td>Baylor College of Medicine</td>
+                                                                        <td>909</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <th scope="row">16</th>
+                                                                        <td>Weinstein, John N.</td>
+                                                                        <td>The University of Texas MD Anderson Cancer Center</td>
+                                                                        <td>902</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <th scope="row">17</th>
+                                                                        <td>Mathers, Colin</td>
+                                                                        <td>World Health Organization</td>
+                                                                        <td>894</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <th scope="row">18</th>
+                                                                        <td>Kellis, Manolis</td>
+                                                                        <td>Massachusetts Institute of Technology</td>
+                                                                        <td>891</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <th scope="row">19</th>
+                                                                        <td>Snyder, Michael</td>
+                                                                        <td>Stanford University</td>
+                                                                        <td>879</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <th scope="row">20</th>
+                                                                        <td>Park, Peter J.</td>
+                                                                        <td>Harvard Medical School</td>
+                                                                        <td>855</td>
                                                                     </tr>
                                                                 </tbody>
                                                             </table>
@@ -895,7 +1010,6 @@
 	
 	<script type="text/javascript">
         top20();
-        maxima();
         country();
         connect();
 
@@ -913,34 +1027,84 @@
                         type: 'treemap',
                         data: [
                             {
-                                name: 'nodeA',
-                                value: 10,
-                                children: [
-                                    {
-                                        name: 'nodeAa',
-                                        value: 4
-                                    },
-                                    {
-                                        name: 'nodeAb',
-                                        value: 6
-                                    }
-                                ]
+                                name: 'Harvard University',
+                                value: 509544
                             },
                             {
-                                name: 'nodeB',
-                                value: 20,
-                                children: [
-                                    {
-                                        name: 'nodeBa',
-                                        value: 20,
-                                        children: [
-                                            {
-                                                name: 'nodeBa1',
-                                                value: 20
-                                            }
-                                        ]
-                                    }
-                                ]
+                                name: 'University of California, Los Angeles',
+                                value: 288695
+                            },
+                            {
+                                name: 'University of Toronto',
+                                value: 287620
+                            },
+                            {
+                                name: 'University of Michigan',
+                                value: 269772
+                            },
+                            {
+                                name: 'University of Washington',
+                                value: 247978
+                            },
+                            {
+                                name: 'The University of Tokyo',
+                                value: 247161
+                            },
+                            {
+                                name: 'Stanford University',
+                                value: 236799
+                            },
+                            {
+                                name: 'Johns Hopkins University',
+                                value: 225704
+                            },
+                            {
+                                name: 'University of Pennsylvania',
+                                value: 222160
+                            },
+                            {
+                                name: 'University of Minnesota',
+                                value: 216489
+                            },
+                            {
+                                name: 'University of Oxford',
+                                value: 211076
+                            },
+                            {
+                                name: 'University of California, San Francisco',
+                                value: 204677
+                            },
+                            {
+                                name: 'Chinese Academy of Sciences',
+                                value: 204316
+                            },
+                            {
+                                name: 'University of Cambridge',
+                                value: 199231
+                            },
+                            {
+                                name: 'University of Pittsburgh-Pittsburgh Campus',
+                                value: 190815
+                            },
+                            {
+                                name: 'Duke University',
+                                value: 190139
+                            },
+                            {
+                                name: 'University of California, Berkeley',
+                                value: 187489
+                            },
+                            {
+                                name: 'Yale University',
+                                value: 186970
+                            },
+                            {
+                                name: 'Columbia University',
+                                value: 180307
+                            },
+                            {
+                                name: 'University of California, San Diego',
+                                value: 178862
                             }
                         ]
                     }
@@ -951,176 +1115,7 @@
                 myChart.setOption(option);
             }
         }
-
-
-        //千里馬計畫優勢學術領域
-        function maxima() {
-            var dom = document.getElementById("maxima");
-            var myChart = echarts.init(dom);
-            var app = {};
-
-            var option;
-
-            const data = [
-                [
-                    [28604, 77, 17096869, 'Australia', 1990],
-                    [31163, 77.4, 27662440, 'Canada', 1990],
-                    [1516, 68, 1154605773, 'China', 1990],
-                    [13670, 74.7, 10582082, 'Cuba', 1990],
-                    [28599, 75, 4986705, 'Finland', 1990],
-                    [29476, 77.1, 56943299, 'France', 1990],
-                    [31476, 75.4, 78958237, 'Germany', 1990],
-                    [28666, 78.1, 254830, 'Iceland', 1990],
-                    [1777, 57.7, 870601776, 'India', 1990],
-                    [29550, 79.1, 122249285, 'Japan', 1990],
-                    [2076, 67.9, 20194354, 'North Korea', 1990],
-                    [12087, 72, 42972254, 'South Korea', 1990],
-                    [24021, 75.4, 3397534, 'New Zealand', 1990],
-                    [43296, 76.8, 4240375, 'Norway', 1990],
-                    [10088, 70.8, 38195258, 'Poland', 1990],
-                    [19349, 69.6, 147568552, 'Russia', 1990],
-                    [10670, 67.3, 53994605, 'Turkey', 1990],
-                    [26424, 75.7, 57110117, 'United Kingdom', 1990],
-                    [37062, 75.4, 252847810, 'United States', 1990]
-                ],
-                [
-                    [44056, 81.8, 23968973, 'Australia', 2015],
-                    [43294, 81.7, 35939927, 'Canada', 2015],
-                    [13334, 76.9, 1376048943, 'China', 2015],
-                    [21291, 78.5, 11389562, 'Cuba', 2015],
-                    [38923, 80.8, 5503457, 'Finland', 2015],
-                    [37599, 81.9, 64395345, 'France', 2015],
-                    [44053, 81.1, 80688545, 'Germany', 2015],
-                    [42182, 82.8, 329425, 'Iceland', 2015],
-                    [5903, 66.8, 1311050527, 'India', 2015],
-                    [36162, 83.5, 126573481, 'Japan', 2015],
-                    [1390, 71.4, 25155317, 'North Korea', 2015],
-                    [34644, 80.7, 50293439, 'South Korea', 2015],
-                    [34186, 80.6, 4528526, 'New Zealand', 2015],
-                    [64304, 81.6, 5210967, 'Norway', 2015],
-                    [24787, 77.3, 38611794, 'Poland', 2015],
-                    [23038, 73.13, 143456918, 'Russia', 2015],
-                    [19360, 76.5, 78665830, 'Turkey', 2015],
-                    [38225, 81.4, 64715810, 'United Kingdom', 2015],
-                    [53354, 79.1, 321773631, 'United States', 2015]
-                ]
-            ];
-            option = {
-                backgroundColor: new echarts.graphic.RadialGradient(0.3, 0.3, 0.8, [
-                    {
-                        offset: 0,
-                        color: '#f7f8fa'
-                    },
-                    {
-                        offset: 1,
-                        color: '#cdd0d5'
-                    }
-                ]),
-                title: {
-                    text: '',
-                    left: '5%',
-                    top: '3%'
-                },
-                legend: {
-                    right: '10%',
-                    top: '3%',
-                    data: ['1990', '2015']
-                },
-                grid: {
-                    left: '8%',
-                    top: '10%'
-                },
-                xAxis: {
-                    splitLine: {
-                        lineStyle: {
-                            type: 'dashed'
-                        }
-                    }
-                },
-                yAxis: {
-                    splitLine: {
-                        lineStyle: {
-                            type: 'dashed'
-                        }
-                    },
-                    scale: true
-                },
-                series: [
-                    {
-                        name: '1990',
-                        data: data[0],
-                        type: 'scatter',
-                        symbolSize: function (data) {
-                            return Math.sqrt(data[2]) / 5e2;
-                        },
-                        emphasis: {
-                            focus: 'series',
-                            label: {
-                                show: true,
-                                formatter: function (param) {
-                                    return param.data[3];
-                                },
-                                position: 'top'
-                            }
-                        },
-                        itemStyle: {
-                            shadowBlur: 10,
-                            shadowColor: 'rgba(120, 36, 50, 0.5)',
-                            shadowOffsetY: 5,
-                            color: new echarts.graphic.RadialGradient(0.4, 0.3, 1, [
-                                {
-                                    offset: 0,
-                                    color: 'rgb(251, 118, 123)'
-                                },
-                                {
-                                    offset: 1,
-                                    color: 'rgb(204, 46, 72)'
-                                }
-                            ])
-                        }
-                    },
-                    {
-                        name: '2015',
-                        data: data[1],
-                        type: 'scatter',
-                        symbolSize: function (data) {
-                            return Math.sqrt(data[2]) / 5e2;
-                        },
-                        emphasis: {
-                            focus: 'series',
-                            label: {
-                                show: true,
-                                formatter: function (param) {
-                                    return param.data[3];
-                                },
-                                position: 'top'
-                            }
-                        },
-                        itemStyle: {
-                            shadowBlur: 10,
-                            shadowColor: 'rgba(25, 100, 150, 0.5)',
-                            shadowOffsetY: 5,
-                            color: new echarts.graphic.RadialGradient(0.4, 0.3, 1, [
-                                {
-                                    offset: 0,
-                                    color: 'rgb(129, 227, 238)'
-                                },
-                                {
-                                    offset: 1,
-                                    color: 'rgb(25, 183, 207)'
-                                }
-                            ])
-                        }
-                    }
-                ]
-            };
-
-            if (option && typeof option === 'object') {
-                myChart.setOption(option);
-            }
-        }
-
-
+        
         //台灣及其他國家表現
         function country() {
             var dom = document.getElementById("country");
