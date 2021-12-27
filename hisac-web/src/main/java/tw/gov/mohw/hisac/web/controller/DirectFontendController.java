@@ -37,4 +37,20 @@ public class DirectFontendController extends BaseController {
 	public String videoInfo(Locale locale, Model model) {
 		return "/fontend/videoInfo";
 	}
+	@RequestMapping(value = "/institution", method = RequestMethod.GET)
+	public String institution(Locale locale, Model model) {
+		return "/fontend/institution";
+	}
+	@RequestMapping(value = "/scholar", method = RequestMethod.GET)
+	public String scholar(Locale locale, Model model) {
+		return "/fontend/scholar";
+	}
+	@RequestMapping(value = "/cooperate", method = RequestMethod.GET)
+	public String cooperate(Locale locale, Model model) {
+		return "/fontend/cooperate";
+	}
+	@RequestMapping(value = "/six", method = RequestMethod.GET)
+	public String six(Locale locale, Model model) {
+		return "/fontend/six";
+	}
 }

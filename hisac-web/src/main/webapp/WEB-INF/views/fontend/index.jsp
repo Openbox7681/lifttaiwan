@@ -437,7 +437,8 @@
                     <div class="line2"></div>
                     <div class="row">
                         <div class="col-md-6"><a class="button_fill_orange"
-                                href="pages/int-info.html"><span>六大領域Top20機構</span></a>
+                                href="<c:out value="${pageContext.request.contextPath}" />/fontend/institution">
+                                <span>六大領域Top20機構</span></a>
                             <div class="chart_area">
                                 <!--<img class="fill" src="img/index_cube.jpg">-->
                                 <div id="top20" style="width: 555px; height: 213px"></div>
@@ -447,7 +448,8 @@
                             </div>
                         </div>
                         <div class="col-md-6"><a class="button_fill_orange"
-                                href="pages/top-scholar.html"><span>六大領域Top20學者</span></a>
+                                href="<c:out value="${pageContext.request.contextPath}" />/fontend/scholar">
+                                <span>六大領域Top20學者</span></a>
                             <div class="chart_area">
                                 <img class="fill" src="<c:out value="${pageContext.request.contextPath}" />/resources/img/index_form.jpg">
                                 <div class="sharebtn">
@@ -456,7 +458,8 @@
                             </div>
                         </div>
                         <div class="col-md-6"><a class="button_fill_orange"
-                                href="pages/other-coop.html"><span>台灣及其他國家國際合作表現</span></a>
+                                href="<c:out value="${pageContext.request.contextPath}" />/fontend/cooperate">
+                                <span>台灣及其他國家國際合作表現</span></a>
                             <div class="chart_area">
                                 <!--<img class="fill" src="img/index_bar.jpg">-->
 
@@ -466,8 +469,9 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6"><a class="button_fill_orange" href="pages/six-area.html"><span>六大領域國際網絡
-                                </span></a>
+                        <div class="col-md-6"><a class="button_fill_orange" 
+                        	href="<c:out value="${pageContext.request.contextPath}" />/fontend/six">
+                        	<span>六大領域國際網絡</span></a>
                             <div class="chart_area">
                                 <!--<img class="fill" src="img/index_connect.jpg">-->
                                 <div id="connect" style="width: 555px; height: 333px"></div>
