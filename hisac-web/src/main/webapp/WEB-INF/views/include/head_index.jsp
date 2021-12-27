@@ -92,7 +92,7 @@
 <script
 	src="<c:out value="${pageContext.request.contextPath}" />/resources/plugins/2.1.3jquery.min.js"></script>
 <script
-	src="<c:out value="${pageContext.request.contextPath}" />/resources/plugins/bootstrap/5.1.3/js/bootstrap.min.js"></script>
+	src="<c:out value="${pageContext.request.contextPath}" />/resources/plugins/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script
 	src="<c:out value="${pageContext.request.contextPath}" />/resources/plugins/5.5.2bootbox.min.js"></script>
 

@@ -9,11 +9,10 @@
 <!DOCTYPE html>
 <html ng-app="myApp">
 <%@ include file="../include/head.jsp"%>
-<script
-	src="${pageContext.request.contextPath}/resources/plugins/angular/angular-sanitize.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/plugins/angular/angular-sanitize.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/inc/i01.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/wangeditor@latest/dist/wangEditor.min.js"></script>
-<script src="https://unpkg.com/i18next/dist/umd/i18next.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/inc/hsiaoEditor.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/inc/i18next.js"></script>
 
 <body class="index-login" ng-controller="getAppController" id="body">
 	<%@ include file="../include/f_navbar.jsp"%>
