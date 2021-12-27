@@ -225,7 +225,7 @@ function getAppController($scope, $http, $window) {
                 }
             },
             legend: {
-                data: ['Forest', 'Steppe', 'Desert', 'Wetland']
+                data: ['Country', 'Field']
             },
             toolbox: {
                 show: true,
@@ -244,7 +244,7 @@ function getAppController($scope, $http, $window) {
                 {
                     type: 'category',
                     axisTick: { show: false },
-                    data: ['2012', '2013', '2014', '2015', '2016']
+                    data: ['2013', '2014', '2015', '2016', '2017']
                 }
             ],
             yAxis: [
@@ -254,41 +254,23 @@ function getAppController($scope, $http, $window) {
             ],
             series: [
                 {
-                    name: 'Forest',
+                    name: 'Country',
                     type: 'bar',
                     barGap: 0,
                     label: labelOption,
                     emphasis: {
                         focus: 'series'
                     },
-                    data: [320, 332, 301, 334, 390]
+                    data: [670, 693, 711, 734, 756]
                 },
                 {
-                    name: 'Steppe',
+                    name: 'Field',
                     type: 'bar',
                     label: labelOption,
                     emphasis: {
                         focus: 'series'
                     },
-                    data: [220, 182, 191, 234, 290]
-                },
-                {
-                    name: 'Desert',
-                    type: 'bar',
-                    label: labelOption,
-                    emphasis: {
-                        focus: 'series'
-                    },
-                    data: [150, 232, 201, 154, 190]
-                },
-                {
-                    name: 'Wetland',
-                    type: 'bar',
-                    label: labelOption,
-                    emphasis: {
-                        focus: 'series'
-                    },
-                    data: [98, 77, 101, 99, 40]
+                    data: [714, 746, 796, 851, 912]
                 }
             ]
         };
@@ -312,12 +294,12 @@ function getAppController($scope, $http, $window) {
             myChart.hideLoading();
             graph.nodes.forEach(function (node) {
                 node.label = {
-                    show: node.symbolSize > 30
+                    show: node.symbolSize > 1
                 };
             });
             option = {
                 title: {
-                    text: 'Les Miserables',
+                    text: '六大領域國際網路',
                     subtext: 'Default layout',
                     top: 'bottom',
                     left: 'right'
@@ -335,7 +317,7 @@ function getAppController($scope, $http, $window) {
                 animationEasingUpdate: 'quinticInOut',
                 series: [
                     {
-                        name: 'Les Miserables',
+                        name: '六大領域國際網路',
                         type: 'graph',
                         layout: 'none',
                         data: graph.nodes,

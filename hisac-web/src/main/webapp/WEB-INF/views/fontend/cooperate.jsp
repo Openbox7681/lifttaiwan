@@ -575,80 +575,62 @@
                 }
             };
             option = {
-                tooltip: {
-                    trigger: 'axis',
-                    axisPointer: {
-                        type: 'shadow'
-                    }
-                },
-                legend: {
-                    data: ['Forest', 'Steppe', 'Desert', 'Wetland']
-                },
-                toolbox: {
-                    show: true,
-                    orient: 'vertical',
-                    left: 'right',
-                    top: 'center',
-                    feature: {
-                        mark: { show: true },
-                        dataView: { show: true, readOnly: false },
-                        magicType: { show: true, type: ['line', 'bar', 'stack'] },
-                        restore: { show: true },
-                        saveAsImage: { show: true }
-                    }
-                },
-                xAxis: [
-                    {
-                        type: 'category',
-                        axisTick: { show: false },
-                        data: ['2012', '2013', '2014', '2015', '2016']
-                    }
-                ],
-                yAxis: [
-                    {
-                        type: 'value'
-                    }
-                ],
-                series: [
-                    {
-                        name: 'Forest',
-                        type: 'bar',
-                        barGap: 0,
-                        label: labelOption,
-                        emphasis: {
-                            focus: 'series'
-                        },
-                        data: [320, 332, 301, 334, 390]
+                    tooltip: {
+                        trigger: 'axis',
+                        axisPointer: {
+                            type: 'shadow'
+                        }
                     },
-                    {
-                        name: 'Steppe',
-                        type: 'bar',
-                        label: labelOption,
-                        emphasis: {
-                            focus: 'series'
-                        },
-                        data: [220, 182, 191, 234, 290]
+                    legend: {
+                        data: ['Country', 'Field']
                     },
-                    {
-                        name: 'Desert',
-                        type: 'bar',
-                        label: labelOption,
-                        emphasis: {
-                            focus: 'series'
-                        },
-                        data: [150, 232, 201, 154, 190]
+                    toolbox: {
+                        show: true,
+                        orient: 'vertical',
+                        left: 'right',
+                        top: 'center',
+                        feature: {
+                            mark: { show: true },
+                            dataView: { show: true, readOnly: false },
+                            magicType: { show: true, type: ['line', 'bar', 'stack'] },
+                            restore: { show: true },
+                            saveAsImage: { show: true }
+                        }
                     },
-                    {
-                        name: 'Wetland',
-                        type: 'bar',
-                        label: labelOption,
-                        emphasis: {
-                            focus: 'series'
+                    xAxis: [
+                        {
+                            type: 'category',
+                            axisTick: { show: false },
+                            data: ['2013', '2014', '2015', '2016', '2017']
+                        }
+                    ],
+                    yAxis: [
+                        {
+                            type: 'value'
+                        }
+                    ],
+                    series: [
+                        {
+                            name: 'Country',
+                            type: 'bar',
+                            barGap: 0,
+                            label: labelOption,
+                            emphasis: {
+                                focus: 'series'
+                            },
+                            data: [670, 693, 711, 734, 756]
                         },
-                        data: [98, 77, 101, 99, 40]
-                    }
-                ]
-            };
+                        {
+                            name: 'Field',
+                            type: 'bar',
+                            label: labelOption,
+                            emphasis: {
+                                focus: 'series'
+                            },
+                            data: [714, 746, 796, 851, 912]
+                        }
+                    ]
+                };
 
             if (option && typeof option === 'object') {
                 myChart.setOption(option);

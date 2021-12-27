@@ -314,12 +314,12 @@
                 myChart.hideLoading();
                 graph.nodes.forEach(function (node) {
                     node.label = {
-                        show: node.symbolSize > 30
+                        show: node.symbolSize > 1
                     };
                 });
                 option = {
                     title: {
-                        text: 'Les Miserables',
+                        text: '六大領域國際網路',
                         subtext: 'Default layout',
                         top: 'bottom',
                         left: 'right'
@@ -337,7 +337,7 @@
                     animationEasingUpdate: 'quinticInOut',
                     series: [
                         {
-                            name: 'Les Miserables',
+                            name: '六大領域國際網路',
                             type: 'graph',
                             layout: 'none',
                             data: graph.nodes,
