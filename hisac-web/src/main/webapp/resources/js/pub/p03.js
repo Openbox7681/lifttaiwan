@@ -9,71 +9,22 @@ myApp.filter('trustHtml',function($sce){
 });
 
 function getAppController($scope, $rootScope, $http, $window) {
-	var id = window.location.search.substring(1);
-	$scope.id = 0;
 	
-	// Paging Start
-	$scope.start = 0;
-	$scope.currentPage = 1;
-	$scope.maxRows = 10;
-	$scope.maxPages = 0;
-	$scope.total = 0;
-	$scope.sorttype = "id";
-	$scope.sortreverse = true;
-	$scope.isBreakLine = false;
+	$scope.queryNumber = function() {
+        $("#loadingActivity").fadeIn("slow");
 
-	$scope.setSortName = function(sorttype) {
-		$scope.sortreverse = (sorttype !== null && $scope.sorttype === sorttype) ? !$scope.sortreverse
-				: false;
-		$scope.sorttype = sorttype;
-		$scope.currentPage = 1;
-		$scope.start = 0;
-		$scope.queryData();
-	};
-
-	$scope.maxRowsChange = function() {
-		$scope.start = 0;
-		$scope.currentPage = 1;
-		$scope.queryData();
-	};
-	// Paging End
-	
-	$scope.clearData = function() {
-		$scope.id = 0;
-		$rootScope.detailTitle = "";
-		$scope.detailQName = "";
-		$scope.detailAName = "";
-		$("#divQuery").show();
-		$("#divDetail").hide();
-	}
-
-	// Query Data Start
-	$scope.queryData = function(page) {
-		$("#divQuery").show();
-		$("#divDetail").hide();
-		$("#imgLoading").show();
-		if (page) {
-			$scope.start = (page - 1) * $scope.maxRows
-		} else {
-			$scope.start = 0;
-		}
 		var request = {
-				start : $scope.start,
-				maxRows : $scope.maxRows,
-				sort : $scope.sorttype,
-				dir : $scope.sortreverse,
-				Keyword : $scope.QueryKeyword
-			};
-		//console.log("request="+JSON.stringify(request));
-		$http.post('./api/p03/query', request, csrf_config).then(function(response) {
-			//console.log("datatable="+JSON.stringify(response.data.datatable));
-			$scope.allitems = response.data.datatable;
-			$scope.total = response.data.total;
-			$scope.maxPages = parseInt($scope.total / $scope.maxRows);
-			$scope.pageRows = $scope.total % $scope.maxRows;
-			if ($scope.pageRows != 0)
-				$scope.maxPages++;
-			$scope.returnTotal = true;
+			count_topname : true,
+			count_p_id : true,
+			count_paper_SerialNumber : true,
+			paper_corId : "1"
+		};
+		$http.post('./common/queryNumber', request, csrf_config).then(function(response) {
+						
+			$("#peopleNum").text(response.data.peopleNum);
+			$("#paperNum").text(response.data.paperNum);
+			$("#paperCorNum").text(response.data.paperCorNum);
+			$("#snaTopNum").text(response.data.snaTopNum);		
 		}).catch(function() {
 			bootbox.alert({
 				message : globalReadDataFail,
@@ -87,93 +38,78 @@ function getAppController($scope, $rootScope, $http, $window) {
 			});
 		}).finally(function() {
 			$("#imgLoading").hide();
-		});
-	}
-	// Query Data End
+            $("#loadingActivity").fadeOut("slow");
 
-	// Query Detail Data Start
-	$scope.queryDetailData = function(id) {
-		$("#divQuery").hide();
-		$("#divDetail").hide();
-		$scope.id = id;
-		bootbox.dialog({
-			closeButton: false,
-			message : '<i class="fas fa-fw fa-circle-notch fa-spin"></i>' + dataLoading 
 		});
-		var request = {
-			Id : id
-		};
-
-		$http.post('./api/p03/query/id', request, csrf_config).then(function(response) {
-			$rootScope.detailTitle = response.data[0].Title;
-			$scope.detailQName = response.data[0].QName;
-			$scope.detailAName = response.data[0].AName;
-			switch (response.data[0].IsBreakLine) {
-				case true:
-					$scope.isBreakLine = true;
-					break;
-				default:
-					$scope.isBreakLine = false;
-					break;
-			}
-			$scope.queryDetailAttachData(id);
-			bootbox.hideAll();
-
-		}).catch(function() {
-			bootbox.hideAll();
-			bootbox.alert({
-				message : globalReadDataFail,
-				buttons : {
-					ok : {
-						label : '<i class="fas fa-fw fa-times"></i>' + btnClose,
-						className : 'btn-danger'
-					}
-				},
-				callback: function() {
-					location.href="p03"
-				}
-			});
-		}).finally(function() {
-			$("#divDetail").show();
-		});
-	}
-	// Query Detail Data End
-
-	// Query Detail Attach Data Start
-	$scope.queryDetailAttachData = function(id) {					
-		bootbox.dialog({
-			closeButton: false,
-			message : '<i class="fas fa-fw fa-circle-notch fa-spin"></i>' + dataLoading 
-		});
-		var request = {
-				QAManagementId : id
-		};
-		$http.post('./api/p03/attach/query', request, csrf_config).then(function(response) {			
-			$scope.itemAttachments = response.data.datatable;			
-			bootbox.hideAll();
-		}).catch(function() {
-			bootbox.hideAll();
-			bootbox.alert({
-				message : globalReadDataFail,
-				buttons : {
-					ok : {
-						label : '<i class="fas fa-fw fa-times"></i>' + btnClose,
-						className : 'btn-danger'
-					}
-				},
-				callback: function() {					
-				}
-			});
-		}).finally(function() { });
-	}
-	// Query Detail Attach Data End
+	};
+	$scope.queryNumber();
 	
+	 $scope.overseas_institutions = function(){
+	        var dom = document.getElementById("overseas_institutions");
+	        var myChart = echarts.init(dom);
+	        var app = {};
 
-	if ($.isNumeric(id)) {
-		$scope.id = parseInt(id);
-		$scope.queryDetailData($scope.id);
-	} else {
-		$scope.clearData();
-		$scope.queryData();
-	}
+	        var option;
+
+	        option = {
+	            tooltip: {
+	                trigger: 'item'
+	            },
+	            legend: {
+	                top: '5%',
+	                left: 'center',
+	                width: "70%",
+	                itemGap: 21
+	            },
+	            series: [
+	                {
+	                    type: 'pie',
+	                    radius: ['20%', '50%'],
+	                    avoidLabelOverlap: false,
+	                    label: {
+	                        show: false,
+	                        position: 'center'
+	                    },
+	                    emphasis: {
+	                        label: {
+	                            show: false,
+	                            fontSize: '30',
+	                            fontWeight: 'bold'
+	                        }
+	                    },
+	                    labelLine: {
+	                        show: false
+	                    },
+	                    data: [
+	                        { value: 119, name: 'University of California' },
+	                        { value: 52, name: 'Harvard University' },
+	                        { value: 49, name: 'University of Harvard' },
+	                        { value: 49, name: 'University of Texas' },
+	                        { value: 45, name: 'University of Washington' },
+	                        { value: 39, name: 'Stanford University' },
+	                        { value: 36, name: 'Georgia Institute of Technology' },
+	                        { value: 30, name: 'California Institute of Technology' },
+	                        { value: 29, name: 'University of Illinois' },
+	                        { value : 21, name : "University of Michigan"}
+	                        
+
+	                        
+	                        
+	                        
+	                    ]
+	                }
+	            ]
+	        };
+
+	        if (option && typeof option === 'object') {
+	            myChart.setOption(option);
+	        }
+
+	    }
+	    
+	    $scope.overseas_institutions()
+	
+	
+	
+	
 };

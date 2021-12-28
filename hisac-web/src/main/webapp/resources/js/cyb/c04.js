@@ -2,49 +2,39 @@ var myApp = angular.module('myApp', [ 'ngCookies', 'ngFileUpload','bw.paging', '
 		'getAppController', getAppController);
 
 function getAppController($rootScope, $scope, $http, $cookieStore, $anchorScroll, $location, Upload) {
-	$scope.outList = false;
-	$scope.inList = false;
 	
-	$scope.clearData = function() {
-		$scope.QueryIP = null;
-		$scope.outList = false;
-		$scope.inList = false;
-	}
-	$scope.clearData();
+	$scope.queryNumber = function() {
+        $("#loadingActivity").fadeIn("slow");
 
-	
-	
-	$scope.queryData = function() {
-		$scope.outList = false;
-		$scope.inList = false;
-		$("#imgLoading").show();
-		var request = {				
-				IP : $scope.QueryIP
-				
-			};
-				$http.post('./api/c04/query', request, csrf_config).then(function(response) {	
-					if (response.data.IsinCC){
-						$scope.outList = false;
-						$scope.inList = true;
-					}
-					else{
-						$scope.outList = true;
-						$scope.inList = false;
-					}
-			}).catch(function() {
-				bootbox.alert({
-					message : globalReadDataFail,
-					buttons : {
-						ok : {
-							label : '<i class="fas fa-fw fa-times"></i>' + btnClose,
-							className : 'btn-danger',
-						}
-					},
-					callback: function() { }
-				});
-			}).finally(function() {
-				$("#imgLoading").hide();
-			});
+		var request = {
+			count_topname : true,
+			count_p_id : true,
+			count_paper_SerialNumber : true,
+			paper_corId : "1"
 		};
+		$http.post('./common/queryNumber', request, csrf_config).then(function(response) {
+						
+			$("#peopleNum").text(response.data.peopleNum);
+			$("#paperNum").text(response.data.paperNum);
+			$("#paperCorNum").text(response.data.paperCorNum);
+			$("#snaTopNum").text(response.data.snaTopNum);		
+		}).catch(function() {
+			bootbox.alert({
+				message : globalReadDataFail,
+				buttons : {
+					ok : {
+						label : '<i class="fas fa-fw fa-times"></i>' + btnClose,
+						className : 'btn-danger',
+					}
+				},
+				callback: function() { }
+			});
+		}).finally(function() {
+			$("#imgLoading").hide();
+            $("#loadingActivity").fadeOut("slow");
+
+		});
+	};
+	$scope.queryNumber();
 	
 }

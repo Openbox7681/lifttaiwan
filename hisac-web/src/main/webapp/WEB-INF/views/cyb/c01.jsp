@@ -186,23 +186,11 @@
                         </div>
                     </div>
                 </div>
-			
-	
-	
-	
-	
-
 	     </div>
-	
 	    </div>
-	
-
 	</section>
-		
 	</div>
-
-	
-<!-- tablet&mobile sidebar lightbox-->
+	<!-- tablet&mobile sidebar lightbox-->
 	<%@ include file="../include/mobilesidebar.jsp"%>
 	
 

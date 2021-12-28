@@ -109,7 +109,7 @@
                                             <div class="col-lg-12">
                                                 <div class="downloadbtn">
                                                     <a
-                                                        class="button_line_orange" href="pages/index_outbound.html">
+                                                        class="button_line_orange" href="p03">
                                                         <p>詳細圖表</p>
                                                     </a>
                                                 </div>
@@ -141,7 +141,7 @@
 <%--                                                     <div class="downicon"><img src="<c:out value="${pageContext.request.contextPath}" />/resources/img/icon/icon_download.svg"></div>
  --%>                                                    
                                                     <a
-                                                        class="button_line_orange" href="pages/index_plan.html">
+                                                        class="button_line_orange" href="p04">
                                                         <p>詳細圖表</p>
                                                     </a>
                                                 </div>

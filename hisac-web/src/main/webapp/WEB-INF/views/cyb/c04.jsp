@@ -7,70 +7,81 @@
 	src="<c:out value="${pageContext.request.contextPath}" />/resources/plugins/angular/angular-sanitize.min.js"></script>
 <script src="<c:out value="${pageContext.request.contextPath}" />/resources/js/cyb/c04.js"></script>
 <body class="no-skin" ng-controller="getAppController" id="body">
-	<%@ include file="../include/navbar.jsp"%>
-	<div id="divQuery" class="container">
-		<div class="row">
-			<h4 class="form_heading form_heading_fix form_heading_green">
-				<img
-					src="<c:out value="${pageContext.request.contextPath}" />/resources/img/icon-security.svg" />
-				<b><c:out value="${appName}" /></b>
-			</h4>
-
-			<div class="col-xs-12 shadow_board">
-				<form name="queryForm">
-
-					<div>
-						<div class="form_group">
-							<label for="QueryIP"
-								class="form_label form_label_search form_label_gray">IP或Domain</label>
-							<div class="form_input form_input_search">
-								<input type="text" id="QueryIP" name="QueryIP"
-									ng-model="QueryIP" class="form-control col-xs-6"
-									placeholder="IP或Domain" />
-							</div>
-						</div>
-					</div>
-
-					<div>
-						<div class="form_group"></div>
-					</div>
-					<div class="help-block"></div>
-					<div class="submit_bar">
-						<button class="btn btn_custom btn_blue" type="button"
-							ng-click="queryData()">
-							<i class="fas fa-fw fa-search"></i>
-							<s:message code="btnSearch" />
-						</button>
-						<button class="btn btn_custom btn_gray" type="button"
-							ng-click="clearData()">
-							<i class="fas fa-fw fa-redo-alt"></i>
-							<s:message code="btnReset" />
-						</button>
-					</div>
-				</form>
-			</div>
-		</div>
-
-		<div class="row" ng-show="inList || outList">
-			<h4 class="form_heading form_heading_fix form_heading_gray">
-				<big><i class="fas fa-fw fa-list fa-lg"></i></big><b><s:message
-						code="globalSearchResult" /></b>
-			</h4>
-		</div>
-
-		<div class="row">			
-				<div class="col-xs-12 shadow_board"  style="background-color:red;" ng-show="inList">
-					<p Align="Center"><font size="5"> 位於黑名單列表中 </font></p>
-			</div> 
-			<div class="col-xs-12 shadow_board"  style="background-color:white;" ng-show="outList">
-					<p Align="Center"><font size="5"> 不在黑名單列表中 </font></p>
-			</div>
-		</div>
-		<div class="row">
-			<div class="table-responsive">
-		</div>
+	<%@ include file="../include/f_navbar.jsp"%>
+	
+	<div class="container">
+		<section id="main_content">
+				<div class="container">
+					<div class="row">
+					<div class="col-md-12">
+         				 <div class="sidebar_button" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><span>選單項目</span></div>
+     				</div>
+     				<%@ include file="../include/slidebar.jsp"%>
+     				
+     				
+     				<div class="col-lg-9"> 
+            <div class="row">
+              <div class="col-lg-12 none">
+                <div id="filiter">
+                  <div class="filiter_line_dropdown">
+                    <h6>按領域查詢</h6>
+                    <div class="main-block">
+                      <div class="main-subject">
+                        <div class="row g-0">
+                          <div class="col-lg-12"> 
+                            <div class="main-detail" id="main-detail">
+                              <div class="form-check">
+                                <div class="all_area_checkbox">
+                                  <input class="form-check-input" id="flexCheckDefault" type="checkbox" value="">
+                                  <label class="form-check-label" for="flexCheckDefault">所有領域                           </label>
+                                </div>
+                              </div><span class="su_info" data-index="a">資訊及數位相關產業</span><span class="su_sec" data-index="b">資安卓越產業</span><span class="su_healthy" data-index="c">臺灣精準健康戰略產業</span><span class="su_safe" data-index="d">國防及戰略產業</span><span class="su_power" data-index="e">綠電及再生能源產業</span><span class="su_livelihood" data-index="f">民生及戰備產業</span><span class="su_other" data-index="g">其他產業</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="line2"></div>
+                      <div class="sub-subject"></div>
+                    </div>
+                    <div class="search_btn hright">
+                      <div class="button_fill_orange btn_m">
+                        <p>送出查詢</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-12 adjust_pos">
+                <div class="row">
+                  <div class="col-sm-12">
+                    <div class="index_title">
+                      <h5>查詢結果</h5>
+                    </div>
+                  </div>
+                  <div class="col-sm-12 exportbtn">
+                    <div class="button_line_orange btn_s">
+                      <p>報表匯出            </p>
+                    </div>
+                  </div>
+                  <div class="col-lg-12">
+                    <div class="index_chart"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+	
+	
+	
+	
 	</div>
+		</div>
+		</section>
 	</div>
+	<!-- tablet&mobile sidebar lightbox-->
+	<%@ include file="../include/mobilesidebar.jsp"%>
+	
+
 	<div class="footer_space"></div>
 	<%@ include file="../include/footer.jsp"%>
 </body>

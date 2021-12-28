@@ -23,13 +23,33 @@
                       <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">國際網絡</button>
                     </h2>
                     <div class="accordion-collapse collapse" id="panelsStayOpen-collapseOne" aria-labelledby="panelsStayOpen-headingOne">
-                      <div class="accordion-body"><a href="pages/i_technology.html"><span>技術網絡查詢</span></a><a href="pages/i_top_scholars.html"><span>頂尖學者</span></a><a href="pages/i_top_institutions.html"><span>頂尖機構</span></a></div>
+                      <div class="accordion-body">
+                      
+                    <a href="<c:out value="${pageContext.request.contextPath}" />/cyb/c01">
+                      <span>技術網絡查詢</span>
+                      </a>
+                      
+                    <a href="<c:out value="${pageContext.request.contextPath}" />/cyb/c02">
+                      <span>頂尖學者</span>
+                      </a>
+                      
+                    <a href="<c:out value="${pageContext.request.contextPath}" />/cyb/c03">
+                      <span>頂尖機構</span>
+                      </a>
+                      
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-              <div class="mhr"></div><a class="button_line_gray" href="pages/cooperate_overview.html">               <span>各國國際合作概況</span></a>
-              <div class="mhr"></div><a class="button_line_gray" href="pages/talents.html">               <span>人才活躍度</span></a>
+              <div class="mhr"></div><a class="button_line_gray"
+              href="<c:out value="${pageContext.request.contextPath}" />/kin/k01">              
+               <span>各國國際合作概況</span></a>
+               
+              <div class="mhr"></div><a class="button_line_gray" 
+              href="<c:out value="${pageContext.request.contextPath}" />/cyb/c04">              
+              <span>人才活躍度</span>
+              </a>
               <div class="mhr"></div>
               <div class="button">
                 <div class="accordion-item">
@@ -77,7 +97,11 @@
               <div class="mhr"></div>
               <a class="button_line_gray" href="<c:out value="${pageContext.request.contextPath}" />/sys/s11">
               <span>表單資料維護</span></a>
-              <div class="mhr"></div><a class="button_line_gray" href="pages/record.html">             <span>操作記錄</span></a>
+              <div class="mhr"></div><a class="button_line_gray" 
+              href="<c:out value="${pageContext.request.contextPath}" />/sys/s03">           
+              
+              
+               <span>操作記錄</span></a>
 
 
             </div>
