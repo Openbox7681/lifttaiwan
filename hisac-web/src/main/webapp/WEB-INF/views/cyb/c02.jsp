@@ -3,8 +3,8 @@
 <html ng-app="myApp">
 <%@ include file="../include/head.jsp"%>
 <script src="<c:out value="${pageContext.request.contextPath}" />/resources/js/cyb/c02.js"></script>
-<script src="<c:out value="${pageContext.request.contextPath}" />/resources/js/filter_keyword_none.js"></script>
-
+<%-- <script src="<c:out value="${pageContext.request.contextPath}" />/resources/js/filter_keyword_none.js"></script>
+ --%>
 
 <body class="no-skin" ng-controller="getAppController" id="body">
 	<%@ include file="../include/f_navbar.jsp"%>
@@ -28,30 +28,43 @@
                                             <div class="row g-0">
                                                 <div class="col-lg-12">
                                                     <div class="main-detail" id="main-detail">
-                                                        <div class="form-check">
+                                                       <div class="form-check">
                                                             <div class="all_area_checkbox">
                                                                 <input class="form-check-input" id="flexCheckDefault"
-                                                                    type="checkbox" value="">
+                                                                    type="checkbox" value="" ng-click= "openSubSubjects(0)" ng-model = "infoSelectAll">
                                                                 <label class="form-check-label"
-                                                                    for="flexCheckDefault">所有領域</label>
+                                                                    for="flexCheckDefault">所有領域 </label>
                                                             </div>
-                                                        </div><span class="su_info" data-index="a">資訊及數位相關產業</span><span
-                                                            class="su_sec" data-index="b">資安卓越產業</span><span
-                                                            class="su_healthy" data-index="c">臺灣精準健康戰略產業</span><span
-                                                            class="su_safe" data-index="d">國防及戰略產業</span><span
-                                                            class="su_power" data-index="e">綠電及再生能源產業</span><span
-                                                            class="su_livelihood" data-index="f">民生及戰備產業</span><span
-                                                            class="su_other" data-index="g">其他產業</span>
+                                                        </div>
+                                                        <span class="su_info" data-index="a" ng-click = "openSubSubjects(1)">資訊及數位相關產業</span>            
+                                                        <span class="su_healthy" data-index="c" ng-click = "openSubSubjects(2)">臺灣精準健康戰略產業</span>
+                                                        <span class="su_safe" data-index="d" ng-click = "openSubSubjects(3)">國防及戰略產業</span>
+                                                        <span class="su_livelihood" data-index="f" ng-click = "openSubSubjects(4)">民生及戰備產業</span>
+                                                        <span class="su_power" data-index="e" ng-click = "openSubSubjects(5)">綠電及再生能源產業</span>
+                                                        <span class="su_other" data-index="g" ng-click = "openSubSubjects(6)">其他產業</span>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="line2"></div>
                                         <div class="sub-subject"></div>
+                                        
+                                         <div class = "form-check" ng-repeat = "item in InfoList" ng-show = "IsInfoShow" name="checkboxForm">
+                                        	<input class = "form-check-input"
+                                        	type = "checkbox" ng-model = "item.Flag" >
+                                        	<label class = "form-check-label">
+                                        		{{item.Name}}
+                                        	</label>
+                                        	
+                                        </div>
+                                        
+                                        
+                                        
                                     </div>
                                     <div class="search_btn hright">
                                         <div class="button_fill_orange btn_m">
-                                            <p>送出查詢</p>
+                                            <p ng-click = 'query()'
+                                            >送出查詢</p>
                                         </div>
                                     </div>
                                 </div>

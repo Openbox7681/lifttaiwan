@@ -292,9 +292,7 @@ function getAppController($scope, $http, $cookieStore, $cookies, $anchorScroll, 
 		{
 			"Name" : "其他",
 			"Flag" : false
-		}
-		
-		
+		}	
 	]
 	
 	
