@@ -1164,3 +1164,22 @@ CREATE TABLE [dbo].[ttmax_info_lift](
 
 INSERT INTO ttmax_info_lift(Class_sub, Index_x ,Index_y,Paper_total_num )
 SELECT Class_sub, index_x, index_y, paper_total_num FROM TTMAX_info
+
+
+CREATE TABLE [dbo].[topres20_lift](
+	Id [bigint] IDENTITY(1,1) NOT NULL,
+	[Class_sub] [nvarchar](255) NOT NULL,
+	[Fullname] [nvarchar](300) NOT NULL,
+	[Aac] [int] NULL,
+	[Con_num] [int] NULL,
+	[Affiliation] [nvarchar](300) NOT NULL,
+	[Country] [nvarchar](255) NOT NULL,
+	PRIMARY KEY (Id)
+) 
+
+
+INSERT INTO topres20_lift(Class_sub, Fullname ,Aac ,Con_num, Affiliation, Country )
+SELECT Class_sub, Fullname, Aac, Con_num, Affiliation, Country FROM topres20_lift
+
+
+

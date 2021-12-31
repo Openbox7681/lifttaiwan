@@ -16,9 +16,6 @@
          				 <div class="sidebar_button" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><span>選單項目</span></div>
      				</div>
      				<%@ include file="../include/slidebar.jsp"%>
-     				
-     
-     	
      	 <div class="col-lg-9">
                     <div class="row">
                         <div class="col-lg-12">
