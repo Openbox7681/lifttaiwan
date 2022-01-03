@@ -26,167 +26,109 @@
 				
 	<%@ include file="../include/slidebar.jsp"%>
 	
-	<div id="divQuery" class="col-lg-9 container">
+	<div id="divQuery" class="col-lg-9">
 		<div class="row">
-			<h4 class="form_heading form_heading_fix form_heading_gray">
-				<img
-					src="<c:out value="${pageContext.request.contextPath}" />/resources/img/icon-setting.svg" />
-				<b><c:out value="${appName}" /></b>
-			</h4>
-			<div class="col-xs-12 shadow_board">
-				<form name="queryForm">
-					
-					<div>
-						<div class="form_group">
-							<label for="QueryAccount"
-								class="form_label form_label_search form_label_gray"><s:message
-									code="memberAccount" /></label>
-							<div class="form_input form_input_search">
-								<input type="text" id="QueryAccount" name="QueryAccount"
+			<div class="col-sm-12">
+              <div class="index_title title_style">
+                <h5>人員基本資料管理</h5>
+                </br>
+              </div>
+            </div>
+			<div class="col-lg-12">
+				<div id="filiter">
+					<div class="filiter_line subsystem_data_color">
+					<h6><s:message code="memberAccount" /></h6>
+                    <div class="choose_item">
+                      <div class="input-group mb-2">
+                        <div class="form_input form_input_search">
+							<input type="text" iid="QueryAccount" name="QueryAccount"
 									ng-model="QueryAccount" class="form-control"
 									placeholder="<s:message code="memberAccount" />"
 									autocomplete="off">
-							</div>
 						</div>
-					</div>
-					<div>
-						<div class="form_group">
-							<label for="QueryName"
-								class="form_label form_label_search form_label_gray"><s:message
-									code="memberName" /></label>
-							<div class="form_input form_input_search">
-								<input type="text" id="QueryName" name="QueryName"
+                      </div>
+                    </div>
+                    
+                    <h6><s:message code="memberName" /></h6>
+                    <div class="choose_item">
+                      <div class="input-group mb-2">
+                        <div class="form_input form_input_search">
+							<input type="text" id="QueryName" name="QueryName"
 									ng-model="QueryName" class="form-control"
 									placeholder="<s:message code="memberName" />"
 									autocomplete="off">
-							</div>
 						</div>
-					</div>
-					<div>
-						<div class="form_group">
-							<label for="QueryEmail"
-								class="form_label form_label_search form_label_gray"><s:message
-									code="memberEmail" /></label>
-							<div class="form_input form_input_search">
-								<input type="text" id="QueryEmail" name="QueryEmail"
+                      </div>
+                    </div>
+                    
+                    <h6><s:message code="memberEmail" /></h6>
+                    <div class="choose_item">
+                      <div class="input-group mb-2">
+                        <div class="form_input form_input_search">
+							<input type="text" id="QueryEmail" name="QueryEmail"
 									ng-model="QueryEmail" class="form-control"
 									placeholder="<s:message code="memberEmail" />"
 									autocomplete="off">
-							</div>
 						</div>
+                      </div>
+                    </div>
+                    
+                    <h6>是否啟用</h6>
+                    <div class="choose_item">
+                    	<div class="input-group mb-2">
+                    	<div class="form_input form_input_search">
+                      <select id="QueryIsEnable" name="QueryIsEnable" aria-label="Default select example"
+									ng-model="QueryIsEnable" class="form-select">
+                        <option value="" selected><s:message code="all" /></option>
+						<option value="true"><s:message code="isEnableTrue" /></option>
+						<option value="false"><s:message code="isEanbleFalse" /></option>
+                      </select>
+                      </div>
+                      </div>
+                    </div>
+                    
+                    <div class="search_btn hcenter">
+                      <div class="button_fill_orange btn_m" ng-click="queryData()">
+                        <p>查詢</p>
+                      </div>
+                      <div class="button_fill_gray btn_m" ng-click="clearData()"><i class="fas fa-undo-alt"></i>
+                        <p>清空</p>
+                      </div>
+                    </div>
 					</div>
-					
-					<div>
-						<div class="form_group">
-							<label for="QueryMobilePhone"
-								class="form_label form_label_search form_label_gray"><s:message
-									code="memberMobilePhone" /></label>
-							<div class="form_input form_input_search">
-								<input type="text" id="QueryMobilePhone" name="QueryMobilePhone"
-									ng-model="QueryMobilePhone" class="form-control"
-									placeholder="<s:message code="memberMobilePhone" />"
-									autocomplete="off">
-							</div>
-						</div>
-					</div>
-					
-					
-					
-					
-					
-
-					<c:if
-						test="${(isMemberAdmin==true && isAdmin==false && isHisac==false)!=true}">
-						<div>
-							<div class="form_group">
-								<label for="QueryIsEnable"
-									class="form_label form_label_search form_label_gray"><s:message
-										code="isEnable" /></label>
-								<div class="form_input form_input_search">
-									<select id="QueryIsEnable" name="QueryIsEnable"
-										ng-model="QueryIsEnable" class="form-control">
-										<option value="" selected><s:message code="all" /></option>
-										<option value="true"><s:message code="isEnableTrue" /></option>
-										<option value="false"><s:message code="isEanbleFalse" /></option>
-									</select>
-								</div>
-							</div>
-						</div>
-					</c:if>
-					
-						<div>
-						<div class="form_group">
-							<label for="QueryStatus"
-								class="form_label form_label_search form_label_gray"><s:message
-									code="memberStatus" /></label>
-							<div class="form_input form_input_search">
-								<select id="QueryStatus" name="QueryStatus"
-										ng-model="QueryStatus" class="form-control">
-										<option value="" selected><s:message code="all" /></option>
-										<option value="memberStatus0"><s:message code="memberStatus0" /></option>
-										<option value="memberStatus1"><s:message code="memberStatus1" /></option>
-										<option value="memberStatus2"><s:message code="memberStatus2" /></option>
-										<option value="memberStatus3"><s:message code="memberStatus3" /></option>
-									</select>
-							</div>
-						</div>
-					</div>
-					
-					<div>
-						<div class="form_group"></div>
-					</div>
-					<div class="help-block"></div>
-					<div class="submit_bar">
-						<button class="btn btn_custom btn_blue" type="button"
-							ng-click="queryData()">
-							<i class="fas fa-fw fa-search"></i>
-							<s:message code="btnSearch" />
-						</button>
-						<button class="btn btn_custom btn_gray" type="button"
-							ng-click="clearData()">
-							<i class="fas fa-fw fa-redo-alt"></i>
-							<s:message code="btnReset" />
-						</button>
-						<c:if test="${  isAdmin}">
-						<button class="btn btn_custom btn_green" type="button"
-							ng-click="exportData()">	
-							<i class="fa fa-spinner fa-spin" ng-show="isLoading"></i>						
-							產生Excel (依照選擇條件)
-						</button>
-						<button class="btn btn_custom btn_blue" type="button" ng-show="isExcel"
-							ng-click="downloadExcel()">							
-							下載Excel
-						</button>
-						</c:if>
-					</div>
-				</form>
+			</div>
 			</div>
 		</div>
-		<div class="row">
-			<h4 class="form_heading form_heading_fix form_heading_gray">
-				<big><i class="fas fa-fw fa-list fa-lg"></i></big><b><s:message
-						code="globalSearchResult" /></b>
-			</h4>
-		</div>
-		<div class="row">
+		
+		<div class="col-lg-12 adjust_pos">
+                <div class="row">
+		
+		<div class="col-sm-12">
+          <div class="index_title title_style">
+            <h5>查詢結果</h5>
+          </div>
+        </div>
+        <div class="row">
 			<div class="col-xs-12 col-md-11"  style = "padding : 3px">
 				<div class="help-block"></div>
 				<%@ include file="./../include/table_row_select.jsp"%>
 			</div>
-			<div class="col-xs-12 col-md-1" style = "padding : 3px">
-				<a class="btn btn_custom btn_blue pull-right" type="button"
-					ng-click="openEdit(1)" ng-show="${actionCreate}"> <i
-					class="fas fa-fw fa-plus-circle"></i> <s:message code="btnCreate" />
-				</a>												
-			</div>			
+			<div class="col-sm-12 exportbtn">
+              <div class="button_line_orange btn_s" ng-click="openEdit()">
+                <p>新增</p>
+              </div>
+            </div>
 		</div>
-		<div class="row">
-			<div class="table-responsive">
-				<table
-					class="table table-striped table-bordered table-hover table_customer table_gray">
-					<thead>
+		
+		<div class="col-lg-12">
+                    <div class="form_chart">
+                      <div class="form_outbor">
+				<table class="table caption-top">
+					<thead class="tablecolor">
 						<tr>
-							<th rowspan="2"><a href="" ng-click="setSortName('account')">
+							<th scope="col" class="td_style">編號</th>
+							<th scope="col" class="td_style">
+								<a href="" ng-click="setSortName('account')" style="color:white;">
 									<s:message code="memberAccount" /> <i
 									ng-show="sorttype != 'account'"
 									class="fas fa-fw fa-sort text-muted"></i><i
@@ -194,107 +136,54 @@
 									class="fas fa-fw fa-caret-down"></i> <i
 									ng-show="sorttype == 'account' && sortreverse"
 									class="fas fa-fw fa-caret-up"></i>
-							</a></th>
-							<th><a href="" ng-click="setSortName('memberName')"> <s:message
-										code="memberName" /> <i ng-show="sorttype != 'memberName'"
-									class="fas fa-fw fa-sort text-muted"></i><i
-									ng-show="sorttype == 'memberName' && !sortreverse"
-									class="fas fa-fw fa-caret-down"></i> <i
-									ng-show="sorttype == 'memberName' && sortreverse"
-									class="fas fa-fw fa-caret-up"></i>
-							</a><br /> <a href="" ng-click="setSortName('title')"> <s:message
-										code="memberPosition" /> <i ng-show="sorttype != 'title'"
-									class="fas fa-fw fa-sort text-muted"></i> <i
-									ng-show="sorttype == 'title' && !sortreverse"
-									class="fas fa-fw fa-caret-down"></i> <i
-									ng-show="sorttype == 'title' && sortreverse"
-									class="fas fa-fw fa-caret-up"></i>
-							</a></th>
-							<th><a href="" ng-click="setSortName('email')"> <s:message
+								</a>
+							</th>
+							<th scope="col" class="td_style">
+								<a href="" ng-click="setSortName('memberName')" style="color:white;"> 
+									<s:message code="memberName" /> 
+									<i ng-show="sorttype != 'memberName'" class="fas fa-fw fa-sort text-muted"></i>
+									<i ng-show="sorttype == 'memberName' && !sortreverse" class="fas fa-fw fa-caret-down"></i> 
+									<i ng-show="sorttype == 'memberName' && sortreverse" class="fas fa-fw fa-caret-up"></i>
+								</a>
+							</th>
+							<th scope="col" class="td_style">
+								<a href="" ng-click="setSortName('email')" style="color:white;"> <s:message
 										code="memberEmail" /> <i ng-show="sorttype != 'email'"
 									class="fas fa-fw fa-sort text-muted"></i><i
 									ng-show="sorttype == 'email' && !sortreverse"
 									class="fas fa-fw fa-caret-down"></i> <i
 									ng-show="sorttype == 'email' && sortreverse"
 									class="fas fa-fw fa-caret-up"></i>
-							</a><br /> <a href="" ng-click="setSortName('spareEmail')"> <s:message
-										code="memberSpareEmail" /> <i
-									ng-show="sorttype != 'spareEmail'"
-									class="fas fa-fw fa-sort text-muted"></i><i
-									ng-show="sorttype == 'spareEmail' && !sortreverse"
-									class="fas fa-fw fa-caret-down"></i> <i
-									ng-show="sorttype == 'spareEmail' && sortreverse"
-									class="fas fa-fw fa-caret-up"></i>
-							</a></th>
-							<th><a href="" ng-click="setSortName('mobilePhone')"> <s:message
-										code="memberMobilePhone" /> <i
-									ng-show="sorttype != 'mobilePhone'"
-									class="fas fa-fw fa-sort text-muted"></i><i
-									ng-show="sorttype == 'mobilePhone' && !sortreverse"
-									class="fas fa-fw fa-caret-down"></i> <i
-									ng-show="sorttype == 'mobilePhone' && sortreverse"
-									class="fas fa-fw fa-caret-up"></i>
-							</a><br /> <a href="" ng-click="setSortName('cityPhone')"> <s:message
-										code="memberCityPhone" /> <i
-									ng-show="sorttype != 'cityPhone'"
-									class="fas fa-fw fa-sort text-muted"></i><i
-									ng-show="sorttype == 'cityPhone' && !sortreverse"
-									class="fas fa-fw fa-caret-down"></i> <i
-									ng-show="sorttype == 'cityPhone' && sortreverse"
-									class="fas fa-fw fa-caret-up"></i>
-							</a></th>
-							
-						<th>是否啟用</th>
-							
-							
-							<th><s:message code="memberStatus" /><br /><s:message code="roleName" /></th>
-							<th ng-show="${actionUpdate && actionDelete}" class="func">&nbsp;</th>
+								</a>
+							</th>
+							<th scope="col" class="td_style">是否啟用</th>
+							<th scope="col" class="td_style">操作</th>
 						</tr>
 					</thead>
-					<tbody>
+					<tbody id="addbtn">
 						<tr ng-repeat="item in allitems">
-							<td>{{item.Account}}</td>
-							<td>{{item.Name}}<br />{{item.Title}}
-							</td>
-							<td>{{item.Email}}<br />{{item.SpareEmail}}
-							</td>
-							<td>{{item.MobilePhone}}<br />{{item.CityPhone}}
-							</td>
-							
-							<td>{{item.IsEnable}}
-							</td>
-							
-							<td><span ng-if="item.Status==0"><s:message
-										code="memberStatus0" /></span> <span ng-if="item.Status==1"><s:message
-										code="memberStatus1" /></span> <span ng-if="item.Status==2"><s:message
-										code="memberStatus2" /></span> <span ng-if="item.Status==3"><s:message
-										code="memberStatus3" /></span>
-										<br/>admin
-										</td>
-							<td ng-show="${actionUpdate && actionDelete}" class="text-center">
-								<a class="btn btn-sm btn-primary" ng-click="editData(item.Id);"
-								title='<s:message code="btnEdit" />'
-								ng-if="${actionUpdate}"><i
-									class="fas fa-fw fa-edit"></i> <s:message code="btnEdit" /> </a><br
-								ng-if="${actionUpdate} && item.Status==2" /> <a href="#"
-								class="btn btn-sm btn-info" ng-click="deleteData(item.Id);"
-								ng-if="${actionDelete} && item.Status==3 && ${memberId} != item.Id"><i
-									class="far fa-fw fa-trash-alt"></i> <s:message
-										code="btnIsEnableFalse" /></a> 
-								<a href="#"
-								class="btn btn-sm btn-info" ng-click="delete(item.Id);"
-								ng-if="${actionDelete} && item.Status==0 && ${memberId} != item.Id"><i
-									class="far fa-fw fa-trash-alt"></i> <s:message
-										code="btnDelete" /></a> 
-										<a class="btn btn-sm btn-primary" href="<c:out value="${pageContext.request.contextPath}" />/public/api/download_sign_up_info?account={{item.Account}}"
-										title='下載會員申請資料'ng-if="${actionUpdate} && !(item.Status==2 || item.Status==3)"><i	
-									class="fas fa-fw fa-edit"></i> 下載會員申請資料 </a>
-										
-										${baseMemberId}
-							</td>
+							<th scope="row" class="td_style">{{$index + 1}}</th>
+							<td class="td_style">{{item.Account}}</td>
+							<td class="td_style">{{item.Name}}</td>
+							<td class="td_style">{{item.Email}}</td>
+							<td class="text-center td_style"><span ng-show="{{item.IsEnable}}"><i
+									class="far fa-fw fa-check-circle text-success"
+									title='<s:message code="isEnableTrue" />'></i> <s:message
+										code="isEnableTrue" /></span> <span ng-show="{{!item.IsEnable}}"><i
+									class="fas fa-fw fa-minus-circle text-danger"
+									title='<s:message code="isEanbleFalse" />'></i> <s:message
+										code="isEanbleFalse" /></span>
+							  </td>
+							  <td class="td_style"> 
+                                <div class="button_fill_orange btn_s" ng-click="editData(item.Id);">
+                                  <p>修改</p>
+                                </div>
+                              </td>
 						</tr>
 					</tbody>
 				</table>
+			</div>
+			</div>
 			</div>
 			<%@ include file="./../include/table_row_empty.jsp"%>
 			<div class="text-center">
@@ -306,243 +195,156 @@
 					text-last-class="fas fa-fast-forward"
 					paging-action="queryData(page)"></paging>
 			</div>
+			
+			</div>
+			</div>
+			
 		</div>
-	</div>
 	
 	<div id="divEdit" class="col-lg-9 container" ng-show="btnIns || btnUpd">
 		<div class="row">
-			<h4 class="form_heading form_heading_fix form_heading_gray"
-				ng-show="btnIns">
-				<big><i class="fas fa-fw fa-plus-circle fa-lg"></i></big><b><s:message
-						code="btnCreate" /></b>
-			</h4>
-			<h4 class="form_heading form_heading_fix form_heading_gray"
-				ng-show="btnUpd">
-				<big><i class="fas fa-fw fa-edit fa-lg"></i></big><b><s:message
-						code="btnEdit" /></b>
-			</h4>
-			<div class="col-xs-12 shadow_board">
-				<form name="editForm">
+			<div class="col-lg-12">
+			<div id="filiter">
+			<div class="filiter_line subsystem_data_color">
+			<div class="index_title addfunction title_margin">
+              <h5 ng-show="btnIns">新增                    </h5>
+              <h5 ng-show="btnUpd">修改                    </h5>
+            </div>
+            <form name="myForm">
+            <h6><s:message code="memberAccount" /></h6>
+             <div class="choose_item">
+               <div class="input-group mb-2">
+                 <input type="text" id="memberAccount" name="memberAccount"
+					ng-model="memberAccount"
+					ng-disabled = "!btnIns"
+					ng-model-options="{ updateOn: 'default' , allowInvalid:'true'}"
+					ng-maxlength="64" ng-pattern="/^[a-zA-Z][a-zA-Z0-9]{3,63}$/"
+					ng-keyup="checkMemberAccount()" class="form-control"
+					onpaste="return false" oncopy="return false"
+					oncut="return false" oncontextmenu="return false"
+					ng-copy="$event.preventDefault()"
+					ng-cut="$event.preventDefault()"
+					ng-paste="$event.preventDefault()"
+					placeholder="請輸入帳號"
+					autocomplete="off" ng-required="true">
+				<h5 class="text-danger"
+					ng-show="myForm.memberAccount.$error.required && myForm.memberAccount.$dirty">
+					<s:message code="pleaseEnter" />
+					<s:message code="memberAdminAccount" />
+				</h5>
+				<h5 class="text-danger"
+					ng-show="!myForm.memberAccount.$error.required && myForm.memberAccount.$invalid && myForm.memberAccount.$dirty">
+					<s:message code="memberAccountFormat" />
+				</h5>
+				<h5 class="text-danger" ng-show="memberAccountVerifyFail">
+					<s:message code="memberAccountExist" />
+				</h5>
+               </div>
+             </div>
+             
+             <h6><s:message code="memberName" /></h6>
+              <div class="choose_item">
+                <div class="input-group mb-2">
+                  <input type="text" id="memberName" name="memberName"
+						ng-model="memberName" ng-maxlength="128" class="form-control"
+						placeholder="請輸入顯示名稱"
+						autocomplete="off" ng-required="true">
+					<h5 class="text-danger"
+						ng-show="myForm.memberName.$error.required && myForm.memberName.$dirty">
+						<s:message code="pleaseEnter" />
+						<s:message code="memberAdminName" />
+					</h5>
+					<h5 class="text-danger"
+						ng-show="!myForm.memberName.$error.required && myForm.memberName.$invalid && myForm.memberName.$dirty">
+						<s:message code="memberNameFormat" />
+					</h5>
+                </div>
+              </div>
+              
+              <h6><s:message code="memberEmail" /></h6>
+              <div class="choose_item">
+                <div class="input-group mb-2">
+                  <input type="email" id="memberEmail" name="memberEmail"
+						ng-model="memberEmail" ng-maxlength="128" class="form-control"
+						placeholder="請輸入電子郵件信箱"
+						autocomplete="off" ng-required="true">
+					<h5 class="text-danger"
+						ng-show="myForm.memberEmail.$error.required && myForm.memberEmail.$dirty">
+						<s:message code="pleaseEnter" />
+						<s:message code="memberAdminEmail" />
+					</h5>
+					<h5 class="text-danger"
+						ng-show="!myForm.memberEmail.$error.required && myForm.memberEmail.$invalid && myForm.memberEmail.$dirty">
+						<s:message code="memberEmailFormat" />
+					</h5>
+                </div>
+              </div>
+              
+              <h6>密碼</h6>
+              <div class="choose_item">
+                <div class="input-group mb-2">
+                  <input type="password" id="memberCode" name="memberCode"
+						ng-model="memberCode"
+						ng-pattern="regex"
+						class="form-control"
+						placeholder="請輸入密碼"
+						autocomplete="off" ng-required="true">
+					<h5 class="text-danger"
+						ng-show="myForm.memberCode.$error.required && myForm.memberCode.$dirty">
+						請輸入密碼
+					</h5>
+                </div>
+              </div>
+              
+              <h6>確認密碼</h6>
+              <div class="choose_item">
+                <div class="input-group mb-2">
+                  <input type="password" id="memberCodeAgain" name="memberCodeAgain"
+						ng-model="memberCodeAgain" class="form-control"
+						placeholder="再次輸入密碼"
+						autocomplete="off" ng-required="true">
+					<h5 class="text-danger"
+						ng-show="myForm.memberCodeAgain.$error.required && myForm.memberCodeAgain.$dirty">
+						請再次輸入密碼
+					</h5>
+					<h5 class="text-danger"
+						ng-show="!myForm.memberCodeAgain.$error.required && myForm.memberCodeAgain.$dirty"
+						ng-if="!(memberCode === memberCodeAgain)">
+						<s:message code="loginNewCodeNotTheSame" />
+					</h5>
+                </div>
+              </div>
+              
+              <h6 class="float">是否啟用</h6>
+              <div class="choose_item">
+				<toggle ng-model="IsEnable" ng-init="IsEnable=true"
+					on='<i class="far fa-fw fa-check-circle"></i>是'
+					off='<i class="fas fa-fw fa-minus-circle"></i>否'
+					onstyle="btn-success" offstyle="btn-danger"></toggle>
+			  </div>
+			  
 					
-					<div>
-						<div class="form_group">
-							<label for="Account"
-								class="form_label form_label_search form_label_gray"><s:message
-									code="memberAccount" /></label>
-							<div class="form_input form_input_search">
-								<input type="text" id="Account" name="Account" ng-disabled=!btnIns
-									ng-model="Account" class="form-control"
-									placeholder="<s:message code="memberAccount" />"
-									autocomplete="off" ng-required="true" ng-maxlength="64"
-									ng-pattern="/^[a-zA-Z][a-zA-Z0-9]{3,64}$/">
-								<h5 class="text-danger"
-									ng-show="editForm.Account.$error.required && editForm.Account.$dirty">
-									<s:message code="pleaseEnter" />
-									<s:message code="memberAccount" />
-								</h5>
-								<h5 class="text-danger"
-									ng-show="editForm.Account.$error.maxlength && editForm.Account.$dirty">
-									<s:message code="formatMaxLengthAfter" arguments="64" />
-								</h5>
-								<h5 class="text-danger"
-									ng-show="!editForm.Account.$error.required && editForm.Account.$invalid && editForm.Account.$dirty">
-									<s:message code="memberAccountFormat" />
-								</h5>
-							</div>
-						</div>
-					</div>
-					<div>
-						<div class="form_group">
-							<label for="Name"
-								class="form_label form_label_search form_label_gray"><s:message
-									code="memberName" /></label>
-							<div class="form_input form_input_search">
-								<input type="text" id="Name" name="Name" ng-model="Name"
-									class="form-control"
-									placeholder="<s:message code="memberName" />"
-									autocomplete="off" ng-required="true" ng-maxlength="128">
-								<h5 class="text-danger"
-									ng-show="editForm.Name.$error.required && editForm.Name.$dirty">
-									<s:message code="pleaseEnter" />
-									<s:message code="memberName" />
-								</h5>
-								<h5 class="text-danger"
-									ng-show="editForm.Name.$error.maxlength && editForm.Name.$dirty">
-									<s:message code="formatMaxLengthAfter" arguments="128" />
-								</h5>
-							</div>
-						</div>
-					</div>
-					<div>
-						<div class="form_group">
-							<label for="Email"
-								class="form_label form_label_search form_label_gray"><s:message
-									code="memberEmail" /></label>
-							<div class="form_input form_input_search">
-								<input type="text" id="Email" name="Email" ng-model="Email"
-									class="form-control"
-									placeholder="<s:message code="memberEmail" />"
-									autocomplete="off" ng-required="true" ng-maxlength="128"
-									ng-pattern="/^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/i" />
-
-								<h5 class="text-danger"
-									ng-show="editForm.Email.$error.required && editForm.Email.$dirty">
-									<s:message code="pleaseEnter" />
-									<s:message code="memberEmail" />
-								</h5>
-								<h5 class="text-danger"
-									ng-show="!editForm.Email.$error.required && editForm.Email.$invalid && editForm.Email.$dirty">
-									<s:message code="memberEmailFormat" />
-								</h5>
-							</div>
-						</div>
-					</div>
-					
-					<div>
-						<div class="form_group">
-							<label for="MobilePhone"
-								class="form_label form_label_search form_label_gray"><s:message
-									code="memberMobilePhone" /></label>
-							<div class="form_input form_input_search">
-								<input type="text" id="MobilePhone"
-									name="MobilePhone" ng-model="MobilePhone"
-									ng-maxlength="300" ng-minlength="10" 
-									class="form-control"
-									placeholder="<s:message code="memberMobilePhone" />"
-									autocomplete="off"  >
-									
-									<h5 class="text-danger">
-										如有多筆電話請用,分隔，如0912345678,0987654321
-									</h5> 
-									
-									
-<!-- 									onkeypress="var key = window.event ? event.keyCode : event.which; return (key >= 48 && key <= 57) || key == 8">
- -->									
-									
-									<%-- ng-pattern="/^09\d{8}$/"
-									class="form-control"
-									placeholder="<s:message code="memberMobilePhone" />"
-									autocomplete="off" pattern="[0-9]*" inputmode="numeric"
-									onkeypress="var key = window.event ? event.keyCode : event.which; return (key >= 48 && key <= 57) || key == 8"> --%>
-								<%-- <h5 class="text-danger"
-									ng-show="editForm.MobilePhone.$invalid && editForm.MobilePhone.$dirty">
-									<s:message code="memberMobilePhoneFormat" />
-								</h5> --%>
-							</div>
-						</div>
-					</div>
-					
-					<div>
-						<div class="form_group">
-							<label for="Password"
-								class="form_label form_label_search form_label_gray">密碼</label>
-							<div class="form_input form_input_search">
-								<input type="text" id="Password"
-									name="Password" ng-model="Password"
-									ng-maxlength="300" ng-minlength="10" 
-									class="form-control"
-									placeholder="請輸入密碼"
-									autocomplete="off"  >
-									
-									
-							</div>
-						</div>
-					</div>
-					
-						<div>
-						<div class="form_group">
-							<label for="ConfirmPassword"
-								class="form_label form_label_search form_label_gray">確認密碼</label>
-							<div class="form_input form_input_search">
-								<input type="text" id="Password"
-									name="ConfirmPassword" ng-model="ConfirmPassword"
-									ng-maxlength="300" ng-minlength="10" 
-									class="form-control"
-									placeholder="請輸入密碼"
-									autocomplete="off"  >
-									
-									
-							</div>
-						</div>
-					</div>
-					
-					
-					
-					
-					
-					
-					
-					
-					
-				
-					
-					<div ng-show="memberRoleData.length > 0">
-						<div class="form_group">
-							<label for="Role"
-								class="form_label form_label_search form_label_gray"><s:message
-									code="s05Role" /></label>
-							<div class="form_input form_input_search">
-								<div class="checkbox" ng-repeat="item in memberRoleData">
-									<label> <input type="checkbox" ng-model="item.Flag">
-										<span class="lbl">{{item.Name}}</span>
-									</label>
-								</div>
-							</div>
-						</div>
-					</div>					
-					<div ng-if="CILevel=='CI會員' || CILevel=='進階會員'">						
-						<div class="form_group">
-							<label for="Subscribe"
-								class="form_label form_label_search form_label_gray">訂閱</label>
-							<div class="form_input form_input_search">
-								<div class="checkbox" ng-repeat="item in SubscribeData">								
-									<label> <input type="checkbox" ng-model="item.Flag">
-										<span class="lbl">{{item.Name}}</span>										
-									</label>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div ng-show="${memberId} != Id">
-						<div class="form_group">
-							<label for="IsEnable"
-								class="form_label form_label_search form_label_gray"><s:message
-									code="isEnable" /></label>
-							<div class="form_input form_input_search_half">
-								<toggle ng-model="IsEnable"
-									on='<i class="far fa-fw fa-check-circle"></i><s:message code="isEnableTrue" />'
-									off='<i class="fas fa-fw fa-minus-circle"></i><s:message code="isEanbleFalse" />'
-									onstyle="btn-success" offstyle="btn-danger"></toggle>
-							</div>
-						</div>
-					</div>
-					<div>
-						<div class="form_group"></div>
-					</div>
-					<div class="help-block"></div>
-					<div class="submit_bar">
-						<button class="btn btn_custom btn_blue" type="button"
-							ng-click="!editForm.$valid || createData()"
-							ng-disabled="!editForm.$valid"
-							ng-show="${actionCreate} && btnIns">
-							<i class="fas fa-fw fa-save"></i>
-							<s:message code="btnSave" />
-						</button>
-						<button class="btn btn_custom btn_blue" type="button"
-							ng-click="!editForm.$valid || updateData()"
-							ng-disabled="!editForm.$valid"
-							ng-show="${actionUpdate} && btnUpd">
-							<i class="fas fa-fw fa-save"></i>
-							<s:message code="btnSave" />
-						</button>
-						<button class="btn btn_custom btn_gray" type="button"
-							ng-click="closeEdit()">
-							<i class="fas fa-fw fa-undo"></i>
-							<s:message code="btnReturn" />
-						</button>
-					</div>
-				</form>
+				<div class="search_btn hcenter saveicon">
+                   <div class="button_fill_orange btn_m" 
+	                   	ng-show="${actionUpdate} && btnUpd" 
+	                   	ng-click="!myForm.$valid || memberAccountVerifyFail || updateData()"
+	                   	ng-disabled="!myForm.$valid || memberAccountVerifyFail">
+	                     <p>儲存</p>
+                   </div>
+                   <div class="button_fill_orange btn_m" 
+	                   	ng-show="${actionCreate} && btnIns" 
+	                   	ng-click="!myForm.$valid || memberAccountVerifyFail || createData()"
+	                   	ng-disabled="!myForm.$valid || memberAccountVerifyFail">
+                     	<p>新增</p>
+                   </div>
+                   <div class="button_fill_gray btn_m" ng-click="closeEdit()"><i class="fas fa-undo-alt"></i>
+                     <p>返回</p>
+                   </div>
+                 </div>
+                 </form>
 			</div>
+		</div>
+		</div>
 		</div>
 	</div>
 	

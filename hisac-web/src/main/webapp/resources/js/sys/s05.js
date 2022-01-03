@@ -24,6 +24,8 @@ myApp.filter('join', function () {
 
 function getAppController($rootScope, $scope, $http, $cookieStore, $anchorScroll, $location, $timeout) {
 	
+	$scope.memberAccountVerifyFail = false;
+	
 	$scope.queryNumber = function() {
         $("#loadingActivity").fadeIn("slow");
 
@@ -286,9 +288,9 @@ $scope.querySubscribeData = function(id) {
 		} else {
 			$scope.OrgId = null;
 		}
-		$scope.Account = null;
-		$scope.Name = null;
-		$scope.Email = null;
+		$scope.memberAccount = null;
+		$scope.memberName = null;
+		$scope.memberEmail = null;
 		$scope.SpareEmail = null;
 		$scope.MobilePhone = null;
 		$scope.CityPhone = null;
@@ -296,7 +298,7 @@ $scope.querySubscribeData = function(id) {
 		$scope.Address = null;
 		$scope.Department = null;
 		$scope.Title = null;
-		$scope.IsEnable = false;
+		$scope.IsEnable = true;
 		$scope.IsPublic=false;
 		$scope.healthLevelId=0;
 		$scope.securityLevel=0;
@@ -304,7 +306,8 @@ $scope.querySubscribeData = function(id) {
 			$scope.queryMemberRoleData(0);
 			$scope.querySubscribeData(0);
 		}
-	
+		$scope.memberCode = null;
+		$scope.memberCodeAgain = null;
 	}
 	// Switch to Edit(Insert) Mode End
 	
@@ -336,9 +339,9 @@ $scope.querySubscribeData = function(id) {
 			
 			$scope.Id = response.data[0].Id;
 			$scope.OrgId = response.data[0].OrgId;
-			$scope.Account = response.data[0].Account;
-			$scope.Name = response.data[0].Name;
-			$scope.Email = response.data[0].Email;
+			$scope.memberAccount = response.data[0].Account;
+			$scope.memberName = response.data[0].Name;
+			$scope.memberEmail = response.data[0].Email;
 			$scope.SpareEmail = response.data[0].SpareEmail;
 			$scope.MobilePhone = response.data[0].MobilePhone;
 			$scope.CityPhone = response.data[0].CityPhone;
@@ -527,88 +530,78 @@ $scope.querySubscribeData = function(id) {
 	
 	/* Insert Item Start */
 	$scope.createData = function() {
-		if ($scope.Enable == "")
-			$scope.IsEnable = null;
+		bootbox.dialog({
+			closeButton: false,
+			message : '<i class="fas fa-fw fa-circle-notch fa-spin"></i>' + '會員新增中'
+		});
+		
 		var request = {
-			OrgId : $scope.OrgId,
-			Account : $scope.Account,
-			Name : $scope.Name,
-			Email : $scope.Email,
-			SpareEmail : $scope.SpareEmail,
-			MobilePhone : $scope.MobilePhone,
-			CityPhone : $scope.CityPhone,
-			FaxPhone : $scope.FaxPhone,
-			Address : $scope.Address,
-			Department : $scope.Department,
-			Title : $scope.Title,
-			IsEnable : $scope.IsEnable,
-			MemberRoleData: $scope.memberRoleData,
-			SubscribeData: $scope.SubscribeData
+			account: $scope.memberAccount,
+			code: btoa($scope.memberCode),
+			name: $scope.memberName,
+			email: $scope.memberEmail,
+			isEnable: $scope.IsEnable
 		};
-		$http.post('./api/s05/create', request, csrf_config).then(
-			function(response) {
-				if (response.data.success) {
+
+		$http
+			.post('./api/s05/create', request, csrf_config)
+			.then(function(response) {
+				if (response.data.success == true) {
 					$scope.queryData($scope.currentPage);
+					bootbox.hideAll();
 					bootbox.alert({
-						message : response.data.msg,
+						message : "註冊成功",
 						buttons : {
 							ok : {
 								label : '<i class="fas fa-fw fa-times"></i>' + btnClose,
-								className : 'btn-success',
+								className : 'btn-primary'
 							}
 						},
 						callback: function() {
 							$scope.closeEdit();
+							/*
+							window.open("./public/api/download_sign_up_info?account=" + $scope.memberAccount, '_pdf');
+							window.location.href = "./"; */
 						}
 					});
 				} else {
+					bootbox.hideAll();
 					bootbox.alert({
 						message : response.data.msg,
 						buttons : {
 							ok : {
 								label : '<i class="fas fa-fw fa-times"></i>' + btnClose,
-								className : 'btn-danger',
+								className : 'btn-danger'
 							}
-						},
-						callback: function() { }
+						}
 					});
 				}
-			}).catch(function() {
+			})
+			.catch(function() {
+				bootbox.hideAll();
 				bootbox.alert({
-					message : globalInsertDataFail,
+					message : '會員新增失敗',
 					buttons : {
 						ok : {
 							label : '<i class="fas fa-fw fa-times"></i>' + btnClose,
-							className : 'btn-danger',
+							className : 'btn-danger'
 						}
-					},
-					callback: function() { }
+					}
 				});
-			}).finally(function() { });
+			});
 	};
 	/* Insert Data End */
 
 	/* Update Data Start */
 	$scope.updateData = function() {
-		if ($scope.Enable == "")
-			$scope.IsEnable = null;
 		
 		var request = {
-			Id : $scope.Id,
-			OrgId : $scope.OrgId,
-			Account : $scope.Account,
-			Name : $scope.Name,
-			Email : $scope.Email,
-			SpareEmail : $scope.SpareEmail,
-			MobilePhone : $scope.MobilePhone,
-			CityPhone : $scope.CityPhone,
-			FaxPhone : $scope.FaxPhone,
-			Address : $scope.Address,
-			Department : $scope.Department,
-			Title : $scope.Title,
-			IsEnable : $scope.IsEnable,
-			MemberRoleData: $scope.memberRoleData,
-			SubscribeData: $scope.SubscribeData
+			id: $scope.Id,
+			account: $scope.memberAccount,
+			code: btoa($scope.memberCode),
+			name: $scope.memberName,
+			email: $scope.memberEmail,
+			isEnable: $scope.IsEnable
 		};
 		// console.log("request="+JSON.stringify(request));
 		$http.post('./api/s05/update', request, csrf_config).then(
@@ -736,5 +729,32 @@ $scope.querySubscribeData = function(id) {
 			   	    second: '2-digit',
 			   	    hour12: false 
 			   	})+".xls");
+		}
+		$scope.checkMemberAccount = function() {
+			$scope.memberAccountVerifyFail = false;
+			if ($scope.myForm.memberAccount.$valid && $scope.myForm.memberAccount.$dirty) {
+				$scope.memberAccountVerifyFail = false;
+				$scope.myForm.memberAccount.$valid = false;
+				var request = {
+					memberAccount : $scope.memberAccount
+				}
+				$http
+					.post('./api/s05/checkAccount', request, csrf_config)
+					.then(function(response) {
+						if (response.data.success == true) {
+							$scope.memberAccountVerifyFail = false;
+							$scope.myForm.memberAccount.$valid = false;
+							$scope.healthLevelId=0;
+							$scope.securityLevel=0;
+							$scope.IsPublic=false;
+						} else {
+							$scope.memberAccountVerifyFail = true;
+							$scope.myForm.memberAccount.$valid = true;
+						}
+					}).catch(function() {
+						$scope.memberAccountVerifyFail = false;
+						$scope.myForm.memberAccount.$valid = false;
+					});
+			}
 		}
 }

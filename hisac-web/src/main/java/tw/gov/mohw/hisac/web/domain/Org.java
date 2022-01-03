@@ -41,7 +41,7 @@ public class Org {
 	private String apiKey;
 	private Date apiKeyExpiryDate;
 	private Boolean isLocate;
-	
+	private Long sort;	
 	
 	
 	/*
@@ -242,6 +242,14 @@ public class Org {
 	}
 	public void setHealthLevelId(Long healthLevelId) {
 		this.healthLevelId = healthLevelId;
+	}
+	
+	@Column(name = "Sort")
+	public Long getSort() {
+		return sort;
+	}
+	public void setSort(Long sort) {
+		this.sort = sort;
 	}
 	
 	@Column(name = "SecurityLevel")
