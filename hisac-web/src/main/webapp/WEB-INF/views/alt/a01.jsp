@@ -193,8 +193,7 @@
                                     </div>
                                 </div>
                                 
-                                 <div class="col-sm-12 exportbtn" id="adjust_subsidybtn" ng-show = "isSupport" 
-                                 >
+                                 <div class="col-sm-12 exportbtn" id="adjust_subsidybtn" ng-show = "isSupport" >
                                  	<ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
                                             <li class="nav-item" role="presentation">
                                                 <button class="nav-link active" id="pills-home-tab"

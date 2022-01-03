@@ -10,6 +10,13 @@ angular.element(document).ready(function() {
 	});
 });
 
+//click scholars_btn show-i_top_scholars-pages
+$(function() {                       
+  $("#scholar_click").click(function() { 
+    $(".scholars_chart").addClass("show_chart");
+  });
+});
+
 function getAppController($scope, $http, $cookieStore, $cookies, $anchorScroll, $location) {
 	$scope.queryNumber = function() {
         $("#loadingActivity").fadeIn("slow");
@@ -114,13 +121,22 @@ function getAppController($scope, $http, $cookieStore, $cookies, $anchorScroll, 
          if (option && typeof option === 'object') {
              myChart.setOption(option);
          }
+         
+ 	    $(".scholars_chart").addClass("show_chart");
+
 		
+       
 	}
 	
-	$scope.connect();
+	
+	//六大領域資料 start
 	
 	
 	$scope.IsInfoShow = false;
+	$scope.isSupport = false;
+	$scope.isDraw = false ;
+
+
 
 	$scope.InfoList = [
 		{
@@ -132,7 +148,7 @@ function getAppController($scope, $http, $cookieStore, $cookies, $anchorScroll, 
 	$scope.infoSelectAll = true;
 	
 	
-	//六大領域資料 初始化資料
+	//六大領域資料 初始化資料 
 	//資訊及數位相關產業
 	var InfoData = [
 		{
@@ -431,9 +447,46 @@ function getAppController($scope, $http, $cookieStore, $cookies, $anchorScroll, 
 	}
 	
 	$scope.query =function(){
-		console.log($scope.InfoList);
+ 	    $(".scholars_chart").removeClass("show_chart");
+		$scope.queryForm()
+		$scope.isSupport = true;
+
+		
 		
 	}
+	
+	
+	$scope.queryForm = function() {
+		$("#imgLoading").show();
+
+
+		var request = {		
+				classSubList : $scope.InfoList
+		};
+		console.log(request);
+		$http.post('./c02/queryTopres20Data', request, csrf_config).then(function(response) {
+			$scope.Topres20Data = response.data.datatable;	
+			console.log($scope.Topres20Data);
+
+		}).catch(function() {
+			bootbox.alert({
+				message : globalReadDataFail,
+				buttons : {
+					ok : {
+						label : '<i class="fas fa-fw fa-times"></i>' + btnClose,
+						className : 'btn-danger',
+					}
+				},
+				callback: function() { }
+			});
+		}).finally(function() {
+			$("#imgLoading").hide();
+
+		});
+	};
+	
+	//六大領域資料 end
+
 	
 	
 	

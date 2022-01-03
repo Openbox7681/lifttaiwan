@@ -684,7 +684,6 @@ function getAppController($scope, $http, $cookieStore, $cookies, $anchorScroll, 
 				classMainOption : $scope.option
 			
 		};
-		console.log(request);
 		$http.post('./common/queryClassSubData', request, csrf_config).then(function(response) {
 			
 			$scope.formData = response.data.formData;

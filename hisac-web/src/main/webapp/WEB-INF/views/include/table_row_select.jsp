@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html;charset=UTF-8"%>
 <label><span id="imgLoading"><i
 		class="fas fa-spinner fa-spin"></i> <s:message code="dataLoading" />
-</span></label>
+</span>
+</label>
 <label ng-if="total == 0"><s:message code="tableRowNoRecord" />,
 </label>
 <label ng-if="total == 1"><s:message code="tableRowOneRecord" />,

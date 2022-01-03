@@ -150,7 +150,7 @@ public class PeopleMainsLiftDAOImpl extends BaseSessionFactory implements People
 	//輔助追蹤查詢領域與國家
 	public List<Object[]> getCountryDataByCondition(Long startYear , Long endYear , JSONArray classSubList , JSONArray countryList
 			,int classMainOption){
-Criteria cr = getSessionFactory().getCurrentSession().createCriteria(PeopleMainsLift.class);
+		Criteria cr = getSessionFactory().getCurrentSession().createCriteria(PeopleMainsLift.class);
 		
 		ProjectionList projectionList = Projections.projectionList();        
 		cr.add(Restrictions.ge("years", startYear));

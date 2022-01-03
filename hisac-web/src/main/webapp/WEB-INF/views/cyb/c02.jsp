@@ -57,9 +57,7 @@
                                         	</label>
                                         	
                                         </div>
-                                        
-                                        
-                                        
+                                         
                                     </div>
                                     <div class="search_btn hright">
                                         <div class="button_fill_orange btn_m">
@@ -70,19 +68,29 @@
                                 </div>
                             </div>
                         </div>
+                                 
+						
+                        
+                        
                         <div class="col-lg-12 adjust_pos">
-                            <div class="row">
+                            <div class="row"  >
                                 <div class="col-sm-12">
                                     <div class="index_title">
                                         <h5>查詢結果</h5>
                                     </div>
+                                  	<div class="col-xs-12 col-md-11"  style = "padding : 3px">
+                                    <div class="help-block"></div>
+                              
+                                    <label>
+			                        <span id="imgLoading"><i
+									class="fas fa-spinner fa-spin"></i> <s:message code="dataLoading" />
+									</span>
+									</label>
+									</div>
+									
                                 </div>
-                                <div class="col-sm-12 exportbtn">
-                                    <div class="button_line_orange btn_s">
-                                        <p>報表匯出 </p>
-                                    </div>
-                                </div>
-                                <div class="col-lg-12">
+                              
+                                <div class="col-lg-12" ng-show="isSupport">
                                     <div class="form_chart">
                                         <div class="form_outbor">
                                             <table class="table caption-top">
@@ -96,83 +104,21 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <tr>
-                                                        <th scope="row">1</th>
-                                                        <td>Mark</td>
-                                                        <td>Univ British Columbia</td>
-                                                        <td>335598</td>
-                                                        <td>-</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">2</th>
-                                                        <td>Jacob</td>
-                                                        <td>INAF</td>
-                                                        <td>28391</td>
-                                                        <td>- </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">3</th>
-                                                        <td>Larry</td>
-                                                        <td>Univ British Columbia</td>
-                                                        <td>28189</td>
-                                                        <td>- </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">4</th>
-                                                        <td>Larry</td>
-                                                        <td>Univ British Columbia</td>
-                                                        <td>27674</td>
-                                                        <td>- </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">5</th>
-                                                        <td>Larry</td>
-                                                        <td>Univ British Columbia</td>
-                                                        <td>25760</td>
-                                                        <td>- </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">6</th>
-                                                        <td>Larry</td>
-                                                        <td>Univ British Columbia</td>
-                                                        <td>25633</td>
-                                                        <td>- </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">7</th>
-                                                        <td>Larry</td>
-                                                        <td>Univ British Columbia</td>
-                                                        <td>25332</td>
-                                                        <td>- </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">8</th>
-                                                        <td>Larry</td>
-                                                        <td>Univ British Columbia</td>
-                                                        <td>25217</td>
-                                                        <td>- </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">9</th>
-                                                        <td>Larry</td>
-                                                        <td>Univ British Columbia</td>
-                                                        <td>25032</td>
-                                                        <td>- </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">10</th>
-                                                        <td>Larry</td>
-                                                        <td>Univ British Columbia</td>
-                                                        <td>22344</td>
-                                                        <td>-</td>
-                                                    </tr>
+                                                    <tr ng-repeat="item in Topres20Data">
+			                                            <td>{{item.Id}}</td>
+			                                            <td>{{item.FullName}}</td>
+			                                            <td>{{item.Affiliation}}</td>
+			                                            <td>{{item.Aac}}</td>
+														<td>{{item.Con_Num}}</td>
+														
+			                                        </tr>
                                                 </tbody>
                                             </table>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-sm-12 scholars_btn">
-                                    <div class="button_fill_orange" id="scholar_click">
+                                <div class="col-sm-12 scholars_btn" >
+                                    <div class="button_fill_orange" ng-click = "connect()">
                                         <p>網絡分析圖</p>
                                     </div>
                                 </div>
@@ -180,7 +126,7 @@
                                     <div class="row">
                                         <div class="col-sm-12">
                                             <div class="index_title">
-                                                <h5>查詢結果</h5>
+                                                <h5>網路分析圖</h5>
                                             </div>
                                         </div>
                                         <div class="col-sm-12">

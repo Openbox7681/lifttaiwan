@@ -25,7 +25,9 @@
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 	
-	
+	<bean id="topres20DAO" class="tw.gov.mohw.hisac.web.dao.Topres20DAOImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
 	
 	
 	<bean id="systemLogDAO" class="tw.gov.mohw.hisac.web.dao.SystemLogDAOImpl">

@@ -320,7 +320,7 @@
                 option = {
                     title: {
                         text: '六大領域國際網路',
-                        subtext: 'Default layout',
+                        subtext: 'Circular layout',
                         top: 'bottom',
                         left: 'right'
                     },
@@ -339,7 +339,7 @@
                         {
                             name: '六大領域國際網路',
                             type: 'graph',
-                            layout: 'none',
+                            layout: 'circular',
                             data: graph.nodes,
                             links: graph.links,
                             categories: graph.categories,
