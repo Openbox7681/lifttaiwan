@@ -47,12 +47,16 @@
                     </div>
                     <h6>是否啟用</h6>
                     <div class="choose_item">
+                    <div class="input-group mb-2">
+                    	<div class="form_input form_input_search">
                       <select id="QueryIsEnable" name="QueryIsEnable" aria-label="Default select example"
 									ng-model="QueryIsEnable" class="form-select">
                         <option value="" selected><s:message code="all" /></option>
 						<option value="true"><s:message code="isEnableTrue" /></option>
 						<option value="false"><s:message code="isEanbleFalse" /></option>
                       </select>
+                      </div>
+                      </div>
                     </div>
                     <div class="search_btn hcenter">
                       <div class="button_fill_orange btn_m" ng-click="queryData()">

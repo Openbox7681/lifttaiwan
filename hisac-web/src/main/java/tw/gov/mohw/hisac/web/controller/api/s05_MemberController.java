@@ -1,6 +1,10 @@
 package tw.gov.mohw.hisac.web.controller.api;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import java.nio.charset.StandardCharsets;
 import java.text.MessageFormat;
+import java.util.Base64;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -17,6 +21,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import tw.gov.mohw.hisac.web.WebConfig;
@@ -25,7 +30,13 @@ import tw.gov.mohw.hisac.web.WebDatetime;
 import tw.gov.mohw.hisac.web.WebMessage;
 import tw.gov.mohw.hisac.web.controller.BaseController;
 import tw.gov.mohw.hisac.web.dao.SystemLogVariable;
+import tw.gov.mohw.hisac.web.dao.MemberDAO;
+import tw.gov.mohw.hisac.web.dao.MemberRoleDAO;
+import tw.gov.mohw.hisac.web.dao.OrgDAO;
+import tw.gov.mohw.hisac.web.dao.OrgVariable.AuthType;
+import tw.gov.mohw.hisac.web.dao.OrgVariable.OrgType;
 import tw.gov.mohw.hisac.web.domain.Member;
+import tw.gov.mohw.hisac.web.domain.MemberRole;
 import tw.gov.mohw.hisac.web.domain.Org;
 import tw.gov.mohw.hisac.web.domain.SpMemberRoleName;
 
@@ -55,6 +66,15 @@ public class s05_MemberController extends BaseController {
 
 	@Autowired
 	private IresApiService iresApiService;
+	
+	@Autowired
+	private OrgDAO orgDAO;
+	
+	@Autowired
+	private MemberDAO memberDAO;
+	
+	@Autowired
+	private MemberRoleDAO memberRoleDAO;
 
 	private String targetControllerName = "sys";
 	private String targetActionName = "s05";
@@ -77,103 +97,100 @@ public class s05_MemberController extends BaseController {
 		JSONObject listjson = new JSONObject();
 		
 		json = WebCrypto.getSafe(json);
-		if (menuService.getReadPermission(getBaseMemberId(), targetControllerName, targetActionName)) {
-			JSONObject obj = new JSONObject(json);
-			if (baseMemberRole.IsAdmin) {
-				obj.put("RoleId", 1);
-				json = obj.toString();
-			} else if (baseMemberRole.IsHisac) {
-				obj.put("RoleId", 2);
-				json = obj.toString();
-			} else if (baseMemberRole.IsApplyAdmin) {
-				obj.put("RoleId", 9);
-				obj.put("baseOrgId", getBaseOrgId());
-				json = obj.toString();
-			} else if (baseMemberRole.IsMemberAdmin) {
-				obj.put("RoleId", 11);
-				obj.put("baseOrgId", getBaseOrgId());
-				json = obj.toString();
-			} else {
-			}
-			// if (baseMemberRole.IsMemberAdmin == true &&
-			// baseMemberRole.IsAdmin == false && baseMemberRole.IsHisac ==
-			// false) {
-			// obj.put("RoleId", 11); // 11.會員機構管理者
-			// obj.put("getBaseOrgId()", getBaseOrgId());
-			// json = obj.toString();
-			// }
-		
-			
-			
-			
-			obj = new JSONObject(json);
-			String onjstr = WebCrypto.getSafe(obj.toString());
-			
-			List<ViewMember> members = memberService.getList(onjstr);
-			long size = memberService.getListSize(onjstr);
-			listjson.put("total", size);
-			JSONArray sn_array = new JSONArray();
-			if (members != null) {
-				for (ViewMember member : members) {
-					JSONObject sn_json = new JSONObject();
-					sn_json.put("Id", member.getId());
-					sn_json.put("Account", member.getAccount());
-					sn_json.put("Name", member.getName());
-					sn_json.put("Email", member.getEmail());
-					sn_json.put("SpareEmail", member.getSpareEmail());
-					sn_json.put("MobilePhone", member.getMobilePhone());
-					sn_json.put("CityPhone", member.getCityPhone());
-					sn_json.put("FaxPhone", member.getFaxPhone());
-					sn_json.put("Address", member.getAddress());
-					sn_json.put("Department", member.getDepartment());
-					sn_json.put("Title", member.getTitle());
-					sn_json.put("IsEnable", member.getIsEnable());
-					sn_json.put("EnableTime", member.getEnableTime());
-					sn_json.put("ErrorCount", member.getErrorCount());
-					sn_json.put("OrgName", member.getOrgName());
-					sn_json.put("Code", member.getCode());
-					sn_json.put("OrgType", member.getOrgType());
-					sn_json.put("AuthType", member.getAuthType());
-					if (member.getOrgType().equals("3")) {
-						if (member.getCiLevel() == null || member.getCiLevel().equals("0")) {
-							sn_json.put("CILevel", WebMessage.getMessage("orgCILevel0", null, locale));
-						} else if (member.getCiLevel().equals("1")) {
-							sn_json.put("CILevel", WebMessage.getMessage("orgCILevel1", null, locale));
-							
-						} else if (member.getCiLevel().equals("2")) {
-							sn_json.put("CILevel", WebMessage.getMessage("orgCILevel2", null, locale));
-						}
-					} else {
-						sn_json.put("CILevel", "");
-					}
-					if (member.getErrorCount() == null) {
-						sn_json.put("Status", 0); // 審核中(查看,無動作)
-					} else if (member.getErrorCount() == -1) {
-						sn_json.put("Status", 1); // 等待啟用 設定密碼(查看,無動作)
-					} else if (member.getIsEnable() == false) {
-						sn_json.put("Status", 2); // 已停用(查看,啟用)
-					} else {
-						sn_json.put("Status", 3); // 正常狀態(查看,停用,編輯)
-					}
-					JSONArray sn_role_array = new JSONArray();
-					JSONObject memberObj = new JSONObject();
-					memberObj.put("Id", member.getId());
-					List<SpMemberRoleName> roles = memberRoleService.getMemberRoleList(memberObj.toString());
-					if (roles != null) {
-						for (SpMemberRoleName role : roles) {
-							if (role.getFlag() != 0)
-								sn_role_array.put(role.getName());
-						}
-					}
-					sn_json.put("Roles", sn_role_array);
-					sn_array.put(sn_json);
-				}
-				systemLogService.insert(baseControllerName, baseActionName, json, SystemLogVariable.Action.Read, SystemLogVariable.Status.Success, getBaseIpAddress(), getBaseMemberAccount());
-			}
-			listjson.put("datatable", sn_array);
+		JSONObject obj = new JSONObject(json);
+		if (baseMemberRole.IsAdmin) {
+			obj.put("RoleId", 1);
+			json = obj.toString();
+		} else if (baseMemberRole.IsHisac) {
+			obj.put("RoleId", 2);
+			json = obj.toString();
+		} else if (baseMemberRole.IsApplyAdmin) {
+			obj.put("RoleId", 9);
+			obj.put("baseOrgId", getBaseOrgId());
+			json = obj.toString();
+		} else if (baseMemberRole.IsMemberAdmin) {
+			obj.put("RoleId", 11);
+			obj.put("baseOrgId", getBaseOrgId());
+			json = obj.toString();
 		} else {
-			systemLogService.insert(baseControllerName, baseActionName, json, SystemLogVariable.Action.Read, SystemLogVariable.Status.Deny, getBaseIpAddress(), getBaseMemberAccount());
 		}
+		// if (baseMemberRole.IsMemberAdmin == true &&
+		// baseMemberRole.IsAdmin == false && baseMemberRole.IsHisac ==
+		// false) {
+		// obj.put("RoleId", 11); // 11.會員機構管理者
+		// obj.put("getBaseOrgId()", getBaseOrgId());
+		// json = obj.toString();
+		// }
+	
+		
+		
+		
+		obj = new JSONObject(json);
+		String onjstr = WebCrypto.getSafe(obj.toString());
+		
+		List<ViewMember> members = memberService.getList(onjstr);
+		long size = memberService.getListSize(onjstr);
+		listjson.put("total", size);
+		JSONArray sn_array = new JSONArray();
+		if (members != null) {
+			for (ViewMember member : members) {
+				JSONObject sn_json = new JSONObject();
+				sn_json.put("Id", member.getId());
+				sn_json.put("Account", member.getAccount());
+				sn_json.put("Name", member.getName());
+				sn_json.put("Email", member.getEmail());
+				sn_json.put("SpareEmail", member.getSpareEmail());
+				sn_json.put("MobilePhone", member.getMobilePhone());
+				sn_json.put("CityPhone", member.getCityPhone());
+				sn_json.put("FaxPhone", member.getFaxPhone());
+				sn_json.put("Address", member.getAddress());
+				sn_json.put("Department", member.getDepartment());
+				sn_json.put("Title", member.getTitle());
+				sn_json.put("IsEnable", member.getIsEnable());
+				sn_json.put("EnableTime", member.getEnableTime());
+				sn_json.put("ErrorCount", member.getErrorCount());
+				sn_json.put("OrgName", member.getOrgName());
+				sn_json.put("Code", member.getCode());
+				sn_json.put("OrgType", member.getOrgType());
+				sn_json.put("AuthType", member.getAuthType());
+				if (member.getOrgType().equals("3")) {
+					if (member.getCiLevel() == null || member.getCiLevel().equals("0")) {
+						sn_json.put("CILevel", WebMessage.getMessage("orgCILevel0", null, locale));
+					} else if (member.getCiLevel().equals("1")) {
+						sn_json.put("CILevel", WebMessage.getMessage("orgCILevel1", null, locale));
+						
+					} else if (member.getCiLevel().equals("2")) {
+						sn_json.put("CILevel", WebMessage.getMessage("orgCILevel2", null, locale));
+					}
+				} else {
+					sn_json.put("CILevel", "");
+				}
+				if (member.getErrorCount() == null) {
+					sn_json.put("Status", 0); // 審核中(查看,無動作)
+				} else if (member.getErrorCount() == -1) {
+					sn_json.put("Status", 1); // 等待啟用 設定密碼(查看,無動作)
+				} else if (member.getIsEnable() == false) {
+					sn_json.put("Status", 2); // 已停用(查看,啟用)
+				} else {
+					sn_json.put("Status", 3); // 正常狀態(查看,停用,編輯)
+				}
+				JSONArray sn_role_array = new JSONArray();
+				JSONObject memberObj = new JSONObject();
+				memberObj.put("Id", member.getId());
+				List<SpMemberRoleName> roles = memberRoleService.getMemberRoleList(memberObj.toString());
+				if (roles != null) {
+					for (SpMemberRoleName role : roles) {
+						if (role.getFlag() != 0)
+							sn_role_array.put(role.getName());
+					}
+				}
+				sn_json.put("Roles", sn_role_array);
+				sn_array.put(sn_json);
+			}
+			systemLogService.insert(baseControllerName, baseActionName, json, SystemLogVariable.Action.Read, SystemLogVariable.Status.Success, getBaseIpAddress(), getBaseMemberAccount());
+		}
+		listjson.put("datatable", sn_array);
+
 		model.addAttribute("json", listjson.toString());
 		return "msg";
 
@@ -198,7 +215,7 @@ public class s05_MemberController extends BaseController {
 	public String QueryById(Locale locale, HttpServletRequest request, Model model, @RequestBody String json) {
 		JSONArray sn_array = new JSONArray();
 		json = WebCrypto.getSafe(json);
-		if (menuService.getReadPermission(getBaseMemberId(), targetControllerName, targetActionName)) {
+//		if (menuService.getReadPermission(getBaseMemberId(), targetControllerName, targetActionName)) {
 			JSONObject obj = new JSONObject(json);
 			long id = obj.isNull("Id") == true ? 0 : obj.getLong("Id");
 			Member member = memberService.get(id);
@@ -234,9 +251,9 @@ public class s05_MemberController extends BaseController {
 			
 			sn_array.put(sn_json);
 			systemLogService.insert(baseControllerName, baseActionName, json, SystemLogVariable.Action.Read, SystemLogVariable.Status.Success, getBaseIpAddress(), getBaseMemberAccount());
-		} else {
-			systemLogService.insert(baseControllerName, baseActionName, json, SystemLogVariable.Action.Read, SystemLogVariable.Status.Deny, getBaseIpAddress(), getBaseMemberAccount());
-		}
+//		} else {
+//			systemLogService.insert(baseControllerName, baseActionName, json, SystemLogVariable.Action.Read, SystemLogVariable.Status.Deny, getBaseIpAddress(), getBaseMemberAccount());
+//		}
 		model.addAttribute("json", sn_array.toString());
 		return "msg";
 	}
@@ -255,63 +272,123 @@ public class s05_MemberController extends BaseController {
 	@RequestMapping(value = "/s05/create", method = RequestMethod.POST)
 	public @ResponseBody String Create(Locale locale, HttpServletRequest request, @RequestBody String json) {
 		JSONObject responseJson = new JSONObject();
+		JSONObject obj = new JSONObject(json);
 		CsrfToken token = new HttpSessionCsrfTokenRepository().loadToken(request);
-		json = WebCrypto.getSafe(json);
-
-		if (token == null || token.getToken().equals(""))
+		if (token == null || token.getToken().equals("")) {
 			return responseJson.toString();
-		if (menuService.getCreatePermission(getBaseMemberId(), targetControllerName, targetActionName)) {
-			JSONObject obj = new JSONObject(json);
-			String account = obj.isNull("Account") == true ? null : obj.getString("Account");
-			long orgId = obj.isNull("OrgId") == true ? 0 : obj.getLong("OrgId");
-			Org org = orgService.getDataById(orgId);
-			if (memberService.isAccountExist(account)) {
-				responseJson.put("msg", WebMessage.getMessage("globalDataExist", null, locale));
-				responseJson.put("success", false);
-				systemLogService.insert(baseControllerName, baseActionName, json, SystemLogVariable.Action.Create, SystemLogVariable.Status.Fail, getBaseIpAddress(), getBaseMemberAccount());
-			} else {
-				Member member = memberService.insert(getBaseMemberId(), json);
-				if (member != null) {
-					JSONArray json_array = obj.getJSONArray("MemberRoleData");					
-					JSONArray subscribeData_array = obj.getJSONArray("SubscribeData");
+		}
+		try {
+			String orgCode = obj.getString("account");
+			String orgName = obj.getString("name");
+			String orgCity = "";
+			String orgTown = "";
+			String orgAddress = "";
+			String orgBossName = "";
+			String orgBossEmail = "";
+			String orgBossMobilePhone = "";
+			String orgPrincipalName = "";
+			String orgPrincipalMobilePhone = "";
+			Long healthLevelId = Long.valueOf(0);
+			Long securityLevel = Long.valueOf(0);
+			Boolean isPublic = false;
+			
+			String memberAccount = obj.getString("account");
+			String memberName = obj.getString("name");
+			String memberEmail = obj.getString("email");
+			String memberMobilePhone = "";
+			Boolean isEnable = obj.getBoolean("isEnable");
+			Date now = new Date();
+
+			Member existMember = memberService.getMemberByAccount(memberAccount);
+			if (existMember == null) {
+				Org org = orgService.findByCode(orgCode);
+				if (org == null) {
+					// Create Org Info
+					String ciLevel = "0";
 					
-					if (baseMemberRole.IsAdmin || baseMemberRole.IsHisac) {
-						for (int i = 0; i < json_array.length(); i++) {
-							JSONObject obj_member_role = json_array.getJSONObject(i);
-							long member_role_id = obj_member_role.isNull("Id") == true ? 0 : obj_member_role.getLong("Id");
-							long roleId = obj_member_role.isNull("RoleId") == true ? 0 : obj_member_role.getLong("RoleId");
-							boolean flag = obj_member_role.isNull("Flag") == true ? false : obj_member_role.getBoolean("Flag");
-							memberRoleService.insertOrDelete(getBaseMemberId(), member_role_id, member.getId(), roleId, flag);
-						}
-					} else if (baseMemberRole.IsApplyAdmin) {
-						memberRoleService.insertOrDelete(getBaseMemberId(), (long) 0, member.getId(), (long) 8, true);
-					} else if (baseMemberRole.IsMemberAdmin) {
-						memberRoleService.insertOrDelete(getBaseMemberId(), (long) 0, member.getId(), (long) 10, true);
-					}	
-					memberRoleService.updateIsenable(member.getId());					
-					memberService.setMemberEnable(member.getId(), true, getBaseMemberId());
-					String salt = WebCrypto.generateUUID();
-					String newCode = WebCrypto.getHash(WebCrypto.HashType.SHA512, WebCrypto.getRandomPassword() + salt);
-					memberService.insertMemberHistory(member.getId(), newCode, salt, (short) -1, getBaseMemberId());
-					String code = WebCrypto.generateUUID() + WebCrypto.generateUUID() + WebCrypto.generateUUID() + WebCrypto.generateUUID();
-					Date expireTime = WebDatetime.addDays(null, 30);
-					memberService.updateForgotTemp(code, member.getId(), expireTime);
-					String mailSubject = resourceMessageService.getMessageValue("mailSignApplySetPasswordSubject");
-					String mailBody = MessageFormat.format(resourceMessageService.getMessageValue("mailSignApplySetPasswordBody"), member.getName(), member.getAccount(), WebConfig.WEB_SITE_URL + "reset?" + code, WebConfig.WEB_SITE_URL);
-					mailService.Send(this.getClass().getSimpleName() + " - " + Thread.currentThread().getStackTrace()[1].getMethodName(), member.getEmail(), null, null, mailSubject, mailBody, null);
-					responseJson.put("msg", WebMessage.getMessage("globalInsertDataSuccess", null, locale));
-					responseJson.put("success", true);
-					systemLogService.insert(baseControllerName, baseActionName, json, SystemLogVariable.Action.Create, SystemLogVariable.Status.Success, getBaseIpAddress(), getBaseMemberAccount());
-				} else {
-					responseJson.put("msg", WebMessage.getMessage("globalInsertDataFail", null, locale));
-					responseJson.put("success", false);
-					systemLogService.insert(baseControllerName, baseActionName, json, SystemLogVariable.Action.Create, SystemLogVariable.Status.Fail, getBaseIpAddress(), getBaseMemberAccount());
+					org = new Org();
+					org.setCode(orgCode);
+					org.setOrgType(OrgType.Member.getValue());
+					org.setAuthType(AuthType.None.getValue());
+					org.setCiLevel(ciLevel);
+					org.setName(orgName);
+					org.setCity(orgCity);
+					org.setTown(orgTown);
+					org.setAddress(orgAddress);
+					org.setBossName(orgBossName);
+					org.setBossEmail(orgBossEmail);
+					org.setBossMobilePhone(orgBossMobilePhone);
+					org.setPrincipalName(orgPrincipalName);
+					org.setPrincipalMobilePhone(orgPrincipalMobilePhone);
+					org.setIsEnable(true);
+					org.setCreateId((long) 1);
+					org.setCreateTime(now);
+					org.setModifyId((long) 1);
+					org.setModifyTime(now);
+					org.setSecurityLevel(securityLevel);
+					org.setHealthLevelId(healthLevelId);
+					org.setIsPublic(isPublic);
+					org.setSort(Long.valueOf(1));
+					org.setIsApply(true);
+					orgDAO.insert(org);
 				}
+
+				// Create Member Info
+				Member member = new Member();
+				member.setAccount(memberAccount);
+				member.setOrgId(org.getId());
+				member.setName(memberName);
+				member.setEmail(memberEmail);
+				member.setMobilePhone(memberMobilePhone);
+				member.setIsEnable(isEnable);
+				member.setEnableTime(now);
+				member.setCreateId((long) 1);
+				member.setCreateTime(now);
+				member.setModifyId((long) 1);
+				member.setModifyTime(now);
+				memberDAO.insert(member);
+				
+				MemberRole memberRole = new MemberRole();
+				memberRole.setMemberId(member.getId());
+				memberRole.setRoleId(Long.valueOf(1));
+				memberRole.setIsEnable(true);
+				memberRole.setCreateId((long) 1);
+				memberRole.setCreateTime(now);
+				memberRole.setModifyId((long) 1);
+				memberRole.setModifyTime(now);
+				memberRoleDAO.insert(memberRole);
+				
+				try {
+					Base64.Decoder decoder = Base64.getDecoder();
+					String code = new String(decoder.decode(obj.getString("code")), StandardCharsets.UTF_8.toString());
+					if (code == null || code.isEmpty()) {
+						// 密碼強度不符合
+						responseJson.put("success", false);
+						responseJson.put("msg", WebMessage.getMessage("memberResetCodeFail", null, locale));
+						systemLogService.insert(baseControllerName, baseActionName, memberAccount, SystemLogVariable.Action.Update, SystemLogVariable.Status.Fail, getBaseIpAddress(), getBaseMemberAccount());
+					} else {
+						String salt = WebCrypto.generateUUID();
+						String newCode = WebCrypto.getHash(WebCrypto.HashType.SHA512, code + salt);
+						memberService.insertMemberHistory(member.getId(), newCode, salt, (short) 0, member.getId());
+						responseJson.put("success", true);
+						responseJson.put("msg", WebMessage.getMessage("memberResetCodeSuccess", null, locale));
+						systemLogService.insert(baseControllerName, baseActionName, memberAccount, SystemLogVariable.Action.Update, SystemLogVariable.Status.Success, getBaseIpAddress(), getBaseMemberAccount());
+					}
+				} catch (UnsupportedEncodingException e) {
+					responseJson.put("success", false);
+					responseJson.put("msg", WebMessage.getMessage("memberResetCodeFail", null, locale));
+					systemLogService.insert(baseControllerName, baseActionName, memberAccount, SystemLogVariable.Action.Update, SystemLogVariable.Status.Fail, getBaseIpAddress(), getBaseMemberAccount());
+				}
+			} else {
+				responseJson.put("success", false);
+				responseJson.put("msg", WebMessage.getMessage("memberSignUpFail", null, locale));
+				systemLogService.insert(baseControllerName, baseActionName, "signUp", SystemLogVariable.Action.Create, SystemLogVariable.Status.Fail, getBaseIpAddress(), getBaseMemberAccount());
 			}
-		} else {
-			responseJson.put("msg", WebMessage.getMessage("globalPermissionDeny", null, locale));
+		} catch (Exception e) {
+			//e.printStackTrace();
 			responseJson.put("success", false);
-			systemLogService.insert(baseControllerName, baseActionName, json, SystemLogVariable.Action.Create, SystemLogVariable.Status.Deny, getBaseIpAddress(), getBaseMemberAccount());
+			responseJson.put("msg", WebMessage.getMessage("memberSignUpFail", null, locale));
+			systemLogService.insert(baseControllerName, baseActionName, "signUp", SystemLogVariable.Action.Create, SystemLogVariable.Status.Fail, getBaseIpAddress(), getBaseMemberAccount());
 		}
 		return responseJson.toString();
 	}
@@ -330,53 +407,58 @@ public class s05_MemberController extends BaseController {
 	@RequestMapping(value = "/s05/update", method = RequestMethod.POST)
 	public @ResponseBody String Update(Locale locale, HttpServletRequest request, @RequestBody String json) {
 		JSONObject responseJson = new JSONObject();
+		JSONObject obj = new JSONObject(json);
+		
 		CsrfToken token = new HttpSessionCsrfTokenRepository().loadToken(request);
 		json = WebCrypto.getSafe(json);
-
-		if (token == null || token.getToken().equals(""))
+		
+		if (token == null || token.getToken().equals("")) {
 			return responseJson.toString();
-		if (menuService.getUpdatePermission(getBaseMemberId(), targetControllerName, targetActionName)) {
-			JSONObject obj = new JSONObject(json);
-			long id = obj.getLong("Id");
-			String account = obj.isNull("Account") == true ? null : obj.getString("Account");
-			if (!memberService.isExist(id)) {
-				responseJson.put("msg", WebMessage.getMessage("globalDataNotExist", null, locale));
-				responseJson.put("success", false);
-				systemLogService.insert(baseControllerName, baseActionName, json, SystemLogVariable.Action.Update, SystemLogVariable.Status.Fail, getBaseIpAddress(), getBaseMemberAccount());
-			} else if (!memberService.get(id).getAccount().equals(account) && memberService.isAccountExist(account)) {
-				responseJson.put("msg", WebMessage.getMessage("globalDataExist", null, locale));
-				responseJson.put("success", false);
-				systemLogService.insert(baseControllerName, baseActionName, json, SystemLogVariable.Action.Update, SystemLogVariable.Status.Fail, getBaseIpAddress(), getBaseMemberAccount());
-			} 
-			else {
-				Member member = memberService.update(getBaseMemberId(), json);
-				if (member != null) {
-					JSONArray json_array = obj.getJSONArray("MemberRoleData");
-					
-					JSONArray subscribeData_array = obj.getJSONArray("SubscribeData");
-					
-					for (int i = 0; i < json_array.length(); i++) {
-						JSONObject obj_member_role = json_array.getJSONObject(i);
-						long member_role_id = obj_member_role.isNull("Id") == true ? 0 : obj_member_role.getLong("Id");
-						long roleId = obj_member_role.isNull("RoleId") == true ? 0 : obj_member_role.getLong("RoleId");
-						boolean flag = obj_member_role.isNull("Flag") == true ? false : obj_member_role.getBoolean("Flag");
-						memberRoleService.insertOrDelete(getBaseMemberId(), member_role_id, id, roleId, flag);						
-					}
-					memberRoleService.updateIsenable(id);	
-					responseJson.put("msg", WebMessage.getMessage("globalUpdateDataSuccess", null, locale));
-					responseJson.put("success", true);
-					systemLogService.insert(baseControllerName, baseActionName, json, SystemLogVariable.Action.Update, SystemLogVariable.Status.Success, getBaseIpAddress(), getBaseMemberAccount());
-				} else {
-					responseJson.put("msg", WebMessage.getMessage("globalUpdateDataFail", null, locale));
-					responseJson.put("success", false);
-					systemLogService.insert(baseControllerName, baseActionName, json, SystemLogVariable.Action.Update, SystemLogVariable.Status.Fail, getBaseIpAddress(), getBaseMemberAccount());
-				}
-			}
-		} else {
-			responseJson.put("msg", WebMessage.getMessage("globalPermissionDeny", null, locale));
-			responseJson.put("success", false);
-			systemLogService.insert(baseControllerName, baseActionName, json, SystemLogVariable.Action.Update, SystemLogVariable.Status.Deny, getBaseIpAddress(), getBaseMemberAccount());
 		}
+		
+		long id = obj.getLong("id");
+		String memberAccount = obj.isNull("account") == true ? null : obj.getString("account");
+		String memberName = obj.isNull("name") == true ? null : obj.getString("name");
+		String memberEmail = obj.isNull("email") == true ? null : obj.getString("email");
+		Boolean isEnable = obj.isNull("isEnable") == true ? false : obj.getBoolean("isEnable");
+		Date now = new Date();
+		
+		Member member = memberService.get(id);
+		if(member.getAccount().equals(memberAccount)) {
+			member.setName(memberName);
+			member.setEmail(memberEmail);
+			member.setIsEnable(isEnable);
+			member.setModifyId((long) 1);
+			member.setModifyTime(now);
+			memberDAO.update(member);
+		}
+		
+		try {
+			Base64.Decoder decoder = Base64.getDecoder();
+			String code = new String(decoder.decode(obj.getString("code")), StandardCharsets.UTF_8.toString());
+			if (code == null || code.isEmpty()) {
+				// 密碼強度不符合
+				responseJson.put("success", false);
+				responseJson.put("msg", WebMessage.getMessage("memberResetCodeFail", null, locale));
+				systemLogService.insert(baseControllerName, baseActionName, memberAccount, SystemLogVariable.Action.Update, SystemLogVariable.Status.Fail, getBaseIpAddress(), getBaseMemberAccount());
+			} else {
+				String salt = WebCrypto.generateUUID();
+				String newCode = WebCrypto.getHash(WebCrypto.HashType.SHA512, code + salt);
+				memberService.insertMemberHistory(member.getId(), newCode, salt, (short) 0, member.getId());
+				responseJson.put("success", true);
+				responseJson.put("msg", WebMessage.getMessage("memberResetCodeSuccess", null, locale));
+				systemLogService.insert(baseControllerName, baseActionName, memberAccount, SystemLogVariable.Action.Update, SystemLogVariable.Status.Success, getBaseIpAddress(), getBaseMemberAccount());
+			}
+		} catch (UnsupportedEncodingException e) {
+			responseJson.put("success", false);
+			responseJson.put("msg", WebMessage.getMessage("memberResetCodeFail", null, locale));
+			systemLogService.insert(baseControllerName, baseActionName, memberAccount, SystemLogVariable.Action.Update, SystemLogVariable.Status.Fail, getBaseIpAddress(), getBaseMemberAccount());
+		}
+//		} else {
+//			responseJson.put("msg", WebMessage.getMessage("globalPermissionDeny", null, locale));
+//			responseJson.put("success", false);
+//			systemLogService.insert(baseControllerName, baseActionName, json, SystemLogVariable.Action.Update, SystemLogVariable.Status.Deny, getBaseIpAddress(), getBaseMemberAccount());
+//		}
 		return responseJson.toString();
 	}
 	
@@ -706,5 +788,22 @@ public class s05_MemberController extends BaseController {
 		model.addAttribute("json", listjson.toString());
 		return "msg";
 	}
-
+	
+	@RequestMapping(value = "/s05/checkAccount", method = RequestMethod.POST)
+	public @ResponseBody String checkAccount(Locale locale, HttpServletRequest request, @RequestBody String json) {
+		JSONObject responseJson = new JSONObject();
+		try {
+			JSONObject obj = new JSONObject(URLDecoder.decode(json, StandardCharsets.UTF_8.toString()));
+			String memberAccount = obj.isNull("memberAccount") ? "" : obj.getString("memberAccount");
+			Member member = memberService.getMemberByAccount(memberAccount);
+			if (member == null) {
+				responseJson.put("success", true);
+			} else {
+				responseJson.put("success", false);
+			}
+		} catch (Exception e) {
+			responseJson.put("success", false);
+		}
+		return responseJson.toString();
+	}
 }
