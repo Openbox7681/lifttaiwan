@@ -26,27 +26,27 @@
             	<div class="map_style">
 					<img src="<c:out value="${pageContext.request.contextPath}" />/resources/img/index_map.svg">                    
 					<div class="d1 d"></div>
-                    <div class="box country1"><span>巴拿馬</span></div>
+                    <div class="box country1"><span>巴拿馬:0人</span></div>
                     <div class="s1 s max_point"></div>
-                    <div class="box country4"> <span>台灣 </span></div>
+                    <div class="box country4"> <span>台灣:24456人</span></div>
                     <div class="s2 s"></div>
-                    <div class="box country5"><span>德國</span></div>
+                    <div class="box country5"><span>德國:133人</span></div>
                     <div class="t1 t"></div>
-                    <div class="box country6"><span>馬來西亞</span></div>
+                    <div class="box country6"><span>馬來西亞:202人</span></div>
                     <div class="t2 t"></div>
-                    <div class="box country7"><span>中國</span></div>
+                    <div class="box country7"><span>中國:0人</span></div>
                     <div class="t3 t"></div>
-                    <div class="box country8"><span>法國</span></div>
+                    <div class="box country8"><span>法國:159人</span></div>
                     <div class="u1 u"></div>
-                    <div class="box country9"><span>印度</span></div>
+                    <div class="box country9"><span>印度:3016人</span></div>
                     <div class="u3 u"></div>
-                    <div class="box country11"><span>俄羅斯</span></div>
+                    <div class="box country11"><span>俄羅斯:321人</span></div>
                     <div class="v1 v"></div>
-                    <div class="box country13"><span>越南</span></div>
+                    <div class="box country13"><span>越南:235人</span></div>
                     <div class="o1 o"></div>
-                    <div class="box country14"><span>美國</span></div>
+                    <div class="box country14"><span>美國:904人</span></div>
                     <div class="o2 o mid_point"></div>
-                    <div class="box country15"><span>日本</span></div>
+                    <div class="box country15"><span>日本:396人</span></div>
                 </div>
             </section>
             <section id="info_cube">
@@ -359,7 +359,7 @@
                         </div>
                         <div class="col-md-6"><a class="button_fill_orange"
                                 href="<c:out value="${pageContext.request.contextPath}" />/fontend/cooperate">
-                                <span>台灣及其他國家國際合作表現</span></a>
+                                <span>各國學術論文國際合作比例</span></a>
                             <div class="chart_area">
                                 <!--<img class="fill" src="img/index_bar.jpg">-->
 

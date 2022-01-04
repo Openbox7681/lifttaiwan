@@ -211,7 +211,7 @@ function getAppController($scope, $http, $window) {
             align: app.config.align,
             verticalAlign: app.config.verticalAlign,
             rotate: app.config.rotate,
-            formatter: '{c}  {name|{a}}',
+            formatter: '',
             fontSize: 16,
             rich: {
                 name: {}
@@ -225,7 +225,7 @@ function getAppController($scope, $http, $window) {
                 }
             },
             legend: {
-                data: ['Country', 'Field']
+                data: ['2013-2017', '2014-2018', '2015-2019']
             },
             toolbox: {
                 show: true,
@@ -244,7 +244,8 @@ function getAppController($scope, $http, $window) {
                 {
                     type: 'category',
                     axisTick: { show: false },
-                    data: ['2013', '2014', '2015', '2016', '2017']
+                    data: ['中國', '丹麥', '日本', '以色列', '印度', '南韓', '美國', 
+                           '英國', '荷蘭', '新加坡', '瑞士', '瑞典', '臺灣', '德國', '澳洲']
                 }
             ],
             yAxis: [
@@ -254,23 +255,35 @@ function getAppController($scope, $http, $window) {
             ],
             series: [
                 {
-                    name: 'Country',
+                    name: '2013-2017',
                     type: 'bar',
                     barGap: 0,
                     label: labelOption,
                     emphasis: {
                         focus: 'series'
                     },
-                    data: [670, 693, 711, 734, 756]
+                    data: [25.67, 63.34, 31.25, 48.96, 24.35, 30.12, 36.7, 54.79, 
+                           60.89, 64.21, 70.17, 63.34, 30.59, 54.35, 52.79]
                 },
                 {
-                    name: 'Field',
+                    name: '2014-2018',
                     type: 'bar',
                     label: labelOption,
                     emphasis: {
                         focus: 'series'
                     },
-                    data: [714, 746, 796, 851, 912]
+                    data: [26.2, 65.1, 32.43, 50.03, 25.25, 30.74, 38.21, 57.12, 
+                           62.56, 66.49, 71.52, 65.1, 33.18, 55.67, 54.99]
+                },
+                {
+                    name: '2015-2019',
+                    type: 'bar',
+                    label: labelOption,
+                    emphasis: {
+                        focus: 'series'
+                    },
+                    data: [26.61, 66.69, 33.74, 51.11, 26.23, 31.49, 39.54, 58.92,
+                           64.21, 68.68, 72.77, 66.69, 36.09, 56.92, 57.17]
                 }
             ]
         };
