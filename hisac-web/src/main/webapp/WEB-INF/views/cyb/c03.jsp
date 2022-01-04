@@ -70,92 +70,58 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-12 adjust_pos">
+                        <div class="col-lg-12 adjust_pos" >
                             <div class="row">
                                 <div class="col-sm-12">
                                     <div class="index_title">
                                         <h5>查詢結果</h5>
                                     </div>
+                                    
+                                    <div class="col-xs-12 col-md-11"  style = "padding : 3px">
+                                    <div class="help-block"></div>
+                              
+                                    <label>
+			                        <span id="imgLoading"><i
+									class="fas fa-spinner fa-spin"></i> <s:message code="dataLoading" />
+									</span>
+									</label>
+									</div>
+                                    
+                                    
                                 </div>
-                                <div class="col-sm-12 exportbtn">
-                                    <div class="button_line_orange btn_s">
-                                        <p>報表匯出 </p>
-                                    </div>
-                                </div>
-                                <div class="col-lg-12">
+                               
+                                <div class="col-lg-12" ng-show="isSupport">
                                     <div class="form_chart">
                                         <div class="form_outbor">
                                             <table class="table caption-top">
                                                 <thead class="tablecolor">
                                                     <tr>
+														<th scope="col">排名</th>
                                                         <th scope="col">國際學術機構</th>
                                                         <th scope="col">被引用次數</th>
                                                         <th scope="col">研習人數</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <tr>
-                                                        <th scope="row">Massachusetts Institute of Technology(MIT)</th>
-                                                        <td>5723</td>
-                                                        <td>23</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">Max Planck Society</th>
-                                                        <td>3425 </td>
-                                                        <td>- </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">Centre National de la Recherche
-                                                            Scientifique(CNRS)</th>
-                                                        <td>2657</td>
-                                                        <td>11 </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">United States Department of Energy (DOE)</th>
-                                                        <td>L23053</td>
-                                                        <td>- </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">Harvard University</th>
-                                                        <td>45682</td>
-                                                        <td>66 </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">National Institute of Standards
-                                                            Technology(NIST)-USA</th>
-                                                        <td>56889</td>
-                                                        <td>45 </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">University System of Maryland</th>
-                                                        <td>28453</td>
-                                                        <td>- </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">California Institute of Technology</th>
-                                                        <td>20835</td>
-                                                        <td>34 </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">University of Maryland College Park</th>
-                                                        <td>1865</td>
-                                                        <td>- </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">University of Cambridge</th>
-                                                        <td>18500</td>
-                                                        <td>- </td>
-                                                    </tr>
+                                                
+                                                	<tr ng-repeat="item in Topad50Data">
+			                                            <td>{{item.Id}}</td>
+			                                            <td>{{item.Affiliation_e}}</td>
+			                                            <td>{{item.Tac}}</td>
+														<td>{{item.Con_Num}}</td>
+														
+			                                        </tr>
+                                                    
                                                 </tbody>
                                             </table>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-sm-12 analysisbtn">
-                                    <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                                    <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist" ng-show="isSupport">
                                         <li class="nav-item" role="presentation">
                                             <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill"
-                                                data-bs-target="#pills-home" type="button" role="tab"
+                                                data-bs-target="#pills-home" type="button" role="tab" 
                                                 aria-controls="pills-home" aria-selected="true">被引用次數分析圖</button>
                                         </li>
                                         <li class="nav-item" role="presentation">
@@ -168,28 +134,45 @@
                                         <div class="tab-pane fade show active" id="pills-home" role="tabpanel"
                                             aria-labelledby="pills-home-tab">
                                             <div class="col-sm-12">
-                                                <div class="index_title title_downloadbtn">
+                                                <div class="index_title title_downloadbtn" ng-show="isSupport">
                                                     <h5>被引用次數分析圖</h5>
                                                 </div>
                                                 <div class="chart">
                                                     <!--<img src="../img/img_cubelink.jpg">-->
 
-                                                    <div id="cubelink" style="height: 300px"></div>
+                                                    <div id="cubelink" style="width : 1344px ; height: 300px"></div>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="tab-pane fade" id="pills-profile" role="tabpanel"
                                             aria-labelledby="pills-profile-tab">
-                                            <div class="col-sm-12">
-                                                <div class="index_title title_downloadbtn">
-                                                    <h5>研習人數分析圖</h5>
+                                            <div class="col-lg-12 col-md-12">
+                                                <div class="index_title" ng-show="isSupport">
+                                                    <h5>各研習機構比例</h5>
                                                 </div>
+                                                 <div class="col-lg-12">
+                                                
                                                 <div class="chart">
                                                     <!--<img src="../img/img_pie-2.jpg">-->
 
-                                                    <div id="pie1" style="width: 600px; height: 300px"></div>
-                                                    <div id="pie2" style="width: 600px; height: 300px"></div>
+                                                    <div 
+                                                		 id="pie1" style=" width : 1344px  ; height: 600px"></div>
                                                 </div>
+                                     			 </div>
+                                                
+                                                
+                                                <div class="index_title" ng-show="isSupport">
+                                                    <h5>頂尖機構佔比</h5>
+                                                </div>
+                                                 <div class="col-lg-12">
+
+                                                <div class="chart">
+
+                                                    <div id="pie2" style="width : 1344px ; height: 600px"></div>
+                                                </div>
+                                               </div>
+                                                
+                                                
                                             </div>
                                         </div>
                                     </div>

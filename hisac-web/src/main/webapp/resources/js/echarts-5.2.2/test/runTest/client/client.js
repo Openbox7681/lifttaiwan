@@ -142,6 +142,12 @@ const app = new Vue({
     },
 
     mounted() {
+
+        if (this.width){
+            (document.querySelector('.chart') as HTMLElement).style.width = this.width + 'px';
+        }
+
+
         // Sync config from server when first time open
         // or switching back
         socket.emit('syncRunConfig', {

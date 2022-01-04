@@ -127,6 +127,49 @@ public class PeopleMainsLiftDAOImpl extends BaseSessionFactory implements People
 			return null;
 		}
 	}
+	@SuppressWarnings({"deprecation", "unchecked"})
+	//給定搜尋條件取出機構數量資料
+	public List<Object[]> getPie1DataByCondition(JSONArray classSubList) {
+		Criteria cr = getSessionFactory().getCurrentSession().createCriteria(PeopleMainsLift.class);
+		
+		
+		if(!classSubList.toString().contains("全部")) {
+			Disjunction dis = Restrictions.disjunction();
+			for(int i=0; i<classSubList.length(); i++) {
+				JSONObject obj = (JSONObject) classSubList.get(i);
+				if (obj.getBoolean("Flag") == true) {
+					String class_sub = obj.getString("Name");
+	                dis.add(Restrictions.eq("class_sub", class_sub));
+				}	
+			}
+	        cr.add(dis);
+		}
+
+		ProjectionList projectionList = Projections.projectionList();        
+		projectionList.add(Projections.groupProperty("affiliations_cor_e"))
+		        .add(Projections.countDistinct("p_id"));
+		
+		cr.add(Restrictions.ne("affiliations_cor_e", "NULL"));
+		
+		
+		cr.setProjection(projectionList);
+		
+			
+		
+		List<Object[]> list = cr.list();
+		if (list.size() > 0) {
+			return list;
+		} else {
+			return null;
+		}
+		
+		
+	}
+
+	
+	
+	
+	
 	
 	public List<Object[]> getAllCountry(){
 		

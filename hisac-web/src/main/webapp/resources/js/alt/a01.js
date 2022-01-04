@@ -457,7 +457,6 @@ function getAppController($scope, $http, $cookieStore, $cookies, $anchorScroll, 
 	}
 	
 	$scope.drawPlan = function(){
-		console.log("test")
 		document.getElementById("a1").removeAttribute('_echarts_instance_');
 		
 		var dom = document.getElementById("a1");

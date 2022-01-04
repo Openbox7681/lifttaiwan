@@ -466,7 +466,6 @@ function getAppController($scope, $http, $cookieStore, $cookies, $anchorScroll, 
 		console.log(request);
 		$http.post('./c02/queryTopres20Data', request, csrf_config).then(function(response) {
 			$scope.Topres20Data = response.data.datatable;	
-			console.log($scope.Topres20Data);
 
 		}).catch(function() {
 			bootbox.alert({

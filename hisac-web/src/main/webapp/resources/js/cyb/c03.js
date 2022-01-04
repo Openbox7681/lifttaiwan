@@ -39,6 +39,8 @@ function getAppController($rootScope, $scope, $http, $cookieStore,
 	$scope.queryNumber();
 	
 	$scope.cubelink = function(){
+		document.getElementById("cubelink").removeAttribute('_echarts_instance_');
+
 		var dom = document.getElementById("cubelink");
         var myChart = echarts.init(dom);
         var app = {};
@@ -46,41 +48,14 @@ function getAppController($rootScope, $scope, $http, $cookieStore,
         var option;
 
         option = {
+        		tooltip: {
+        		   },
             series: [
                 {
                     type: 'treemap',
-                    data: [
-                        {
-                            name: 'nodeA',
-                            value: 10,
-                            children: [
-                                {
-                                    name: 'nodeAa',
-                                    value: 4
-                                },
-                                {
-                                    name: 'nodeAb',
-                                    value: 6
-                                }
-                            ]
-                        },
-                        {
-                            name: 'nodeB',
-                            value: 20,
-                            children: [
-                                {
-                                    name: 'nodeBa',
-                                    value: 20,
-                                    children: [
-                                        {
-                                            name: 'nodeBa1',
-                                            value: 20
-                                        }
-                                    ]
-                                }
-                            ]
-                        }
-                    ]
+                    data: $scope.Cube50Data
+                
+                
                 }
             ]
         };
@@ -93,13 +68,15 @@ function getAppController($rootScope, $scope, $http, $cookieStore,
 	}
 	
 	
-	$scope.cubelink();
+//	$scope.cubelink();
 	
 	
 	
 	
 	
 	$scope.pie1 = function(){
+		document.getElementById("pie1").removeAttribute('_echarts_instance_');
+		
 		var dom = document.getElementById("pie1");
         var myChart = echarts.init(dom);
         var app = {};
@@ -112,13 +89,15 @@ function getAppController($rootScope, $scope, $http, $cookieStore,
             },
             legend: {
                 top: '5%',
-                left: 'center'
+                left: 'center',
+                show: false
             },
             series: [
                 {
-                    name: 'Access From',
+                    name: '研習機構',
                     type: 'pie',
                     radius: ['40%', '70%'],
+                    center : ['50%', '50%'],
                     avoidLabelOverlap: false,
                     itemStyle: {
                         borderRadius: 10,
@@ -139,13 +118,7 @@ function getAppController($rootScope, $scope, $http, $cookieStore,
                     labelLine: {
                         show: false
                     },
-                    data: [
-                        { value: 1048, name: 'Search Engine' },
-                        { value: 735, name: 'Direct' },
-                        { value: 580, name: 'Email' },
-                        { value: 484, name: 'Union Ads' },
-                        { value: 300, name: 'Video Ads' }
-                    ]
+                    data: $scope.Pie1table
                 }
             ]
         };
@@ -157,11 +130,12 @@ function getAppController($rootScope, $scope, $http, $cookieStore,
 		
 	}
 	
-	$scope.pie1();
+	
 	
 	
 	
 	$scope.pie2 = function(){
+		document.getElementById("pie2").removeAttribute('_echarts_instance_');
 		var dom = document.getElementById("pie2");
         var myChart = echarts.init(dom);
         var app = {};
@@ -174,11 +148,12 @@ function getAppController($rootScope, $scope, $http, $cookieStore,
             },
             legend: {
                 top: '5%',
-                left: 'center'
+                left: 'center',
+                show: false
             },
             series: [
                 {
-                    name: 'Access From',
+                    name: '頂尖機構佔比',
                     type: 'pie',
                     radius: ['40%', '70%'],
                     avoidLabelOverlap: false,
@@ -201,13 +176,7 @@ function getAppController($rootScope, $scope, $http, $cookieStore,
                     labelLine: {
                         show: false
                     },
-                    data: [
-                        { value: 1048, name: 'Search Engine' },
-                        { value: 735, name: 'Direct' },
-                        { value: 580, name: 'Email' },
-                        { value: 484, name: 'Union Ads' },
-                        { value: 300, name: 'Video Ads' }
-                    ]
+                    data: $scope.Pie2table
                 }
             ]
         };
@@ -217,7 +186,8 @@ function getAppController($rootScope, $scope, $http, $cookieStore,
         }
 	}
 	
-	$scope.pie2();
+	
+	
 	
 	
 	
@@ -225,6 +195,8 @@ function getAppController($rootScope, $scope, $http, $cookieStore,
 	
 	
 	$scope.IsInfoShow = false;
+	
+	//圖表是否呈現
 	$scope.isSupport = false;
 	$scope.isDraw = false ;
 	
@@ -536,8 +508,51 @@ function getAppController($rootScope, $scope, $http, $cookieStore,
 	
 	$scope.query =function(){
  	   console.log($scope.InfoList);
-		
+ 	   $scope.queryForm()
+ 	   $scope.isSupport = true;
+ 	   
 	}
+	
+	$scope.queryForm = function() {
+		$("#imgLoading").show();
+		$scope.isSupport = false
+
+		var request = {		
+				classSubList : $scope.InfoList
+		};
+		console.log(request);
+		$http.post('./c03/queryTopad50Data', request, csrf_config).then(function(response) {
+			$scope.Topad50Data = response.data.datatable;	
+			$scope.Cube50Data = response.data.cubetable;	
+			$scope.Pie1table = response.data.pie1table;	
+			$scope.Pie2table = response.data.pie2table;	
+
+			
+			
+		 	$scope.cubelink();
+		 	$scope.pie1();
+		 	$scope.pie2();
+
+
+
+		}).catch(function() {
+			bootbox.alert({
+				message : globalReadDataFail,
+				buttons : {
+					ok : {
+						label : '<i class="fas fa-fw fa-times"></i>' + btnClose,
+						className : 'btn-danger',
+					}
+				},
+				callback: function() { }
+			});
+		}).finally(function() {
+			$("#imgLoading").hide();
+
+		});
+	};
+	
+	//六大領域資料 end
 	
 
 	

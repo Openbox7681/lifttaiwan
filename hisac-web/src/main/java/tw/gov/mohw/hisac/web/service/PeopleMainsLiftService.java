@@ -63,6 +63,11 @@ public class PeopleMainsLiftService {
 		
 	}
 	
+	//取得機構圓餅圖資料
+		public List<Object[]>  getPie1DataByCondition(JSONArray classSubList){
+			return peopleMainsDAO.getPie1DataByCondition(classSubList);
+		}
+	
 	
 
 	public long getListSize(String json) {
