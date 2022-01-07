@@ -449,4 +449,160 @@ function getAppController($scope, $http, $window) {
 		});
 	};
 	$scope.queryArticle();
+	
+	$scope.queryPeopleMains = function() {
+		
+		var country = $(".change_text").text();
+		
+		if(country == '過去10年中的國際優秀人才和研究成果') {
+			country = null
+		}else if(country == '台灣') {
+			country = '台灣,中華民國'
+		}
+		
+		var request = {
+			country: country
+		};
+		
+		var header = JSON.parse('{"'
+				+ $("meta[name='_csrf_header']").attr("content") + '":"'
+				+ $("meta[name='_csrf']").attr("content") + '"}');
+		var csrf_config = {
+			withCredentials : true,
+			crossDomain : true,
+			headers : header
+		};
+
+		$http.post('./fontend/index/queryPeopleMains', request, csrf_config).then(function(response) {
+			
+			$scope.computerData = response.data.computerData;
+			$scope.healthData = response.data.healthData;
+			$scope.warData = response.data.warData;
+			$scope.greenData = response.data.greenData;
+			$scope.lifeData = response.data.lifeData;
+			$scope.otherData = response.data.otherData;
+			
+		}).catch(function() {
+			bootbox.alert({
+				message : globalReadDataFail,
+				buttons : {
+					ok : {
+						label : '<i class="fas fa-fw fa-times"></i>' + btnClose,
+						className : 'btn-danger',
+					}
+				},
+				callback: function() { }
+			});
+		}).finally(function() {
+			
+		});
+	};
+	$scope.queryPeopleMains();
+	
+	$(document).ready(function() {
+		
+		  $("#inbound").text("31710");
+		  $("#outbound").text("402");
+		  $("#mechanism").text("31629");
+		  $("#result").text("5000");
+
+		  $(".s1").click(function() { 
+			  $(".change_text").text("台灣");
+			  $("#inbound").text("24456");
+			  $("#outbound").text("0");
+			  $("#mechanism").text("24183");
+			  $("#result").text("5000");
+			  $scope.queryPeopleMains();
+		  });
+		  
+		  $(".s2").click(function() { 
+		    $(".change_text").text("德國");
+		    $("#inbound").text("110");
+			  $("#outbound").text("23");
+			  $("#mechanism").text("132");
+			  $("#result").text("29");
+			  $scope.queryPeopleMains();
+		  });
+		  
+		  $(".t1").click(function() { 
+		    $(".change_text").text("馬來西亞");
+		    $("#inbound").text("202");
+			  $("#outbound").text("0");
+			  $("#mechanism").text("202");
+			  $("#result").text("11");
+			  $scope.queryPeopleMains();
+		  });
+		  
+		  $(".t2").click(function() { 
+		    $(".change_text").text("中國");
+		    $("#inbound").text("0");
+			  $("#outbound").text("0");
+			  $("#mechanism").text("0");
+			  $("#result").text("232");
+			  $scope.queryPeopleMains();
+		  });
+		  
+		  $(".t3").click(function() { 
+		    $(".change_text").text("法國");
+		    $("#inbound").text("153");
+			  $("#outbound").text("6");
+			  $("#mechanism").text("151");
+			  $("#result").text("18");
+			  $scope.queryPeopleMains();
+		  });
+		                     
+		  $(".u1").click(function() { 
+		    $(".change_text").text("印度");
+		    $("#inbound").text("3016");
+			  $("#outbound").text("0");
+			  $("#mechanism").text("2913");
+			  $("#result").text("15");
+			  $scope.queryPeopleMains();
+		  });
+		                     
+		  $(".u3").click(function() { 
+		    $(".change_text").text("俄羅斯");
+		    $("#inbound").text("321");
+			  $("#outbound").text("0");
+			  $("#mechanism").text("317");
+			  $("#result").text("10");
+			  $scope.queryPeopleMains();
+		  });
+		  
+		  $(".v1").click(function() { 
+		    $(".change_text").text("越南");
+		    $("#inbound").text("235");
+			  $("#outbound").text("0");
+			  $("#mechanism").text("233");
+			  $("#result").text("0");
+			  $scope.queryPeopleMains();
+		  });
+
+		  $(".o1").click(function() { 
+		    $(".change_text").text("美國");
+		    $("#inbound").text("618");
+			  $("#outbound").text("286");
+			  $("#mechanism").text("877");
+			  $("#result").text("383");
+			  $scope.queryPeopleMains();
+		  });
+		                    
+		  $(".o2").click(function() { 
+		    $(".change_text").text("日本");
+		    $("#inbound").text("373");
+			  $("#outbound").text("23");
+			  $("#mechanism").text("388");
+			  $("#result").text("81");
+			  $scope.queryPeopleMains();
+		  });
+		  
+		  $(".worldicon").click(function() { 
+		    $(".change_text").text("過去10年中的國際優秀人才和研究成果");
+		    $("#inbound").text("31710");
+		    $("#outbound").text("402");
+		    $("#mechanism").text("31629");
+		    $("#result").text("5000");
+		    $scope.queryPeopleMains();
+		  });
+		});
 };

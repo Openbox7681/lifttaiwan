@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import tw.gov.mohw.hisac.web.controller.BaseController;
 import tw.gov.mohw.hisac.web.dao.SystemLogVariable;
 import tw.gov.mohw.hisac.web.service.ArticleDataService;
+import tw.gov.mohw.hisac.web.service.PeopleMainsLiftService;
 import tw.gov.mohw.hisac.web.service.VideoDataService;
 import tw.gov.mohw.hisac.web.domain.ArticleData;
 import tw.gov.mohw.hisac.web.domain.VideoData;
@@ -33,6 +34,8 @@ public class fontend_IndexController extends BaseController {
 	private VideoDataService videoDataService;
 	@Autowired
 	private ArticleDataService articleDataService;
+	@Autowired
+	private PeopleMainsLiftService peopleMainsLiftService;
 
 	@RequestMapping(value = "/queryVideo", method = RequestMethod.POST)
 	public String queryVideo(Locale locale, HttpServletRequest request, Model model, @RequestBody String json) {
@@ -109,6 +112,64 @@ public class fontend_IndexController extends BaseController {
 				}
 			listjson.put("tagtable", tag_array);
 			listjson.put("datatable", sn_array);
+			systemLogService.insert(baseControllerName, baseActionName, json, SystemLogVariable.Action.Read, SystemLogVariable.Status.Success, getBaseIpAddress(), getBaseMemberAccount());
+//		} else {
+//			systemLogService.insert(baseControllerName, baseActionName, json, SystemLogVariable.Action.Read, SystemLogVariable.Status.Deny, getBaseIpAddress(), getBaseMemberAccount());
+//		}
+		model.addAttribute("json", listjson.toString());
+		return "msg";
+	}
+	
+	@RequestMapping(value = "/queryPeopleMains", method = RequestMethod.POST)
+	public String queryPeopleMains(Locale locale, HttpServletRequest request, Model model, @RequestBody String json) {
+		JSONObject listjson = new JSONObject();
+		//if (menuService.getReadPermission(getBaseMemberId(), targetControllerName, targetActionName)) {
+			JSONObject obj = new JSONObject(json);
+			String country = obj.isNull("country") == true ? null : obj.getString("country");
+			String[] country_token = null;
+			if(country != null && country.length()>0) {
+				country_token = country.split(",");
+			}
+			
+			JSONArray computer_array = new JSONArray();
+			JSONArray health_array = new JSONArray();
+			JSONArray war_array = new JSONArray();
+			JSONArray green_array = new JSONArray();
+			JSONArray life_array = new JSONArray();
+			JSONArray other_array = new JSONArray();
+			
+			List<Object[]> countList = peopleMainsLiftService.getPeopleNum(country_token);
+			if(countList.size()>0) {
+				for(Object[] data : countList) {
+					JSONObject sn_json = new JSONObject();
+					if("資訊及數位相關產業".equals(data[0].toString())) {
+						sn_json.put("data", data[1].toString() + ":/" + data[2].toString() + "人");
+						computer_array.put(sn_json);
+					}else if("臺灣精準健康戰略產業".equals(data[0].toString())) {
+						sn_json.put("data", data[1].toString() + ":/" + data[2].toString() + "人");
+						health_array.put(sn_json);
+					}else if("國防及戰略產業".equals(data[0].toString())) {
+						sn_json.put("data", data[1].toString() + ":/" + data[2].toString() + "人");
+						war_array.put(sn_json);
+					}else if("綠電及再生能源產業".equals(data[0].toString())) {
+						sn_json.put("data", data[1].toString() + ":/" + data[2].toString() + "人");
+						green_array.put(sn_json);
+					}else if("民生及戰備產業".equals(data[0].toString())) {
+						sn_json.put("data", data[1].toString() + ":/" + data[2].toString() + "人");
+						life_array.put(sn_json);
+					}else if("其他".equals(data[0].toString())) {
+						sn_json.put("data", data[1].toString() + ":/" + data[2].toString() + "人");
+						other_array.put(sn_json);
+					}
+				} 
+			}
+			listjson.put("computerData", computer_array);
+			listjson.put("healthData", health_array);
+			listjson.put("warData", war_array);
+			listjson.put("greenData", green_array);
+			listjson.put("lifeData", life_array);
+			listjson.put("otherData", other_array);
+			
 			systemLogService.insert(baseControllerName, baseActionName, json, SystemLogVariable.Action.Read, SystemLogVariable.Status.Success, getBaseIpAddress(), getBaseMemberAccount());
 //		} else {
 //			systemLogService.insert(baseControllerName, baseActionName, json, SystemLogVariable.Action.Read, SystemLogVariable.Status.Deny, getBaseIpAddress(), getBaseMemberAccount());
