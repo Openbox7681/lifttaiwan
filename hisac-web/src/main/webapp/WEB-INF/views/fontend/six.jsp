@@ -324,15 +324,9 @@
                         top: 'bottom',
                         left: 'right'
                     },
-                    tooltip: {},
-                    legend: [
-                        {
-                            // selectedMode: 'single',
-                            data: graph.categories.map(function (a) {
-                                return a.name;
-                            })
-                        }
-                    ],
+                    tooltip: {
+                    	show : true
+                    },
                     animationDuration: 1500,
                     animationEasingUpdate: 'quinticInOut',
                     series: [

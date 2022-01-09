@@ -1,7 +1,7 @@
 {
     "nodes": [
       {
-        "id": "0",
+        "id": "1001",
         "name": "1001",
         "symbolSize": 19.12381,
         "x": -266.82776,
@@ -12,7 +12,7 @@
       {
         "id": "1",
         "name": "10021",
-        "symbolSize": 45,
+        "symbolSize": 5,
         "x": -418.08344,
         "y": 446.8853,
         "value": 4,
@@ -21,7 +21,7 @@
       {
         "id": "2",
         "name": "10027",
-        "symbolSize": 6.323809333333333,
+        "symbolSize": 3.323809333333333,
         "x": -212.76357,
         "y": 245.29176,
         "value": 9.485714,
@@ -34,16 +34,16 @@
         "x": -242.82404,
         "y": 235.26283,
         "value": 9.485714,
-        "category": 2
+        "category": 3
       },
       {
-        "id": "4",
+        "id": "Chen, Mei-Hsin",
         "name": "Chen, Mei-Hsin",
-        "symbolSize": 10,
+        "symbolSize": 4,
         "x": -379.30386,
         "y": 429.06424,
         "value": 4,
-        "category": 0
+        "category": 4
       },
       {
         "id": "5",
@@ -52,7 +52,7 @@
         "x": -417.26337,
         "y": 406.03506,
         "value": 4,
-        "category": 1
+        "category": 5
       },
       {
         "id": "6",
@@ -61,7 +61,7 @@
         "x": -332.6012,
         "y": 485.16974,
         "value": 4,
-        "category": 2
+        "category": 6
       },
       {
         "id": "7",
@@ -70,7 +70,7 @@
         "x": -382.69568,
         "y": 475.09113,
         "value": 4,
-        "category": 2
+        "category": 7
       }
       ,
       {
@@ -80,7 +80,7 @@
         "x": -182.69568,
         "y": 475.09113,
         "value": 4,
-        "category": 2
+        "category": 8
       },
       {
         "id": "9",
@@ -89,7 +89,7 @@
         "x": -282.69568,
         "y": 475.09113,
         "value": 4,
-        "category": 2
+        "category": 9
       },
       {
         "id": "10",
@@ -98,7 +98,7 @@
         "x": -282.69568,
         "y": 475.09113,
         "value": 4,
-        "category": 2
+        "category": 10
       },
       {
         "id": "11",
@@ -107,13 +107,32 @@
         "x": -282.69568,
         "y": 475.09113,
         "value": 4,
-        "category": 2
+        "category": 11
+      },
+      {
+        "id": "Li, Testd",
+        "name": "Li, Testd",
+        "symbolSize": 2.6666666666666665,
+        "x": -282.69568,
+        "y": 475.09113,
+        "value": 4,
+        "category": 12
+      }
+      ,
+      {
+        "id": "Li, Teste",
+        "name": "Li, Teste",
+        "symbolSize": 2.6666666666666665,
+        "x": -282.69568,
+        "y": 475.09113,
+        "value": 4,
+        "category": 13
       }
     ],
     "links": [
       {
-        "source": "0",
-        "target": "4"
+        "source": "1001",
+        "target": "Chen, Mei-Hsin"
       },
       {
         "source": "8",
@@ -146,35 +165,77 @@
       {
         "source": "6",
         "target": "7"
+      },
+      {
+        "source": "Li, Testd",
+        "target": "Li, Teste"
+      },
+      {
+        "source": "1001",
+        "target": "Li, Teste"
       }
     ],
     "categories": [
       {
-        "name": "A"
+        "name": "1"
       },
       {
-        "name": "B"
+        "name": "2"
       },
       {
-        "name": "C"
+        "name": "3"
       },
       {
-        "name": "D"
+        "name": "4"
       },
       {
-        "name": "E"
+        "name": "5"
       },
       {
-        "name": "F"
+        "name": "6"
       },
       {
-        "name": "G"
+        "name": "7"
       },
       {
-        "name": "H"
+        "name": "8"
       },
       {
-        "name": "I"
+        "name": "9"
+      },
+      {
+        "name": "10"
+      },
+      {
+        "name": "11"
+      },
+      {
+        "name": "12"
+      },
+      {
+        "name": "13"
+      },
+      {
+        "name": "14"
+      },
+      {
+        "name": "15"
+      },
+      {
+        "name": "16"
+      },
+      {
+        "name": "17"
+      },
+      {
+        "name": "18"
+      },
+      {
+        "name": "19"
+      },
+      {
+        "name": "20"
       }
+      
     ]
   }

@@ -14,6 +14,6 @@ public interface Topres20DAO {
 	public Topres20 get(Long id);
 	public List<Topres20> getAll();
 	
-	public List<Topres20> getTopres20ByCondition(JSONArray classSubList );
+	public List<Object[]> getTopres20ByCondition(JSONArray classSubList );
 	
 }

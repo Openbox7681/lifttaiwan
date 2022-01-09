@@ -48,7 +48,7 @@ public class Topres20DAOImpl extends BaseSessionFactory implements Topres20DAO {
 	}
 	
 	@SuppressWarnings({"deprecation", "unchecked"})
-	public List<Topres20> getTopres20ByCondition(JSONArray classSubList){
+	public List<Object[]> getTopres20ByCondition(JSONArray classSubList){
 		
 		Criteria cr = getSessionFactory().getCurrentSession().createCriteria(Topres20.class);
 				
@@ -64,11 +64,20 @@ public class Topres20DAOImpl extends BaseSessionFactory implements Topres20DAO {
 			}
 	        cr.add(dis);
 		}
-		cr.addOrder(Order.desc("aac"));
+		
+		
+		cr.setProjection(Projections.projectionList()
+				.add(Projections.sum("aac").as("AacCount"))
+				.add(Projections.sum("con_num").as("CountCon"))
+				.add(Projections.groupProperty("fullname"))
+				.add(Projections.groupProperty("affiliation"))
+				
+				);
+		cr.addOrder(Order.desc("AacCount"));
 
 		cr.setMaxResults(20);
 
-		List<Topres20> list = cr.list();
+		List<Object[]> list = cr.list();
 		if (list.size() > 0) {
 			return list;
 		} else {

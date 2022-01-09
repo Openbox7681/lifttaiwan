@@ -1,5 +1,6 @@
 package tw.gov.mohw.hisac.web.controller.api;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
@@ -62,6 +63,7 @@ public class c02_Topres20Controller extends BaseController {
 	@RequestMapping(value = "/queryTopres20Data", method = RequestMethod.POST)
 	public String queryTopres20Data(Locale locale, HttpServletRequest request, Model model, @RequestBody String json) {
 		JSONObject listjson = new JSONObject();
+		JSONObject connectjson = new JSONObject();
 
 		
 		JSONObject obj = new JSONObject(json);
@@ -69,33 +71,58 @@ public class c02_Topres20Controller extends BaseController {
 		JSONArray classSubList = obj.isNull("classSubList") == true ? null : obj.getJSONArray("classSubList");
 		
 		JSONArray sn_array = new JSONArray();
+		
+		JSONArray connect_array = new JSONArray();
+		
+		JSONArray category_array = new JSONArray();
 
 		
-		List<Topres20> topres20s = topres20Service.getClassSubDataByCondition(classSubList);
+		
+		List<Object[]> topres20s = topres20Service.getClassSubDataByCondition(classSubList);
+		
+		List<String> res20List = new ArrayList<String>(); 
 		
 		int rank = 1;
+		int category = 0;
 		
 		if(topres20s != null) {
 			
-			for(Topres20 topres20 : topres20s) {
+			for(Object[] topres20 : topres20s) {
 				JSONObject sn_json = new JSONObject();
 				sn_json.put("Id",rank);
 				
-				sn_json.put("Class_Sub", topres20.getClass_sub());
-				sn_json.put("FullName", topres20.getFullname());
-				sn_json.put("Aac", topres20.getAac());
-				sn_json.put("Con_Num",   topres20.getCon_num() == null ? "無" : "有" );
-				sn_json.put("Affiliation", topres20.getAffiliation());
-				sn_json.put("Country", topres20.getCountry());
-				rank ++;
+				sn_json.put("FullName", topres20[2]);
+				sn_json.put("Aac", topres20[0]);
+				sn_json.put("Con_Num",   topres20[1] == null ? "無" : "有" );
+				sn_json.put("Affiliation", topres20[3]);
+				res20List.add(topres20[2].toString());
 				
+				JSONObject connect_json = new JSONObject();
+				connect_json.put("name", topres20[2]);
+				connect_json.put("id", topres20[2]);
+				connect_json.put("symbolSize", 4);
+				connect_json.put("x", -282.69568 + category);
+				connect_json.put("y", 475.09113-category);
+				connect_json.put("value", 4);
+				connect_json.put("category", category);
+				
+				JSONObject category_json = new JSONObject();
+				category_json.put("category", category);
+				
+				rank ++;	
+				category ++;
 				sn_array.put(sn_json);	
+				connect_array.put(connect_json);
+				category_array.put(category_json);
 			}
 		}
-
-		listjson.put("datatable",sn_array);
-
+		connectjson.put("nodes", connect_array);
 		
+		connectjson.put("categories", category_array);
+		
+		listjson.put("datatable",sn_array);
+		
+		listjson.put("connect", connectjson);
 		
 		model.addAttribute("json", listjson.toString());
 		return "msg";

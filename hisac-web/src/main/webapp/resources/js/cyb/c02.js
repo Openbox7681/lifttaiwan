@@ -71,6 +71,9 @@ function getAppController($scope, $http, $cookieStore, $cookies, $anchorScroll, 
                      show: node.symbolSize > 30
                  };
              });
+             
+         
+             console.log(graph);
              option = {
                  title: {
                      text: 'Les Miserables',

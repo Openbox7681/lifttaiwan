@@ -25,7 +25,7 @@ public class Topres20Service {
 	
 	//利用搜尋條件取得表格資料 (領域)
 	
-	public List<Topres20> getClassSubDataByCondition(JSONArray classSubList) {
+	public List<Object[]> getClassSubDataByCondition(JSONArray classSubList) {
 			return topres20DAO.getTopres20ByCondition(classSubList);
 	}
 	
