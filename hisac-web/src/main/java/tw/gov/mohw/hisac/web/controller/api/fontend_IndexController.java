@@ -139,29 +139,31 @@ public class fontend_IndexController extends BaseController {
 			JSONArray other_array = new JSONArray();
 			
 			List<Object[]> countList = peopleMainsLiftService.getPeopleNum(country_token);
-			if(countList.size()>0) {
-				for(Object[] data : countList) {
-					JSONObject sn_json = new JSONObject();
-					if("資訊及數位相關產業".equals(data[0].toString())) {
-						sn_json.put("data", data[1].toString() + ":/" + data[2].toString() + "人");
-						computer_array.put(sn_json);
-					}else if("臺灣精準健康戰略產業".equals(data[0].toString())) {
-						sn_json.put("data", data[1].toString() + ":/" + data[2].toString() + "人");
-						health_array.put(sn_json);
-					}else if("國防及戰略產業".equals(data[0].toString())) {
-						sn_json.put("data", data[1].toString() + ":/" + data[2].toString() + "人");
-						war_array.put(sn_json);
-					}else if("綠電及再生能源產業".equals(data[0].toString())) {
-						sn_json.put("data", data[1].toString() + ":/" + data[2].toString() + "人");
-						green_array.put(sn_json);
-					}else if("民生及戰備產業".equals(data[0].toString())) {
-						sn_json.put("data", data[1].toString() + ":/" + data[2].toString() + "人");
-						life_array.put(sn_json);
-					}else if("其他".equals(data[0].toString())) {
-						sn_json.put("data", data[1].toString() + ":/" + data[2].toString() + "人");
-						other_array.put(sn_json);
-					}
-				} 
+			if(countList!= null) {
+				if(countList.size()>0) {
+					for(Object[] data : countList) {
+						JSONObject sn_json = new JSONObject();
+						if("資訊及數位相關產業".equals(data[0].toString())) {
+							sn_json.put("data", data[1].toString() + ":/" + data[2].toString() + "人");
+							computer_array.put(sn_json);
+						}else if("臺灣精準健康戰略產業".equals(data[0].toString())) {
+							sn_json.put("data", data[1].toString() + ":/" + data[2].toString() + "人");
+							health_array.put(sn_json);
+						}else if("國防及戰略產業".equals(data[0].toString())) {
+							sn_json.put("data", data[1].toString() + ":/" + data[2].toString() + "人");
+							war_array.put(sn_json);
+						}else if("綠電及再生能源產業".equals(data[0].toString())) {
+							sn_json.put("data", data[1].toString() + ":/" + data[2].toString() + "人");
+							green_array.put(sn_json);
+						}else if("民生及戰備產業".equals(data[0].toString())) {
+							sn_json.put("data", data[1].toString() + ":/" + data[2].toString() + "人");
+							life_array.put(sn_json);
+						}else if("其他".equals(data[0].toString())) {
+							sn_json.put("data", data[1].toString() + ":/" + data[2].toString() + "人");
+							other_array.put(sn_json);
+						}
+					} 
+				}
 			}
 			listjson.put("computerData", computer_array);
 			listjson.put("healthData", health_array);
