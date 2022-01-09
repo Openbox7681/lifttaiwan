@@ -29,5 +29,6 @@ public interface PeopleMainsLiftDAO {
 	
 	public List<Object[]> getPie1DataByCondition(JSONArray classSubList);
 	public List<Object[]> getPeopleNum(String[] country);
+	public List<Object[]> getMechanism(JSONObject obj, String[] country);
 
 }

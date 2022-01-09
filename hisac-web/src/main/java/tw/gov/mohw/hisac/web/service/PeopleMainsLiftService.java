@@ -67,6 +67,11 @@ public class PeopleMainsLiftService {
 	public List<Object[]>  getPeopleNum(String[] country){
 		return peopleMainsDAO.getPeopleNum(country);
 	}
+	//取得機構資料by國家
+	public List<Object[]>  getMechanism(String json, String[] country){
+		JSONObject obj = new JSONObject(json);
+		return peopleMainsDAO.getMechanism(obj, country);
+	}
 	
 	//取得機構圓餅圖資料
 		public List<Object[]>  getPie1DataByCondition(JSONArray classSubList){

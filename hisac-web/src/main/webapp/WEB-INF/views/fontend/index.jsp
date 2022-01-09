@@ -69,13 +69,16 @@
                                 <p>Out-bound人數</p>
                                 <h2 id="outbound"></h2>
                             </div>
-                        </div><a class="col-md-2 col-xs-6" href="#">
+                        </div>
+                        <a class="col-md-2 col-xs-6" id="mechanismHref"
+                        	>
                             <div class="cube_outer">
                                 <div class="mechanism"></div>
                                 <p>國際機構數</p>
                                 <h2 id="mechanism"></h2>
                             </div>
-                        </a><a class="col-md-2 col-xs-6" href="#">
+                        </a>
+                        <a class="col-md-2 col-xs-6" href="#">
                             <div class="cube_outer">
                                 <div class="result"></div>
                                 <p>研究成果</p>
@@ -209,32 +212,17 @@
                             <div class="row">
                                 <div class="col-md-4">
                                     <ul class="area_tabs pink">
-                                        <li> <span>半導體材料：109/人</span></li>
-                                        <li> <span>半導體設備：891/人</span></li>
-                                        <li> <span>晶圓代工：548/人</span></li>
-                                        <li> <span>晶圓封測：623/人</span></li>
-                                        <li> <span>量子科技：764/人</span></li>
-                                        <li> <span>零接觸生活科技：395/人</span></li>
+                                        
                                     </ul>
                                 </div>
                                 <div class="col-md-4">
                                     <ul class="area_tabs pink">
-                                        <li> <span>半導體材料：109/人</span></li>
-                                        <li> <span>半導體設備：891/人</span></li>
-                                        <li> <span>晶圓代工：548/人</span></li>
-                                        <li> <span>晶圓封測：623/人</span></li>
-                                        <li> <span>量子科技：764/人</span></li>
-                                        <li> <span>零接觸生活科技：395/人</span></li>
+                                        
                                     </ul>
                                 </div>
                                 <div class="col-md-4">
                                     <ul class="area_tabs pink">
-                                        <li> <span>半導體材料：109/人</span></li>
-                                        <li> <span>半導體設備：891/人</span></li>
-                                        <li> <span>晶圓代工：548/人</span></li>
-                                        <li> <span>晶圓封測：623/人</span></li>
-                                        <li> <span>量子科技：764/人</span></li>
-                                        <li> <span>零接觸生活科技：395/人 </span></li>
+                                        
                                     </ul>
                                 </div>
                             </div>

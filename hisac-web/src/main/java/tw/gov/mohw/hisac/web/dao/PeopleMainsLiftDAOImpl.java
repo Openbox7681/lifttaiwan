@@ -91,6 +91,35 @@ public class PeopleMainsLiftDAOImpl extends BaseSessionFactory implements People
 	}
 	
 	@SuppressWarnings({"deprecation", "unchecked"})
+	public List<Object[]> getMechanism(JSONObject obj, String[] country) {
+		int start = obj.isNull("start") == true ? 0 : obj.getInt("start");
+		int maxRows = obj.isNull("maxRows") == true ? 0 : obj.getInt("maxRows");
+		
+		Criteria cr = getSessionFactory().getCurrentSession().createCriteria(PeopleMainsLift.class);
+		if(country != null) {
+			cr.add(Restrictions.in("country", country));
+		}
+		ProjectionList projectionList = Projections.projectionList();        
+		projectionList.add(Projections.groupProperty("affiliations_cor_c"))
+		        .add(Projections.groupProperty("affiliations_cor_e"))
+		        .add(Projections.groupProperty("country"))
+		        .add(Projections.countDistinct("p_id").as("number"));
+		
+		cr.setProjection(projectionList);
+		cr.addOrder(Order.desc("number"));
+		
+		cr.setFirstResult(start);
+		if (maxRows != 0)
+			cr.setMaxResults(maxRows);
+		List<Object[]> list = cr.list();
+		if (list.size() > 0) {
+			return list;
+		} else {
+			return null;
+		}
+	}
+	
+	@SuppressWarnings({"deprecation", "unchecked"})
 	public List<Object[]> getMapData() {
 		Criteria cr = getSessionFactory().getCurrentSession().createCriteria(PeopleMainsLift.class);
 		
