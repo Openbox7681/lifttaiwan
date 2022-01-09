@@ -148,6 +148,10 @@
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 	
+	<bean id="snaInfoLiftDAO" class="tw.gov.mohw.hisac.web.dao.SnaInfoLiftDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
 	<bean id="ttmaxInfoLiftDAO" class="tw.gov.mohw.hisac.web.dao.TtmaxInfoLiftDAOImpl">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>

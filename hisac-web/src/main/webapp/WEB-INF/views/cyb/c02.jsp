@@ -118,7 +118,7 @@
                                     </div>
                                 </div>
                                 <div class="col-sm-12 scholars_btn" >
-                                    <div class="button_fill_orange" ng-click = "connect()">
+                                    <div class="button_fill_orange" ng-click = "connect()" ng-show="isSupport">
                                         <p>網絡分析圖</p>
                                     </div>
                                 </div>
@@ -131,7 +131,7 @@
                                         </div>
                                         <div class="col-sm-12">
                                             <div class="scholar_img">
-                                                <div id="connect" style="width: 555px; height: 333px"></div>
+                                                <div id="connect" style="width: 1200px; height: 333px"></div>
                                             </div>
                                         </div>
                                     </div>

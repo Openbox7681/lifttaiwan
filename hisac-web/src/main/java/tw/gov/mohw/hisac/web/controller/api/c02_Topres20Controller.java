@@ -28,6 +28,8 @@ import tw.gov.mohw.hisac.web.service.PaperMainsLiftService;
 import tw.gov.mohw.hisac.web.service.PeopleMainsLiftService;
 import tw.gov.mohw.hisac.web.service.SnaTopInfoLiftService;
 import tw.gov.mohw.hisac.web.service.Topres20Service;
+import tw.gov.mohw.hisac.web.service.SnaInfoLiftService;
+
 
 
 @Controller
@@ -45,6 +47,10 @@ public class c02_Topres20Controller extends BaseController {
 	
 	@Autowired
 	private Topres20Service topres20Service;
+	
+	@Autowired
+	private SnaInfoLiftService snaInfoLiftService;
+	
 	
 
 	@RequestMapping(value = "/queryNumber", method = RequestMethod.POST)
@@ -76,11 +82,16 @@ public class c02_Topres20Controller extends BaseController {
 		
 		JSONArray category_array = new JSONArray();
 
-		
+		JSONArray link_array = new JSONArray();
+
 		
 		List<Object[]> topres20s = topres20Service.getClassSubDataByCondition(classSubList);
 		
+		
+		
+		
 		List<String> res20List = new ArrayList<String>(); 
+		
 		
 		int rank = 1;
 		int category = 0;
@@ -100,10 +111,10 @@ public class c02_Topres20Controller extends BaseController {
 				JSONObject connect_json = new JSONObject();
 				connect_json.put("name", topres20[2]);
 				connect_json.put("id", topres20[2]);
-				connect_json.put("symbolSize", 4);
+				connect_json.put("symbolSize", 21);
 				connect_json.put("x", -282.69568 + category);
 				connect_json.put("y", 475.09113-category);
-				connect_json.put("value", 4);
+				connect_json.put("value", topres20[0]);
 				connect_json.put("category", category);
 				
 				JSONObject category_json = new JSONObject();
@@ -116,9 +127,28 @@ public class c02_Topres20Controller extends BaseController {
 				category_array.put(category_json);
 			}
 		}
+		
+		List<Object[]> linksByNames =  snaInfoLiftService.getLinksByName(res20List);
+		if(linksByNames != null) {
+			for(Object[] linksByName : linksByNames) {
+				JSONObject sn_json = new JSONObject();
+				sn_json.put("source", linksByName[0]);
+				sn_json.put("target", linksByName[1]);
+				link_array.put(sn_json);
+			}		
+		}
+
+			
+
+		
+		
+		
 		connectjson.put("nodes", connect_array);
 		
 		connectjson.put("categories", category_array);
+		
+		connectjson.put("links", link_array);
+
 		
 		listjson.put("datatable",sn_array);
 		
