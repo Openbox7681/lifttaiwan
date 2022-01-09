@@ -13,7 +13,14 @@
               <p>執行單位：財團法人國家實驗研究院科技政策研究與資訊中心</p>
               <p>地址：10636 臺北市和平東路二段106號1、14、15樓</p>
               <p>業務聯絡：(02)2737-7426/7746；系統聯絡：(02)2737-7145/7670</p>
-              <p>E-mail:lift@narlabs.org.tw</p><a href="pages/privacy.html"> <span>隱私權宣告</span></a><span>｜ </span><a href="pages/copyright.html"> <span>版權宣告</span></a>
+              <p>E-mail:lift@narlabs.org.tw</p>
+              <a href="<c:out value="${pageContext.request.contextPath}" />/copyPrivacy/privacy"> 
+              	<span>隱私權宣告</span>
+              </a>
+              <span>｜ </span>
+              <a href="<c:out value="${pageContext.request.contextPath}" />/copyPrivacy/copyright"> 
+              	<span>版權宣告</span>
+              </a>
             </div>
             <div class="divline"></div>
             <div class="footer_content">

@@ -28,5 +28,6 @@ public interface PeopleMainsLiftDAO {
 	public List<Object[]> getAllCountry();
 	
 	public List<Object[]> getPie1DataByCondition(JSONArray classSubList);
+	public List<Object[]> getPeopleNum(String[] country);
 
 }

@@ -340,8 +340,31 @@ public class PeopleMainsLiftDAOImpl extends BaseSessionFactory implements People
 		}
 
 	}
-
-	
+	//取得各領域人數by國家
+	public List<Object[]> getPeopleNum(String[] country){
+		
+		Criteria cr = getSessionFactory().getCurrentSession().createCriteria(PeopleMainsLift.class);
+		
+		if(country != null) {
+			cr.add(Restrictions.in("country", country));
+		}
+		
+		ProjectionList projectionList = Projections.projectionList();        
+		projectionList.add(Projections.groupProperty("class_main"))
+					  .add(Projections.groupProperty("class_sub"))
+					  .add(Projections.countDistinct("p_id"));
+		
+		
+		cr.setProjection(projectionList);
+		cr.addOrder(Order.asc("class_sub"));
+		
+		List<Object[]> list = cr.list();
+		if (list.size() > 0) {
+			return list;
+		} else {
+			return null;
+		}
+	};
 	
 
 	@SuppressWarnings("deprecation")

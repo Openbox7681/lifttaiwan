@@ -8,117 +8,6 @@ $(document).scroll(function() {
   });
 
 $(document).ready(function() {
-	
-  $("#inbound").text("31710");
-  $("#outbound").text("402");
-  $("#mechanism").text("31629");
-  $("#result").text("5000");
-
-  $(".d1").click(function() {
-	  $(".change_text").text("巴拿馬");
-	  $("#inbound").text("0");
-	  $("#outbound").text("0");
-	  $("#mechanism").text("0");
-	  $("#result").text("0");
-  });
-
-  $(".s1").click(function() { 
-	  $(".change_text").text("台灣");
-	  $("#inbound").text("24456");
-	  $("#outbound").text("0");
-	  $("#mechanism").text("24183");
-	  $("#result").text("5000");
-  });
-  
-  $(".s2").click(function() { 
-    $(".change_text").text("德國");
-    $("#inbound").text("110");
-	  $("#outbound").text("23");
-	  $("#mechanism").text("132");
-	  $("#result").text("29");
-  });
-  
-  $(".t1").click(function() { 
-    $(".change_text").text("馬來西亞");
-    $("#inbound").text("202");
-	  $("#outbound").text("0");
-	  $("#mechanism").text("202");
-	  $("#result").text("11");
-  });
-  
-  $(".t2").click(function() { 
-    $(".change_text").text("中國");
-    $("#inbound").text("0");
-	  $("#outbound").text("0");
-	  $("#mechanism").text("0");
-	  $("#result").text("232");
-  });
-  
-  $(".t3").click(function() { 
-    $(".change_text").text("法國");
-    $("#inbound").text("153");
-	  $("#outbound").text("6");
-	  $("#mechanism").text("151");
-	  $("#result").text("18");
-  });
-                     
-  $(".u1").click(function() { 
-    $(".change_text").text("印度");
-    $("#inbound").text("3016");
-	  $("#outbound").text("0");
-	  $("#mechanism").text("2913");
-	  $("#result").text("15");
-  });
-                     
-  $(".u3").click(function() { 
-    $(".change_text").text("俄羅斯");
-    $("#inbound").text("321");
-	  $("#outbound").text("0");
-	  $("#mechanism").text("317");
-	  $("#result").text("10");
-  });
-  
-  $(".v1").click(function() { 
-    $(".change_text").text("越南");
-    $("#inbound").text("235");
-	  $("#outbound").text("0");
-	  $("#mechanism").text("233");
-	  $("#result").text("0");
-  });
-
-  $(".o1").click(function() { 
-    $(".change_text").text("美國");
-    $("#inbound").text("618");
-	  $("#outbound").text("286");
-	  $("#mechanism").text("877");
-	  $("#result").text("383");
-  });
-                    
-  $(".o2").click(function() { 
-    $(".change_text").text("日本");
-    $("#inbound").text("373");
-	  $("#outbound").text("23");
-	  $("#mechanism").text("388");
-	  $("#result").text("81");
-  });
-  
-  $(".worldicon").click(function() { 
-    $(".change_text").text("過去10年中的國際優秀人才和研究成果");
-    $("#inbound").text("31710");
-    $("#outbound").text("402");
-    $("#mechanism").text("31629");
-    $("#result").text("5000");
-  });
-});
-
-
-
-
-
-
-
-
-$(document).ready(function() {
   const inbound = document.querySelector(".inbound");
   const outbound = document.querySelector(".outbound");
   const mechanism = document.querySelector(".mechanism");
@@ -190,82 +79,284 @@ $(document).ready(function() {
 
 
 
-
+$(function() {                       
+	  $(".map0").click(function() { 
+	  	$(".u").removeClass("addgreen");
+	  	$(".u").removeClass("addyellow");
+	  	$(".u").removeClass("addblue");
+	  	$(".u").removeClass("addlightblue");
+	  	$(".u").removeClass("addred");
+	  	$(".u").removeClass("addpink");
+	  	
+	  	$(".s").removeClass("addgreen");
+	  	$(".s").removeClass("addyellow");
+	  	$(".s").removeClass("addblue");
+	  	$(".s").removeClass("addlightblue");
+	  	$(".s").removeClass("addred");
+	  	$(".s").removeClass("addpink");
+	  	
+	  	$(".o").removeClass("addgreen");
+	  	$(".o").removeClass("addyellow");
+	  	$(".o").removeClass("addblue");
+	  	$(".o").removeClass("addlightblue");
+	  	$(".o").removeClass("addred");
+	  	$(".o").removeClass("addpink");
+	  	
+	  	$(".v").removeClass("addgreen");
+	  	$(".v").removeClass("addyellow");
+	  	$(".v").removeClass("addblue");
+	  	$(".v").removeClass("addlightblue");
+	  	$(".v").removeClass("addred");
+	  	$(".v").removeClass("addpink");
+	  	
+	  	$(".t").removeClass("addgreen");
+	  	$(".t").removeClass("addyellow");
+	  	$(".t").removeClass("addblue");
+	  	$(".t").removeClass("addlightblue");
+	  	$(".t").removeClass("addred");
+	  	$(".t").removeClass("addpink");
+	  });
+	});
 
 $(function() {                       
   $(".map1").click(function() { 
-  	$(".g").removeClass("addgreen");
+  	$(".u").removeClass("addgreen");
+  	$(".u").removeClass("addyellow");
+  	$(".u").removeClass("addblue");
+  	$(".u").removeClass("addlightblue");
+  	$(".u").removeClass("addred");
+  	
+  	$(".s").removeClass("addgreen");
   	$(".s").removeClass("addyellow");
+  	$(".s").removeClass("addblue");
+  	$(".s").removeClass("addlightblue");
+  	$(".s").removeClass("addred");
+  	
+  	$(".o").removeClass("addgreen");
+  	$(".o").removeClass("addyellow");
   	$(".o").removeClass("addblue");
+  	$(".o").removeClass("addlightblue");
+  	$(".o").removeClass("addred");
+  	
+  	$(".v").removeClass("addgreen");
+  	$(".v").removeClass("addyellow");
+  	$(".v").removeClass("addblue");
   	$(".v").removeClass("addlightblue");
-  	$(".t").removeClass("addred");  	  	  	
+  	$(".v").removeClass("addred");
+  	
+  	$(".t").removeClass("addgreen");
+  	$(".t").removeClass("addyellow");
+  	$(".t").removeClass("addblue");
+  	$(".t").removeClass("addlightblue");
+  	$(".t").removeClass("addred");
+  	
     $(".u").addClass("addpink");
+    $(".t").addClass("addpink");
+    $(".s").addClass("addpink");
+    $(".o").addClass("addpink");
+    $(".v").addClass("addpink");
   });
 });
-
 
 $(function() {                       
-  $(".map2").click(function() { 
-  	$(".g").removeClass("addgreen");
-  	$(".s").removeClass("addyellow");
-  	$(".o").removeClass("addblue");
-  	$(".v").removeClass("addlightblue");
-    $(".u").removeClass("addpink");
-  	$(".t").addClass("addred");  	  	  	
-
-  });
-});
-$(function() {                       
-  $(".map5").click(function() { 
-  	$(".g").removeClass("addgreen");
-  	$(".s").removeClass("addyellow");
-  	$(".o").removeClass("addblue");
-    $(".u").removeClass("addpink");  	
-  	$(".t").removeClass("addred");
-  	$(".v").addClass("addlightblue");  		  	  	
-
-  });
-});
-$(function() {                       
-  $(".map6").click(function() { 
-  	$(".g").removeClass("addgreen");
-  	$(".s").removeClass("addyellow");
-    $(".u").removeClass("addpink");  	
-  	$(".v").removeClass("addlightblue");
-  	$(".t").removeClass("addred"); 
-  	$(".o").addClass("addblue");  	 	  	  	
-
-  });
-});
-$(function() {                       
-  $(".map3").click(function() { 
-  	$(".g").removeClass("addgreen");
-    $(".u").removeClass("addpink");  	
-  	$(".o").removeClass("addblue");
-  	$(".v").removeClass("addlightblue");
-  	$(".t").removeClass("addred");
-  	$(".s").addClass("addyellow");  		  	  	
-  });
-});
-
+	  $(".map2").click(function() { 
+	  	$(".u").removeClass("addgreen");
+	  	$(".u").removeClass("addyellow");
+	  	$(".u").removeClass("addblue");
+	  	$(".u").removeClass("addlightblue");
+	  	$(".u").removeClass("addpink");
+	  	
+	  	$(".s").removeClass("addgreen");
+	  	$(".s").removeClass("addyellow");
+	  	$(".s").removeClass("addblue");
+	  	$(".s").removeClass("addlightblue");
+	  	$(".s").removeClass("addpink");
+	  	
+	  	$(".o").removeClass("addgreen");
+	  	$(".o").removeClass("addyellow");
+	  	$(".o").removeClass("addblue");
+	  	$(".o").removeClass("addlightblue");
+	  	$(".o").removeClass("addpink");
+	  	
+	  	$(".v").removeClass("addgreen");
+	  	$(".v").removeClass("addyellow");
+	  	$(".v").removeClass("addblue");
+	  	$(".v").removeClass("addlightblue");
+	  	$(".v").removeClass("addpink");
+	  	
+	  	$(".t").removeClass("addgreen");
+	  	$(".t").removeClass("addyellow");
+	  	$(".t").removeClass("addblue");
+	  	$(".t").removeClass("addlightblue");
+	  	$(".t").removeClass("addpink");
+	  	
+	  	$(".u").addClass("addred");
+	    $(".t").addClass("addred");
+	    $(".s").addClass("addred");
+	    $(".o").addClass("addred");
+	    $(".v").addClass("addred");
+	  });
+	});
 
 $(function() {                       
-  $(".map4").click(function() { 
-    $(".u").removeClass("addpink");  	
-  	$(".o").removeClass("addblue");
-  	$(".v").removeClass("addlightblue");
-  	$(".t").removeClass("addred");
-  	$(".s").removeClass("addyellow");
-  	$(".g").addClass("addgreen");  		  	  	
-  });
-});
+	  $(".map3").click(function() { 
+	  	$(".u").removeClass("addgreen");
+	  	$(".u").removeClass("addblue");
+	  	$(".u").removeClass("addlightblue");
+	  	$(".u").removeClass("addred");
+	  	$(".u").removeClass("addpink");
+	  	
+	  	$(".s").removeClass("addgreen");
+	  	$(".s").removeClass("addblue");
+	  	$(".s").removeClass("addlightblue");
+	  	$(".s").removeClass("addred");
+	  	$(".s").removeClass("addpink");
+	  	
+	  	$(".o").removeClass("addgreen");
+	  	$(".o").removeClass("addblue");
+	  	$(".o").removeClass("addlightblue");
+	  	$(".o").removeClass("addred");
+	  	$(".o").removeClass("addpink");
+	  	
+	  	$(".v").removeClass("addgreen");
+	  	$(".v").removeClass("addblue");
+	  	$(".v").removeClass("addlightblue");
+	  	$(".v").removeClass("addred");
+	  	$(".v").removeClass("addpink");
+	  	
+	  	$(".t").removeClass("addgreen");
+	  	$(".t").removeClass("addblue");
+	  	$(".t").removeClass("addlightblue");
+	  	$(".t").removeClass("addred");
+	  	$(".t").removeClass("addpink");
+	  	
+	  	$(".u").addClass("addyellow");
+	    $(".t").addClass("addyellow");
+	    $(".s").addClass("addyellow");
+	    $(".o").addClass("addyellow");
+	    $(".v").addClass("addyellow");
+	  });
+	});
 
+$(function() {                       
+	  $(".map4").click(function() { 
+	  	$(".u").removeClass("addyellow");
+	  	$(".u").removeClass("addblue");
+	  	$(".u").removeClass("addlightblue");
+	  	$(".u").removeClass("addred");
+	  	$(".u").removeClass("addpink");
+	  	
+	  	$(".s").removeClass("addyellow");
+	  	$(".s").removeClass("addblue");
+	  	$(".s").removeClass("addlightblue");
+	  	$(".s").removeClass("addred");
+	  	$(".s").removeClass("addpink");
+	  	
+	  	$(".o").removeClass("addyellow");
+	  	$(".o").removeClass("addblue");
+	  	$(".o").removeClass("addlightblue");
+	  	$(".o").removeClass("addred");
+	  	$(".o").removeClass("addpink");
+	  	
+	  	$(".v").removeClass("addyellow");
+	  	$(".v").removeClass("addblue");
+	  	$(".v").removeClass("addlightblue");
+	  	$(".v").removeClass("addred");
+	  	$(".v").removeClass("addpink");
+	  	
+	  	$(".t").removeClass("addyellow");
+	  	$(".t").removeClass("addblue");
+	  	$(".t").removeClass("addlightblue");
+	  	$(".t").removeClass("addred");
+	  	$(".t").removeClass("addpink");
+	  	
+	  	$(".u").addClass("addgreen");
+	    $(".t").addClass("addgreen");
+	    $(".s").addClass("addgreen");
+	    $(".o").addClass("addgreen");
+	    $(".v").addClass("addgreen");
+	  });
+	});
 
+$(function() {                       
+	  $(".map5").click(function() { 
+	  	$(".u").removeClass("addgreen");
+	  	$(".u").removeClass("addyellow");
+	  	$(".u").removeClass("addblue");
+	  	$(".u").removeClass("addred");
+	  	$(".u").removeClass("addpink");
+	  	
+	  	$(".s").removeClass("addgreen");
+	  	$(".s").removeClass("addyellow");
+	  	$(".s").removeClass("addblue");
+	  	$(".s").removeClass("addred");
+	  	$(".s").removeClass("addpink");
+	  	
+	  	$(".o").removeClass("addgreen");
+	  	$(".o").removeClass("addyellow");
+	  	$(".o").removeClass("addblue");
+	  	$(".o").removeClass("addred");
+	  	$(".o").removeClass("addpink");
+	  	
+	  	$(".v").removeClass("addgreen");
+	  	$(".v").removeClass("addyellow");
+	  	$(".v").removeClass("addblue");
+	  	$(".v").removeClass("addred");
+	  	$(".v").removeClass("addpink");
+	  	
+	  	$(".t").removeClass("addgreen");
+	  	$(".t").removeClass("addyellow");
+	  	$(".t").removeClass("addblue");
+	  	$(".t").removeClass("addred");
+	  	$(".t").removeClass("addpink");
+	  	
+	  	$(".u").addClass("addlightblue");
+	    $(".t").addClass("addlightblue");
+	    $(".s").addClass("addlightblue");
+	    $(".o").addClass("addlightblue");
+	    $(".v").addClass("addlightblue");
+	  });
+	});
 
-
-
-
-
+$(function() {                       
+	  $(".map6").click(function() { 
+	  	$(".u").removeClass("addgreen");
+	  	$(".u").removeClass("addyellow");
+	  	$(".u").removeClass("addlightblue");
+	  	$(".u").removeClass("addred");
+	  	$(".u").removeClass("addpink");
+	  	
+	  	$(".s").removeClass("addgreen");
+	  	$(".s").removeClass("addyellow");
+	  	$(".s").removeClass("addlightblue");
+	  	$(".s").removeClass("addred");
+	  	$(".s").removeClass("addpink");
+	  	
+	  	$(".o").removeClass("addgreen");
+	  	$(".o").removeClass("addyellow");
+	  	$(".o").removeClass("addlightblue");
+	  	$(".o").removeClass("addred");
+	  	$(".o").removeClass("addpink");
+	  	
+	  	$(".v").removeClass("addgreen");
+	  	$(".v").removeClass("addyellow");
+	  	$(".v").removeClass("addlightblue");
+	  	$(".v").removeClass("addred");
+	  	$(".v").removeClass("addpink");
+	  	
+	  	$(".t").removeClass("addgreen");
+	  	$(".t").removeClass("addyellow");
+	  	$(".t").removeClass("addlightblue");
+	  	$(".t").removeClass("addred");
+	  	$(".t").removeClass("addpink");
+	  	
+	  	$(".u").addClass("addblue");
+	    $(".t").addClass("addblue");
+	    $(".s").addClass("addblue");
+	    $(".o").addClass("addblue");
+	    $(".v").addClass("addblue");
+	  });
+	});
 
 // .addpink u
 //   background-color: #ff6e9e
