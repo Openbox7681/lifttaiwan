@@ -5,6 +5,7 @@ import java.util.Locale;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -52,5 +53,9 @@ public class DirectFontendController extends BaseController {
 	@RequestMapping(value = "/six", method = RequestMethod.GET)
 	public String six(Locale locale, Model model) {
 		return "/fontend/six";
+	}
+	@RequestMapping(value = "/mechanism/{country}", method = RequestMethod.GET)
+	public String mechanism(@PathVariable("country") String country, Locale locale, Model model) {
+		return "/fontend/mechanism";
 	}
 }

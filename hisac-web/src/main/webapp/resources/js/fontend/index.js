@@ -605,4 +605,10 @@ function getAppController($scope, $http, $window) {
 		    $scope.queryPeopleMains();
 		  });
 		});
+	
+	$('#mechanismHref').click(function() {
+	  var country = $(".change_text").text();
+	  country = btoa(escape(country));
+	  $window.location = "./fontend/mechanism/" + country;
+	});
 };
