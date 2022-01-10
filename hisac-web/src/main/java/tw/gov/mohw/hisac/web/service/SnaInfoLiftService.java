@@ -26,8 +26,15 @@ public class SnaInfoLiftService {
 	//利用搜尋條件取得連線資料 (前20個名稱)
 	public List<Object[]> getLinksByName(List<String> name) {
 		return snaInfoLiftDAO.getLinksByName(name);
-}
+	}
 	
+	//利用搜尋條件取得連線資料 (前20個名稱)
+	//paperSerialNumber , classSubList
+		public List<Object[]> getLinksByPaperSerialNumberClassSub(List<String> paperSerialNumber , JSONArray classSubList) {
+			return snaInfoLiftDAO.getLinksByPaperSerialNumberClassSub(paperSerialNumber, classSubList);
+	}
+		
+		
 	
 
 	

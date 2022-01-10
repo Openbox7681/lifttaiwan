@@ -3,10 +3,12 @@ package tw.gov.mohw.hisac.web.dao;
 import java.util.List;
 
 import org.hibernate.Criteria;
+import org.hibernate.criterion.Disjunction;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.ProjectionList;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
+import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -77,6 +79,50 @@ public class SnaInfoLiftDAOImpl extends BaseSessionFactory implements SnaInfoLif
 		}
 	}
 	
+	
+	@SuppressWarnings({"deprecation", "unchecked"})
+	public List<Object[]> getLinksByPaperSerialNumberClassSub(List<String> paperSerialNumber , JSONArray classSubList){
+		
+		Criteria cr = getSessionFactory().getCurrentSession().createCriteria(SnaInfoLift.class);
+		
+		
+		if(!classSubList.toString().contains("全部")) {
+			Disjunction dis = Restrictions.disjunction();
+			for(int i=0; i<classSubList.length(); i++) {
+				JSONObject obj = (JSONObject) classSubList.get(i);
+				if (obj.getBoolean("Flag") == true) {
+					String class_sub = obj.getString("Name");
+	                dis.add(Restrictions.eq("class_sub", class_sub));
+				}	
+			}
+	        cr.add(dis);
+		}
+		
+		
+		
+		ProjectionList projectionList = Projections.projectionList();        
+
+
+		
+		cr.add(Restrictions.in("paper_serial_number", paperSerialNumber));
+		
+		cr.add(Restrictions.neProperty("name_2", "name_1"));
+		
+		projectionList.add(Projections.groupProperty("name_1"))
+		.add(Projections.groupProperty("name_2"));
+		
+		cr.setProjection(projectionList);
+		
+		cr.setMaxResults(300);
+		
+		
+		List<Object[] > list = cr.list();
+		if (list.size() > 0) {
+			return list;
+		} else {
+			return null;
+		}
+	}
 	
 
 	

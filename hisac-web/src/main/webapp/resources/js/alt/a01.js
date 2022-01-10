@@ -421,7 +421,6 @@ function getAppController($scope, $http, $cookieStore, $cookies, $anchorScroll, 
 	}
 	
 	$scope.query =function(){
-		console.log($scope.inlineRadioOptions)
 		if ($scope.inlineRadioOptions == 1 ){
 			$scope.isSupport = true;
 			$scope.isResult = false;

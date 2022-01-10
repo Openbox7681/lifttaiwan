@@ -140,6 +140,10 @@
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 	
+	<bean id="paperKeywordClsDAO" class="tw.gov.mohw.hisac.web.dao.PaperKeywordClsDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
 	<bean id="paperCorLiftDAO" class="tw.gov.mohw.hisac.web.dao.PaperCorLiftDAOImpl">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>

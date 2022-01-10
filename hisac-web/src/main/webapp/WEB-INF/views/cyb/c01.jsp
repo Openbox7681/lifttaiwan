@@ -3,9 +3,12 @@
 <html ng-app="myApp">
 <%@ include file="../include/head.jsp"%>
 
-<script src="<c:out value="${pageContext.request.contextPath}" />/resources/js/custom.js"></script>
- 
+<%-- <script src="<c:out value="${pageContext.request.contextPath}" />/resources/js/custom.js"></script>
+ --%> 
 <script src="<c:out value="${pageContext.request.contextPath}" />/resources/js/cyb/c01.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/d3-hierarchy@2.0.0/dist/d3-hierarchy.min.js"></script>
+
 
 <body class="no-skin" ng-controller="getAppController" id="body">
 	<%@ include file="../include/f_navbar.jsp"%>
@@ -33,81 +36,70 @@
                                                 aria-label="輸入英文關鍵字" aria-describedby="basic-addon2">
                                         </div>
                                         <div class="main-block">
-                                            <div class="main-subject">
-                                                <label>主領域</label>
-                                                <div class="form-chec">
-                                                    <input class="form-check-input" id="flexCheckDefault"
-                                                        type="checkbox" value="">
-                                                    <label class="form-check-label" for="flexCheckDefault">所有領域</label>
-                                                    <div class="main-detail" id="main-detail"><span class="su_info"
-                                                            data-index="a">資訊及數位相關產業</span><span class="su_sec"
-                                                            data-index="b">資安卓越產業</span><span class="su_healthy"
-                                                            data-index="c">臺灣精準健康戰略產業</span><span class="su_safe"
-                                                            data-index="d">國防及戰略產業</span><span class="su_power"
-                                                            data-index="e">綠電及再生能源產業</span><span class="su_livelihood"
-                                                            data-index="f">民生及戰備產業</span><span class="su_other"
-                                                            data-index="g">其他產業</span></div>
+                                             <div class="main-subject">
+                                            <div class="row g-0">
+                                                <div class="col-lg-12">
+                                                    <div class="main-detail" id="main-detail">
+                                                                              <label>主領域</label>
+                                                    
+                                                        <div class="form-check">
+                                                            <div class="all_area_checkbox">
+                                                                <input class="form-check-input" id="flexCheckDefault"
+                                                                    type="checkbox" value="" ng-click= "openSubSubjects(0)" ng-model = "infoSelectAll">
+                                                                <label class="form-check-label"
+                                                                    for="flexCheckDefault">所有領域 </label>
+                                                            </div>
+                                                        </div>
+                                                        <span class="su_info" data-index="a" ng-click = "openSubSubjects(1)">資訊及數位相關產業</span>            
+                                                        <span class="su_healthy" data-index="c" ng-click = "openSubSubjects(2)">臺灣精準健康戰略產業</span>
+                                                        <span class="su_safe" data-index="d" ng-click = "openSubSubjects(3)">國防及戰略產業</span>
+                                                        <span class="su_livelihood" data-index="f" ng-click = "openSubSubjects(4)">民生及戰備產業</span>
+                                                        <span class="su_power" data-index="e" ng-click = "openSubSubjects(5)">綠電及再生能源產業</span>
+                                                        <span class="su_other" data-index="g" ng-click = "openSubSubjects(6)">其他產業</span>
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <div class="line1"></div>
-                                            <div class="sub-subject" id="it_subject">
-                                                <label>次領域</label>
-                                            </div>
-                                            <div class="keyword-block">
-                                                <label>關鍵字</label>
-                                                <div class="form-check">
-                                                    <input class="form-check-input" id="flexCheckDefault1"
-                                                        type="checkbox" value="">
-                                                    <label class="form-check-label" for="flexCheckDefault1">關鍵字1</label>
-                                                </div>
-                                                <div class="form-check">
-                                                    <input class="form-check-input" id="flexCheckDefault2"
-                                                        type="checkbox" value="">
-                                                    <label class="form-check-label" for="flexCheckDefault2">關鍵字2</label>
-                                                </div>
-                                                <div class="form-check">
-                                                    <input class="form-check-input" id="flexCheckDefault3"
-                                                        type="checkbox" value="">
-                                                    <label class="form-check-label" for="flexCheckDefault3">關鍵字3</label>
-                                                </div>
-                                                <div class="form-check">
-                                                    <input class="form-check-input" id="flexCheckDefault4"
-                                                        type="checkbox" value="">
-                                                    <label class="form-check-label" for="flexCheckDefault4">關鍵字4</label>
-                                                </div>
-                                                <div class="form-check">
-                                                    <input class="form-check-input" id="flexCheckDefault5"
-                                                        type="checkbox" value="">
-                                                    <label class="form-check-label" for="flexCheckDefault5">關鍵字5</label>
-                                                </div>
-                                                <div class="form-check">
-                                                    <input class="form-check-input" id="flexCheckDefault6"
-                                                        type="checkbox" value="">
-                                                    <label class="form-check-label" for="flexCheckDefault6">關鍵字6</label>
-                                                </div>
-                                                <div class="form-check">
-                                                    <input class="form-check-input" id="flexCheckDefault7"
-                                                        type="checkbox" value="">
-                                                    <label class="form-check-label" for="flexCheckDefault7">關鍵字7</label>
-                                                </div>
-                                                <div class="form-check">
-                                                    <input class="form-check-input" id="flexCheckDefault8"
-                                                        type="checkbox" value="">
-                                                    <label class="form-check-label" for="flexCheckDefault8">關鍵字8</label>
-                                                </div>
-                                                <div class="form-check">
-                                                    <input class="form-check-input" id="flexCheckDefault9"
-                                                        type="checkbox" value="">
-                                                    <label class="form-check-label" for="flexCheckDefault9">關鍵字9</label>
-                                                </div>
-                                                <div class="more_item hcenter"><a href="#">
-                                                        <p>展開更多</p>
-                                                    </a></div>
-                                            </div>
+                                        </div>
+                                        <div ng-show = "IsInfoShow">
+                                         <div class="line2"></div>
+                                        <div class="sub-subject"></div>
+                                        <label>次領域</label>
+                                        <div class = "form-check" ng-repeat = "item in InfoList"  name="checkboxForm">
+                                        	<input class = "form-check-input"
+                                        	type = "checkbox" ng-model = "item.Flag" ng-change = "getKeyword()">
+                                        	<label class = "form-check-label">
+                                        		{{item.Name}}
+                                        	</label>
+                                        	
+                                        </div>
+                                        
+                                        </div>
+                                        
+										<div ng-show = "IsKeywordShow">
+                                        
+                                        
+                                         <div class="line2"></div>
+                                        <div class="sub-subject"></div>
+										<label>預設關鍵字</label>
+                                        
+                                        <div class = "form-check" ng-repeat = "item in keywordList"  name="checkboxForm">
+                                        	<input class = "form-check-input"
+                                        	type = "checkbox" ng-model = "item.Flag" >
+                                        	<label class = "form-check-label">
+                                        		{{item.Name}}
+                                        	</label>
+                                        	
+                                        </div>
+                                        
+                                        
+                                        
+                                           </div>
+                                        
+                                        
                                         </div>
                                         <div class="search_btn hright">
                                             <div class="button_fill_orange btn_m">
-                                                <p>送出查詢</p>
+                                                <p ng-click = 'query()'>送出查詢</p>
                                             </div>
                                         </div>
                                     </div>
@@ -121,23 +113,23 @@
                                         <h5>查詢結果</h5>
                                     </div>
                                 </div>
-                                <div class="col-sm-12 exportbtn">
+                                <!-- <div class="col-sm-12 exportbtn">
                                     <div class="button_line_orange btn_s">
                                         <p>圖表匯出</p>
                                     </div>
                                     <div class="button_line_orange btn_s">
                                         <p>報表匯出 </p>
                                     </div>
-                                </div>
+                                </div> -->
                                 <div class="col-lg-12 exportbtn">
                                     <div class="chart">
                                         <!--<img src="../img/img_highcharts.jpg">-->
-                                        <div id="relation" style="height: 800px"></div>
+                                        <div id="relation" style="height: 1000px"></div>
                                     </div>
-                                    <div class="button_fill_orange btn_s" type="button" data-bs-toggle="modal"
+                                    <!-- <div class="button_fill_orange btn_s" type="button" data-bs-toggle="modal"
                                         data-bs-target="#suggest">
                                         <p>未來合作建議 </p>
-                                    </div>
+                                    </div> -->
                                 </div>
                                 <div class="col-sm-12">
                                     <div class="index_title">
