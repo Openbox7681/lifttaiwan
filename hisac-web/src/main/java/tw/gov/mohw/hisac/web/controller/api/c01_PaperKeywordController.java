@@ -24,6 +24,7 @@ import tw.gov.mohw.hisac.web.service.PeopleMainsLiftService;
 import tw.gov.mohw.hisac.web.service.SnaInfoLiftService;
 import tw.gov.mohw.hisac.web.service.SnaTopInfoLiftService;
 import tw.gov.mohw.hisac.web.service.PaperKeywordClsService;
+import tw.gov.mohw.hisac.web.service.Topres20Service;
 
 
 
@@ -43,7 +44,8 @@ public class c01_PaperKeywordController extends BaseController {
 	private PaperKeywordClsService paperKeywordClsService;
 	@Autowired
 	private SnaInfoLiftService snaInfoLiftService;
-	
+	@Autowired
+	private Topres20Service topres20Service;
 	
 
 	@RequestMapping(value = "/queryNumber", method = RequestMethod.POST)
@@ -94,54 +96,98 @@ public class c01_PaperKeywordController extends BaseController {
 		
 	}
 	
+	//根據選定的領域畫出氣泡圖
+	@RequestMapping(value = "/drawBubble", method = RequestMethod.POST)
+	public String drawBubble(Locale locale, HttpServletRequest request, Model model, @RequestBody String json) {
+		JSONObject listjson = new JSONObject();
+		JSONArray sn_array = new JSONArray();
+
+		int index = 0 ;
+		
+		int total = 0;
+		
+		JSONObject obj = new JSONObject(json);
+
+		JSONArray classSubList = obj.isNull("classSubList") == true ? null : obj.getJSONArray("classSubList");
+
+		//領域總和資料氣泡圖第一層
+		List<Object[]> topres20s = topres20Service.getTopres20ByClassSub(classSubList);
+		//國家總和資料氣泡圖第二層
+		List<Object[]> topres20Countrys = topres20Service.getTopres20CountryByClassSub(classSubList);
+		
+		
+		if(topres20Countrys != null) {
+			for(Object[] topres20Country : topres20Countrys) {
+				JSONObject bubble_json = new JSONObject();
+				bubble_json.put("id", "總和." + topres20Country[0] + "." + topres20Country[1]);
+				bubble_json.put("value", Integer.parseInt(topres20Country[2].toString()));
+				bubble_json.put("name", topres20Country[1]);
+				bubble_json.put("index", index);
+				bubble_json.put("depth", 2);
+				index++;
+				sn_array.put(bubble_json);
+			}	
+		}
+		if(topres20s != null) {
+			for(Object[] topres20 : topres20s) {
+				JSONObject bubble_json = new JSONObject();
+				bubble_json.put("id", "總和." + topres20[0] );
+				bubble_json.put("value", Integer.parseInt(topres20[1].toString()));
+				bubble_json.put("name", topres20[0]);
+				bubble_json.put("index", index);
+				bubble_json.put("depth", 1);
+				total = total + Integer.parseInt(topres20[1].toString());
+				
+				index++;
+				sn_array.put(bubble_json);
+			}
+		}
+		
+		JSONObject bubble_json = new JSONObject();
+		
+		bubble_json.put("id", "總和");
+		bubble_json.put("value", total);
+		bubble_json.put("name", "總和");
+		bubble_json.put("index", index);
+		bubble_json.put("depth", 0);
+		
+		sn_array.put(bubble_json);
+
+		listjson.put("datatable",sn_array);
+
+		model.addAttribute("json", listjson.toString());
+		return "msg";
+		
+	}
+
+		
+
+	
+
+	
 	//根據選定的領域與關鍵字畫出網路圖
-		@RequestMapping(value = "/drawNetwork", method = RequestMethod.POST)
-		public String drawNetwork(Locale locale, HttpServletRequest request, Model model, @RequestBody String json) {
-			
+	@RequestMapping(value = "/drawNetwork", method = RequestMethod.POST)
+	public String drawNetwork(Locale locale, HttpServletRequest request, Model model, @RequestBody String json) {
 			JSONObject listjson = new JSONObject();
 			JSONObject connectjson = new JSONObject();
-
-			
-			
 			JSONObject obj = new JSONObject(json);
-
 			JSONArray classSubList = obj.isNull("classSubList") == true ? null : obj.getJSONArray("classSubList");
-			
 			JSONArray keywordList = obj.isNull("keywordList") == true ? null : obj.getJSONArray("keywordList");
-			
 			JSONArray connect_array = new JSONArray();
-			
 			JSONArray category_array = new JSONArray();
-
 			JSONArray link_array = new JSONArray();
-			
 			List<String> paperSerialNumberList = new ArrayList<String>(); 
-
-
-
 			List<Object[]> paperKeywordClsLifts = paperKeywordClsService.getDataByKeyword(keywordList, classSubList);
-			
-			System.out.println(paperKeywordClsLifts);
-
-			
 			if(paperKeywordClsLifts != null) {
 				for(Object[] paperKeywordClsLift : paperKeywordClsLifts) {
 					paperSerialNumberList.add((String) paperKeywordClsLift[1]);
 				}	
 			}
-			
 			int category = 0;
-			
-			System.out.println(paperSerialNumberList);
-
-			
 			List<Object[]> linksByNames =  snaInfoLiftService.getLinksByPaperSerialNumberClassSub(paperSerialNumberList, classSubList);
 			
-
 			if(linksByNames != null) {
 				for(Object[] linksByName : linksByNames) {
-					
-					
 					if(  !(connect_array.toString().contains(linksByName[0].toString()) || connect_array.toString().contains(linksByName[1].toString()))) {
 						
 						JSONObject connect_json = new JSONObject();
@@ -164,20 +210,11 @@ public class c01_PaperKeywordController extends BaseController {
 							JSONObject obj1 = (JSONObject) connect_array.get(i);
 							if(obj1.getString("name").equals(linksByName[0].toString())) {
 								int count = obj1.getInt("symbolSize") + 1;
-//								int value = obj1.getInt("value") + 1;
-
 								obj1.put("symbolSize", count);
-//								obj1.put("value", value);
-
 							}
 							connect_array.put(i, obj1);
-
-
-							
 						}
-
-					}
-					
+					}		
 					JSONObject sn_json = new JSONObject();
 					sn_json.put("source", linksByName[0]);
 					sn_json.put("target", linksByName[1]);
@@ -185,20 +222,10 @@ public class c01_PaperKeywordController extends BaseController {
 					
 				}		
 			}
-			
 			connectjson.put("nodes", connect_array);
-			
 			connectjson.put("categories", category_array);
-			
 			connectjson.put("links", link_array);
-			
-			
-
 			listjson.put("datatable",connectjson);
-
-			
-
-		
 			model.addAttribute("json", listjson.toString());
 			return "msg";
 

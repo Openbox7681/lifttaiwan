@@ -16,4 +16,8 @@ public interface Topres20DAO {
 	
 	public List<Object[]> getTopres20ByCondition(JSONArray classSubList );
 	
+	public List<Object[]> getTopres20CountryByClassSub(JSONArray classSubList);
+	
+	public List<Object[]> getTopres20ByClassSub(JSONArray classSubList);
+	
 }

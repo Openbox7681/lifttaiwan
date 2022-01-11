@@ -29,6 +29,20 @@ public class Topres20Service {
 			return topres20DAO.getTopres20ByCondition(classSubList);
 	}
 	
+	//利用搜尋條件取得國家氣泡圖資料 (領域)
+	public List<Object[]> getTopres20CountryByClassSub(JSONArray classSubList){
+		return topres20DAO.getTopres20CountryByClassSub(classSubList);
+		
+	}
+	
+	//利用搜尋條件取得領域氣泡圖資料 (領域)
+		public List<Object[]> getTopres20ByClassSub(JSONArray classSubList){
+			return topres20DAO.getTopres20ByClassSub(classSubList);
+			
+		}
+
+		
+	
 	
 
 	

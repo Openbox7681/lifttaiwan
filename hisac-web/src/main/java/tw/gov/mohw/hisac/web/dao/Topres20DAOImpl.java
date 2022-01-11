@@ -85,6 +85,80 @@ public class Topres20DAOImpl extends BaseSessionFactory implements Topres20DAO {
 		}
 		
 	}
+	
+	@SuppressWarnings({"deprecation", "unchecked"})
+	public List<Object[]> getTopres20CountryByClassSub(JSONArray classSubList){
+		Criteria cr = getSessionFactory().getCurrentSession().createCriteria(Topres20.class);
+		
+		if(!classSubList.toString().contains("全部")) {
+			Disjunction dis = Restrictions.disjunction();
+			for(int i=0; i<classSubList.length(); i++) {
+				JSONObject obj = (JSONObject) classSubList.get(i);
+				if (obj.getBoolean("Flag") == true) {
+					String class_sub = obj.getString("Name");
+	                dis.add(Restrictions.eq("class_sub", class_sub));
+				}	
+			}
+	        cr.add(dis);
+		}
+        
+        cr.add(Restrictions.ne("country", "NULL"));
+        
+        cr.add(Restrictions.isNotNull("con_num"));
+
+        
+		cr.setProjection(Projections.projectionList()
+				.add(Projections.groupProperty("class_sub"))
+				.add(Projections.groupProperty("country"))
+				.add(Projections.sum("con_num"))
+	
+				);
+		List<Object[]> list = cr.list();
+		if (list.size() > 0) {
+			return list;
+		} else {
+			return null;
+		}
+		
+	}
+	
+	@SuppressWarnings({"deprecation", "unchecked"})
+	public List<Object[]> getTopres20ByClassSub(JSONArray classSubList){
+		Criteria cr = getSessionFactory().getCurrentSession().createCriteria(Topres20.class);
+		
+		if(!classSubList.toString().contains("全部")) {
+			Disjunction dis = Restrictions.disjunction();
+			for(int i=0; i<classSubList.length(); i++) {
+				JSONObject obj = (JSONObject) classSubList.get(i);
+				if (obj.getBoolean("Flag") == true) {
+					String class_sub = obj.getString("Name");
+	                dis.add(Restrictions.eq("class_sub", class_sub));
+				}	
+			}
+	        cr.add(dis);
+		}
+        
+        cr.add(Restrictions.ne("country", "NULL"));
+        
+        cr.add(Restrictions.isNotNull("con_num"));
+
+        
+		cr.setProjection(Projections.projectionList()
+				.add(Projections.groupProperty("class_sub"))
+				.add(Projections.sum("con_num"))
+	
+				);
+		List<Object[]> list = cr.list();
+		if (list.size() > 0) {
+			return list;
+		} else {
+			return null;
+		}
+		
+		
+	}
+
+		
 
 	
 

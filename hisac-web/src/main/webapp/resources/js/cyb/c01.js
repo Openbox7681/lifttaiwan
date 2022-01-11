@@ -11,6 +11,8 @@ myApp.filter('trustHtml',function($sce){
 
 function getAppController($scope, $http, $cookieStore, $cookies, $anchorScroll, $location) {
 	
+	$scope.draw = false;
+	
 	$scope.queryNumber = function() {
         $("#loadingActivity").fadeIn("slow");
 
@@ -128,6 +130,9 @@ function getAppController($scope, $http, $cookieStore, $cookies, $anchorScroll, 
 	
 	
 	$scope.country = function(){
+		
+		document.getElementById("country").removeAttribute('_echarts_instance_');
+
 		var dom = document.getElementById("country");
         var myChart = echarts.init(dom);
         var app = {};
@@ -135,77 +140,10 @@ function getAppController($scope, $http, $cookieStore, $cookies, $anchorScroll, 
         var option;        
         
             
-       	var dataWrap = {
-            		  "seriesData": [
-            			    {
-            			      "id": "總和",
-            			      "value": 6229,
-            			      "depth": 0,
-            			      "index": 7,
-            			      "name": "總和"
-            			    },
-            			    {
-            			      "id": "總和.人工智慧",
-            			      "value": 6229,
-            			      "depth": 1,
-            			      "index": 8,
-            			      "name": "人工智慧"
-            			    },
-            			    {
-            			      "id": "總和.人工智慧.china",
-            			      "value": 942,
-            			      "depth": 2,
-            			      "index": 0,
-            			      "name": "china"
-            			    },
-            			    {
-            			      "id": "總和.人工智慧.taiwan",
-            			      "value": 634,
-            			      "depth": 2,
-            			      "index": 1,
-            			      "name": "taiwan"
-            			    },
-            			    {
-            			      "id": "總和.人工智慧.japan",
-            			      "value": 567,
-            			      "depth": 2,
-            			      "index": 2,
-            			      "name": "japan"
-            			    },
-            			    {
-            			      "id": "總和.資料中心",
-            			      "value": 300,
-            			      "depth": 1,
-            			      "index": 3,
-            			      "name": "資料中心"
-            			    },
-            			    {
-            			      "id": "總和.資料中心.china",
-            			      "value": 100,
-            			      "depth": 2,
-            			      "index": 4,
-            			      "name": "china"
-            			    },
-            			    {
-            			      "id": "總和.資料中心.taiwan",
-            			      "value": 100,
-            			      "depth": 2,
-            			      "index": 5,
-            			      "name": "taiwan"
-            			    },
-            			    {
-            			      "id": "總和.資料中心.japan",
-            			      "value": 100,
-            			      "depth": 2,
-            			      "index": 6,
-            			      "name": "japan"
-            			    }
-            			  ],
-            			  "maxDepth": 2
-            			}
+       	
             
             
-        initChart(dataWrap.seriesData, dataWrap.maxDepth);
+        initChart($scope.Bubble, 2);
         
         function prepareData(rawData) {
             const seriesData = [];
@@ -396,7 +334,6 @@ function getAppController($scope, $http, $cookieStore, $cookies, $anchorScroll, 
         }
 	}
 	
-	$scope.country();
 	
 	
 	$scope.IsInfoShow = false;
@@ -730,27 +667,52 @@ function getAppController($scope, $http, $cookieStore, $cookies, $anchorScroll, 
 		
 		if(choose){
 			console.log($scope.InfoList);
+			$scope.draw = true;
 			$scope.queryForm();
+			$scope.queryBubble();
 		}else {
 			alert('請輸入關鍵字')
 		}
 	}
 	
 	
+	$scope.queryBubble = function() {
+		$("#imgLoading").show();
+		var request = {		
+				classSubList : $scope.InfoList
+		};
+		$http.post('./c01/drawBubble', request, csrf_config).then(function(response) {
+			$scope.Bubble = response.data.datatable;	
+			console.log($scope.Bubble);
+			$scope.country();
+		}).catch(function() {
+			bootbox.alert({
+				message : globalReadDataFail,
+				buttons : {
+					ok : {
+						label : '<i class="fas fa-fw fa-times"></i>' + btnClose,
+						className : 'btn-danger',
+					}
+				},
+				callback: function() { }
+			});
+		}).finally(function() {
+			$("#imgLoading").hide();
+		});
+	};
+	
+	
+	
+	
 	$scope.queryForm = function() {
 		$("#imgLoading").show();
-
-
 		var request = {		
 				classSubList : $scope.InfoList,
 				keywordList : $scope.keywordList
 		};
 		$http.post('./c01/drawNetwork', request, csrf_config).then(function(response) {
-			
 			$scope.Connect = response.data.datatable;	
 			$scope.relation();
-			
-
 		}).catch(function() {
 			bootbox.alert({
 				message : globalReadDataFail,
@@ -771,12 +733,7 @@ function getAppController($scope, $http, $cookieStore, $cookies, $anchorScroll, 
 	
 	//取得關鍵字
 	$scope.getKeyword = function(){
-		
-		
-		
 		$("#imgLoading").show();
-
-
 		var request = {		
 				classSubList : $scope.InfoList
 		};
@@ -800,9 +757,9 @@ function getAppController($scope, $http, $cookieStore, $cookies, $anchorScroll, 
 			$("#imgLoading").hide();
 
 		});
-		
-		console.log($scope.InfoList);
 	}
+	
+	$scope.getKeyword();
 
 		
 	

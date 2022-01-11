@@ -108,11 +108,7 @@
                         </div>
                         <div class="col-lg-12 adjust_pos">
                             <div class="row">
-                                <div class="col-sm-12">
-                                    <div class="index_title">
-                                        <h5>查詢結果</h5>
-                                    </div>
-                                </div>
+                                
                                 <!-- <div class="col-sm-12 exportbtn">
                                     <div class="button_line_orange btn_s">
                                         <p>圖表匯出</p>
@@ -122,6 +118,9 @@
                                     </div>
                                 </div> -->
                                 <div class="col-lg-12 exportbtn">
+                                 <div class="index_title" ng-show = "draw">
+                                        <h5>國際網路關係圖</h5>
+                                    </div>
                                     <div class="chart">
                                         <!--<img src="../img/img_highcharts.jpg">-->
                                         <div id="relation" style="height: 1000px"></div>
@@ -132,21 +131,21 @@
                                     </div> -->
                                 </div>
                                 <div class="col-sm-12">
-                                    <div class="index_title">
+                                    <div class="index_title"  ng-show = "draw">
                                         <h5>國家別</h5>
                                     </div>
                                     <div class="chart">
                                         <!--<img src="../img/img_bubble-chart.jpg">-->
 
-                                        <div id="country" style="height: 500px"></div>
+                                        <div id="country" style="height: 1000px"></div>
                                     </div>
-                                </div>
+                                </div><!-- 
                                 <div class="col-sm-12">
                                     <div class="index_title">
                                         <h5>相關指標報表</h5>
                                     </div>
-                                </div>
-                                <div class="col-lg-4 col-md-4 col-sm-6">
+                                </div> -->
+                              <!--   <div class="col-lg-4 col-md-4 col-sm-6">
                                     <div class="icon_button">
                                         <div class="inner_icon">
                                             <div class="icon_sixarea"></div>
@@ -173,7 +172,7 @@
                                             <div class="icon_subsidy_suggest"></div>
                                         </div><span>未來重點領域補助建議 </span>
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                     </div>
