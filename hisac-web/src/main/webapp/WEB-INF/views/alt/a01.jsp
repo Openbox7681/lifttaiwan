@@ -160,15 +160,6 @@
                                                 >
                                             <label class="form-check-label" for="inlineRadio3">國際網絡表現</label>
                                         </div>
-                                        <div class="form-check form-check-inline" id="calldata4" data-index="3">
-                                            <input class="form-check-input" id="inlineRadio4" type="radio"
-                                                name="inlineRadioOptions" 
-                                                ng-value = 4
-                                                 ng-model = "inlineRadioOptions"
-                                                
-                                                >
-                                            <label class="form-check-label" for="inlineRadio4">現職分析</label>
-                                        </div>
                                     </div>
                                     
                              <div class="search_btn hright">
@@ -335,6 +326,57 @@
                                   
                                 
                                  </div>
+                                 
+								<div class="col-sm-12 exportbtn" id="adjust_subsidybtn" ng-show = "isResult">
+									<ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+				                        <li class="nav-item" role="presentation">
+				                          <button class="nav-link active" id="pills-results1-tab" data-bs-toggle="pill" data-bs-target="#pills-results1"
+				                           type="button" role="tab" aria-controls="pills-results1" aria-selected="true"
+				                           >
+				                           歷年各項成果追蹤</button>
+				                        </li>
+				                        <li class="nav-item" role="presentation">
+				                          <button class="nav-link" id="pills-results2-tab" data-bs-toggle="pill" data-bs-target="#pills-results2"
+				                           type="button" role="tab" aria-controls="pills-results2" aria-selected="false"
+				                           >
+				                           各領域之研究能量分析(論文數TOP20)</button>
+				                        </li>
+				                      </ul>
+                                </div>
+                                
+							<div class="col-sm-12 exportbtn" ng-show = "isResult1">
+								成果分析<br />
+                                    B-1歷年各項成果追蹤
+							
+							     <table class="table table-striped">
+							     <tr>
+                                            <th>項目</th>
+                                           <th>盤古開天</th>
+                                            <th>國合PI</th>
+                                            <th>龍門計畫主持人</th>
+                                            <th>千里馬申請人</th>
+                                            <th>龍門計畫主持人</th>
+                                            <th>政策邀訪學者</th>
+                                            <th>合計</th>
+                                        </tr>
+                                        
+                                       <tr ng-repeat="item in B1Data">
+                                            <td>{{item.name}}</td>
+                                            <td>{{item.open}}</td>
+                                            <td>{{item.pi}}</td>
+                                            <td>{{item.dragon}}</td>
+                                            <td>{{item.short}}</td>
+                                            <td>{{item.horse}}</td>
+                                            <td>{{item.policy}}</td>
+                                            <td>{{item.total}}</td>
+                                        </tr>
+							     
+							     
+								</table>
+							
+                                
+                                </div>
+                                 
                                 
                                 
                                 

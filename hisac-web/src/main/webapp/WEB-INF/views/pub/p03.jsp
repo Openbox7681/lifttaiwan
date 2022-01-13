@@ -42,6 +42,53 @@
                                 
                             </div>
                         </div>
+                        
+                        <div class="col-lg-12 col-md-12 col-sm-12">
+                    <div class="form_chart">
+                      <div class="form_outbor">
+                        <table class="table caption-top">
+                          <thead class="tablecolor">
+                            <tr>
+                              <th scope="col"> 
+                              <div class="plan_text td_style"> 
+                                  <p>排名</p>
+                                </div>
+                              
+                              </th>
+                              <th scope="col">
+                                <div class="plan_text td_style"> 
+                                  <p>國別</p>
+                                </div>
+                              </th>
+                              <th scope="col">
+                                <div class="plan_text td_style"> 
+                                  <p>學校</p>
+                                </div>
+                              </th>
+                              <th scope="col">
+                                <div class="plan_text td_style"> 
+                                  <p>人數</p>
+                                </div>
+                              </th>
+                           
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr ng-repeat="item in form">
+                              <th scope="row" class="td_style">{{item.Rank}}</th>
+                              <td class="td_style">{{item.Country}}</td>
+                              <td class="td_style">{{item.Affiliations}}</td>
+                              <td class="td_style">{{item.Value}}</td>
+                              
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                        
+                        
+                        
                     </div>
                 </div>
 		

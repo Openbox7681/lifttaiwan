@@ -677,4 +677,29 @@ public class f_navbarController extends BaseController {
 		model.addAttribute("json", listjson.toString());
 		return "msg";
 	}
+	
+	@RequestMapping(value = "/p03/queryForm", method = RequestMethod.POST)
+	public String queryFormP03(Locale locale, HttpServletRequest request, Model model, @RequestBody String json) {
+		JSONObject listjson = new JSONObject();
+		JSONArray sn_array = new JSONArray();
+		List<Object[]> top10Mechanisms = peopleMainsLiftService.getTop10Mechanism();
+		int rank = 1;
+		if(top10Mechanisms != null) {
+			for(Object[] top10Mechanism : top10Mechanisms) {
+				JSONObject sn_json = new JSONObject();
+				sn_json.put("Affiliations", top10Mechanism[0]);
+				sn_json.put("Country", top10Mechanism[1]);
+				sn_json.put("Value", top10Mechanism[2]);
+				sn_json.put("Rank", rank);
+				rank++;
+
+				sn_array.put(sn_json);		
+			}
+		}
+		listjson.put("formData", sn_array);
+		model.addAttribute("json", listjson.toString());
+		return "msg";
+	}
+	
+	
 }

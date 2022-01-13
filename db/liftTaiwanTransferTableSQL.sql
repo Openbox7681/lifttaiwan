@@ -184,3 +184,45 @@ SELECT Class_sub, Fullname, Aac, Con_num, Affiliation, Country FROM topres20_lif
 
 
 
+If not EXISTS (SELECT * FROM sys.tables WHERE name='wos_cls_lift')
+BEGIN
+CREATE TABLE [dbo].[wos_cls_lift](
+	Id [bigint] IDENTITY(1,1) NOT NULL,
+	[Class_main] [nvarchar](50) NULL,
+	[Class_sub] [nvarchar](50) NULL,
+	[Field_c] [nvarchar](50) NULL,
+	[Field] [nvarchar](50) NULL
+)
+END
+
+
+INSERT INTO wos_cls_lift(Class_main, Class_sub ,Field_c ,Field)
+SELECT class_main, class_sub, Field_c, Field FROM WOS_CLS
+
+
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+ALTER VIEW [dbo].[v_wos_cls_paper]
+AS
+SELECT TOP(1000)  b.[Id]
+      ,b.[Class_main]
+      ,b.[Class_sub]
+      ,b.[Field_c]
+      ,b.[Field]
+      ,a.P_id,
+      a.Country,
+      a.Paper_corID,
+      a.Ac,
+      a.Paper_SerialNumber
+    --   c.Paper_SerialNumber as Paper_SerialNumber_cor
+      
+  FROM [lifttaiwan].[dbo].[wos_cls_lift] as b
+  
+
+INNER JOIN dbo.v_people_paper as a  ON a.Class_sub = b.Class_sub
+
+-- LEFT JOIN (SELECT * from dbo.paper_cor_lift WHERE dbo.paper_cor_lift.Paper_corId =1 ) as c ON c.Paper_SerialNumber = a.Paper_SerialNumber
+
+GO

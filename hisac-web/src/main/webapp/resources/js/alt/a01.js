@@ -420,8 +420,32 @@ function getAppController($scope, $http, $cookieStore, $cookies, $anchorScroll, 
 		}
 	}
 	
+	//成果分析呈現資料切換
+	$scope.resultSwitch = function(index){
+		if(index ==1){
+			$scope.isResult1 = true;
+			$scope.isResult2 = false;
+			$scope.getB1data();
+		}else if (index == 2) {
+			$scope.isResult1 = false;
+			$scope.isResult2 = true;
+			$scope.getB2data();
+
+		}
+		
+		
+		
+		
+	}
+	
 	$scope.query =function(){
+		
 		if ($scope.inlineRadioOptions == 1 ){
+			
+			angular.element("#pills-home-tab").addClass("active");
+			angular.element("#pills-profile-tab").removeClass("active");
+			angular.element("#pills-top-tab").removeClass("active");
+
 			$scope.isSupport = true;
 			$scope.isResult = false;
 			$scope.isInter = false;
@@ -436,8 +460,20 @@ function getAppController($scope, $http, $cookieStore, $cookies, $anchorScroll, 
 			
 			$scope.queryCountry();
 		}else if ($scope.inlineRadioOptions == 2){
+			
+			angular.element("#pills-results1-tab").addClass("active");
+			angular.element("#pills-results2-tab").removeClass("active");
+			
+			$scope.getB1data();
+			
+			
 			$scope.isSupport = false;
 			$scope.isResult = true;
+			
+			$scope.isResult1 = true;
+			$scope.isResult2 = false;
+
+
 			$scope.isInter = false;
 			$scope.isAnalysis = false;
 		}else if ($scope.inlineRadioOptions == 3){
@@ -560,7 +596,6 @@ function getAppController($scope, $http, $cookieStore, $cookies, $anchorScroll, 
 	
 	
 	$scope.drawPlanCountry = function(){
-		console.log("test")
 		
 		document.getElementById("a1").removeAttribute('_echarts_instance_');
 		
@@ -644,6 +679,23 @@ function getAppController($scope, $http, $cookieStore, $cookies, $anchorScroll, 
 	}
 	
 	
+
+	$scope.getB1data = function() {
+		var request = {
+				
+				classSubList : $scope.InfoList,
+				countryList : $scope.CountryList
+			
+		};
+		$http.post('./common/getB1data', request, csrf_config).then(function(response) {
+			$scope.B1Data = response.data.formData;
+			
+		})
+		
+	}
+	
+	
+	
 	$scope.queryCountry = function() {
 		var request = {
 				startYear : $scope.StartYear,
@@ -666,9 +718,6 @@ function getAppController($scope, $http, $cookieStore, $cookies, $anchorScroll, 
 			
 			
 		})
-
-		
-		
 		
 	}
 	

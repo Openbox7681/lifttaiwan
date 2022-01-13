@@ -73,12 +73,45 @@ public class PeopleMainsLiftService {
 		return peopleMainsDAO.getMechanism(obj, country);
 	}
 	
+	//取得前10名機構資料
+	public List<Object[]>  getTop10Mechanism(){
+		return peopleMainsDAO.getTop10Mechanism();
+	}
+	
 	//取得機構圓餅圖資料
 		public List<Object[]>  getPie1DataByCondition(JSONArray classSubList){
 			return peopleMainsDAO.getPie1DataByCondition(classSubList);
 		}
-	
-	
+	//B1成果分析-總輔助人數
+	public List<Object[]> getDataByCondition( JSONArray classSubList , JSONArray countryList){
+		return peopleMainsDAO.getDataByCondition(classSubList, countryList);
+	}
+		
+	//B1成果分析-論文發表總數
+	public List<Object[]> getPeoplePaperByCondition(JSONArray classSubList , JSONArray countryList){
+		return peopleMainsDAO.getPeoplePaperByCondition(classSubList, countryList);
+	}
+		
+	//B1成果分析-2016-2019發表篇數
+	public List<Object[]> getPeoplePaperByCondition2016_2019( JSONArray classSubList , JSONArray countryList){
+		return peopleMainsDAO.getPeoplePaperByCondition2016_2019(classSubList, countryList);
+	}
+		
+	//B1成果分析-輔助前
+	public List<Object[]> getPeoplePaperByConditionBefore( JSONArray classSubList , JSONArray countryList){
+		return peopleMainsDAO.getPeoplePaperByConditionBefore(classSubList, countryList);
+	}
+		
+	//B1成果分析-輔助後
+	public List<Object[]> getPeoplePaperByConditionAfter( JSONArray classSubList , JSONArray countryList){
+		return peopleMainsDAO.getPeoplePaperByConditionAfter(classSubList, countryList);
+	}
+	//B1成果分析-國際合作篇數
+	public List<Object[]> getPeoplePaperByConditionCor( JSONArray classSubList , JSONArray countryList){
+		return peopleMainsDAO.getPeoplePaperByConditionCor(classSubList, countryList);
+
+	}
+		
 
 	public long getListSize(String json) {
 		try {

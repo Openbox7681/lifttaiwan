@@ -32,7 +32,7 @@
             <div class="row">
               <div class="col-lg-12">
                 <div class="row">
-                  <div class="col-lg-12 col-md-12">
+                  <div class="col-lg-6 col-md-6">
                   <div class="index_chart">
                           <div class="row">
                               <div class="col-lg-12">
@@ -43,7 +43,7 @@
                               <div class="col-lg-12 ">
                                   <div class="col-lg-12 chart">
 
-                                      <div class="col-lg-12" id="mountNode" ></div>
+                                      <div class="col-lg-12" id="mountNode" style="height: 500px" ></div>
                                   </div>
                               </div>
                               <div class="col-lg-12">
@@ -58,7 +58,7 @@
                           </div>
                        </div>
                   
-                  				<div class="col-lg-12 col-md-12">
+                  				<div class="col-lg-6 col-md-6">
                                     <div class="index_chart">
                                         <div class="row">
                                             <div class="col-lg-12">
@@ -68,7 +68,7 @@
                                             </div>
                                             <div class="col-lg-12">
                                                 <div class="chart">
-                                                      <div id="solar_employment" style="height: 600px" ></div>                                               
+                                                      <div id="solar_employment" style="height: 500px" ></div>                                               
 <!--                                                     <div id="solar_employment" style="height: 278px"></div>
  -->                                                    
                                                 </div>
@@ -91,7 +91,7 @@
               </div>
               <div class="col-lg-12">
                 <div class="row">
-                  <div class="col-lg-12 col-md-12">
+                  <div class="col-lg-6 col-md-6">
                                     <div class="index_chart">
                                         <div class="row">
                                             <div class="col-lg-12">
@@ -103,7 +103,7 @@
                                                 <div class="chart">
                                                     <!--<img src="img/img_pie-1.jpg">-->
 
-                                                    <div id="overseas_institutions" style="height: 600px" ></div>
+                                                    <div id="overseas_institutions" style="height: 900px" ></div>
                                                 </div>
                                             </div>
                                             <div class="col-lg-12">
@@ -119,7 +119,7 @@
                                 </div>
                                 
                                 
-                 <div class="col-lg-12 col-md-12">
+                 <div class="col-lg-6 col-md-6">
                                     <div class="index_chart">
                                         <div class="row">
                                             <div class="col-lg-12">
@@ -132,7 +132,7 @@
                                                 <div class="chart">
                                                     <!--<img src="img/img_bubble-gradient.jpg">-->
 
-                                                    <div id="maxima" style="height: 600px"></div>
+                                                    <div id="maxima" style="height: 900px"></div>
                                                 </div>
                                             </div>
                                             <div class="col-lg-12">

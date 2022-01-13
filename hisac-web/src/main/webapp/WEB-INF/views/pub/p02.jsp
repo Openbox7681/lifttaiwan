@@ -27,6 +27,21 @@
 			<div class="row">
               <div class="col-lg-12 adjust_pos">
                 <div class="row">
+                
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                                                <div class="index_title">
+                                                    <h6>近10年各計畫學術產出表現</h6>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-12 col-md-12 col-sm-12">
+                                                <div class="chart">
+                                                      <div id="solar_employment" style="height: 750px" ></div>                                               
+                                                   
+                                                </div>
+                                            </div>
+                
+                
+                
                   <div class="col-sm-12">
                     <div class="index_title">
                       <h5>近十年In-bound、Outbound核定人數與經費分布</h5>

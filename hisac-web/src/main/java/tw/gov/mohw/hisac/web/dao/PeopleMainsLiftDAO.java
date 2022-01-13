@@ -7,6 +7,9 @@ import org.json.JSONObject;
 
 import tw.gov.mohw.hisac.web.domain.PeopleMainsLift;
 
+import tw.gov.mohw.hisac.web.domain.ViewPeoplePaper;
+
+
 public interface PeopleMainsLiftDAO {
 	public void insert(PeopleMainsLift entity);
 	public void update(PeopleMainsLift entity);
@@ -30,5 +33,27 @@ public interface PeopleMainsLiftDAO {
 	public List<Object[]> getPie1DataByCondition(JSONArray classSubList);
 	public List<Object[]> getPeopleNum(String[] country);
 	public List<Object[]> getMechanism(JSONObject obj, String[] country);
+	
+	//取得p3 top10 out-bound 機構資料
+	public List<Object[]> getTop10Mechanism();
+	
+	//B1成果分析-總輔助人數
+	public List<Object[]> getDataByCondition( JSONArray classSubList , JSONArray countryList) ;
+	
+	//B1成果分析-論文發表總數
+	public List<Object[]> getPeoplePaperByCondition(JSONArray classSubList , JSONArray countryList) ;
+	
+	//B1成果分析-2016-2019發表篇數
+	public List<Object[]> getPeoplePaperByCondition2016_2019( JSONArray classSubList , JSONArray countryList);
+	
+	//B1成果分析-輔助前
+	public List<Object[]> getPeoplePaperByConditionBefore( JSONArray classSubList , JSONArray countryList);
+	
+	//B1成果分析-輔助後
+	public List<Object[]> getPeoplePaperByConditionAfter( JSONArray classSubList , JSONArray countryList);
+
+	//B1成果分析-國際合作篇數
+	public List<Object[]> getPeoplePaperByConditionCor( JSONArray classSubList , JSONArray countryList);
+	
 
 }

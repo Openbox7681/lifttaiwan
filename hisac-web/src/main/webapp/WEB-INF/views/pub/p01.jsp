@@ -25,16 +25,38 @@
 	
 		
 		
-		<div id="divQuery" class="col-lg-9 container">
+		<div id="divQuery" class="col-lg-9 col-md-9 col-sm-9 container">
 		<div class="row">
-              <div class="col-lg-12 adjust_pos">
+		
+			
+		
+		
+		
+              <div class="col-lg-12 col-md-12 col-sm-12 adjust_pos">
                 <div class="row">
-                  <div class="col-sm-12">
+                
+                 
+                   <div class="col-lg-12 col-md-12 col-sm-12">
+                           <div class="index_title">
+                               <h6>六大領域國際關鍵人才分布地圖</h6>
+                           </div>
+                       </div>
+                       <div class="col-lg-12 col-md-12 col-sm-12 ">
+                           <div class="col-lg-12 chart">
+
+                               <div class="col-lg-12" id="mountNode" style="height: 750px" ></div>
+                           </div>
+                       </div>
+         
+                
+                
+                
+                  <div class="col-lg-12 col-md-12 col-sm-12">
                     <div class="index_title">
                       <h5>六大領域國際關鍵人才分布概況</h5>
                     </div>
                   </div>
-                  <div class="col-lg-12">
+                  <div class="col-lg-12 col-md-12 col-sm-12">
                     <div class="form_chart">
                       <div class="form_outbor">
                         <table class="table caption-top">
@@ -94,8 +116,14 @@
                       </div>
                     </div>
                   </div>
+                  
                 </div>
               </div>
+              
+              
+             
+              
+              
             </div>
 		
 		

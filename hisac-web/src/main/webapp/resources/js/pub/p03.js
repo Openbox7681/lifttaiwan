@@ -14,6 +14,36 @@ function getAppController($scope, $rootScope, $http, $window) {
         $("#loadingActivity").fadeIn("slow");
 
 		var request = {
+		
+		};
+		$http.post('./common/p03/queryForm', request, csrf_config).then(function(response) {	
+			$scope.form = response.data.formData
+			
+		}).catch(function() {
+			bootbox.alert({
+				message : globalReadDataFail,
+				buttons : {
+					ok : {
+						label : '<i class="fas fa-fw fa-times"></i>' + btnClose,
+						className : 'btn-danger',
+					}
+				},
+				callback: function() { }
+			});
+		}).finally(function() {
+			$("#imgLoading").hide();
+            $("#loadingActivity").fadeOut("slow");
+
+		});
+	};
+	$scope.queryNumber();
+	
+	
+	
+	$scope.queryNumber = function() {
+        $("#loadingActivity").fadeIn("slow");
+
+		var request = {
 			count_topname : true,
 			count_p_id : true,
 			count_paper_SerialNumber : true,
@@ -43,6 +73,12 @@ function getAppController($scope, $rootScope, $http, $window) {
 		});
 	};
 	$scope.queryNumber();
+	
+	
+	
+	
+	
+	
 	
 	 $scope.overseas_institutions = function(){
 	        var dom = document.getElementById("overseas_institutions");

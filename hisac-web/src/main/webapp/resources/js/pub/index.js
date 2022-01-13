@@ -675,7 +675,7 @@ function getAppController($scope, $http, $window) {
     	          var chart = new G2.Chart({
     	            container: 'mountNode',
     	            forceFit: true,
-    	            height: 600,
+    	            height: 500,
     	            padding: [50, 100],
     	            autoFit: true
     	          })
@@ -824,7 +824,7 @@ function getAppController($scope, $http, $window) {
 		            	    }
 		        },
 		        legend: {
-		            data: ['In-bound平均發表篇數', 'Out-bound平均發表篇數' , 'In-bound國際合作篇數' , 'Out-bound國際合作篇數']
+		            data: ['In-bound平均', 'Out-bound平均' , 'In-bound國合' , 'Out-bound國合']
 		        },
 		        grid: {
 		            left: '3%',
@@ -849,7 +849,7 @@ function getAppController($scope, $http, $window) {
 		            type: 'value',
 		            name: '合作篇數',
 		            min: 0,
-		            max: 30000,
+		            max: 25000,
 		            interval: 5000,
 		            axisLabel: {
 		              formatter: '{value} 篇'
@@ -859,7 +859,7 @@ function getAppController($scope, $http, $window) {
 		        	 type: 'value',
 			            name: '平均篇數',
 			            min: 0,
-			            max: 1,
+			            max: 0.8,
 			            interval: 0.2,
 			            axisLabel: {
 			              formatter: '{value} 篇'

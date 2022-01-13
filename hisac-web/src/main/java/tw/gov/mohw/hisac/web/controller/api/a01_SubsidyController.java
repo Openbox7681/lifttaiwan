@@ -48,6 +48,234 @@ public class a01_SubsidyController extends BaseController {
 		return "msg";
 	}
 	
+	@RequestMapping(value = "/getB1data", method = RequestMethod.POST)
+	public String getB1data(Locale locale, HttpServletRequest request, Model model, @RequestBody String json) {
+		JSONObject listjson = new JSONObject();
+		JSONArray sn_array = new JSONArray();
+		JSONObject total_json = new JSONObject();
+		
+		JSONObject obj1 = new JSONObject(json);
+		JSONArray classSubList = obj1.isNull("classSubList") == true ? null : obj1.getJSONArray("classSubList");
+		JSONArray countryList = obj1.isNull("countryList") == true ? null : obj1.getJSONArray("countryList");
+		
+		
+		List<Object[]> alldatas = peopleMainsLiftService.getDataByCondition( classSubList,  countryList);
+		List<Object[]> peoplePapers = peopleMainsLiftService.getPeoplePaperByCondition( classSubList,  countryList);
+		List<Object[]> peoplePaper16_19s = peopleMainsLiftService.getPeoplePaperByCondition2016_2019( classSubList,  countryList);
+		List<Object[]> peoplePaperBefores = peopleMainsLiftService.getPeoplePaperByConditionBefore( classSubList,  countryList);
+		List<Object[]> peoplePaperAfters = peopleMainsLiftService.getPeoplePaperByConditionAfter( classSubList,  countryList);
+		List<Object[]> peoplePaperCors = peopleMainsLiftService.getPeoplePaperByConditionCor( classSubList,  countryList);
+		if(alldatas != null) {
+			JSONObject sn_json = new JSONObject();
+			sn_json.put("name", "總輔助人數");
+			sn_json.put("total", Long.valueOf(0));
+			sn_json.put("open", Long.valueOf(0));
+			sn_json.put("pi", Long.valueOf(0));
+			sn_json.put("short", Long.valueOf(0));
+			sn_json.put("dragon", Long.valueOf(0));
+			sn_json.put("policy", Long.valueOf(0));
+			sn_json.put("horse", Long.valueOf(0));		
+			for (Object[]  alldata :   alldatas) {
+				if("盤古開天".equals(alldata[1].toString())) {
+					sn_json.put("open", alldata[0]);
+				}else if("國合PI".equals(alldata[1].toString())) {
+					sn_json.put("pi", alldata[0]);
+				}else if("短期訪問學者".equals(alldata[1].toString())) {
+					sn_json.put("short", alldata[0]);
+				}else if("龍門計畫主持人".equals(alldata[1].toString())) {
+					sn_json.put("dragon", alldata[0]);
+				}else if("政策邀訪學者".equals(alldata[1].toString())) {
+					sn_json.put("policy", alldata[0]);
+				}else if("千里馬申請人".equals(alldata[1].toString())) {
+					sn_json.put("horse", alldata[0]);
+				}	
+			}
+			Long total = sn_json.getLong("horse") + sn_json.getLong("policy") 
+					+ sn_json.getLong("dragon") + sn_json.getLong("short")
+					+ sn_json.getLong("pi") +  sn_json.getLong("open") ;
+			sn_json.put("total", total);
+			sn_array.put(sn_json);
+		}
+		if(peoplePapers != null) {
+			JSONObject sn_json = new JSONObject();
+			sn_json.put("name", "論文發表總數");
+			sn_json.put("total", Long.valueOf(0));
+			sn_json.put("open", Long.valueOf(0));
+			sn_json.put("pi", Long.valueOf(0));
+			sn_json.put("short", Long.valueOf(0));
+			sn_json.put("dragon", Long.valueOf(0));
+			sn_json.put("policy", Long.valueOf(0));
+			sn_json.put("horse", Long.valueOf(0));		
+			for (Object[]  peoplePaper :   peoplePapers) {
+				if("盤古開天".equals(peoplePaper[1].toString())) {
+					sn_json.put("open", peoplePaper[0]);
+				}else if("國合PI".equals(peoplePaper[1].toString())) {
+					sn_json.put("pi", peoplePaper[0]);
+				}else if("短期訪問學者".equals(peoplePaper[1].toString())) {
+					sn_json.put("short", peoplePaper[0]);
+				}else if("龍門計畫主持人".equals(peoplePaper[1].toString())) {
+					sn_json.put("dragon", peoplePaper[0]);
+				}else if("政策邀訪學者".equals(peoplePaper[1].toString())) {
+					sn_json.put("policy", peoplePaper[0]);
+				}else if("千里馬申請人".equals(peoplePaper[1].toString())) {
+					sn_json.put("horse", peoplePaper[0]);
+				}	
+			}
+			Long total = sn_json.getLong("horse") + sn_json.getLong("policy") 
+					+ sn_json.getLong("dragon") + sn_json.getLong("short")
+					+ sn_json.getLong("pi") +  sn_json.getLong("open") ;
+			sn_json.put("total", total);
+			sn_array.put(sn_json);
+		}
+		
+		if(peoplePaper16_19s != null) {
+			JSONObject sn_json = new JSONObject();
+			sn_json.put("name", "2016-2019發表篇數");
+			sn_json.put("total", Long.valueOf(0));
+			sn_json.put("open", Long.valueOf(0));
+			sn_json.put("pi", Long.valueOf(0));
+			sn_json.put("short", Long.valueOf(0));
+			sn_json.put("dragon", Long.valueOf(0));
+			sn_json.put("policy", Long.valueOf(0));
+			sn_json.put("horse", Long.valueOf(0));		
+			for (Object[]  peoplePaper16_19 :   peoplePaper16_19s) {
+				if("盤古開天".equals(peoplePaper16_19[1].toString())) {
+					sn_json.put("open", peoplePaper16_19[0]);
+				}else if("國合PI".equals(peoplePaper16_19[1].toString())) {
+					sn_json.put("pi", peoplePaper16_19[0]);
+				}else if("短期訪問學者".equals(peoplePaper16_19[1].toString())) {
+					sn_json.put("short", peoplePaper16_19[0]);
+				}else if("龍門計畫主持人".equals(peoplePaper16_19[1].toString())) {
+					sn_json.put("dragon", peoplePaper16_19[0]);
+				}else if("政策邀訪學者".equals(peoplePaper16_19[1].toString())) {
+					sn_json.put("policy", peoplePaper16_19[0]);
+				}else if("千里馬申請人".equals(peoplePaper16_19[1].toString())) {
+					sn_json.put("horse", peoplePaper16_19[0]);
+				}	
+			}
+			Long total = sn_json.getLong("horse") + sn_json.getLong("policy") 
+					+ sn_json.getLong("dragon") + sn_json.getLong("short")
+					+ sn_json.getLong("pi") +  sn_json.getLong("open") ;
+			sn_json.put("total", total);
+			sn_array.put(sn_json);
+		}
+		
+		if(peoplePaperBefores != null) {
+			JSONObject sn_json = new JSONObject();
+			sn_json.put("name", "輔助前論文數");
+			sn_json.put("total", Long.valueOf(0));
+			sn_json.put("open", Long.valueOf(0));
+			sn_json.put("pi", Long.valueOf(0));
+			sn_json.put("short", Long.valueOf(0));
+			sn_json.put("dragon", Long.valueOf(0));
+			sn_json.put("policy", Long.valueOf(0));
+			sn_json.put("horse", Long.valueOf(0));		
+			for (Object[]  peoplePaperBefore :   peoplePaperBefores) {
+				if("盤古開天".equals(peoplePaperBefore[1].toString())) {
+					sn_json.put("open", peoplePaperBefore[0]);
+				}else if("國合PI".equals(peoplePaperBefore[1].toString())) {
+					sn_json.put("pi", peoplePaperBefore[0]);
+				}else if("短期訪問學者".equals(peoplePaperBefore[1].toString())) {
+					sn_json.put("short", peoplePaperBefore[0]);
+				}else if("龍門計畫主持人".equals(peoplePaperBefore[1].toString())) {
+					sn_json.put("dragon", peoplePaperBefore[0]);
+				}else if("政策邀訪學者".equals(peoplePaperBefore[1].toString())) {
+					sn_json.put("policy", peoplePaperBefore[0]);
+				}else if("千里馬申請人".equals(peoplePaperBefore[1].toString())) {
+					sn_json.put("horse", peoplePaperBefore[0]);
+				}	
+			}
+			Long total = sn_json.getLong("horse") + sn_json.getLong("policy") 
+					+ sn_json.getLong("dragon") + sn_json.getLong("short")
+					+ sn_json.getLong("pi") +  sn_json.getLong("open") ;
+			sn_json.put("total", total);
+			sn_array.put(sn_json);
+		}
+		
+		if(peoplePaperAfters != null) {
+			JSONObject sn_json = new JSONObject();
+			sn_json.put("name", "輔助後論文數");
+			sn_json.put("total", Long.valueOf(0));
+			sn_json.put("open", Long.valueOf(0));
+			sn_json.put("pi", Long.valueOf(0));
+			sn_json.put("short", Long.valueOf(0));
+			sn_json.put("dragon", Long.valueOf(0));
+			sn_json.put("policy", Long.valueOf(0));
+			sn_json.put("horse", Long.valueOf(0));		
+			for (Object[]  peoplePaperAfter :   peoplePaperAfters) {
+				if("盤古開天".equals(peoplePaperAfter[1].toString())) {
+					sn_json.put("open", peoplePaperAfter[0]);
+				}else if("國合PI".equals(peoplePaperAfter[1].toString())) {
+					sn_json.put("pi", peoplePaperAfter[0]);
+				}else if("短期訪問學者".equals(peoplePaperAfter[1].toString())) {
+					sn_json.put("short", peoplePaperAfter[0]);
+				}else if("龍門計畫主持人".equals(peoplePaperAfter[1].toString())) {
+					sn_json.put("dragon", peoplePaperAfter[0]);
+				}else if("政策邀訪學者".equals(peoplePaperAfter[1].toString())) {
+					sn_json.put("policy", peoplePaperAfter[0]);
+				}else if("千里馬申請人".equals(peoplePaperAfter[1].toString())) {
+					sn_json.put("horse", peoplePaperAfter[0]);
+				}	
+			}
+			Long total = sn_json.getLong("horse") + sn_json.getLong("policy") 
+					+ sn_json.getLong("dragon") + sn_json.getLong("short")
+					+ sn_json.getLong("pi") +  sn_json.getLong("open") ;
+			sn_json.put("total", total);
+			sn_array.put(sn_json);
+		}
+		
+		if(peoplePaperCors != null) {
+			JSONObject sn_json = new JSONObject();
+			sn_json.put("name", "國際合著篇數");
+			sn_json.put("total", Long.valueOf(0));
+			sn_json.put("open", Long.valueOf(0));
+			sn_json.put("pi", Long.valueOf(0));
+			sn_json.put("short", Long.valueOf(0));
+			sn_json.put("dragon", Long.valueOf(0));
+			sn_json.put("policy", Long.valueOf(0));
+			sn_json.put("horse", Long.valueOf(0));		
+			for (Object[]  peoplePaperCor :   peoplePaperCors) {
+				if("盤古開天".equals(peoplePaperCor[1].toString())) {
+					sn_json.put("open", peoplePaperCor[0]);
+				}else if("國合PI".equals(peoplePaperCor[1].toString())) {
+					sn_json.put("pi", peoplePaperCor[0]);
+				}else if("短期訪問學者".equals(peoplePaperCor[1].toString())) {
+					sn_json.put("short", peoplePaperCor[0]);
+				}else if("龍門計畫主持人".equals(peoplePaperCor[1].toString())) {
+					sn_json.put("dragon", peoplePaperCor[0]);
+				}else if("政策邀訪學者".equals(peoplePaperCor[1].toString())) {
+					sn_json.put("policy", peoplePaperCor[0]);
+				}else if("千里馬申請人".equals(peoplePaperCor[1].toString())) {
+					sn_json.put("horse", peoplePaperCor[0]);
+				}	
+			}
+			Long total = sn_json.getLong("horse") + sn_json.getLong("policy") 
+					+ sn_json.getLong("dragon") + sn_json.getLong("short")
+					+ sn_json.getLong("pi") +  sn_json.getLong("open") ;
+			sn_json.put("total", total);
+			sn_array.put(sn_json);
+		}
+
+		
+
+
+		
+
+		
+		
+		
+		
+		
+		
+		listjson.put("formData",sn_array);
+		
+		model.addAttribute("json", listjson.toString());
+		return "msg";
+		
+		
+	}
+
+	
 	@RequestMapping(value = "/getAllCountry", method = RequestMethod.POST)
 	public String getAllCountry(Locale locale, HttpServletRequest request, Model model, @RequestBody String json) {
 		JSONObject responsejson = new JSONObject();
