@@ -96,6 +96,33 @@ public class PeopleMainsLiftDAOImpl extends BaseSessionFactory implements People
 	}
 	
 	@SuppressWarnings({"deprecation", "unchecked"})
+	public List<PeopleMainsLift> getResults(JSONObject obj, String[] country, String[] classSub) {
+		int start = obj.isNull("start") == true ? 0 : obj.getInt("start");
+		int maxRows = obj.isNull("maxRows") == true ? 0 : obj.getInt("maxRows");
+		long id = obj.isNull("Id") == true ? 0 : obj.getLong("Id");
+		Boolean number = obj.isNull("number") == true ? null : obj.getBoolean("number");
+		
+		Criteria cr = getSessionFactory().getCurrentSession().createCriteria(PeopleMainsLift.class);
+		
+		if(country != null) {
+			cr.add(Restrictions.in("country", country));
+		}
+		if(classSub != null) {
+			cr.add(Restrictions.in("class_sub", classSub));
+		}
+		
+		cr.setFirstResult(start);
+		if (maxRows != 0)
+			cr.setMaxResults(maxRows);
+		List<PeopleMainsLift> list = cr.list();
+		if (list.size() > 0) {
+			return list;
+		} else {
+			return null;
+		}
+	}
+	
+	@SuppressWarnings({"deprecation", "unchecked"})
 	public List<Object[]> getMechanism(JSONObject obj, String[] country) {
 		int start = obj.isNull("start") == true ? 0 : obj.getInt("start");
 		int maxRows = obj.isNull("maxRows") == true ? 0 : obj.getInt("maxRows");

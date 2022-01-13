@@ -70,15 +70,14 @@
                                 <h2 id="outbound"></h2>
                             </div>
                         </div>
-                        <a class="col-md-2 col-xs-6" id="mechanismHref"
-                        	>
+                        <a class="col-md-2 col-xs-6" id="mechanismHref">
                             <div class="cube_outer">
                                 <div class="mechanism"></div>
                                 <p>國際機構數</p>
                                 <h2 id="mechanism"></h2>
                             </div>
                         </a>
-                        <a class="col-md-2 col-xs-6" href="#">
+                        <a class="col-md-2 col-xs-6" id="resultsHref">
                             <div class="cube_outer">
                                 <div class="result"></div>
                                 <p>研究成果</p>

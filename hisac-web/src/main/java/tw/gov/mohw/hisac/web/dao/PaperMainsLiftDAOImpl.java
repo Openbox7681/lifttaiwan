@@ -65,11 +65,15 @@ public class PaperMainsLiftDAOImpl extends BaseSessionFactory implements PaperMa
 		int start = obj.isNull("start") == true ? 0 : obj.getInt("start");
 		int maxRows = obj.isNull("maxRows") == true ? 0 : obj.getInt("maxRows");
 		long id = obj.isNull("Id") == true ? 0 : obj.getLong("Id");
-		Boolean number = obj.isNull("number") == true ? null : obj.getBoolean("number");
+		Boolean number = obj.isNull("number") == true ? false : obj.getBoolean("number");
+		String p_id = obj.isNull("p_id") == true ? null : obj.getString("p_id");
 		
 		Criteria cr = getSessionFactory().getCurrentSession().createCriteria(PaperMainsLift.class);
 		if (id != 0) {
 			cr.add(Restrictions.eq("id", id));
+		}
+		if(p_id != null && p_id.length()>0) {
+			cr.add(Restrictions.eq("p_id", p_id));
 		}
 		if(number) {
 			cr.setProjection(Projections.projectionList()

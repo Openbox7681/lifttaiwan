@@ -29,6 +29,15 @@ public class PeopleMainsLiftService {
 		}
 	}
 	
+	public List<PeopleMainsLift> getResults(String json, String[] country, String[] classSub) {
+		try {
+			JSONObject obj = new JSONObject(json);
+			return peopleMainsDAO.getResults(obj,country,classSub);
+		} catch (Exception e) {
+			return null;
+		}
+	}
+	
 	public List<Object[]> getMapData() {
 		try {
 			return peopleMainsDAO.getMapData();

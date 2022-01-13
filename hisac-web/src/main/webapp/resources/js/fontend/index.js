@@ -611,4 +611,10 @@ function getAppController($scope, $http, $window) {
 	  country = btoa(escape(country));
 	  $window.location = "./fontend/mechanism/" + country;
 	});
+	
+	$('#resultsHref').click(function() {
+	  var country = $(".change_text").text();
+	  country = btoa(escape(country));
+	  $window.location = "./fontend/results/" + country;
+	});
 };

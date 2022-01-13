@@ -181,7 +181,12 @@
 	<bean id="outboundPeoplePaperNoCorDAO" class="tw.gov.mohw.hisac.web.dao.OutboundPeoplePaperNoCorDAOImpl">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
-	
+	<bean id="paperKeywordLiftDAO" class="tw.gov.mohw.hisac.web.dao.PaperKeywordLiftDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="paperFullnameLiftDAO" class="tw.gov.mohw.hisac.web.dao.PaperFullnameLiftDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
 	<tx:annotation-driven transaction-manager="transactionManager"
 		proxy-target-class="true" />
 </beans>

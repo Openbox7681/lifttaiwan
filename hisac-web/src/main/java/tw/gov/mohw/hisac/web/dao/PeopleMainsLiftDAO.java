@@ -19,6 +19,7 @@ public interface PeopleMainsLiftDAO {
 	public PeopleMainsLift getByCode(String code);
 	public PeopleMainsLift getByName(String name);
 	public List<PeopleMainsLift> getList(JSONObject obj);
+	public List<PeopleMainsLift> getResults(JSONObject obj, String[] country, String[] classSub);
 	public long getListSize(JSONObject obj);
 	public List<Object[]> getMapData();
 	public List<Object[]> getFormData();

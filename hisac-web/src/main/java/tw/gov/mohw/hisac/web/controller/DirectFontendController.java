@@ -58,4 +58,8 @@ public class DirectFontendController extends BaseController {
 	public String mechanism(@PathVariable("country") String country, Locale locale, Model model) {
 		return "/fontend/mechanism";
 	}
+	@RequestMapping(value = "/results/{country}", method = RequestMethod.GET)
+	public String results(@PathVariable("country") String country, Locale locale, Model model) {
+		return "/fontend/results";
+	}
 }
