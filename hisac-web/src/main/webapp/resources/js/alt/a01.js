@@ -90,6 +90,15 @@ function getAppController($scope, $http, $cookieStore, $cookies, $anchorScroll, 
 	
 	$scope.IsInfoShow = false;
 	
+	//手幾版使用
+	$scope.IsInfoShow1 = false;
+	$scope.IsInfoShow2= false;
+	$scope.IsInfoShow3 = false;
+	$scope.IsInfoShow4 = false;
+	$scope.IsInfoShow5 = false;
+	$scope.IsInfoShow6 = false;
+
+	
 	$scope.queryNumber();
 	
 	$scope.StartYear = 100;
@@ -325,6 +334,7 @@ function getAppController($scope, $http, $cookieStore, $cookies, $anchorScroll, 
 	    			"Flag" : $scope.infoSelectAll
 	    		}] ;
 			$scope.option =0;
+
 	    	$(".su_healthy").removeClass("it_color");
 		    $(".su_safe").removeClass("it_color");
 		    $(".su_power").removeClass("it_color");
@@ -336,6 +346,8 @@ function getAppController($scope, $http, $cookieStore, $cookies, $anchorScroll, 
 	    	$scope.infoSelectAll= false;
 			$scope.InfoList = InfoData;
 			$scope.changeSelectAllNone();
+			$scope.IsInfoShow1 = true;
+
 			$scope.option =1 ;
 		    $(".su_healthy").removeClass("it_color");
 		    $(".su_safe").removeClass("it_color");
@@ -347,6 +359,8 @@ function getAppController($scope, $http, $cookieStore, $cookies, $anchorScroll, 
 	    	$scope.infoSelectAll= false;
 			$scope.InfoList = HealthyData;
 			$scope.changeSelectAllNone();
+			$scope.IsInfoShow2 = true;
+
 			$scope.option =2;
 			$(".su_info").removeClass("it_color");
 		    $(".su_safe").removeClass("it_color");
@@ -358,6 +372,8 @@ function getAppController($scope, $http, $cookieStore, $cookies, $anchorScroll, 
 	    	$scope.infoSelectAll= false;
 			$scope.InfoList = SafeData;
 			$scope.changeSelectAllNone();
+			$scope.IsInfoShow3 = true;
+
 			$scope.option =3;
 			$(".su_info").removeClass("it_color");
 		    $(".su_power").removeClass("it_color");
@@ -369,6 +385,8 @@ function getAppController($scope, $http, $cookieStore, $cookies, $anchorScroll, 
 	    	$scope.infoSelectAll= false;
 			$scope.InfoList = LivelihoodData;
 			$scope.changeSelectAllNone();
+			$scope.IsInfoShow4 = true;
+
 			$scope.option =4;
 			$(".su_info").removeClass("it_color");
 		    $(".su_safe").removeClass("it_color");
@@ -380,6 +398,8 @@ function getAppController($scope, $http, $cookieStore, $cookies, $anchorScroll, 
 	    	$scope.infoSelectAll= false;
 			$scope.InfoList = PowerData;
 			$scope.changeSelectAllNone();
+			$scope.IsInfoShow5 = true;
+
 			$scope.option =5;
 			$(".su_info").removeClass("it_color");
 		    $(".su_safe").removeClass("it_color");
@@ -391,6 +411,8 @@ function getAppController($scope, $http, $cookieStore, $cookies, $anchorScroll, 
 	    	$scope.infoSelectAll= false;
 			$scope.InfoList = OtherData;
 			$scope.changeSelectAllNone()
+			$scope.IsInfoShow6 = true;
+
 			$scope.option =6;
 			$(".su_info").removeClass("it_color");
 		    $(".su_safe").removeClass("it_color");

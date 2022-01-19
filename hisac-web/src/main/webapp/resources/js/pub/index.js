@@ -174,7 +174,7 @@ function getAppController($scope, $http, $window) {
 	                feature: {
 	                    saveAsImage: {
 	                    	show : true
-	                    	,title : '保存為圖片'
+	                    	,title : ''
 	                    	
 	                    	
 	                    },
@@ -397,6 +397,12 @@ function getAppController($scope, $http, $window) {
             tooltip: {
                 trigger: 'item'
             },
+            toolbox: {
+	            feature: {
+	                saveAsImage: { show: true 
+	                	,title : ''}
+	            }
+	        },
             legend: {
                 top: '5%',
                 left: 'center',
@@ -835,7 +841,7 @@ function getAppController($scope, $http, $window) {
 		        toolbox: {
 		            feature: {
 		                saveAsImage: { show: true 
-		                	,title : '保存為圖片'}
+		                	,title : ''}
 		            }
 		        },
 		        xAxis: {

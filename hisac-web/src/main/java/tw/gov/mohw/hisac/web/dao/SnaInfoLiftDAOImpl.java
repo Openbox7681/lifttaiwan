@@ -57,7 +57,6 @@ public class SnaInfoLiftDAOImpl extends BaseSessionFactory implements SnaInfoLif
 
 
 		
-		cr.add(Restrictions.in("name_1", name));
 		
 		cr.add(Restrictions.in("name_2", name));
 
@@ -68,7 +67,7 @@ public class SnaInfoLiftDAOImpl extends BaseSessionFactory implements SnaInfoLif
 		
 		cr.setProjection(projectionList);
 		
-		
+		cr.setMaxResults(100);
 		
 		
 		List<Object[] > list = cr.list();

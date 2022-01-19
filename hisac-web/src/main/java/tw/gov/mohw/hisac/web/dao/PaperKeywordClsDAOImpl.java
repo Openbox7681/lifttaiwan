@@ -116,7 +116,7 @@ public class PaperKeywordClsDAOImpl extends BaseSessionFactory implements PaperK
 		
 		cr.setProjection(projectionList);
 
-		
+		cr.setMaxResults(300);
 		List<Object[]> list = cr.list();
 		if (list.size() > 0) {
 			return list;

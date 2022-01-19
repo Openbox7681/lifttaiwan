@@ -45,6 +45,7 @@ function getAppController($scope, $http, $window) {
 		
 		var checkbox1 = document.getElementsByName("checkbox1");
 		var checkbox2 = document.getElementsByName("checkbox2");
+		
 		var checkedValue1="";
 		var checkedValue2="";
         var count1 = 0;
@@ -79,6 +80,14 @@ function getAppController($scope, $http, $window) {
 		}else if(country == '台灣') {
 			country = '台灣,中華民國'
 		}
+		
+		console.log(checkbox1);
+
+		
+		
+		console.log(country);
+		console.log(classSub);
+
 		
 		var request = {
 			start : $scope.start,
@@ -123,6 +132,109 @@ function getAppController($scope, $http, $window) {
 		});
 	};
 	// Query Data End
+	
+	// Query Data Start
+	$scope.mqueryData = function(page) {
+		
+		$("#imgLoading").show();
+		if (page) {
+			$scope.start = (page - 1) * $scope.maxRows
+		} else {
+			$scope.start = 0;
+		}
+		
+		var checkbox1 = document.getElementsByName("checkbox3");
+		var checkbox2 = document.getElementsByName("checkbox4");
+		
+		var checkedValue1="";
+		var checkedValue2="";
+        var count1 = 0;
+        var count2 = 0;
+
+		for(var i=0;i<checkbox1.length;i++){
+            if(checkbox1[i].checked){
+				if(count1==0){
+					checkedValue1 = checkbox1[i].value;
+            	}else{
+            		checkedValue1 = checkedValue1 + "," + checkbox1[i].value;
+				}
+				count1 = count1 + 1;
+            }
+       }
+		for(var i=0;i<checkbox2.length;i++){
+            if(checkbox2[i].checked){
+				if(count2==0){
+					checkedValue2 = checkbox2[i].value;
+            	}else{
+            		checkedValue2 = checkedValue2 + "," + checkbox2[i].value;
+				}
+				count2 = count2 + 1;
+            }
+       }
+		
+		var country = checkedValue1;
+		var classSub = checkedValue2;
+		
+		if(country == '全部') {
+			country = null
+		}else if(country == '台灣') {
+			country = '台灣,中華民國'
+		}
+		
+		console.log(checkbox1);
+
+		
+		
+		console.log(country);
+		console.log(classSub);
+
+		
+		var request = {
+			start : $scope.start,
+			maxRows : $scope.maxRows,
+			country : country,
+			classSub : classSub
+		};
+		
+		var header = JSON.parse('{"'
+				+ $("meta[name='_csrf_header']").attr("content") + '":"'
+				+ $("meta[name='_csrf']").attr("content") + '"}');
+		var csrf_config = {
+			withCredentials : true,
+			crossDomain : true,
+			headers : header
+		};
+
+		$http.post('./query', request, csrf_config).then(function(response) {
+			$scope.allitems = response.data.datatable;
+			$scope.alltags = response.data.tagtable;
+//			$scope.total = response.data.total;
+//			$scope.maxPages = parseInt($scope.total / $scope.maxRows);
+//			$scope.pageRows = $scope.total % $scope.maxRows;
+			
+			if ($scope.pageRows != 0)
+				$scope.maxPages++;
+			$scope.returnTotal = true;
+		
+		}).catch(function() {
+			bootbox.alert({
+				message : globalReadDataFail,
+				buttons : {
+					ok : {
+						label : '<i class="fas fa-fw fa-times"></i>' + btnClose,
+						className : 'btn-danger',
+					}
+				},
+				callback: function() { }
+			});
+		}).finally(function() {
+			$("#imgLoading").hide();
+		});
+	};
+	// Query Data End
+	
+	
+	
 	
 	// Query Data Start
 	$scope.queryDataInit = function(page) {

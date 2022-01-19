@@ -196,6 +196,14 @@ function getAppController($rootScope, $scope, $http, $cookieStore,
 	
 	$scope.IsInfoShow = false;
 	
+	//手幾版使用
+	$scope.IsInfoShow1 = false;
+	$scope.IsInfoShow2= false;
+	$scope.IsInfoShow3 = false;
+	$scope.IsInfoShow4 = false;
+	$scope.IsInfoShow5 = false;
+	$scope.IsInfoShow6 = false;
+	
 	//圖表是否呈現
 	$scope.isSupport = false;
 	$scope.isDraw = false ;
@@ -442,6 +450,8 @@ function getAppController($rootScope, $scope, $http, $cookieStore,
 			$scope.InfoList = InfoData;
 			$scope.changeSelectAllNone();
 			$scope.option =1 ;
+			$scope.IsInfoShow1 = true;
+
 		    $(".su_healthy").removeClass("it_color");
 		    $(".su_safe").removeClass("it_color");
 		    $(".su_power").removeClass("it_color");
@@ -453,6 +463,8 @@ function getAppController($rootScope, $scope, $http, $cookieStore,
 			$scope.InfoList = HealthyData;
 			$scope.changeSelectAllNone();
 			$scope.option =2;
+			$scope.IsInfoShow2 = true;
+
 			$(".su_info").removeClass("it_color");
 		    $(".su_safe").removeClass("it_color");
 		    $(".su_power").removeClass("it_color");
@@ -464,6 +476,8 @@ function getAppController($rootScope, $scope, $http, $cookieStore,
 			$scope.InfoList = SafeData;
 			$scope.changeSelectAllNone();
 			$scope.option =3;
+			$scope.IsInfoShow3 = true;
+
 			$(".su_info").removeClass("it_color");
 		    $(".su_power").removeClass("it_color");
 		    $(".su_healthy").removeClass("it_color");
@@ -475,6 +489,8 @@ function getAppController($rootScope, $scope, $http, $cookieStore,
 			$scope.InfoList = LivelihoodData;
 			$scope.changeSelectAllNone();
 			$scope.option =4;
+			$scope.IsInfoShow4 = true;
+
 			$(".su_info").removeClass("it_color");
 		    $(".su_safe").removeClass("it_color");
 		    $(".su_healthy").removeClass("it_color");
@@ -486,6 +502,8 @@ function getAppController($rootScope, $scope, $http, $cookieStore,
 			$scope.InfoList = PowerData;
 			$scope.changeSelectAllNone();
 			$scope.option =5;
+			$scope.IsInfoShow5 = true;
+
 			$(".su_info").removeClass("it_color");
 		    $(".su_safe").removeClass("it_color");
 		    $(".su_healthy").removeClass("it_color");
@@ -497,6 +515,8 @@ function getAppController($rootScope, $scope, $http, $cookieStore,
 			$scope.InfoList = OtherData;
 			$scope.changeSelectAllNone()
 			$scope.option =6;
+			$scope.IsInfoShow6 = true;
+
 			$(".su_info").removeClass("it_color");
 		    $(".su_safe").removeClass("it_color");
 		    $(".su_healthy").removeClass("it_color");

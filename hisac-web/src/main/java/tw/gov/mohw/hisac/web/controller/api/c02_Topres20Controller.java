@@ -128,6 +128,11 @@ public class c02_Topres20Controller extends BaseController {
 			}
 		}
 		
+		JSONObject category_json = new JSONObject();
+		category_json.put("category", category);
+		
+		category_array.put(category_json);
+
 		List<Object[]> linksByNames =  snaInfoLiftService.getLinksByName(res20List);
 		if(linksByNames != null) {
 			for(Object[] linksByName : linksByNames) {
@@ -135,6 +140,24 @@ public class c02_Topres20Controller extends BaseController {
 				sn_json.put("source", linksByName[0]);
 				sn_json.put("target", linksByName[1]);
 				link_array.put(sn_json);
+				if ( !connect_array.toString().contains(linksByName[0].toString())) {
+
+				
+				JSONObject connect_json = new JSONObject();
+				connect_json.put("name", linksByName[0]);
+				connect_json.put("id", linksByName[0]);
+				connect_json.put("symbolSize", 10);
+				connect_json.put("x", -282.69568 + category);
+				connect_json.put("y", 475.09113-category);
+				connect_json.put("value", 1);
+				connect_json.put("category", category);
+				
+				
+				connect_array.put(connect_json);
+				
+				}
+				
+				
 			}		
 		}
 

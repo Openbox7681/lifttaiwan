@@ -71,8 +71,16 @@
                   
                     <span>圖片/連結檢測</span></a>
                     
-                    <a href="pages/s_settings.html">
-                    <span>網站設定 </span></a></div>
+                    <a href="<c:out value="${pageContext.request.contextPath}" />/sys/s13">
+                    <span>隱私權保護政策頁面設定 </span></a>
+                    
+                     <a href="<c:out value="${pageContext.request.contextPath}" />/sys/s13">
+                    <span>網站cookie設定管理 </span></a>
+                    
+                     <a href="<c:out value="${pageContext.request.contextPath}" />/sys/s13">
+                    <span>個人資源收集告知聲明設定 </span></a></div>
+                    
+                    
                   </div>
                 </div>
               </div>
@@ -91,16 +99,16 @@
                 </div>
               </div>
               <div class="mhr"></div>
-              <a class="button_line_gray" href="<c:out value="${pageContext.request.contextPath}" />/sys/s01">     
+              <a class="button_line_gray" 
+              href="<c:out value="${pageContext.request.contextPath}" />/sys/s01">     
               <span>子系統資料維護</span>
               </a>
               <div class="mhr"></div>
-              <a class="button_line_gray" href="<c:out value="${pageContext.request.contextPath}" />/sys/s11">
+              <a class="button_line_gray" 
+              href="<c:out value="${pageContext.request.contextPath}" />/sys/s11">
               <span>表單資料維護</span></a>
               <div class="mhr"></div><a class="button_line_gray" 
               href="<c:out value="${pageContext.request.contextPath}" />/sys/s03">           
-              
-              
                <span>操作記錄</span></a>
 
 

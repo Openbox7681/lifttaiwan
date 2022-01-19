@@ -188,7 +188,7 @@ public class c01_PaperKeywordController extends BaseController {
 			
 			if(linksByNames != null) {
 				for(Object[] linksByName : linksByNames) {
-					if(  !(connect_array.toString().contains(linksByName[0].toString()) || connect_array.toString().contains(linksByName[1].toString()))) {
+					if(!connect_array.toString().contains(linksByName[0].toString())) {
 						
 						JSONObject connect_json = new JSONObject();
 						connect_json.put("name", linksByName[0]);
@@ -196,7 +196,6 @@ public class c01_PaperKeywordController extends BaseController {
 						connect_json.put("symbolSize", 11);
 						connect_json.put("x", -282.69568 + category);
 						connect_json.put("y", 475.09113-category);
-//						connect_json.put("value", 0);
 						connect_json.put("category", 0);
 						
 						JSONObject category_json = new JSONObject();
@@ -220,7 +219,43 @@ public class c01_PaperKeywordController extends BaseController {
 					sn_json.put("target", linksByName[1]);
 					link_array.put(sn_json);
 					
-				}		
+				}
+				
+				for(Object[] linksByName : linksByNames) {
+					if ( !connect_array.toString().contains(linksByName[1].toString())) {
+						JSONObject connect_json = new JSONObject();
+						connect_json.put("name", linksByName[1]);
+						connect_json.put("id", linksByName[1]);
+						connect_json.put("symbolSize", 11);
+						connect_json.put("x", -282.69568 + category);
+						connect_json.put("y", 475.09113-category);
+						connect_json.put("category", 0);
+						
+						JSONObject category_json = new JSONObject();
+						category_json.put("category", 0);
+						category ++;
+						connect_array.put(connect_json);
+						category_array.put(category_json);
+					}
+					
+					else {
+						for(int i=0; i<connect_array.length(); i++) {
+							JSONObject obj1 = (JSONObject) connect_array.get(i);
+							if(obj1.getString("name").equals(linksByName[1].toString())) {
+								int count = obj1.getInt("symbolSize") + 1;
+								obj1.put("symbolSize", count);
+							}
+							connect_array.put(i, obj1);
+						}
+					}	
+					
+				}
+
+				
+				
+				
+				
+				
 			}
 			connectjson.put("nodes", connect_array);
 			connectjson.put("categories", category_array);

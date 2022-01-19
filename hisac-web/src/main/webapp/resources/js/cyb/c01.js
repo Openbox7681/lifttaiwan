@@ -656,14 +656,14 @@ function getAppController($scope, $http, $cookieStore, $cookies, $anchorScroll, 
 	}
 	$scope.query =function(){
 		
-		var choose = false ;
-		$scope.keywordList.forEach(function (node) {
-			
-			if (node.Flag){
-				console.log(node.Flag);
-				choose = node.Flag
-			}			
-		})
+		var choose = true ;
+//		$scope.keywordList.forEach(function (node) {
+//			
+//			if (node.Flag){
+//				console.log(node.Flag);
+//				choose = node.Flag
+//			}			
+//		})
 		
 		if(choose){
 			console.log($scope.InfoList);
@@ -732,7 +732,14 @@ function getAppController($scope, $http, $cookieStore, $cookies, $anchorScroll, 
 	
 	
 	//取得關鍵字
-	$scope.getKeyword = function(){
+	$scope.getKeyword = function(name){
+		
+		angular.forEach($scope.InfoList, function(item) {
+			if (item.Name != name) {
+				item.Flag = false;							
+			}
+			});	
+		
 		$("#imgLoading").show();
 		var request = {		
 				classSubList : $scope.InfoList
@@ -759,7 +766,7 @@ function getAppController($scope, $http, $cookieStore, $cookies, $anchorScroll, 
 		});
 	}
 	
-	$scope.getKeyword();
+	$scope.getKeyword(null);
 
 		
 	

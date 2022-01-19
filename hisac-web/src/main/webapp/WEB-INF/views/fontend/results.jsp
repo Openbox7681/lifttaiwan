@@ -153,6 +153,314 @@
       </div>
     </section>
     
+    
+    <div class="modal fade" id="myModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="col-md-12">
+              <div id="filiter">
+                <div class="filiter_lightbox_dropdown">
+                  <h6>為 研究成果 進行塞選</h6>
+                  <p class="result_lightbox">國家</p>
+                  <div id="countysearch">
+                    <div class="accordion accordion-flush" id="accordionFlushExample">
+                      <div class="accordion-item">
+                        <h2 class="accordion-header" id="flush-headingOne">
+                          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">全世界</button>
+                        </h2>
+                        <div class="accordion-collapse collapse" id="flush-collapseOne" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                          <div class="accordion-body">
+                          <div class="form-check">
+                            <input class="form-check-input" id="台灣" type="checkbox" name="checkbox3" value="台灣">
+                            <label class="form-check-label" for="country">台灣</label>
+                          </div>
+                          <div class="form-check">
+                            <input class="form-check-input" id="日本" type="checkbox" name="checkbox3" value="日本">
+                            <label class="form-check-label" for="country1">日本</label>
+                          </div>
+                          <div class="form-check">
+                            <input class="form-check-input" id="中國" type="checkbox" name="checkbox3" value="中國">
+                            <label class="form-check-label" for="country2">中國</label>
+                          </div>
+                          <div class="form-check">
+                            <input class="form-check-input" id="越南" type="checkbox" name="checkbox3" value="越南">
+                            <label class="form-check-label" for="country3">越南</label>
+                          </div>
+                          <div class="form-check">
+                            <input class="form-check-input" id="馬來西亞" type="checkbox" name="checkbox3" value="馬來西亞">
+                            <label class="form-check-label" for="country4">馬來西亞</label>
+                          </div>
+                          <div class="form-check">
+                            <input class="form-check-input" id="俄羅斯" type="checkbox" name="checkbox3" value="俄羅斯">
+                            <label class="form-check-label" for="country5">俄羅斯</label>
+                          </div>
+                          <div class="form-check">
+                            <input class="form-check-input" id="印度" type="checkbox" name="checkbox3" value="印度">
+                            <label class="form-check-label" for="country6">印度</label>
+                          </div>
+                          <div class="form-check">
+                            <input class="form-check-input" id="德國" type="checkbox" name="checkbox3" value="德國">
+                            <label class="form-check-label" for="country7">德國</label>
+                          </div>
+                          <div class="form-check">
+                            <input class="form-check-input" id="法國" type="checkbox" name="checkbox3" value="法國">
+                            <label class="form-check-label" for="country8">法國</label>
+                          </div>
+                          <div class="form-check">
+                            <input class="form-check-input" id="美國" type="checkbox" name="checkbox3" value="美國">
+                            <label class="form-check-label" for="country9">美國</label>
+                          </div>
+                            
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <p class="result_lightbox">六大領域</p>
+                  
+                  <div class="line2"></div>
+                  <button class="filiterLightboxBtn" type="button" data-bs-toggle="collapse" data-bs-target="#filiterarea1" aria-expanded="false" aria-controls="filiterarea1"><i class="fas fa-chevron-up"></i><span>資訊及數位相關產業</span></button>
+                  <div class="collapse filiterlightbox_form_check" id="filiterarea1">
+                    <div class="card card-body">
+                      <div class="form-check">
+                        <input class="form-check-input" id="filiter1" type="checkbox" value="AI晶片" name="checkbox4">
+                        <label class="form-check-label" for="filiter1"></label>AI晶片
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" id="filiter2" type="checkbox" value="人工智慧" name="checkbox4">
+                        <label class="form-check-label" for="filiter2"></label>人工智慧
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" id="filiter3" type="checkbox" value="半導體材料" name="checkbox4">
+                        <label class="form-check-label" for="filiter3"></label> 半導體材料
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" id="filiter4" type="checkbox" value="半導體設備" name="checkbox4">
+                        <label class="form-check-label" for="filiter4"></label>半導體設備
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" id="filiter5" type="checkbox" value="行動通訊" name="checkbox4">
+                        <label class="form-check-label" for="filiter5"></label>行動通訊
+                      </div>
+                      
+                      <div class="form-check">
+                        <input class="form-check-input" id="filiter6" type="checkbox" value="系統軟體" name="checkbox4">
+                        <label class="form-check-label" for="filiter6"></label>系統軟體
+                      </div>
+                      
+                      <div class="form-check">
+                        <input class="form-check-input" id="filiter7" type="checkbox" value="物聯網(含感測器)" name="checkbox4">
+                        <label class="form-check-label" for="filiter7"></label>物聯網(含感測器)
+                      </div>
+                       
+                      <div class="form-check">
+                        <input class="form-check-input" id="filiter8" type="checkbox" value="晶圓代工" name="checkbox4">
+                        <label class="form-check-label" for="filiter8"></label>晶圓代工
+                      </div>
+                      
+                      <div class="form-check">
+                        <input class="form-check-input" id="filiter9" type="checkbox" value="智慧運輸" name="checkbox4">
+                        <label class="form-check-label" for="filiter9"></label>智慧運輸
+                      </div>
+                      
+                      <div class="form-check">
+                        <input class="form-check-input" id="filiter10" type="checkbox" value="量子科技" name="checkbox4"> 
+                        <label class="form-check-label" for="filiter10"></label>量子科技
+                      </div>
+                      
+                       <div class="form-check">
+                        <input class="form-check-input" id="filiter11" type="checkbox" value="資安支援" name="checkbox4">
+                        <label class="form-check-label" for="filiter11"></label>資安支援
+                      </div>
+                      
+                       <div class="form-check">
+                        <input class="form-check-input" id="filiter12" type="checkbox" value="資安防護" name="checkbox4">
+                        <label class="form-check-label" for="filiter12"></label>資安防護
+                      </div>
+                      
+                      <div class="form-check">
+                        <input class="form-check-input" id="filiter13" type="checkbox" value="資料中心(含伺服器)" name="checkbox4">
+                        <label class="form-check-label" for="filiter13"></label>資料中心(含伺服器)
+                      </div>
+                      
+                       <div class="form-check">
+                        <input class="form-check-input" id="filiter14" type="checkbox" value="運動科技" name="checkbox4">
+                        <label class="form-check-label" for="filiter14"></label>運動科技
+                      </div>
+                      
+                      <div class="form-check">
+                        <input class="form-check-input" id="filiter15" type="checkbox" value="零接觸生活科技" name="checkbox4">
+                        <label class="form-check-label" for="filiter15"></label>零接觸生活科技
+                      </div>
+                      
+                       <div class="form-check">
+                        <input class="form-check-input" id="filiter16" type="checkbox" value="網路通訊" name="checkbox4">
+                        <label class="form-check-label" for="filiter16"></label> 網路通訊
+                      </div>
+                      
+                      <div class="form-check">
+                        <input class="form-check-input" id="filiter17" type="checkbox" value="數據科學" name="checkbox4">
+                        <label class="form-check-label" for="filiter17"></label> 數據科學
+                      </div>
+                      
+                      <div class="form-check">
+                        <input class="form-check-input" id="filiter18" type="checkbox" value="衛星通訊" name="checkbox4">
+                        <label class="form-check-label" for="filiter18"></label> 衛星通訊
+                      </div>
+                      
+                       <div class="form-check">
+                        <input class="form-check-input" id="filiter19" type="checkbox" value="積體電路設計" name="checkbox4">
+                        <label class="form-check-label" for="filiter19"></label> 積體電路設計
+                      </div>
+                            
+                    </div>
+                  </div>
+                  <button class="filiterLightboxBtn" type="button" data-bs-toggle="collapse" data-bs-target="#filiterarea2" aria-expanded="false" aria-controls="filiterarea2"><i class="fas fa-chevron-up"></i><span>資安卓越產業</span></button>
+                  <div class="collapse filiterlightbox_form_check" id="filiterarea2">
+                    <div class="card card-body">
+                    </div>
+                  </div>
+                  <button class="filiterLightboxBtn" type="button" data-bs-toggle="collapse" data-bs-target="#filiterarea3" aria-expanded="false" aria-controls="filiterarea3"><i class="fas fa-chevron-up"></i><span>臺灣精準健康戰略產業</span></button>
+                  <div class="collapse filiterlightbox_form_check" id="filiterarea3">
+                    <div class="card card-body">
+                      <div class="form-check">
+                        <input class="form-check-input" id="filiter1" type="checkbox" value="再生醫療" name="checkbox4">
+                        <label class="form-check-label" for="filiter1"></label> 再生醫療
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" id="filiter2" type="checkbox" value="健康管理" name="checkbox4">
+                        <label class="form-check-label" for="filiter2"></label>健康管理
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" id="filiter3" type="checkbox" value="智慧醫材" name="checkbox4">
+                        <label class="form-check-label" for="filiter3"></label>智慧醫材
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" id="filiter4" type="checkbox" value="智慧醫療" name="checkbox4">
+                        <label class="form-check-label" for="filiter4"></label>智慧醫療
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" id="filiter5" type="checkbox" value="精準醫療(含遠距醫療)" name="checkbox4">
+                        <label class="form-check-label" for="filiter5"></label>精準醫療(含遠距醫療)
+                      </div>
+                    </div>
+                  </div>
+                  <button class="filiterLightboxBtn" type="button" data-bs-toggle="collapse" data-bs-target="#filiterarea4" aria-expanded="false" aria-controls="filiterarea4"><i class="fas fa-chevron-up"></i><span>國防及戰略產業</span></button>
+                  <div class="collapse filiterlightbox_form_check" id="filiterarea4">
+                    <div class="card card-body">
+                      <div class="form-check">
+                        <input class="form-check-input" id="filiter1" type="checkbox" value="太空發射技術" name="checkbox4">
+                        <label class="form-check-label" for="filiter1"></label> 太空發射技術
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" id="filiter2" type="checkbox" value="太空檢測技術" name="checkbox4">
+                        <label class="form-check-label" for="filiter2"></label> 太空檢測技術
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" id="filiter3" type="checkbox" value="推進系統技術" name="checkbox4">
+                        <label class="form-check-label" for="filiter3"></label> 推進系統技術
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" id="filiter4" type="checkbox" value="船舶核心技術" name="checkbox4">
+                        <label class="form-check-label" for="filiter4"></label>船舶核心技術
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" id="filiter5" type="checkbox" value="發動機技術" name="checkbox4">
+                        <label class="form-check-label" for="filiter5"></label>發動機技術
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" id="filiter6" type="checkbox" value="衛星通訊"  name="checkbox4">
+                        <label class="form-check-label" for="filiter6"></label>衛星通訊
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" id="filiter7" type="checkbox" value="戰機關鍵技術"  name="checkbox4">
+                        <label class="form-check-label" for="filiter7"></label>戰機關鍵技術
+                      </div>
+                    </div>
+                  </div>
+                  <button class="filiterLightboxBtn" type="button" data-bs-toggle="collapse" data-bs-target="#filiterarea5" aria-expanded="false" aria-controls="filiterarea5"><i class="fas fa-chevron-up"></i><span>綠電及再生能源產業</span></button>
+                  <div class="collapse filiterlightbox_form_check" id="filiterarea5">
+                    <div class="card card-body">
+                      <div class="form-check">
+                        <input class="form-check-input" id="filiter1" type="checkbox" value="太陽光電" name="checkbox4">
+                        <label class="form-check-label" for="filiter1"></label>太陽光電
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" id="filiter2" type="checkbox" value="水下基礎" name="checkbox4">
+                        <label class="form-check-label" for="filiter2"></label>水下基礎
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" id="filiter3" type="checkbox" value="風機系統" name="checkbox4">
+                        <label class="form-check-label" for="filiter3"></label>風機系統
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" id="filiter4" type="checkbox" value="海事工程" name="checkbox4">
+                        <label class="form-check-label" for="filiter4"></label>海事工程
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" id="filiter5" type="checkbox" value="電力設備" name="checkbox4">
+                        <label class="form-check-label" for="filiter5"></label>電力設備
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" id="filiter6" type="checkbox" value="離岸風電" name="checkbox4">
+                        <label class="form-check-label" for="filiter6"></label>離岸風電
+                      </div>
+                    </div>
+                  </div>
+                  <button class="filiterLightboxBtn" type="button" data-bs-toggle="collapse" data-bs-target="#filiterarea6" aria-expanded="false" aria-controls="filiterarea6"><i class="fas fa-chevron-up"></i><span>民生及戰備產業</span></button>
+                  <div class="collapse filiterlightbox_form_check" id="filiterarea6">
+                    <div class="card card-body">
+                      <div class="form-check">
+                        <input class="form-check-input" id="filiter1" type="checkbox" value="民生物資與食品加工產業鏈" name="checkbox4">
+                        <label class="form-check-label" for="filiter1"></label>民生物資與食品加工產業鏈
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" id="filiter2" type="checkbox" value="再生能源" name="checkbox4">
+                        <label class="form-check-label" for="filiter2"></label>再生能源
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" id="filiter3" type="checkbox" value="安全庫存" name="checkbox4">
+                        <label class="form-check-label" for="filiter3"></label>安全庫存
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" id="filiter4" type="checkbox" value="救災資源資料庫" name="checkbox4" >
+                        <label class="form-check-label" for="filiter4"></label>救災資源資料庫
+                      </div>
+                      
+                    </div>
+                  </div>
+                  <button class="filiterLightboxBtn" type="button" data-bs-toggle="collapse" data-bs-target="#filiterarea7" aria-expanded="false" aria-controls="#filiterarea7"><i class="fas fa-chevron-up"></i><span>其他產業</span></button>
+                  <div class="collapse filiterlightbox_form_check" id="filiterarea7">
+                    <div class="card card-body">
+                      <div class="form-check">
+                        <input class="form-check-input" id="filiter1" type="checkbox" value="其他" name="checkbox4" >
+                        <label class="form-check-label" for="filiter1"></label>其他
+                      </div>           
+                    </div>
+                  </div>
+                  <!--saerch btn------------------------>
+                  <div class="search_btn hcenter">
+                    <div class="button_fill_orange btn_m" id="ad_btn_search">
+                      <p ng-click="mqueryData()" data-bs-dismiss="modal" aria-label="Close"
+                      
+                      >送出查詢</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+    
 	<div class="footer_space"></div>
 	<%@ include file="../include/footer.jsp"%>
 </body>

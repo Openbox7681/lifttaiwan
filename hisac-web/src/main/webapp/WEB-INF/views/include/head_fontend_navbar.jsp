@@ -33,9 +33,15 @@
 
       <!-- scroll top--><a href="#top_pos" id="top_button"><i class="fas fa-angle-up"></i></a>
     <!-- mobile navbar content-->
-    <div class="nav_barcontent" id="acolor"><a href="pages/plan-info.html">     
-        <p>計畫介紹</p></a><a href="pages/int-info.html">         
-        <p>國際資訊查詢</p></a><a href="pages/int-coop.html">        
-        <p>國際合作案例</p></a><a href="pages/video-info.html">       
-        <p>影音資訊</p></a><a href="pages/contact.html">        
-        <p>聯絡我們</p></a></div>
+    <div class="nav_barcontent" id="acolor">
+        <a href="<c:out value="${pageContext.request.contextPath}" />/fontend/plan">
+        <p>計畫介紹</p></a>
+		<a href="<c:out value="${pageContext.request.contextPath}" />/fontend/intInfo">
+        <p>國際資訊查詢</p></a>
+		<a href="<c:out value="${pageContext.request.contextPath}" />/fontend/intCoop">
+        <p>國際合作案例</p></a>
+		<a href="<c:out value="${pageContext.request.contextPath}" />/fontend/videoInfo">
+        <p>影音資訊</p></a>
+        
+        
+        </div>

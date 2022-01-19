@@ -37,10 +37,10 @@ label {
 }
 
 * {
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
+  -webkit-user-select: auto;
+     -moz-user-select: auto;
+      -ms-user-select: auto;
+          user-select: auto;
 }
 
 html, body {
@@ -572,12 +572,12 @@ footer .footer_content p {
   right: 5%;
 }
 .statistics_type .statistics_line .icon img {
-  user-drag: none;
-  -webkit-user-drag: none;
-  user-select: none;
-  -moz-user-select: none;
-  -webkit-user-select: none;
-  -ms-user-select: none;
+  user-drag: auto;
+  -webkit-user-drag: auto;
+  user-select: auto;
+  -moz-user-select: auto;
+  -webkit-user-select: auto;
+  -ms-user-select: auto;
 }
 
 .popinfo {
@@ -823,10 +823,10 @@ footer .footer_content p {
 }
 #filiter .filiter_line_dropdown .main-detail span {
   cursor: pointer;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
+  -webkit-user-select: auto;
+     -moz-user-select: auto;
+      -ms-user-select: auto;
+          user-select: auto;
   white-space: pre;
 }
 #filiter .filiter_line_dropdown .main-detail span::before {
@@ -961,10 +961,10 @@ footer .footer_content p {
   max-width: 7%;
   user-drag: none;
   -webkit-user-drag: none;
-  user-select: none;
-  -moz-user-select: none;
-  -webkit-user-select: none;
-  -ms-user-select: none;
+  user-select: auto;
+  -moz-user-select: auto;
+  -webkit-user-select: auto;
+  -ms-user-select: auto;
 }
 
 .index_title h6::before {
