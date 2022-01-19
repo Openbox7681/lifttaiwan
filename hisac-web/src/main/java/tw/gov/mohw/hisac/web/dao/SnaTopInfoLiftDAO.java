@@ -2,6 +2,7 @@ package tw.gov.mohw.hisac.web.dao;
 
 import java.util.List;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import tw.gov.mohw.hisac.web.domain.SnaTopInfoLift;
@@ -17,4 +18,5 @@ public interface SnaTopInfoLiftDAO {
 	public SnaTopInfoLift getByName(String name);
 	public List<SnaTopInfoLift> getList(JSONObject obj);
 	public long getListSize(JSONObject obj);
+	public List<Object[]> getC3DataByCondition( JSONArray classSubList);
 }

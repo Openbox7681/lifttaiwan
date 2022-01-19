@@ -9,7 +9,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "v_people_paper")
+@Table(name = "v_wos_cls_paper")
 public class ViewWosClsPaper {
 	private Long id;
 	private String class_main;

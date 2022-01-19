@@ -97,6 +97,14 @@ function getAppController($scope, $http, $cookieStore, $cookies, $anchorScroll, 
 	$scope.IsInfoShow4 = false;
 	$scope.IsInfoShow5 = false;
 	$scope.IsInfoShow6 = false;
+	
+	
+	$scope.isC3data = false;
+	
+	//B表
+	$scope.isResult1 = false;
+	$scope.isResult2 = false;
+
 
 	
 	$scope.queryNumber();
@@ -445,8 +453,10 @@ function getAppController($scope, $http, $cookieStore, $cookies, $anchorScroll, 
 	//成果分析呈現資料切換
 	$scope.resultSwitch = function(index){
 		if(index ==1){
+			
 			$scope.isResult1 = true;
 			$scope.isResult2 = false;
+			
 			$scope.getB1data();
 		}else if (index == 2) {
 			$scope.isResult1 = false;
@@ -476,6 +486,16 @@ function getAppController($scope, $http, $cookieStore, $cookies, $anchorScroll, 
 			$scope.isSupport1 = true;
 			$scope.isSupport2 = false;
 			$scope.isSupport3 = false;
+			
+			
+			//B表
+			$scope.isResult1 = false;
+			$scope.isResult2 = false;
+			
+			//C3表
+
+			$scope.isC3data = false
+
 
 			
 			$scope.queryForm();
@@ -492,13 +512,39 @@ function getAppController($scope, $http, $cookieStore, $cookies, $anchorScroll, 
 			$scope.isSupport = false;
 			$scope.isResult = true;
 			
+			
+			$scope.isSupport1 = false;
+			$scope.isSupport2 = false;
+			$scope.isSupport3 = false;
+			
 			$scope.isResult1 = true;
 			$scope.isResult2 = false;
+			
+			$scope.isC3data = false;
+
 
 
 			$scope.isInter = false;
 			$scope.isAnalysis = false;
 		}else if ($scope.inlineRadioOptions == 3){
+			
+			
+			$scope.isSupport = false;
+			$scope.isResult = false;
+			
+			$scope.isSupport1 = false;
+			$scope.isSupport2 = false;
+			$scope.isSupport3 = false;
+			
+			
+			
+			$scope.isResult1 = false;
+			$scope.isResult2 = false;
+			
+			$scope.getC3data();
+			$scope.isC3data = true
+			
+			
 			$scope.isSupport = false;
 			$scope.isResult = false;
 			$scope.isInter = true;
@@ -629,7 +675,7 @@ function getAppController($scope, $http, $cookieStore, $cookies, $anchorScroll, 
 
         option= {
             title: {
-                text: 'A-2補助人數(依領域及國家)'
+                text: ''
             },
             tooltip: {
                 trigger: 'axis'
@@ -703,6 +749,8 @@ function getAppController($scope, $http, $cookieStore, $cookies, $anchorScroll, 
 	
 
 	$scope.getB1data = function() {
+		$("#imgLoading").show();
+
 		var request = {
 				
 				classSubList : $scope.InfoList,
@@ -712,13 +760,94 @@ function getAppController($scope, $http, $cookieStore, $cookies, $anchorScroll, 
 		$http.post('./common/getB1data', request, csrf_config).then(function(response) {
 			$scope.B1Data = response.data.formData;
 			
-		})
+			
+		}).catch(function() {
+			bootbox.alert({
+				message : globalReadDataFail,
+				buttons : {
+					ok : {
+						label : '<i class="fas fa-fw fa-times"></i>' + btnClose,
+						className : 'btn-danger',
+					}
+				},
+				callback: function() { }
+			});
+		}).finally(function() {
+			$("#imgLoading").hide();
+            $("#loadingActivity").fadeOut("slow");
+
+		});
+		
+	}
+	
+	$scope.getB2data = function() {
+		$("#imgLoading").show();
+
+		var request = {
+				
+				classSubList : $scope.InfoList,
+				countryList : $scope.CountryList
+			
+		};
+		$http.post('./common/getB1data', request, csrf_config).then(function(response) {
+			$scope.B1Data = response.data.formData;
+			
+			
+		}).catch(function() {
+			bootbox.alert({
+				message : globalReadDataFail,
+				buttons : {
+					ok : {
+						label : '<i class="fas fa-fw fa-times"></i>' + btnClose,
+						className : 'btn-danger',
+					}
+				},
+				callback: function() { }
+			});
+		}).finally(function() {
+			$("#imgLoading").hide();
+            $("#loadingActivity").fadeOut("slow");
+
+		});
+		
+	}
+	
+	
+	
+	$scope.getC3data = function() {
+		$("#imgLoading").show();
+
+		var request = {
+				classSubList : $scope.InfoList
+		};
+		$http.post('./common/getC3data', request, csrf_config).then(function(response) {
+			$scope.C1Data = response.data.formData;
+			
+		}).catch(function() {
+			bootbox.alert({
+				message : globalReadDataFail,
+				buttons : {
+					ok : {
+						label : '<i class="fas fa-fw fa-times"></i>' + btnClose,
+						className : 'btn-danger',
+					}
+				},
+				callback: function() { }
+			});
+		}).finally(function() {
+			$("#imgLoading").hide();
+            $("#loadingActivity").fadeOut("slow");
+
+		});
 		
 	}
 	
 	
 	
 	$scope.queryCountry = function() {
+		
+		$("#imgLoading").show();
+
 		var request = {
 				startYear : $scope.StartYear,
 				endYear : $scope.EndYear,
@@ -739,11 +868,29 @@ function getAppController($scope, $http, $cookieStore, $cookies, $anchorScroll, 
 
 			
 			
-		})
+		}).catch(function() {
+			bootbox.alert({
+				message : globalReadDataFail,
+				buttons : {
+					ok : {
+						label : '<i class="fas fa-fw fa-times"></i>' + btnClose,
+						className : 'btn-danger',
+					}
+				},
+				callback: function() { }
+			});
+		}).finally(function() {
+			$("#imgLoading").hide();
+            $("#loadingActivity").fadeOut("slow");
+
+		});
 		
 	}
 	
 	$scope.queryForm = function() {
+		
+		$("#imgLoading").show();
+
 
 		var request = {
 				startYear : $scope.StartYear,

@@ -144,7 +144,7 @@
                                                 <div class="chart">
                                                     <!--<img src="../img/img_cubelink.jpg">-->
 
-                                                    <div id="cubelink" style="width : 1344px ; height: 300px"></div>
+                                                    <div id="cubelink" style="height: 800px"></div>
                                                 </div>
                                             </div>
                                         </div>
@@ -154,13 +154,13 @@
                                                 <div class="index_title" ng-show="isSupport">
                                                     <h5>各研習機構比例</h5>
                                                 </div>
-                                                 <div class="col-lg-12">
+                                                 <div class="col-lg-12 col-md-12">
                                                 
                                                 <div class="chart">
                                                     <!--<img src="../img/img_pie-2.jpg">-->
 
                                                     <div 
-                                                		 id="pie1" style=" width : 1344px  ; height: 600px"></div>
+                                                		 id="pie1" style="width : 1344px ; height: 800px"></div>
                                                 </div>
                                      			 </div>
                                                 
@@ -168,11 +168,11 @@
                                                 <div class="index_title" ng-show="isSupport">
                                                     <h5>頂尖機構佔比</h5>
                                                 </div>
-                                                 <div class="col-lg-12">
+                                                 <div class="col-lg-12 col-md-12">
 
                                                 <div class="chart">
 
-                                                    <div id="pie2" style="width : 1344px ; height: 600px"></div>
+                                                    <div id="pie2" style="width : 1344px ; height: 800px"></div>
                                                 </div>
                                                </div>
                                                 
@@ -209,7 +209,8 @@
                                 <div class="line2"></div>
                                 <button class="filiterLightboxBtn" type="button" data-bs-toggle="collapse"
                                     data-bs-target="#filiterarea1" aria-expanded="false" aria-controls="filiterarea1"><i
-                                        class="fas fa-chevron-up"></i><span>資訊及數位相關產業</span></button>
+                                        class="fas fa-chevron-up"></i><span ng-click = "openSubSubjects(1)" class="su_info" 
+                                        >資訊及數位相關產業</span></button>
                                 <div class="collapse filiterlightbox_form_check" id="filiterarea1">
                                     <div class="card card-body">
                                         <div class = "form-check" ng-repeat = "item in InfoList" ng-show = "IsInfoShow1" name="checkboxForm">
@@ -225,7 +226,8 @@
                                
                                 <button class="filiterLightboxBtn" type="button" data-bs-toggle="collapse"
                                     data-bs-target="#filiterarea3" aria-expanded="false" aria-controls="filiterarea3"><i
-                                        class="fas fa-chevron-up"></i><span>臺灣精準健康戰略產業</span></button>
+                                        class="fas fa-chevron-up"></i><span ng-click = "openSubSubjects(2)" class="su_healthy"
+                                        >臺灣精準健康戰略產業</span></button>
                                 <div class="collapse filiterlightbox_form_check" id="filiterarea3">
                                     <div class="card card-body">
                                         <div class = "form-check" ng-repeat = "item in InfoList" ng-show = "IsInfoShow2" name="checkboxForm">
@@ -239,7 +241,8 @@
                                 </div>
                                 <button class="filiterLightboxBtn" type="button" data-bs-toggle="collapse"
                                     data-bs-target="#filiterarea4" aria-expanded="false" aria-controls="filiterarea4"><i
-                                        class="fas fa-chevron-up"></i><span>國防及戰略產業</span></button>
+                                        class="fas fa-chevron-up"></i><span ng-click = "openSubSubjects(3)" class="su_safe"
+                                        >國防及戰略產業</span></button>
                                 <div class="collapse filiterlightbox_form_check" id="filiterarea4">
                                     <div class="card card-body">
                                         <div class = "form-check" ng-repeat = "item in InfoList" ng-show = "IsInfoShow3" name="checkboxForm">
@@ -253,7 +256,8 @@
                                 </div>
                                 <button class="filiterLightboxBtn" type="button" data-bs-toggle="collapse"
                                     data-bs-target="#filiterarea5" aria-expanded="false" aria-controls="filiterarea5"><i
-                                        class="fas fa-chevron-up"></i><span>綠電及再生能源產業</span></button>
+                                        class="fas fa-chevron-up"></i><span ng-click = "openSubSubjects(5)" class="su_power"
+                                        >綠電及再生能源產業</span></button>
                                 <div class="collapse filiterlightbox_form_check" id="filiterarea5">
                                     <div class="card card-body">
                                         <div class = "form-check" ng-repeat = "item in InfoList" ng-show = "IsInfoShow5" name="checkboxForm">
@@ -267,7 +271,8 @@
                                 </div>
                                 <button class="filiterLightboxBtn" type="button" data-bs-toggle="collapse"
                                     data-bs-target="#filiterarea6" aria-expanded="false" aria-controls="filiterarea6"><i
-                                        class="fas fa-chevron-up"></i><span>民生及戰備產業</span></button>
+                                        class="fas fa-chevron-up"></i><span ng-click = "openSubSubjects(4)" class="su_livelihood"
+                                        >民生及戰備產業</span></button>
                                 <div class="collapse filiterlightbox_form_check" id="filiterarea6">
                                     <div class="card card-body">
                                         <div class = "form-check" ng-repeat = "item in InfoList" ng-show = "IsInfoShow4" name="checkboxForm">
@@ -282,7 +287,8 @@
                                 <button class="filiterLightboxBtn" type="button" data-bs-toggle="collapse"
                                     data-bs-target="#filiterarea7" aria-expanded="false"
                                     aria-controls="#filiterarea7"><i
-                                        class="fas fa-chevron-up"></i><span>其他產業</span></button>
+                                        class="fas fa-chevron-up"></i><span ng-click = "openSubSubjects(6)" class="su_other"
+                                        >其他產業</span></button>
                                 <div class="collapse filiterlightbox_form_check" id="filiterarea7">
                                     <div class="card card-body">
                                         	<div class = "form-check" ng-repeat = "item in InfoList" ng-show = "IsInfoShow6" name="checkboxForm">

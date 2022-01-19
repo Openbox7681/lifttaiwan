@@ -2,6 +2,8 @@ package tw.gov.mohw.hisac.web.service;
 
 import java.util.Date;
 import java.util.List;
+
+import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -105,6 +107,10 @@ public class SnaTopInfoLiftService {
 			return false;
 		}
 	}
+	public List<Object[]> getC3DataByCondition(JSONArray classSubList) {
+		return snaTopInfoLiftDAO.getC3DataByCondition(classSubList);
+	}
+
 
 	public SnaTopInfoLift getById(Long id) {
 		return snaTopInfoLiftDAO.get(id);

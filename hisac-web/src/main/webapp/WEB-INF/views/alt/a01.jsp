@@ -188,6 +188,15 @@
                                         <h5>查詢結果</h5>
                                     </div>
                                 </div>
+                                <div class="col-xs-12 col-md-11"  style = "padding : 3px">
+                                    <div class="help-block"></div>
+                              
+                                    <label>
+			                        <span id="imgLoading"><i
+									class="fas fa-spinner fa-spin"></i> <s:message code="dataLoading" />
+									</span>
+									</label>
+									</div>
                                 
                                  <div class="col-sm-12 exportbtn" id="adjust_subsidybtn" ng-show = "isSupport" >
                                  	<ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
@@ -313,21 +322,14 @@
                                 
                                  <div class="col-sm-12"  >
                                     <div class="col-sm-12"
-                                       id="a1" style="height: 600px; width: 100%">
+                                       id="a1" style="height: 600px">
                                      </div>
-                                     
-                                    
-                                    
+
                                     <!--補助資料分析 A-1補助人數(依領域) 堆積柱狀圖-->
                                 </div>
                                  
                                 
-                              <!--   
-                                <div class="col-sm-12 exportbtn" ng-show = "isSupport3">
-                                    <div id="bars" style="height: 300px; width: 600px"></div>
-                                </div> -->
-                                 
-                                      
+                            
                                   
                                 
                                  </div>
@@ -336,13 +338,13 @@
 									<ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
 				                        <li class="nav-item" role="presentation">
 				                          <button class="nav-link active" id="pills-results1-tab" data-bs-toggle="pill" data-bs-target="#pills-results1"
-				                           type="button" role="tab" aria-controls="pills-results1" aria-selected="true"
+				                           type="button" role="tab" aria-controls="pills-results1" aria-selected="true" ng-click = "resultSwitch(1)"
 				                           >
 				                           歷年各項成果追蹤</button>
 				                        </li>
 				                        <li class="nav-item" role="presentation">
 				                          <button class="nav-link" id="pills-results2-tab" data-bs-toggle="pill" data-bs-target="#pills-results2"
-				                           type="button" role="tab" aria-controls="pills-results2" aria-selected="false"
+				                           type="button" role="tab" aria-controls="pills-results2" aria-selected="false" ng-click = "resultSwitch(2)"
 				                           >
 				                           各領域之研究能量分析(論文數TOP20)</button>
 				                        </li>
@@ -378,8 +380,37 @@
 							     
 							     
 								</table>
-							
+							 
+                                </div>
                                 
+                                <div class="col-sm-12 exportbtn" ng-show = "isC3data">
+								國際網絡表現
+							     <table class="table table-striped">
+							     <tr>
+                                            <th>項目</th>
+                                           <th>盤古開天</th>
+                                            <th>國合PI</th>
+                                            <th>龍門計畫主持人</th>
+                                            <th>千里馬申請人</th>
+                                            <th>龍門計畫主持人</th>
+                                            <th>政策邀訪學者</th>
+                                            <th>合計</th>
+                                        </tr>
+                                        
+                                       <tr ng-repeat="item in C1Data">
+                                            <td>{{item.name}}</td>
+                                            <td>{{item.open}}</td>
+                                            <td>{{item.pi}}</td>
+                                            <td>{{item.dragon}}</td>
+                                            <td>{{item.short}}</td>
+                                            <td>{{item.horse}}</td>
+                                            <td>{{item.policy}}</td>
+                                            <td>{{item.total}}</td>
+                                        </tr>
+							     
+							     
+								</table>
+							 
                                 </div>
                                  
                                 

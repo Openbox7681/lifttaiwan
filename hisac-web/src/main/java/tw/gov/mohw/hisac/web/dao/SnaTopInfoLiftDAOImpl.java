@@ -3,13 +3,17 @@ package tw.gov.mohw.hisac.web.dao;
 import java.util.List;
 
 import org.hibernate.Criteria;
+import org.hibernate.criterion.Disjunction;
 import org.hibernate.criterion.Order;
+import org.hibernate.criterion.ProjectionList;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
+import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import tw.gov.mohw.hisac.web.domain.PeopleMainsLift;
 import tw.gov.mohw.hisac.web.domain.SnaTopInfoLift;
 
 @Repository
@@ -110,5 +114,37 @@ public class SnaTopInfoLiftDAOImpl extends BaseSessionFactory implements SnaTopI
 		}
 		long total = (long) cr.list().get(0);
 		return total;
+	}
+
+	@SuppressWarnings("deprecation")
+	public List<Object[]> getC3DataByCondition(JSONArray classSubList) {
+		Criteria cr = getSessionFactory().getCurrentSession().createCriteria(SnaTopInfoLift.class);
+		ProjectionList projectionList = Projections.projectionList();        
+
+		
+		if(!classSubList.toString().contains("全部")) {
+			Disjunction dis = Restrictions.disjunction();
+			for(int i=0; i<classSubList.length(); i++) {
+				JSONObject obj = (JSONObject) classSubList.get(i);
+				if (obj.getBoolean("Flag") == true) {
+					String class_sub = obj.getString("Name");
+	                dis.add(Restrictions.eq("class_sub", class_sub));
+				}	
+			}
+	        cr.add(dis);
+		}
+		
+		projectionList.add(Projections.groupProperty("class_main"))
+		.add(Projections.groupProperty("identify"))
+        .add(Projections.countDistinct("topname"));
+        cr.setProjection(projectionList);
+
+		
+		List<Object[]> list = cr.list();
+		if (list.size() > 0) {
+			return list;
+		} else {
+			return null;
+		}
 	}
 }

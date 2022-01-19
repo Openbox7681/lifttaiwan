@@ -48,11 +48,140 @@ public class a01_SubsidyController extends BaseController {
 		return "msg";
 	}
 	
+	@RequestMapping(value = "/getC3data", method = RequestMethod.POST)
+	public String getC3data(Locale locale, HttpServletRequest request, Model model, @RequestBody String json) {
+		JSONObject listjson = new JSONObject();
+		JSONArray sn_array = new JSONArray();
+		
+		JSONObject total_json = new JSONObject();
+
+		JSONObject obj1 = new JSONObject(json);
+		
+		System.out.println(obj1);
+		JSONArray classSubList = obj1.isNull("classSubList") == true ? null : obj1.getJSONArray("classSubList");
+		
+		List<Object[]> c3datas = snaTopInfoLiftService.getC3DataByCondition(classSubList);
+		
+		total_json.put("name", "頂尖學者鏈結人數");
+		total_json.put("open", Long.valueOf(0));
+		total_json.put("pi", Long.valueOf(0));
+		total_json.put("short", Long.valueOf(0));
+		total_json.put("dragon", Long.valueOf(0));
+		total_json.put("policy", Long.valueOf(0));
+		total_json.put("horse", Long.valueOf(0));
+		total_json.put("total", Long.valueOf(0));
+		
+		
+		if(c3datas != null) {
+			for(Object[] c3data : c3datas) {
+				if(sn_array.toString().contains(c3data[0].toString())) {
+					for(int i=0; i<sn_array.length(); i++) {
+						JSONObject obj = (JSONObject) sn_array.get(i);
+						if(obj.getString("name").equals(c3data[0].toString())) {
+							
+							Long count = obj.getLong("total") + Long.valueOf(c3data[2].toString());
+							obj.put("total", count);
+							
+							Long total = total_json.getLong("total") + Long.valueOf(c3data[2].toString());
+							total_json.put("total", total);
+							
+							if("盤古開天".equals(c3data[1].toString())) {
+								obj.put("open", c3data[2]);
+								Long value = total_json.getLong("open") + Long.valueOf(c3data[2].toString());
+								total_json.put("open", value);
+							}else if("國合PI".equals(c3data[1].toString())) {
+								obj.put("pi", c3data[2]);
+								Long value = total_json.getLong("pi") + Long.valueOf(c3data[2].toString());
+								total_json.put("pi", value);
+							}else if("短期訪問學者".equals(c3data[1].toString())) {
+								obj.put("short", c3data[2]);
+								Long value = total_json.getLong("short") + Long.valueOf(c3data[2].toString());
+								total_json.put("short", value);
+							}else if("龍門計畫主持人".equals(c3data[1].toString())) {
+								obj.put("dragon", c3data[2]);
+								Long value = total_json.getLong("dragon") + Long.valueOf(c3data[2].toString());
+								total_json.put("dragon", value);
+							}else if("政策邀訪學者".equals(c3data[1].toString())) {
+								obj.put("policy", c3data[2]);
+								Long value = total_json.getLong("policy") + Long.valueOf(c3data[2].toString());
+								total_json.put("policy", value);
+							}else if("千里馬申請人".equals(c3data[1].toString())) {
+								obj.put("horse", c3data[2]);
+								Long value = total_json.getLong("horse") + Long.valueOf(c3data[2].toString());
+								total_json.put("horse", value);
+							}
+						}
+					}			
+					
+				}
+				else {
+					JSONObject sn_json = new JSONObject();
+					
+					sn_json.put("name", c3data[0].toString());
+					sn_json.put("open", Long.valueOf(0));
+					sn_json.put("pi", Long.valueOf(0));
+					sn_json.put("short", Long.valueOf(0));
+					sn_json.put("dragon", Long.valueOf(0));
+					sn_json.put("policy", Long.valueOf(0));
+					sn_json.put("horse", Long.valueOf(0));
+					sn_json.put("total", Long.valueOf(c3data[2].toString()));
+					
+					Long total = total_json.getLong("total") + Long.valueOf(c3data[2].toString());
+					total_json.put("total", total);
+					
+					if("盤古開天".equals(c3data[1].toString())) {
+						sn_json.put("open", c3data[2]);
+						Long count = total_json.getLong("open") + Long.valueOf(c3data[2].toString());
+						total_json.put("open", count);
+					}else if("國合PI".equals(c3data[1].toString())) {
+						sn_json.put("pi", c3data[2]);
+						Long count = total_json.getLong("pi") + Long.valueOf(c3data[2].toString());
+						total_json.put("pi", count);
+					}else if("短期訪問學者".equals(c3data[1].toString())) {
+						sn_json.put("short", c3data[2]);
+						Long count = total_json.getLong("short") + Long.valueOf(c3data[2].toString());
+						total_json.put("short", count);
+					}else if("龍門計畫主持人".equals(c3data[1].toString())) {
+						sn_json.put("dragon", c3data[2]);
+						Long count = total_json.getLong("dragon") + Long.valueOf(c3data[2].toString());
+						total_json.put("dragon", count);
+					}else if("政策邀訪學者".equals(c3data[1].toString())) {
+						sn_json.put("policy", c3data[2]);
+						Long count = total_json.getLong("policy") + Long.valueOf(c3data[2].toString());
+						total_json.put("policy", count);
+					}else if("千里馬申請人".equals(c3data[1].toString())) {
+						sn_json.put("horse", c3data[2]);
+						Long count = total_json.getLong("horse") + Long.valueOf(c3data[2].toString());
+						total_json.put("horse", count);
+					}
+				
+					sn_array.put(sn_json);
+				}
+
+					
+				
+				
+				
+			}
+
+			
+		}
+
+		sn_array.put(total_json);
+		listjson.put("formData",sn_array);
+		
+		model.addAttribute("json", listjson.toString());
+		
+				
+		return "msg";
+
+	}
+
+	
 	@RequestMapping(value = "/getB1data", method = RequestMethod.POST)
 	public String getB1data(Locale locale, HttpServletRequest request, Model model, @RequestBody String json) {
 		JSONObject listjson = new JSONObject();
 		JSONArray sn_array = new JSONArray();
-		JSONObject total_json = new JSONObject();
 		
 		JSONObject obj1 = new JSONObject(json);
 		JSONArray classSubList = obj1.isNull("classSubList") == true ? null : obj1.getJSONArray("classSubList");
