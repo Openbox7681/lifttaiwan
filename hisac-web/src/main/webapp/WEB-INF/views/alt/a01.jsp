@@ -383,6 +383,36 @@
 							 
                                 </div>
                                 
+                                <div class="col-sm-12 exportbtn" ng-show = "isResult2">
+								成果分析<br />
+                                    B-2各領域之研究能量分析
+							
+							     <table class="table table-striped">
+							     <tr>
+                                            <th>排名</th>
+                                            <th>WOS領域</th>
+                                            <th>輔助人數</th>
+                                            <th>論文發表數</th>
+                                            <th>國際合著篇數</th>
+                                            <th>國際合著占比</th>
+                                            <th>論文被引用數</th>
+                                        </tr>
+                                        
+                                       <tr ng-repeat="item in B2Data">
+                                            <td>{{item.Index}}</td>
+                                            <td>{{item.Field}}</td>
+                                            <td>{{item.PeopleCount}}</td>
+                                            <td>{{item.PaperCount}}</td>
+                                            <td>{{item.PaperCorCount}}</td>
+                                            <td>{{item.PaperPer}}</td>
+                                            <td>{{item.AcCount}}</td>
+                                        </tr>
+							     
+							     
+								</table>
+							 
+                                </div>
+                                
                                 <div class="col-sm-12 exportbtn" ng-show = "isC3data">
 								國際網絡表現
 							     <table class="table table-striped">

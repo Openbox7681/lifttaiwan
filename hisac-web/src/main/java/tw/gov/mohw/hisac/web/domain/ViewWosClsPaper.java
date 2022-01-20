@@ -24,13 +24,6 @@ public class ViewWosClsPaper {
 
 
 
-	
-	
-	
-	
-	
-	
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "Id", nullable = false, insertable = false, updatable = false)

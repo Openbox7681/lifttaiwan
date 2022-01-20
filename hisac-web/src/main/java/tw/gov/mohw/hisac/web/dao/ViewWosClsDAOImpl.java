@@ -70,7 +70,7 @@ public class ViewWosClsDAOImpl extends BaseSessionFactory implements ViewWosClsD
         	.add(Projections.countDistinct("p_id").as("c_p_id"))
         	.add(Projections.countDistinct("paper_SerialNumber").as("c_paper_SerialNumber"))
         	.add(Projections.countDistinct("paper_corID").as("c_corID"))
-        	.add(Projections.sum("ac").as("c_ac"))
+        	.add(Projections.sum("ac").as("s_ac"))
         ;
 		
         
@@ -78,7 +78,7 @@ public class ViewWosClsDAOImpl extends BaseSessionFactory implements ViewWosClsD
         
 		
 		
-		cr.addOrder(Order.desc("tac"));
+		cr.addOrder(Order.desc("s_ac"));
 
 		cr.setMaxResults(20);
 

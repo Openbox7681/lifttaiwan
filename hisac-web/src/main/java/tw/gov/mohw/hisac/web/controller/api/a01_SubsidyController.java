@@ -1,5 +1,6 @@
 package tw.gov.mohw.hisac.web.controller.api;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -21,6 +22,8 @@ import tw.gov.mohw.hisac.web.service.PaperCorLiftService;
 import tw.gov.mohw.hisac.web.service.PaperMainsLiftService;
 import tw.gov.mohw.hisac.web.service.PeopleMainsLiftService;
 import tw.gov.mohw.hisac.web.service.SnaTopInfoLiftService;
+import tw.gov.mohw.hisac.web.service.ViewWosClsService;
+
 
 @Controller
 @RequestMapping(value = "/alt/common", produces = "application/json; charset=utf-8")
@@ -34,6 +37,8 @@ public class a01_SubsidyController extends BaseController {
 	private PaperCorLiftService paperCorLiftService;
 	@Autowired
 	private SnaTopInfoLiftService snaTopInfoLiftService;
+	@Autowired
+	private ViewWosClsService viewWosClsService;
 
 	@RequestMapping(value = "/queryNumber", method = RequestMethod.POST)
 	public String queryNumber(Locale locale, HttpServletRequest request, Model model, @RequestBody String json) {
@@ -176,6 +181,57 @@ public class a01_SubsidyController extends BaseController {
 		return "msg";
 
 	}
+	
+	@RequestMapping(value = "/getB2data", method = RequestMethod.POST)
+	public String getB2data(Locale locale, HttpServletRequest request, Model model, @RequestBody String json) {
+		JSONObject listjson = new JSONObject();
+		JSONArray sn_array = new JSONArray();
+		
+		JSONObject obj1 = new JSONObject(json);
+		JSONArray classSubList = obj1.isNull("classSubList") == true ? null : obj1.getJSONArray("classSubList");
+		JSONArray countryList = obj1.isNull("countryList") == true ? null : obj1.getJSONArray("countryList");
+		
+		List<Object[]> wosClsDatas = viewWosClsService.getWosCLsDataByCondition(classSubList, countryList);
+		
+		NumberFormat nf = NumberFormat.getNumberInstance();
+		nf.setMaximumFractionDigits(3);
+		int index = 1;
+		
+		if(wosClsDatas != null) {
+			for(Object[] wosClsData : wosClsDatas) {
+				JSONObject obj = new JSONObject();
+
+				String field = wosClsData[0].toString();
+				
+				Long peopleCount =  Long.valueOf(wosClsData[1].toString());
+				Long paperCount = Long.valueOf(wosClsData[2].toString());
+				Long paperCorCount = Long.valueOf(wosClsData[3].toString());
+				Float paperPer = Float.valueOf(paperCorCount.toString()) / Float.valueOf(paperCount.toString()) ;
+				Long acCount =  Long.valueOf(wosClsData[4].toString());
+				
+				obj.put("Index", index);
+				obj.put("Field", field);
+				obj.put("PeopleCount", peopleCount);
+				obj.put("PaperCount", paperCount);
+				obj.put("PaperCorCount", paperCorCount);		
+				obj.put("PaperPer", nf.format(paperPer));
+				obj.put("AcCount", acCount);
+
+				index ++;
+				sn_array.put(obj);
+			}
+		}
+		
+		
+		listjson.put("formData",sn_array);
+		
+		model.addAttribute("json", listjson.toString());
+		return "msg";
+		
+	}
+
+		
+
 
 	
 	@RequestMapping(value = "/getB1data", method = RequestMethod.POST)
@@ -385,17 +441,6 @@ public class a01_SubsidyController extends BaseController {
 			sn_array.put(sn_json);
 		}
 
-		
-
-
-		
-
-		
-		
-		
-		
-		
-		
 		listjson.put("formData",sn_array);
 		
 		model.addAttribute("json", listjson.toString());

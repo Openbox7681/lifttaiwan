@@ -164,6 +164,10 @@
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 	
+	<bean id="viewWosClsDAO" class="tw.gov.mohw.hisac.web.dao.ViewWosClsDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
 	<bean id="articleDataDAO" class="tw.gov.mohw.hisac.web.dao.ArticleDataDAOImpl">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>

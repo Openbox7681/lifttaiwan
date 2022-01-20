@@ -789,8 +789,8 @@ function getAppController($scope, $http, $cookieStore, $cookies, $anchorScroll, 
 				countryList : $scope.CountryList
 			
 		};
-		$http.post('./common/getB1data', request, csrf_config).then(function(response) {
-			$scope.B1Data = response.data.formData;
+		$http.post('./common/getB2data', request, csrf_config).then(function(response) {
+			$scope.B2Data = response.data.formData;
 			
 			
 		}).catch(function() {
