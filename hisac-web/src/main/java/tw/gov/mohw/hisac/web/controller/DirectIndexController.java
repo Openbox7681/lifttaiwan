@@ -206,7 +206,7 @@ public class DirectIndexController extends BaseController {
 
 	
 	/**
-	 * QA
+	 * 版權宣告頁面
 	 * 
 	 * @param locale
 	 *            Locale
@@ -214,12 +214,12 @@ public class DirectIndexController extends BaseController {
 	 *            Model
 	 * @return Url
 	 */
-	@RequestMapping(value = "/malware", method = RequestMethod.GET)
+	@RequestMapping(value = "/copyright", method = RequestMethod.GET)
 	public String Malware(Locale locale, Model model) {
-		return "malware";
+		return "/copyPrivacy/copyright";
 	}
 	/**
-	 * 情資分享
+	 * 隱私權頁面
 	 * 
 	 * @param locale
 	 *            Locale
@@ -227,9 +227,9 @@ public class DirectIndexController extends BaseController {
 	 *            Model
 	 * @return Url
 	 */
-	@RequestMapping(value = "/information_share", method = RequestMethod.GET)
+	@RequestMapping(value = "/privacy", method = RequestMethod.GET)
 	public String InformationShare(Locale locale, Model model) {
-		return "information_share";
+		return "/copyPrivacy/privacy";
 	}
 	/**
 	 * 權限不足

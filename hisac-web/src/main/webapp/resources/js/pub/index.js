@@ -12,6 +12,9 @@ var myApp = angular.module('myApp', []).controller('getAppController',
 
 function getAppController($scope, $http, $window) {
 	
+	
+	
+	
 	$scope.queryNumber = function() {
         $("#loadingActivity").fadeIn("slow");
 

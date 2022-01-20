@@ -33,7 +33,12 @@
         </div>
       </div>
       
-     
+      <div id="cookieConsent">
+      
+      {{cookieData}}
+       
+      
+      <button class="cookieAccept">同意</button></div>
       
 	
 </footer>

@@ -12,6 +12,46 @@ var myApp = angular.module('myApp', []).controller('getAppController',
 
 function getAppController($scope, $http, $window) {
 	
+	$scope.queryCookie = function() {
+
+		var request = {
+			
+			Id : 1
+		};
+		$http.post('./fontend/index/cookiePage/query/id', request, csrf_config).then(function(response) {
+			
+			if (response.data.success) {
+				privacy = response.data.data;
+				
+				$scope.cookieData = privacy.Title;
+		
+				
+				
+
+			}
+			
+			
+			
+				
+		}).catch(function() {
+			bootbox.alert({
+				message : globalReadDataFail,
+				buttons : {
+					ok : {
+						label : '<i class="fas fa-fw fa-times"></i>' + btnClose,
+						className : 'btn-danger',
+					}
+				},
+				callback: function() { }
+			});
+		}).finally(function() {
+			$("#imgLoading").hide();
+
+		});
+	};
+	
+	$scope.queryCookie();
+	
 	top20();
     country();
     connect();

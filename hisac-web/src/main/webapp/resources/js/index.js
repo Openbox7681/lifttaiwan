@@ -11,6 +11,10 @@ angular.element(document).ready(function() {
 });
 
 function getAppController($scope, $http, $window, $timeout) {
+	
+	
+	
+	
 	// 最新消息
 	var items = [];
     for (var i = 0; i < 5; i++) {
@@ -226,6 +230,41 @@ function getAppController($scope, $http, $window, $timeout) {
 				});
 			});
 	}
+	
+	$scope.queryCookie = function() {
+
+		var request = {
+			
+			Id : 1
+		};
+		$http.post('./fontend/index/cookiePage/query/id', request, csrf_config).then(function(response) {
+				
+				$scope.cookieData = response.data.data.Title
+				
+				console.log($scope.cookieData);
+
+				
+	
+		}).catch(function() {
+			bootbox.alert({
+				message : globalReadDataFail,
+				buttons : {
+					ok : {
+						label : '<i class="fas fa-fw fa-times"></i>' + btnClose,
+						className : 'btn-danger',
+					}
+				},
+				callback: function() { }
+			});
+		}).finally(function() {
+			$("#imgLoading").hide();
+
+		});
+	};
+	
+	$scope.queryCookie();
+	
+	
 }
 
 $(document).ready(function() {

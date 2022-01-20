@@ -1183,3 +1183,39 @@ SELECT Class_sub, Fullname, Aac, Con_num, Affiliation, Country FROM topres20_lif
 
 
 
+
+CREATE TABLE [dbo].[privacy_page](
+	[Id] [bigint] IDENTITY(1,1) NOT NULL,
+	[Title] [nvarchar](300) NOT NULL,
+	[Item1] [nvarchar](300) NOT NULL,
+	[Item2_1] [nvarchar](300) NOT NULL,
+	[Item2_2] [nvarchar](300) NOT NULL,
+	[Item2_3] [nvarchar](300) NOT NULL,
+	[Item2_4] [nvarchar](300) NOT NULL,
+	[Item2_5] [nvarchar](300) NOT NULL,
+	[Item3_1] [nvarchar](300) NOT NULL,
+	[Item3_2] [nvarchar](300) NOT NULL,
+	[Item4_1] [nvarchar](300) NOT NULL,
+	[Item4_2] [nvarchar](300) NOT NULL,
+	[Item4_3] [nvarchar](300) NOT NULL,
+	[Item4_4] [nvarchar](300) NOT NULL,
+	[Item5_1] [nvarchar](300) NOT NULL,
+	PRIMARY KEY (Id)
+)
+
+
+CREATE TABLE [dbo].[copyright_page](
+	Id [bigint] IDENTITY(1,1) NOT NULL,
+	[Title] [nvarchar](300) NOT NULL,
+    [Item1_1] [nvarchar](300) NOT NULL,
+	[Item1_2] [nvarchar](300) NOT NULL,
+	[Item1_3] [nvarchar](300) NOT NULL
+	PRIMARY KEY (Id)
+) 
+
+
+CREATE TABLE [dbo].[cookie_page](
+	[Id] [bigint] IDENTITY(1,1) NOT NULL,
+	[Title] [nvarchar](300) NOT NULL,
+	PRIMARY KEY (Id)
+)

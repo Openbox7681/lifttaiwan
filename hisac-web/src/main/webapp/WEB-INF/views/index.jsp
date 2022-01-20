@@ -2,13 +2,15 @@
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
-<%@ include file="./include/head_index.jsp"%>
+<%@ include file="./include/head_login.jsp"%>
 <script>
 	var loginLogin = '<s:message code="loginLogin" />';
 	var loginFail = '<s:message code="loginFail" />';
 	var btnClose = '<s:message code="btnClose" />';
 </script>
 <script src="<c:out value="${pageContext.request.contextPath}" />/resources/js/index.js"></script>
+
+
 <body ng-app="myApp" class="logincolor" id="stop" >
 
 

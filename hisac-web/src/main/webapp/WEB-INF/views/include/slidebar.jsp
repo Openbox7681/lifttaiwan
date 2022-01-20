@@ -74,11 +74,11 @@
                     <a href="<c:out value="${pageContext.request.contextPath}" />/sys/s13">
                     <span>隱私權保護政策頁面設定 </span></a>
                     
-                     <a href="<c:out value="${pageContext.request.contextPath}" />/sys/s13">
+                     <a href="<c:out value="${pageContext.request.contextPath}" />/sys/s15">
                     <span>網站cookie設定管理 </span></a>
                     
-                     <a href="<c:out value="${pageContext.request.contextPath}" />/sys/s13">
-                    <span>個人資源收集告知聲明設定 </span></a></div>
+                     <a href="<c:out value="${pageContext.request.contextPath}" />/sys/s16">
+                    <span>版權宣告設定 </span></a></div>
                     
                     
                   </div>

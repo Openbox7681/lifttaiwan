@@ -134,11 +134,7 @@
 	src="<c:out value="${pageContext.request.contextPath}" />/resources/plugins/jsencrypt.js"></script>
 <![endif]-->
 <script>
-	$(document).ready(function() {
-		$('#cookieConsent').cookieConsent({
-			consentTime: 365		
-		});
-	});
+	
 	var header = JSON
 			.parse('{"Content-Type" : "application/x-www-form-urlencoded;charset=utf-8;","'
 					+ $("meta[name='_csrf_header']").attr("content")
@@ -173,9 +169,6 @@
 	var btnClose = '<s:message code="btnClose" />';
 </script>
 
-<style type="text/css">
-	#cookieConsent{ background-color:white;text-align:center;display:none;position:fixed;z-index:65000;bottom:0px;width:100%;font-size:14px; }
-	#cookieConsent button.cookieAccept{ background:#090;color:white;border:none;border-radius:0.2em;margin:0.5em;padding:0.2em 0.5em 0.2em 0.5em;}
-</style>
+
 </head>
 <!-- End Head -->

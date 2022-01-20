@@ -29,6 +29,10 @@
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 	
+	<bean id="cookiePageDAO" class="tw.gov.mohw.hisac.web.dao.CookiePageDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
 	
 	<bean id="systemLogDAO" class="tw.gov.mohw.hisac.web.dao.SystemLogDAOImpl">
 		<property name="sessionFactory" ref="sessionFactory" />
@@ -145,6 +149,10 @@
 	</bean>
 	
 	<bean id="paperCorLiftDAO" class="tw.gov.mohw.hisac.web.dao.PaperCorLiftDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	<bean id="privacyPageDAO" class="tw.gov.mohw.hisac.web.dao.PrivacyPageDAOImpl">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 	

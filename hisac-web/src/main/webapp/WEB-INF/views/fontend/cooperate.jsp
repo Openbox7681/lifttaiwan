@@ -732,7 +732,7 @@
     </div>
     
     <div class="footer_space"></div>
-	<%@ include file="../include/footer.jsp"%>
+	<%@ include file="../include/footer_fondtend.jsp"%>
 	
 	<script type="text/javascript">
       

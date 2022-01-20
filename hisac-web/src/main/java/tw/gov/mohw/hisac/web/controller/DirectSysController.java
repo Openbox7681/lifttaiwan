@@ -368,6 +368,36 @@ public class DirectSysController extends BaseController {
 	public String s13(Locale locale, Model model) {
 		return "/sys/edit_privacy";
 	}
+	
+	
+	/**
+	 * 隱私權聲明編輯
+	 * 
+	 * @param locale
+	 *            Locale
+	 * @param model
+	 *            Model
+	 * @return 轉址
+	 */
+	@RequestMapping(value = "/s16", method = RequestMethod.GET)
+	public String s16(Locale locale, Model model) {
+		return "/sys/edit_copyright";
+	}
+
+	
+	/**
+	 * 隱私權聲明編輯
+	 * 
+	 * @param locale
+	 *            Locale
+	 * @param model
+	 *            Model
+	 * @return 轉址
+	 */
+	@RequestMapping(value = "/s15", method = RequestMethod.GET)
+	public String s15(Locale locale, Model model) {
+		return "/sys/edit_cookie";
+	}
 
 
 

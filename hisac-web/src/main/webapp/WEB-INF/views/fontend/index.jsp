@@ -11,6 +11,10 @@
 <script src="<c:out value="${pageContext.request.contextPath}" />/resources/js/fontend/main.js"></script>
 <script src="<c:out value="${pageContext.request.contextPath}" />/resources/js/fontend/map.js"></script>
 <script src="<c:out value="${pageContext.request.contextPath}" />/resources/js/fontend/echarts.min.js"></script>
+
+
+
+
 <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
  -->
 <!--  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -501,6 +505,6 @@
         </div>
     </section>
 	<div class="footer_space"></div>
-	<%@ include file="../include/footer.jsp"%>
+	<%@ include file="../include/footer_fondtend.jsp"%>
 </body>
 </html>
