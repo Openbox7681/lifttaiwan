@@ -690,7 +690,7 @@ function getAppController($scope, $http, $cookieStore, $cookies, $anchorScroll, 
             },
             toolbox: {
                 feature: {
-                    saveAsImage: {}
+                    saveAsImage: {show: true , title : ""}
                 }
             },
             xAxis: {

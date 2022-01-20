@@ -95,6 +95,8 @@
                               <th scope="col" class="td_style">發布日期</th>
                               <th class="hcenter" scope="col" class="td_style">是否啟用</th>
                               <th class="hcenter" scope="col" class="td_style">是否公開</th>
+                                                            <th class="hcenter td_style" scope="col">圖片是否正常</th>
+                              
                               <th scope="col" class="td_style">操作</th>
                             </tr>
                           </thead>
@@ -119,6 +121,9 @@
 									title='<s:message code="isShowFalse" />'></i> <s:message
 										code="isShowFalse" /></span>
 							  </td>
+							  
+							  							  <td class="td_style">是</td>
+							  
                               <td class="td_style"> 
                                 <div class="button_fill_orange btn_s" ng-click="editData(item.Id);">
                                   <p>編輯</p>

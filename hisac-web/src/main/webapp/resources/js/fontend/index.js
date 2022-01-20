@@ -273,11 +273,11 @@ function getAppController($scope, $http, $window) {
                 left: 'right',
                 top: 'center',
                 feature: {
-                    mark: { show: true },
-                    dataView: { show: true, readOnly: false },
-                    magicType: { show: true, type: ['line', 'bar', 'stack'] },
-                    restore: { show: true },
-                    saveAsImage: { show: true }
+                    mark: { show: false },
+                    dataView: { show: false, readOnly: false },
+                    magicType: { show: false, type: ['line', 'bar', 'stack'] },
+                    restore: { show: false },
+                    saveAsImage: { show: true , title : ""}
                 }
             },
             xAxis: [

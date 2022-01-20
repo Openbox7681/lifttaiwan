@@ -5,7 +5,7 @@
  --%>
 <%@ include file="../include/head.jsp"%>
 
-<script src="<c:out value="${pageContext.request.contextPath}" />/resources/js/sys/edit_privacy.js"></script>
+<script src="<c:out value="${pageContext.request.contextPath}" />/resources/js/sys/edit_copyright.js"></script>
 <link rel="stylesheet"
 	href="<c:out value="${pageContext.request.contextPath}" />/resources/css/fontend/mainstyle.css">
 	
@@ -32,17 +32,28 @@
           <div class="col-md-12">
           <h5>授權方式及範圍</h5>
           <div class="line_div"></div>
-          <p>為利各界廣為利用網站資料，科技部網站上刊載之所有資料與素材，其得受著作權保護之範圍，以無償、非專屬，得再授權之方式提供公眾使用，使用者得不限時間及地域，重製、改作、編輯、公開傳輸或為其他方式之利用，開發各種產品或服務（簡稱加值衍生物），此一授權行為不會嗣後撤回，使用者亦無須取得本機關之書面或其他方式授權；然使用時，應註明出處。   </p>
+          <p>{{title}}</p>
+           
+               
+       <textarea class="form-control" placeholder="輸入修改內容"  id="item1_1" name="item1_1" rows="4" cols="50" ng-model = "title"></textarea>
+               
+               
         </div>
         
         <div class="col-md-12">
           <h5>相關事項說明</h5>
           <div class="line_div"></div>
           <p>
-          (一)本授權範圍僅及於著作權保護之範圍，不及於其他智慧財產權利，包括但不限於專利、商標、及機關標誌之提供。  
+          {{item1_1}}
           </p>
-          <p>(二)當事人自行公開或依法令公開之個人資料是否得被蒐集、處理及利用，使用者須自行依照個人資料保護法之相關規定，規劃並執行法律要求之相應措施。</p>
-          <p>(三)部分的影音、圖像、樂譜、專人專案撰文或其他著作，經機關特別聲明須經同意方可使用者。         </p>
+          <textarea class="form-control" placeholder="輸入修改內容"  id="item1_1" name="item1_1" rows="2" cols="50" ng-model = "item1_1"></textarea>
+          
+          <p>{{item1_2}}</p>
+          <textarea class="form-control" placeholder="輸入修改內容"  id="item1_2" name="item2_1" rows="2" cols="50" ng-model = "item1_2"></textarea>
+          
+          <p>{{item1_3}}</p>
+          <textarea class="form-control" placeholder="輸入修改內容"  id="item1_3" name="item2_1" rows="2" cols="50" ng-model = "item1_3"></textarea>
+          
         </div>
         
         <div class="col-md-12">

@@ -33,6 +33,9 @@
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 	
+	<bean id="copyRightDAO" class="tw.gov.mohw.hisac.web.dao.CopyRightDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
 	
 	<bean id="systemLogDAO" class="tw.gov.mohw.hisac.web.dao.SystemLogDAOImpl">
 		<property name="sessionFactory" ref="sessionFactory" />

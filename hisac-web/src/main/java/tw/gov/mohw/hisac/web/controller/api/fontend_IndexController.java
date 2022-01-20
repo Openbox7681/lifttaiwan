@@ -23,9 +23,14 @@ import tw.gov.mohw.hisac.web.service.PeopleMainsLiftService;
 import tw.gov.mohw.hisac.web.service.PrivacyPageService;
 import tw.gov.mohw.hisac.web.service.CookiePageService;
 import tw.gov.mohw.hisac.web.service.VideoDataService;
+import tw.gov.mohw.hisac.web.service.CopyRightService;
+
+
 import tw.gov.mohw.hisac.web.domain.ArticleData;
 import tw.gov.mohw.hisac.web.domain.PrivacyPage;
 import tw.gov.mohw.hisac.web.domain.CookiePage;
+import tw.gov.mohw.hisac.web.domain.CopyRight;
+
 
 import tw.gov.mohw.hisac.web.domain.VideoData;
 
@@ -46,7 +51,8 @@ public class fontend_IndexController extends BaseController {
 	private PrivacyPageService privacyPageService;
 	@Autowired
 	private CookiePageService cookiePageService;
-	
+	@Autowired
+	private CopyRightService copyRightService;
 	
 	@RequestMapping(value = "/privacyPage/query/id", method = RequestMethod.POST)
 	public @ResponseBody String IsExist(Locale locale, HttpServletRequest request, @RequestBody String json) {
@@ -106,6 +112,36 @@ public class fontend_IndexController extends BaseController {
 			
 			responseData.put("Title", cookiePage.getTitle());
 			
+		
+			responseJson.put("data", responseData);
+	
+			responseJson.put("msg", true);
+			responseJson.put("success", true);
+		} else {
+			responseJson.put("data", responseData);
+
+			responseJson.put("msg", false);
+			responseJson.put("success", false);
+		}
+		return responseJson.toString();
+	}
+	
+	@RequestMapping(value = "/copyright/query/id", method = RequestMethod.POST)
+	public @ResponseBody String IscopyrightExist(Locale locale, HttpServletRequest request, @RequestBody String json) {
+		JSONObject responseJson = new JSONObject();
+		
+		JSONObject responseData = new JSONObject();
+
+		
+		if (copyRightService.isExist(new Long(1))) {
+			CopyRight copyright = copyRightService.getDataById(new Long(1));
+			
+			
+			responseData.put("Title", copyright.getTitle());
+			responseData.put("Item1_1", copyright.getItem1_1());
+			responseData.put("Item1_2", copyright.getItem1_2());
+			responseData.put("Item1_3", copyright.getItem1_3());
+
 		
 			responseJson.put("data", responseData);
 	
