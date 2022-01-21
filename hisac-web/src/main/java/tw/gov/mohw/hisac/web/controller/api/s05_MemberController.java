@@ -34,7 +34,6 @@ import tw.gov.mohw.hisac.web.service.MailService;
 import tw.gov.mohw.hisac.web.service.MemberRoleService;
 import tw.gov.mohw.hisac.web.service.OrgService;
 
-import tw.gov.mohw.hisac.web.service.IresApiService;
 
 
 /**
@@ -53,8 +52,7 @@ public class s05_MemberController extends BaseController {
 	@Autowired
 	private MailService mailService;
 
-	@Autowired
-	private IresApiService iresApiService;
+	
 
 	private String targetControllerName = "sys";
 	private String targetActionName = "s05";
@@ -381,62 +379,7 @@ public class s05_MemberController extends BaseController {
 	}
 	
 	
-	/**
-	 * 停用/啟用金鑰資料資料API
-	 * 
-	 * @param locale
-	 *            Locale
-	 * @param request
-	 *            HttpServletRequest
-	 * @param json
-	 *            orgCode 與 stats (Delete為停用 , Normal 為啟用)
-	 * @return 狀態是否改變成功
-	 */
-	@RequestMapping(value = "/s05/ires/api/changeAgencyCertificateByState", method = RequestMethod.POST)
-	public @ResponseBody String ChangeAgencyCertificateByState(Locale locale, HttpServletRequest request, @RequestBody String json) {
-		JSONObject responseJson = new JSONObject();
-		CsrfToken token = new HttpSessionCsrfTokenRepository().loadToken(request);
-		
-		json = WebCrypto.getSafe(json);
-		
-		if (token == null || token.getToken().equals(""))
-			return responseJson.toString();
-		if (menuService.getUpdatePermission(getBaseMemberId(), targetControllerName, targetActionName)) {
-			JSONObject obj = new JSONObject(json);
-			long id = obj.isNull("Id") == true ? 0 : obj.getLong("Id");
-			
-			if (!memberService.isExist(id)) {
-				responseJson.put("msg", WebMessage.getMessage("globalDataNotExist", null, locale));
-				responseJson.put("success", false);
-				systemLogService.insert(baseControllerName, baseActionName, json, SystemLogVariable.Action.Delete, SystemLogVariable.Status.Fail, getBaseIpAddress(), getBaseMemberAccount());
-			}
-			
-			else {
-				Member member = memberService.setDisable(getBaseMemberId(), id);
-				JSONObject response = iresApiService.getAgencyCertificateByAgncyCode(json);
-				
-				
-				if (response.getString("Status").equals("200")) {
-					responseJson.put("msg", WebMessage.getMessage("globalUpdateDataSuccess", null, locale));
-					responseJson.put("success", true);
-					responseJson.put("message" , response.getJSONObject("msg"));
-					systemLogService.insert(baseControllerName, baseActionName, json, SystemLogVariable.Action.Delete, SystemLogVariable.Status.Success, getBaseIpAddress(), getBaseMemberAccount());
-
-				} else {
-					responseJson.put("msg", WebMessage.getMessage("globalUpdateDataFail", null, locale));
-					responseJson.put("success", false);
-					responseJson.put("message" , response.getString("msg"));
-					systemLogService.insert(baseControllerName, baseActionName, json, SystemLogVariable.Action.Delete, SystemLogVariable.Status.Fail, getBaseIpAddress(), getBaseMemberAccount());
-				}
-			}
-		}else {
-			responseJson.put("msg", WebMessage.getMessage("globalPermissionDeny", null, locale));
-			responseJson.put("success", false);
-			systemLogService.insert(baseControllerName, baseActionName, json, SystemLogVariable.Action.Delete, SystemLogVariable.Status.Deny, getBaseIpAddress(), getBaseMemberAccount());
-		}
-		return responseJson.toString();
-		
-	}
+	
 	
 	
 	
