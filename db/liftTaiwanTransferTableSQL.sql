@@ -1,3 +1,4 @@
+-- 資料轉換用 table start
 
 If not EXISTS (SELECT * FROM sys.tables WHERE name='topaf50_lift')
 BEGIN
@@ -191,7 +192,8 @@ CREATE TABLE [dbo].[wos_cls_lift](
 	[Class_main] [nvarchar](50) NULL,
 	[Class_sub] [nvarchar](50) NULL,
 	[Field_c] [nvarchar](50) NULL,
-	[Field] [nvarchar](50) NULL
+	[Field] [nvarchar](50) NULL,
+	PRIMARY KEY (Id)
 )
 END
 
@@ -200,11 +202,49 @@ INSERT INTO wos_cls_lift(Class_main, Class_sub ,Field_c ,Field)
 SELECT class_main, class_sub, Field_c, Field FROM WOS_CLS
 
 
+If not EXISTS (SELECT * FROM sys.tables WHERE name='sna_top_info_lift')
+BEGIN
+CREATE TABLE [dbo].[sna_top_info_lift](
+	[Id] [bigint] IDENTITY(1,1) NOT NULL,
+	[P_Id] [nvarchar](255) NOT NULL,
+	[Identify] [nvarchar](255) NOT NULL,
+	[Class_main] [nvarchar](255) NOT NULL,
+	[Class_sub] [nvarchar](255) NOT NULL,
+	[Topname] [nvarchar](3000) NOT NULL,
+	PRIMARY KEY (Id)
+)
+END
+INSERT INTO sna_top_info_lift(P_Id, Identify, Class_main, Class_sub, Topname)
+SELECT identify, class_main,class_sub,topname FROM SNA_top_info
+
+
+If not EXISTS (SELECT * FROM sys.tables WHERE name='sna_info_lift')
+BEGIN
+	CREATE TABLE [dbo].[sna_info_lift](
+	[Id] [bigint] IDENTITY(1,1) NOT NULL,
+	[Class_sub] [nvarchar](50) NOT NULL,
+	[Name_1] [nvarchar](1000) NOT NULL,
+	[Name_2] [nvarchar](1000) NOT NULL,
+	[Paper_serial_number] [nvarchar](100) NOT NULL,
+	PRIMARY KEY (Id)
+	)
+END
+
+INSERT INTO sna_info_lift(Class_sub, Name_1, Name_2, Paper_serial_number)
+SELECT class_sub, name_1, name_2, paper_serial_number  FROM SNA_info
+--end
+
+
+
+-- View
+
+If EXISTS (SELECT * FROM sys.views WHere name = 'v_wos_cls_paper')
+    DROP VIEW [dbo].[v_wos_cls_paper]
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-ALTER VIEW [dbo].[v_wos_cls_paper]
+CREATE VIEW [dbo].[v_wos_cls_paper]
 AS
 SELECT TOP(1000)  b.[Id]
       ,b.[Class_main]
@@ -216,13 +256,207 @@ SELECT TOP(1000)  b.[Id]
       a.Paper_corID,
       a.Ac,
       a.Paper_SerialNumber
-    --   c.Paper_SerialNumber as Paper_SerialNumber_cor
       
   FROM [lifttaiwan].[dbo].[wos_cls_lift] as b
-  
-
 INNER JOIN dbo.v_people_paper as a  ON a.Class_sub = b.Class_sub
-
--- LEFT JOIN (SELECT * from dbo.paper_cor_lift WHERE dbo.paper_cor_lift.Paper_corId =1 ) as c ON c.Paper_SerialNumber = a.Paper_SerialNumber
-
 GO
+
+
+
+If EXISTS (SELECT * FROM sys.views WHere name = 'v_class_sub')
+	DROP VIEW [dbo].[v_class_sub]
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE VIEW [dbo].[v_class_sub]
+AS
+SELECT dbo.TTMAX_info.class_sub , a.class_main as class_sub_name ,dbo.TTMAX_info.index_x
+      ,dbo.TTMAX_info.index_y
+      ,dbo.TTMAX_info.paper_total_num
+FROM             dbo.TTMAX_info INNER JOIN
+(SELECT[class_main]
+      ,[class_sub]
+  FROM [lifttaiwan].[dbo].[WOS_CLS] GROUP BY class_sub, class_main) as a
+ ON dbo.TTMAX_info.class_sub = a.class_sub
+GO
+
+
+
+If EXISTS (SELECT * FROM sys.views WHere name = 'v_inbound_people_paper')
+DROP VIEW [dbo].[v_inbound_people_paper]
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE VIEW [dbo].[v_inbound_people_paper]
+AS
+SELECT  paper_mains_lift.[Id] as Id
+      ,paper_mains_lift.[P_id] as P_id
+      ,[Paper_SerialNumber]
+      ,[PaperTitle]
+      ,[PublishYear]
+      ,[Paper_corID],
+      a.Years as Years
+  FROM [lifttaiwan].[dbo].[paper_mains_lift]
+  RIGHT JOIN
+(SELECT [Id]
+      ,[P_id]
+      ,[Identify]
+      ,[Inout_class]
+      ,[Years]
+      ,[Country]
+      ,[Country_name]
+      ,[Region]
+      ,[Class_main]
+      ,[Class_sub]
+      ,[Affiliations_in_cor_c]
+      ,[Affiliations_cor_c]
+      ,[Affiliations_cor_e]
+  FROM [lifttaiwan].[dbo].[people_mains_lift]
+WHERE Inout_class = 'in-bound'   
+   ) as a    
+ON dbo.paper_mains_lift.P_id = a.P_id
+where Paper_corID = 1
+GO
+
+
+If EXISTS (SELECT * FROM sys.views WHere name = 'v_inbound_people_paper_no_cor')
+DROP VIEW [dbo].[v_inbound_people_paper_no_cor]
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE VIEW [dbo].[v_inbound_people_paper_no_cor]
+AS
+SELECT  paper_mains_lift.[Id] as Id
+      ,paper_mains_lift.[P_id] as P_id
+      ,[Paper_SerialNumber]
+      ,[PaperTitle]
+      ,[PublishYear]
+      ,[Paper_corID],
+      a.Years as Years
+  FROM [lifttaiwan].[dbo].[paper_mains_lift]
+  RIGHT JOIN
+(SELECT [Id]
+      ,[P_id]
+      ,[Identify]
+      ,[Inout_class]
+      ,[Years]
+      ,[Country]
+      ,[Country_name]
+      ,[Region]
+      ,[Class_main]
+      ,[Class_sub]
+      ,[Affiliations_in_cor_c]
+      ,[Affiliations_cor_c]
+      ,[Affiliations_cor_e]
+  FROM [lifttaiwan].[dbo].[people_mains_lift]
+WHERE Inout_class = 'in-bound'   
+   ) as a    
+ON dbo.paper_mains_lift.P_id = a.P_id
+GO
+
+
+
+If EXISTS (SELECT * FROM sys.views WHere name = 'v_people_paper')
+DROP VIEW [dbo].[v_people_paper]
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE VIEW [dbo].[v_people_paper]
+AS
+SELECT  paper_mains_lift.[Id] as Id
+      ,paper_mains_lift.[P_id] as P_id
+      ,dbo.paper_mains_lift.Paper_SerialNumber
+      ,[PaperTitle]
+      ,CAST ([PublishYear] as int) as PublishYear
+      ,[Paper_corID],
+      a.Years +1911  as Years,
+      a.Identify,
+      a.Class_main,
+      a.Class_sub ,
+      a.Country,
+      a.Country_name,
+      b.Ac
+        FROM [lifttaiwan].[dbo].[paper_mains_lift]
+  INNER JOIN
+(SELECT [Id]
+      ,[P_id]
+      ,[Identify]
+      ,[Inout_class]
+      ,[Years]
+      ,[Country]
+      ,[Country_name]
+      ,[Region]
+      ,[Class_main]
+      ,[Class_sub]
+      ,[Affiliations_in_cor_c]
+      ,[Affiliations_cor_c]
+      ,[Affiliations_cor_e]
+  FROM [lifttaiwan].[dbo].[people_mains_lift]
+   ) as a    
+ON dbo.paper_mains_lift.P_id = a.P_id
+
+LEFT JOIN dbo.paper_ac_lift as b  ON b.Paper_SerialNumber = dbo.paper_mains_lift.Paper_SerialNumber
+GO
+
+
+
+If EXISTS (SELECT * FROM sys.views WHere name = 'v_ttmax_info_lift')
+DROP VIEW [dbo].[v_ttmax_info_lift]
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE VIEW [dbo].[v_ttmax_info_lift]
+AS
+SELECT dbo.ttmax_info_lift.Id, dbo.ttmax_info_lift.class_sub , a.class_main as class_main ,dbo.ttmax_info_lift.index_x
+      ,dbo.ttmax_info_lift.index_y
+      ,dbo.ttmax_info_lift.paper_total_num
+FROM             dbo.ttmax_info_lift INNER JOIN
+(SELECT[class_main]
+      ,[class_sub]
+  FROM [lifttaiwan].[dbo].[WOS_CLS] GROUP BY class_sub, class_main) as a             
+                          ON dbo.ttmax_info_lift.class_sub = a.class_sub
+GO
+
+
+If EXISTS (SELECT * FROM sys.views WHere name = 'v_wos_cls_paper')
+DROP VIEW [dbo].[v_wos_cls_paper]
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE VIEW [dbo].[v_wos_cls_paper]
+AS
+SELECT TOP(1000)  b.[Id]
+      ,b.[Class_main]
+      ,b.[Class_sub]
+      ,b.[Field_c]
+      ,b.[Field]
+      ,a.P_id,
+      a.Country,
+      a.Paper_corID,
+      a.Ac,
+      a.Paper_SerialNumber
+      
+  FROM [lifttaiwan].[dbo].[wos_cls_lift] as b
+INNER JOIN dbo.v_people_paper as a  ON a.Class_sub = b.Class_sub
+GO
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
