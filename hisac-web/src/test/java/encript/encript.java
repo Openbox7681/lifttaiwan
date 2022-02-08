@@ -1,7 +1,7 @@
 package encript;
 
 import org.junit.Test;
-import tw.gov.mohw.hisac.web.WebCrypto;
+import tw.gov.mohw.hisac.web.;
 
 
 public class encript {
@@ -14,9 +14,8 @@ public class encript {
 	public void test1() {
 		
 		String code = "ag0NjThLOVdVtHIXejEezIUIXGfn/f6+11ah6sGAwDw=";
-		System.out.println("test");
 		
-//		System.out.println(WebCrypto.getRandomCode(8));
+//		System.out.println(.getRandomCode(8));
 		
 		
 		
@@ -24,6 +23,8 @@ public class encript {
 		
 //		WebCrypto.aesDecrypt(CodeParameter, IvParameter, code);
 		
+		
+		//明文
 		String plainText = "STPIwebdev202110";
 
 		System.out.println(plainText);
@@ -34,6 +35,7 @@ public class encript {
 		
 //		System.out.println(WebCrypto.aesDecrypt(CodeParameter, IvParameter, code));
 		
+		//加密後 code
 		System.out.println(WebCrypto.aesEncrypt(CodeParameter, IvParameter, plainText));
 
 

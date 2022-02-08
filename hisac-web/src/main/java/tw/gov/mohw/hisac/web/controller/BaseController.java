@@ -185,6 +185,75 @@ public class BaseController {
 			model.addAttribute("ciLevel", baseCILevel);
 			model.addAttribute("orgId", baseOrgId);
 			model.addAttribute("beforeSessionTimeoutMinutes", WebConfig.BEFORE_SESSION_TIMEOUT_MINUTES);
+			
+			
+			//取得表單權限制
+			//輔助追蹤權限
+			ViewMenuLimit a01Action = menuService.getMenuByIdAndName(baseMemberId, "輔助追蹤");
+			model.addAttribute("a01Action", a01Action.getActionRead());
+			
+			//技術網絡查詢
+			ViewMenuLimit c01Action = menuService.getMenuByIdAndName(baseMemberId, "技術網絡查詢");
+			model.addAttribute("c01Action", c01Action.getActionRead());
+			//頂尖學者
+			ViewMenuLimit c02Action = menuService.getMenuByIdAndName(baseMemberId, "頂尖學者");
+			model.addAttribute("c02Action", c02Action.getActionRead());
+			//頂尖機構
+			ViewMenuLimit c03Action = menuService.getMenuByIdAndName(baseMemberId, "頂尖機構");
+			model.addAttribute("c03Action", c03Action.getActionRead());
+			
+			//各國國際合作概況
+			ViewMenuLimit k01Action = menuService.getMenuByIdAndName(baseMemberId, "各國國際合作概況");
+			model.addAttribute("k01Action", k01Action.getActionRead());
+			
+			//人才活耀度
+			ViewMenuLimit c04Action = menuService.getMenuByIdAndName(baseMemberId, "人才活耀度");
+			model.addAttribute("c04Action", c04Action.getActionRead());
+			
+			//角色權限
+			ViewMenuLimit s12Action = menuService.getMenuByIdAndName(baseMemberId, "角色權限資料維護");
+			model.addAttribute("s12Action", s12Action.getActionRead());
+			
+			//人員基本資料管理
+			ViewMenuLimit s05Action = menuService.getMenuByIdAndName(baseMemberId, "人員基本資料管理");
+			model.addAttribute("s05Action", s05Action.getActionRead());
+			
+			//角色資料維護
+			ViewMenuLimit s02Action = menuService.getMenuByIdAndName(baseMemberId, "角色資料維護");
+			model.addAttribute("s02Action", s02Action.getActionRead());
+			
+			//隱私權保護政策頁面設定
+			ViewMenuLimit s13Action = menuService.getMenuByIdAndName(baseMemberId, "隱私權保護政策頁面設定");
+			model.addAttribute("s13Action", s13Action.getActionRead());
+
+			//網站cookie設定管理
+			ViewMenuLimit s15Action = menuService.getMenuByIdAndName(baseMemberId, "網站cookie設定管理");
+			model.addAttribute("s15Action", s15Action.getActionRead());
+			
+			//版權宣告設定
+			ViewMenuLimit s16Action = menuService.getMenuByIdAndName(baseMemberId, "版權宣告設定");
+			model.addAttribute("s16Action", s16Action.getActionRead());
+
+			//國際合作個案管理
+			ViewMenuLimit i01Action = menuService.getMenuByIdAndName(baseMemberId, "國際合作個案管理");
+			model.addAttribute("i01Action", i01Action.getActionRead());
+			
+			//影音資訊管理
+			ViewMenuLimit i02Action = menuService.getMenuByIdAndName(baseMemberId, "影音資訊管理");
+			model.addAttribute("i02Action", i02Action.getActionRead());
+
+			//子系統資料維護
+			ViewMenuLimit s01Action = menuService.getMenuByIdAndName(baseMemberId, "子系統資料維護");
+			model.addAttribute("s01Action", s01Action.getActionRead());
+			
+			//表單資料維護
+			ViewMenuLimit s11Action = menuService.getMenuByIdAndName(baseMemberId, "表單資料維護");
+			model.addAttribute("s11Action", s11Action.getActionRead());
+			
+			//操作記錄
+			ViewMenuLimit s03Action = menuService.getMenuByIdAndName(baseMemberId, "操作記錄");
+			model.addAttribute("s03Action", s03Action.getActionRead());
+			
 		} catch (Exception e) {
 			//logger.warn(e.getMessage());
 		}

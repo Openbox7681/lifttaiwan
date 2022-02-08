@@ -45,6 +45,22 @@ public class ViewMenuLimitDAOImpl extends BaseSessionFactory implements ViewMenu
 		}
 		return list;
 	}
+	
+	@SuppressWarnings({"unchecked", "deprecation"})
+	public ViewMenuLimit getMenuByIdAndName(Long memberId, String formName){
+
+			
+			Criteria cr = getSessionFactory().getCurrentSession().createCriteria(ViewMenuLimit.class);
+			cr.add(Restrictions.eq("memberId", memberId));
+			cr.add(Restrictions.eq("formName", formName));
+			cr.addOrder(Order.desc("formId"));
+
+			cr.setMaxResults(1);
+			return (ViewMenuLimit) cr.uniqueResult();
+		
+		
+		
+	}
 
 	@SuppressWarnings("deprecation")
 	public ViewMenuLimit getAction(Long memberId, String controllerName, String actionName) {

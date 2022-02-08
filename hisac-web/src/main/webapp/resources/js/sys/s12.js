@@ -91,10 +91,9 @@ function getAppController($rootScope, $scope, $http, $cookieStore) {
 	
 	$scope.changeRole = function() {
 		document.getElementById("selectReadAllorNone").checked = false;
-		document.getElementById("selectInsAllorNone").checked = false;
-		document.getElementById("selectUpdAllorNone").checked = false;
-		document.getElementById("selectDelAllorNone").checked = false;
-		document.getElementById("selectSignAllorNone").checked = false;
+		
+		
+		
 		$("#imgLoading").show();
 		$("#imgLoading2").show();
 		$scope.showInsert = false;

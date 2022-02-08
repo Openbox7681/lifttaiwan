@@ -8,8 +8,8 @@
 	src="<c:out value="${pageContext.request.contextPath}" />/resources/plugins/paging.js"></script>
 <script src="<c:out value="${pageContext.request.contextPath}" />/resources/js/news.js"></script>
 <script src="<c:out value="${pageContext.request.contextPath}" />/resources/js/fontend/index.js"></script>
-<script src="<c:out value="${pageContext.request.contextPath}" />/resources/js/fontend/main.js"></script>
-<script src="<c:out value="${pageContext.request.contextPath}" />/resources/js/fontend/map.js"></script>
+<%-- <script src="<c:out value="${pageContext.request.contextPath}" />/resources/js/fontend/main.js"></script>
+ --%><script src="<c:out value="${pageContext.request.contextPath}" />/resources/js/fontend/map.js"></script>
 <script src="<c:out value="${pageContext.request.contextPath}" />/resources/js/fontend/echarts.min.js"></script>
 
 

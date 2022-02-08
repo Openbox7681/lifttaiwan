@@ -98,7 +98,7 @@
 									ng-click="changeSelectAllorNone(1)" ng-true-value="true"
 									ng-false-value="false"> <s:message
 										code="s12ReadAllorNone" /></label></th>
-							<th width="10%"><label for="selectInsAllorNone"><input
+						<%-- 	<th width="10%"><label for="selectInsAllorNone"><input
 									id="selectInsAllorNone" ng-disabled="disableSelectInsAllorNone"
 									type="checkbox" class="" ng-model="selectInsAllorNone"
 									ng-click="changeSelectAllorNone(2)" ng-true-value="true"
@@ -115,14 +115,8 @@
 									type="checkbox" class="" ng-model="selectDelAllorNone"
 									ng-click="changeSelectAllorNone(4)" ng-true-value="true"
 									ng-false-value="false"> <s:message
-										code="s12DelAllorNone" /></label></th>
-							<th width="10%"><label for="selectSignAllorNone"><input
-									id="selectSignAllorNone"
-									ng-disabled="disableSelectSignAllorNone" type="checkbox"
-									class="" ng-model="selectSignAllorNone"
-									ng-click="changeSelectAllorNone(5)" ng-true-value="true"
-									ng-false-value="false"> <s:message
-										code="s12SignAllorNone" /></label></th>
+										code="s12DelAllorNone" /></label></th> --%>
+							
 						</tr>
 					</thead>
 					<tbody>
@@ -135,7 +129,7 @@
 									type="checkbox" class="checkbox-primary"
 									ng-model="form.ActionRead" ng-click="changeSelect(form.FormId)"
 									ng-true-value="true" ng-false-value="false"> </label></td>
-							<td class="text-center"><label
+						<!-- 	<td class="text-center"><label
 								for="selectIns_{{form.FormId}}"><input
 									id="selectIns_{{form.FormId}}"
 									ng-disabled="disableSelectIns_{{form.FormId}}" ng-
@@ -158,14 +152,8 @@
 									type="checkbox" class="checkbox-primary"
 									ng-model="form.ActionDelete"
 									ng-click="changeSelect(form.FormId)" ng-true-value="true"
-									ng-false-value="false"> </label></td>
-							<td class="text-center"><label
-								for="selectSign_{{form.FormId}}"><input
-									id="selectSign_{{form.FormId}}"
-									ng-disabled="disableSelectSign_{{form.FormId}}" ng-
-									type="checkbox" class="checkbox-primary"
-									ng-model="form.ActionSign" ng-click="changeSelect(form.FormId)"
-									ng-true-value="true" ng-false-value="false"> </label></td>
+									ng-false-value="false"> </label></td> -->
+							
 						</tr>
 					</tbody>
 				</table>

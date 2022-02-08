@@ -156,7 +156,6 @@ $(function(){
 $(".filiterLightboxBtn").click(
     function(e){
         const lightBoxIcon = $(e.currentTarget).find(".fa-chevron-up");
-        console.log(lightBoxIcon);
         lightBoxIcon.toggleClass("ani_rotate");
 });
 
@@ -197,7 +196,6 @@ const openKeyword = (index) => {
 
 }
 const openSubSubject = (index) => {
-    console.log('test');
     const subjectDict= {
     'a': [
         'AI晶片',

@@ -100,6 +100,28 @@
 	src="<c:out value="${pageContext.request.contextPath}" />/resources/plugins/angular/angular.min.js"></script>
 <script
 	src="<c:out value="${pageContext.request.contextPath}" />/resources/plugins/angular/angular-cookies.min.js"></script>
+
+<script
+	src="<c:out value="${pageContext.request.contextPath}" />/resources/plugins/angular-bootstrap-toggle/angular-bootstrap-toggle.min.js"></script>	
+
+
+
+<script
+	src="<c:out value="${pageContext.request.contextPath}" />/resources/plugins/moment.min.js"></script>
+<script
+	src="<c:out value="${pageContext.request.contextPath}" />/resources/plugins/moment.locales.min.js"></script>
+<script
+	src="<c:out value="${pageContext.request.contextPath}" />/resources/plugins/bootstrap-datetimepicker.min.js"></script>
+<script
+	src="<c:out value="${pageContext.request.contextPath}" />/resources/plugins/ng-file-upload/ng-file-upload-shim.min.js"></script>
+<script
+	src="<c:out value="${pageContext.request.contextPath}" />/resources/plugins/ng-file-upload/ng-file-upload.min.js"></script>
+<script
+	src="<c:out value="${pageContext.request.contextPath}" />/resources/plugins/paging.js"></script>
+<script
+	src="<c:out value="${pageContext.request.contextPath}" />/resources/plugins/FileSaver.js"></script>
+
+
 <c:if test="${enableGoogleRecaptcha}">
 	<script src='https://www.google.com/recaptcha/api.js'></script>
 </c:if>
@@ -113,6 +135,9 @@
 					+ $("meta[name='_csrf_header']").attr("content")
 					+ '":"'
 					+ $("meta[name='_csrf']").attr("content") + '", "Cache-Control": "no-cache"}');
+	
+	
+	
 	var csrf_config = {
 		withCredentials : true,
 		crossDomain : true,

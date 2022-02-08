@@ -40,6 +40,24 @@ public class MenuService {
 			return null;
 		}
 	}
+	
+	/**
+	 * 取得使用者表單
+	 * 
+	 * @param memberId
+	 *            使用者Id
+	 * @param formName
+	 *            formName
+	 * @return 使用者可見選單
+	 */
+	public ViewMenuLimit getMenuByIdAndName(long memberId, String formName) {
+		try {
+			return viewMenuLimitDAO.getMenuByIdAndName(memberId, formName);
+		} catch (Exception e) {
+			//e.printStackTrace();
+			return null;
+		}
+	}
 
 	/**
 	 * 取得使用者表單權限
