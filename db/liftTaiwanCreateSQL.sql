@@ -134,6 +134,28 @@ CREATE TABLE [dbo].[links_pic](
     PRIMARY KEY (Id)
 )
 
+CREATE TABLE [dbo].[video_data](
+	[Id] [bigint] IDENTITY(1,1) NOT NULL,
+	[Title] [nvarchar](255) NOT NULL,
+	[Description] [nvarchar](255) NOT NULL,
+	[Auther] [nvarchar](255) NOT NULL,
+	[Tag] [nvarchar](255) NOT NULL,
+	[Video_Url] [nvarchar](255) NOT NULL,
+	[Img] [nvarchar](255) NOT NULL,
+	[IsEnable] [bit] NOT NULL,
+	[IsShow] [bit] NOT NULL,
+	[CreateId] [bigint] NULL,
+	[CreateTime] [datetime] NULL,
+	[ModifyId] [bigint] NULL,
+	[ModifyTime] [datetime] NULL,
+    PRIMARY KEY (Id)
+
+
+)
+
+
+
+
 -- done
 
 
@@ -1219,3 +1241,5 @@ CREATE TABLE [dbo].[cookie_page](
 	[Title] [nvarchar](300) NOT NULL,
 	PRIMARY KEY (Id)
 )
+
+

@@ -32,7 +32,7 @@ public class DirectMtpController extends BaseController {
 	 */
 	@RequestMapping(value = "/m01", method = RequestMethod.GET)
 	public String m01(Locale locale, Model model) {
-		return "/mtp/m01";
+		return "/kin/k01";
 	}
 
 	/**

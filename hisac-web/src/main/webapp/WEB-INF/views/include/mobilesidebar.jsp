@@ -38,13 +38,11 @@
                             </div>
                           </div>
                           <div class="mhr"></div><a class="button_line_gray" 
-             				 href="<c:out value="${pageContext.request.contextPath}" />/kin/k01">              
+             				 href="<c:out value="${pageContext.request.contextPath}" />/mtp/m01">              
                           <span>各國國際合作概況</span></a>
                           <div class="mhr"></div>
                         </div>
-                        <div class="col-md-6"><a class="button_line_gray" 
-              			href="<c:out value="${pageContext.request.contextPath}" />/cyb/c04">              
-                        <span>人才活躍度</span></a>
+                        <div class="col-md-6">
                           <div class="mhr"></div>
                           <div class="button">
                             <div class="accordion-item">

@@ -20,7 +20,7 @@ import tw.gov.mohw.hisac.web.service.PeopleMainsLiftService;
 import tw.gov.mohw.hisac.web.service.SnaTopInfoLiftService;
 
 @Controller
-@RequestMapping(value = "/kin/common", produces = "application/json; charset=utf-8")
+@RequestMapping(value = "/mtp/common", produces = "application/json; charset=utf-8")
 public class k00_navbarController extends BaseController {
 
 	@Autowired

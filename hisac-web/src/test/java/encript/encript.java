@@ -1,7 +1,7 @@
 package encript;
 
 import org.junit.Test;
-import tw.gov.mohw.hisac.web.;
+import tw.gov.mohw.hisac.web.WebCrypto;
 
 
 public class encript {

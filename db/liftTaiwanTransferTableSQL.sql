@@ -320,6 +320,43 @@ ON dbo.paper_mains_lift.P_id = a.P_id
 where Paper_corID = 1
 GO
 
+If EXISTS (SELECT * FROM sys.views WHere name = 'v_outbound_people_paper')
+DROP VIEW [dbo].[v_outbound_people_paper]
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE VIEW [dbo].[v_outbound_people_paper]
+AS
+SELECT  paper_mains_lift.[Id] as Id
+      ,paper_mains_lift.[P_id] as P_id
+      ,[Paper_SerialNumber]
+      ,[PaperTitle]
+      ,[PublishYear]
+      ,[Paper_corID],
+      a.Years as Years
+  FROM [lifttaiwan].[dbo].[paper_mains_lift]
+  RIGHT JOIN
+(SELECT [Id]
+      ,[P_id]
+      ,[Identify]
+      ,[Inout_class]
+      ,[Years]
+      ,[Country]
+      ,[Country_name]
+      ,[Region]
+      ,[Class_main]
+      ,[Class_sub]
+      ,[Affiliations_in_cor_c]
+      ,[Affiliations_cor_c]
+      ,[Affiliations_cor_e]
+  FROM [lifttaiwan].[dbo].[people_mains_lift]
+WHERE Inout_class = 'out-bound'   
+   ) as a    
+ON dbo.paper_mains_lift.P_id = a.P_id
+where Paper_corID = 1
+GO
+
 
 If EXISTS (SELECT * FROM sys.views WHere name = 'v_inbound_people_paper_no_cor')
 DROP VIEW [dbo].[v_inbound_people_paper_no_cor]
@@ -353,6 +390,42 @@ SELECT  paper_mains_lift.[Id] as Id
       ,[Affiliations_cor_e]
   FROM [lifttaiwan].[dbo].[people_mains_lift]
 WHERE Inout_class = 'in-bound'   
+   ) as a    
+ON dbo.paper_mains_lift.P_id = a.P_id
+GO
+
+If EXISTS (SELECT * FROM sys.views WHere name = 'v_outbound_people_paper_no_cor')
+DROP VIEW [dbo].[v_outbound_people_paper_no_cor]
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE VIEW [dbo].[v_outbound_people_paper_no_cor]
+AS
+SELECT  paper_mains_lift.[Id] as Id
+      ,paper_mains_lift.[P_id] as P_id
+      ,[Paper_SerialNumber]
+      ,[PaperTitle]
+      ,[PublishYear]
+      ,[Paper_corID],
+      a.Years as Years
+  FROM [lifttaiwan].[dbo].[paper_mains_lift]
+  RIGHT JOIN
+(SELECT [Id]
+      ,[P_id]
+      ,[Identify]
+      ,[Inout_class]
+      ,[Years]
+      ,[Country]
+      ,[Country_name]
+      ,[Region]
+      ,[Class_main]
+      ,[Class_sub]
+      ,[Affiliations_in_cor_c]
+      ,[Affiliations_cor_c]
+      ,[Affiliations_cor_e]
+  FROM [lifttaiwan].[dbo].[people_mains_lift]
+WHERE Inout_class = 'out-bound'   
    ) as a    
 ON dbo.paper_mains_lift.P_id = a.P_id
 GO

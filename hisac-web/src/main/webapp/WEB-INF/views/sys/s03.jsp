@@ -144,7 +144,7 @@
 								class="form_label form_label_search form_label_gray"><s:message
 									code="systemCreateAccount" /></label>
 							<div class="form_input form_input_search">
-								<input type="datetime-local" id="CreateAccount" name="CreateAccount"
+								<input type="text" id="CreateAccount" name="CreateAccount"
 									ng-model="CreateAccount" class="form-control"
 									placeholder="<s:message code="systemCreateAccount" />"
 									autocomplete="off">
