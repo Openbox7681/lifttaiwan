@@ -25,7 +25,9 @@ public class encript {
 		
 		
 		//明文
-		String plainText = "STPIwebdev202110";
+//		String plainText = "STPIwebdev202110";
+		String plainText = "ji394iii";
+
 
 		System.out.println(plainText);
 

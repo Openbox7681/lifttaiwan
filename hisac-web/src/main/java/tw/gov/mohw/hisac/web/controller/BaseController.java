@@ -192,6 +192,8 @@ public class BaseController {
 			ViewMenuLimit a01Action = menuService.getMenuByIdAndName(baseMemberId, "輔助追蹤");
 			model.addAttribute("a01Action", a01Action.getActionRead());
 			
+			
+			
 			//技術網絡查詢
 			ViewMenuLimit c01Action = menuService.getMenuByIdAndName(baseMemberId, "技術網絡查詢");
 			model.addAttribute("c01Action", c01Action.getActionRead());
@@ -206,9 +208,6 @@ public class BaseController {
 			ViewMenuLimit k01Action = menuService.getMenuByIdAndName(baseMemberId, "各國國際合作概況");
 			model.addAttribute("k01Action", k01Action.getActionRead());
 			
-			//人才活耀度
-			ViewMenuLimit c04Action = menuService.getMenuByIdAndName(baseMemberId, "人才活耀度");
-			model.addAttribute("c04Action", c04Action.getActionRead());
 			
 			//角色權限
 			ViewMenuLimit s12Action = menuService.getMenuByIdAndName(baseMemberId, "角色權限資料維護");
@@ -255,7 +254,7 @@ public class BaseController {
 			model.addAttribute("s03Action", s03Action.getActionRead());
 			
 		} catch (Exception e) {
-			//logger.warn(e.getMessage());
+			logger.warn(e.getMessage());
 		}
 
 		if (packageName.equals("tw.gov.mohw.hisac.web.controller") && baseControllerName != null && baseActionName != null) {

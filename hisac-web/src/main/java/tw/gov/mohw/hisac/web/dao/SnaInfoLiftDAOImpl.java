@@ -55,7 +55,7 @@ public class SnaInfoLiftDAOImpl extends BaseSessionFactory implements SnaInfoLif
 		
 		ProjectionList projectionList = Projections.projectionList();        
 
-
+		System.out.println(name);
 		
 		
 		cr.add(Restrictions.in("name_2", name));
@@ -70,7 +70,7 @@ public class SnaInfoLiftDAOImpl extends BaseSessionFactory implements SnaInfoLif
 		cr.setMaxResults(100);
 		
 		
-		List<Object[] > list = cr.list();
+		List<Object[]> list = cr.list();
 		if (list.size() > 0) {
 			return list;
 		} else {
@@ -115,7 +115,7 @@ public class SnaInfoLiftDAOImpl extends BaseSessionFactory implements SnaInfoLif
 		cr.setMaxResults(300);
 		
 		
-		List<Object[] > list = cr.list();
+		List<Object[]> list = cr.list();
 		if (list.size() > 0) {
 			return list;
 		} else {

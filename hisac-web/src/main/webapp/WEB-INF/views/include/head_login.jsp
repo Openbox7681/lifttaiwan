@@ -122,8 +122,11 @@
 <script
 	src="<c:out value="${pageContext.request.contextPath}" />/resources/plugins/FileSaver.js"></script>
 	
-<script src="https://cdn.jsdelivr.net/npm/jquery.cookie-consent/dist/jquery.cookie-consent.min.js"></script>
-	
+<%-- <script src="https://cdn.jsdelivr.net/npm/jquery.cookie-consent/dist/jquery.cookie-consent.min.js"></script>
+ --%>	
+
+<script
+	src="<c:out value="${pageContext.request.contextPath}" />/resources/plugins/cookie-consent.min.js"></script>
 	
 	
 <c:if test="${enableGoogleRecaptcha}">

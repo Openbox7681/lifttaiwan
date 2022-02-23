@@ -70,11 +70,11 @@
                     <div class="accordion-body">
                      <c:if test="${s12Action}">  
                     <a href="<c:out value="${pageContext.request.contextPath}" />/sys/s12">
-                    <span>角色權限</span></a>
+                    <span>角色權限資料維護</span></a>
                      </c:if>
                       <c:if test="${s05Action}">  
                     <a href="<c:out value="${pageContext.request.contextPath}" />/sys/s05">
-                    <span>人員基本資料資料管理</span></a>
+                    <span>人員基本資料管理</span></a>
                     </c:if>
                      <c:if test="${s02Action}">  
                     <a href="<c:out value="${pageContext.request.contextPath}" />/sys/s02">

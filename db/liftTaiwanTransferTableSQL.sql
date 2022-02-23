@@ -170,18 +170,18 @@ If not EXISTS (SELECT * FROM sys.tables WHERE name='topres20_lift')
 BEGIN
 CREATE TABLE [dbo].[topres20_lift](
 	Id [bigint] IDENTITY(1,1) NOT NULL,
-	[Class_sub] [nvarchar](255) NOT NULL,
-	[Fullname] [nvarchar](300) NOT NULL,
+	[Class_sub] [nvarchar](255)  NULL,
+	[Fullname] [nvarchar](300)  NULL,
 	[Aac] [int] NULL,
 	[Con_num] [int] NULL,
-	[Affiliation] [nvarchar](300) NOT NULL,
-	[Country] [nvarchar](255) NOT NULL,
+	[Affiliation] [nvarchar](300) NULL,
+	[Country] [nvarchar](255)  NULL,
 	PRIMARY KEY (Id)
 ) 
 END
 
 INSERT INTO topres20_lift(Class_sub, Fullname ,Aac ,Con_num, Affiliation, Country )
-SELECT Class_sub, Fullname, Aac, Con_num, Affiliation, Country FROM topres20_lift
+SELECT class_sub, fullname, AAC, con_num, affiliation, country FROM Topres20
 
 
 
@@ -452,7 +452,47 @@ SELECT  paper_mains_lift.[Id] as Id
       a.Class_sub ,
       a.Country,
       a.Country_name,
-      b.Ac
+      b.AcSET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+ALTER VIEW [dbo].[v_people_paper]
+AS
+SELECT  paper_mains_lift.[Id] as Id
+      ,paper_mains_lift.[P_id] as P_id
+      ,dbo.paper_mains_lift.Paper_SerialNumber
+      ,[PaperTitle]
+      ,CAST ([PublishYear] as int) as PublishYear
+      ,[Paper_corID],
+      a.Years +1911  as Years,
+      a.Identify,
+      a.Class_main,
+      a.Class_sub ,
+      a.Country,
+      a.Country_name,
+      ISNULL(b.Ac, 0) as Ac
+        FROM [dbo].[paper_mains_lift]
+  INNER JOIN
+(SELECT [Id]
+      ,[P_id]
+      ,[Identify]
+      ,[Inout_class]
+      ,[Years]
+      ,[Country]
+      ,[Country_name]
+      ,[Region]
+      ,[Class_main]
+      ,[Class_sub]
+      ,[Affiliations_in_cor_c]
+      ,[Affiliations_cor_c]
+      ,[Affiliations_cor_e]
+  FROM [dbo].[people_mains_lift]
+   ) as a    
+ON dbo.paper_mains_lift.P_id = a.P_id
+
+LEFT JOIN dbo.paper_ac_lift as b  ON b.Paper_SerialNumber = dbo.paper_mains_lift.Paper_SerialNumber
+GO
+
         FROM [lifttaiwan].[dbo].[paper_mains_lift]
   INNER JOIN
 (SELECT [Id]

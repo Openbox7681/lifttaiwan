@@ -1226,7 +1226,7 @@ CREATE TABLE [dbo].[privacy_page](
 )
 
 
-CREATE TABLE [dbo].[copyright_page](
+CREATE TABLE [dbo].[copyright](
 	Id [bigint] IDENTITY(1,1) NOT NULL,
 	[Title] [nvarchar](300) NOT NULL,
     [Item1_1] [nvarchar](300) NOT NULL,
