@@ -89,10 +89,15 @@
 <%-- <script
 	src="<c:out value="${pageContext.request.contextPath}" />/resources/plugins/3.6.0jquery.min.js"></script> --%>
 	
-<script
+	
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+ <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	
+<%-- <script
 	src="<c:out value="${pageContext.request.contextPath}" />/resources/plugins/2.1.3jquery.min.js"></script>
 <script
-	src="<c:out value="${pageContext.request.contextPath}" />/resources/plugins/bootstrap/5.1.3/js/bootstrap.min.js"></script>
+	src="<c:out value="${pageContext.request.contextPath}" />/resources/plugins/bootstrap/5.1.3/js/bootstrap.min.js"></script> --%>
 <script
 	src="<c:out value="${pageContext.request.contextPath}" />/resources/plugins/5.5.2bootbox.min.js"></script>
 
@@ -122,12 +127,12 @@
 <script
 	src="<c:out value="${pageContext.request.contextPath}" />/resources/plugins/FileSaver.js"></script>
 	
-<%-- <script src="https://cdn.jsdelivr.net/npm/jquery.cookie-consent/dist/jquery.cookie-consent.min.js"></script>
- --%>	
-	
+<script src="https://cdn.jsdelivr.net/npm/jquery.cookie-consent/dist/jquery.cookie-consent.min.js"></script>
+ 
+<%-- 	
 <script
 	src="<c:out value="${pageContext.request.contextPath}" />/resources/plugins/cookie-consent.min.js"></script>
-	
+	 --%>
 <c:if test="${enableGoogleRecaptcha}">
 	<script src='https://www.google.com/recaptcha/api.js'></script>
 </c:if>
